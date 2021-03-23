@@ -1,0 +1,35 @@
+kurssit
+├── 0t_viikko1
+│   ├── eka.txt
+│   ├── kolmas.txt
+│   └── stuff
+│       └── neljas.txt
+├── ot2021
+│   └── viikko1
+│       └── Unicafe
+│           ├── pom.xml
+│           └── src
+│               ├── main
+│               │   └── java
+│               │       └── com
+│               │           └── mycompany
+│               │               └── unicafe
+│               │                   ├── Kassapaate.java
+│               │                   ├── Maksukortti.java
+│               │                   └── Paaohjelma.java
+│               └── test
+│                   └── java
+│                       └── com
+│                           └── mycompany
+│                               └── unicafe
+│                                   └── MaksukorttiTest.java
+└── tiedostoja
+    ├── file22
+    ├── file3
+    └── talletus.txt
+cat [error opening dir]
+
+17 directories, 11 files
+cat [error opening dir]
+
+0 directories, 0 files
