@@ -1,2 +1,0 @@
-/laskarit/viikko2/Unicafe/target
-../../../.gitignore.txt
