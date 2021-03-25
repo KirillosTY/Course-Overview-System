@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="8" failures="0" name="com.mycompany.unicafe.MaksukorttiTest" time="0" errors="0" skipped="0">
+<testsuite tests="31" failures="0" name="com.mycompany.unicafe.KassapaateTest" time="0.01" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="11.0.9+7-LTS"/>
@@ -66,12 +66,35 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="alkuSaldo" time="0"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="luotuKorttiOlemassa" time="0"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="booleanPalautusNega" time="0"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="ottaminenNegaatiivinen" time="0"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="ottaminen" time="0"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="lataaminen" time="0"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="toStringTest" time="0"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="booleanPalautus" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="korttiOsteduPosKassa" time="0.007"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="korttiOsteduPosMaara" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="kateisOstoEduPosPalautus" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="korttiOstEduNeg" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="korttiOstEduPos" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="lataaRahaaKortilleNeg" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="korttiOstMauPosKassa" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="korttiOstMauPosMaara" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="korttiOstMauNeg" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="korttiOstMauPos" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="korttiOstMauNegKassa" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="korttiOstMauNegMaara" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="alkuSetti" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="kateisOstoMauPosPalautus" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="lounasNolla" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="korttiOstEduNegKassa" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="korttiOstEduNegMaara" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="lataaRahaaKortille" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="lataaRahaaKortilleKassaNeg" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="kateisOstoEduNegPalautus" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="kateisOstoMauPosMaara" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="kateisOstoMauNegMaara" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="kateisOstoEduNeg" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="kateisOstoEduPos" time="0.002"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="kateisOstoEduPosMaara" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="kateisOstoMauNegPalautus" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="lataaRahaaKortilleKassa" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="kateisOstoEduNegMaara" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="kateisOstoMauNeg" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="kateisOstoMauPos" time="0"/>
+  <testcase classname="com.mycompany.unicafe.KassapaateTest" name="alkuRaha" time="0.001"/>
 </testsuite>
