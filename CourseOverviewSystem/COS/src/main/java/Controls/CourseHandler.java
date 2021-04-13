@@ -1,27 +1,50 @@
 package Controls;
 
-import java.util.HashMap;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class CourseHandler {
+public class CourseHandler implements Serializable {
 
 
-    private HashMap<Integer ,Course> courseList;
+    private ArrayList<Course> courseList;
 
     private Course current;
 
     private String notesOverall;
 
-    public CourseHandler(){
+    private Integer courseID;
 
-        this.courseList = new HashMap<>();
-        this.notesOverall = "";
+    public CourseHandler (ArrayList<Course> courseL, String notesO, Integer cID) {
+
+        this.courseList = courseL;
+
+        this.notesOverall = notesO;
+
+        this.courseID = cID;
 
     }
 
-    public CourseHandler (HashMap<Integer, Course> courseL, String notesO, Integer cID) {
-
-
-
+    public ArrayList<Course> getCourseList() {
+        return courseList;
     }
 
+    public void setCourseList(ArrayList<Course> courseList) {
+        this.courseList = courseList;
+    }
+
+    public Course getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Course current) {
+        this.current = current;
+    }
+
+    public String getNotesOverall() {
+        return notesOverall;
+    }
+
+    public void setNotesOverall(String notesOverall) {
+        this.notesOverall = notesOverall;
+    }
 }

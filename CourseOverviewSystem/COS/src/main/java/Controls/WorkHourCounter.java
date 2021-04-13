@@ -1,4 +1,4 @@
-package Logic;
+package Controls;
 
 public class WorkHourCounter {
 
