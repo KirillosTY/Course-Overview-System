@@ -1,7 +1,8 @@
 # Manual
 
 To try the application just download the file COS.jar and open it!
-[COS.jar] (https://github.com/KirillosTY/Course-Overview-System/blob/3c356b95f53e11128cf166d50db6a25c6d4c198c/CourseOverviewSystem/COS/COS.jar)
+
+[COS.jar](https://github.com/KirillosTY/Course-Overview-System/blob/3c356b95f53e11128cf166d50db6a25c6d4c198c/CourseOverviewSystem/COS/COS.jar)
 
 You can start the file with the command:
 ```
