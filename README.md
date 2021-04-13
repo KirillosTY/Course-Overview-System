@@ -12,4 +12,6 @@ This application is supposed to help in managing courses, tasks, notes and proje
 
 [Workhours](https://github.com/KirillosTY/ot-harjoitustyo/blob/5b310206ed3fe2fe84e1850f67d66845692883cc/ty%C3%B6aikakirjanpito.md)
 
+[Sources](https://github.com/KirillosTY/Course-Overview-System/blob/31b5304e729e51ac6abdbc645ae2f2cb87f23967/Documentation/Sources.md)
+
 ### This project is changing it´s main language to english. Some parts may be in only finnish for now, but will be updated soon.
