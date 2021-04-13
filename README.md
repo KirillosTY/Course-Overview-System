@@ -2,7 +2,7 @@
 
 This application is supposed to help in managing courses, tasks, notes and projects in general.
 
-## This project is changing it´s main language to english. Some parts may be in only finnish for now, but will be updated soon.
+### This project is changing it´s main language to english. Some parts may be in only finnish for now, but will be updated soon.
 
 ## Documentation
 
