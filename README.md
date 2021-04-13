@@ -10,7 +10,7 @@ This application is supposed to help in managing courses, tasks, notes and proje
 
 [Functional requirements](https://github.com/KirillosTY/ot-harjoitustyo/blob/5b310206ed3fe2fe84e1850f67d66845692883cc/Dokumentaatio/Vaatimusm%C3%A4%C3%A4rittely.md)
 
-[Workhours](https://github.com/KirillosTY/ot-harjoitustyo/blob/5b310206ed3fe2fe84e1850f67d66845692883cc/ty%C3%B6aikakirjanpito.md)
+[Workhours](https://github.com/KirillosTY/Course-Overview-System/blob/00539cb27fb19f251819ebd984353ae9e612cdac/Documentation/workhours.md)
 
 [Sources](https://github.com/KirillosTY/Course-Overview-System/blob/31b5304e729e51ac6abdbc645ae2f2cb87f23967/Documentation/Sources.md)
 
