@@ -1,10 +1,8 @@
 package courseoverviewsystem.cos;
 
+import Controls.WorkHourCounter;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -21,11 +19,15 @@ public class StudyStart {
     @FXML
     private Button done;
 
-    @FXML
-    private Stage startStage = new Stage();
+
+    private WorkHourCounter count;
+
+
 
     @FXML
     public void initialize() {
+
+        count = new WorkHourCounter();
 
         new AnimationTimer() {
 
@@ -44,7 +46,10 @@ public class StudyStart {
                     startCounter = currentTime;
                 }
 
-                text.setText(counterToString(countdown)+"");
+                count.counter(countdown);
+
+                text.setText("You have studied for "+count.getSeconds()
+                + " seconds");
 
 
                 if(LocalDateTime.now().format(
@@ -74,39 +79,10 @@ public class StudyStart {
     }
 
 
-    public long counterToString(Long countD){
-
-        String count = "You have studied for "+countD%60+" seconds";
-        long seconds=countD%60;
-        countD-=countD%60;
-        countD/=60;
-
-        count+=" "+countD%60+" minutes";
-        long minutes=countD%60*100;
-        countD-=countD%60;
-        countD/=60;
-
-        long hours=countD%60*10000;
-        count+=" "+countD%60+" hours!";
 
 
-        return seconds+minutes+hours;
-    }
 
 
-    public void studyStart() throws Exception{
-
-        Parent root = FXMLLoader.load(getClass().getResource("studyStart.fxml"));
-
-        Scene studyS = new Scene(root);
-
-        startStage.setScene(studyS);
-        startStage.titleProperty().setValue("Workhour counter has started!");
-
-        startStage.showAndWait();
-
-
-    }
 }
 
 

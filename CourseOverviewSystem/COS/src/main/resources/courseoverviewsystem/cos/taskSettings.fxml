@@ -17,10 +17,10 @@
     <TextArea text="Additional info"  prefWidth="200" prefHeight="200" GridPane.ColumnIndex="1" GridPane.rowIndex="4"/>
 
     <Text text="Start" GridPane.ColumnIndex="5" GridPane.rowIndex="1" />
-    <DatePicker fx:id="dateStart" GridPane.ColumnIndex="4" GridPane.rowIndex="2" ></DatePicker>
+    <DatePicker fx:id="dateStart" GridPane.ColumnIndex="4" GridPane.rowIndex="2" />
 
     <Text text="Deadline" GridPane.ColumnIndex="5" GridPane.rowIndex="5" />
-    <DatePicker fx:id="dateEnd" GridPane.ColumnIndex="4" GridPane.rowIndex="4" ></DatePicker>
+    <DatePicker fx:id="dateEnd" GridPane.ColumnIndex="4" GridPane.rowIndex="4" />
 
 
 </GridPane>

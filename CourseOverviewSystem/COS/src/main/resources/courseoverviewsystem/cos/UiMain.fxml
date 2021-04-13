@@ -90,7 +90,7 @@
                 <HBox alignment="CENTER">
                     <Button text="new Task" prefWidth="180" onAction="#taskSet"/>
 
-                    <Button  prefWidth="30" >
+                    <Button  prefWidth="30" onAction="#taskSet" >
                         <graphic>
                             <ImageView fitHeight="17" fitWidth="17">
                                 <Image url="@Settings-icon.png" preserveRatio="true"  > </Image>
@@ -157,7 +157,8 @@
 
             <HBox alignment="CENTER">
                 <Button text="Start studying" prefWidth="180" onAction="#studyStart"/>
-                <Button  prefWidth="30">
+
+                <Button  prefWidth="30" onAction="#studySet">
                     <graphic>
                         <ImageView fitHeight="17" fitWidth="17">
                             <Image url="@Settings-icon.png" preserveRatio="true"  > </Image>

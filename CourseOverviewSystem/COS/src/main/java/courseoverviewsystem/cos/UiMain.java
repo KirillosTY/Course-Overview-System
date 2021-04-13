@@ -2,6 +2,7 @@
 package courseoverviewsystem.cos;
 
 
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -18,7 +18,8 @@ public class UiMain {
     @FXML
     private Label text;
 
-
+    @FXML
+    private Stage currentStage;
     @FXML
     public void initialize(){
 
@@ -44,31 +45,46 @@ public class UiMain {
     }
 
     @FXML
-    public void studyStart() throws Exception{
+    public void viewChanger(Parent root, String windowName) throws Exception{
 
 
-        courseoverviewsystem.cos.StudyStart start = new courseoverviewsystem.cos.StudyStart();
-        start.studyStart();
+        Scene viewC = new Scene(root);
+
+        Stage startStage = new Stage();
+
+        startStage.setScene(viewC);
+
+        startStage.setTitle(windowName);
+
+        startStage.showAndWait();
+        currentStage= startStage;
 
     }
 
     @FXML
-    private void switchToSecondary() throws IOException {
-       
+    public void studyStart() throws Exception{
+        if(currentStage!= null){
+            currentStage.close();
+        }
+
+        viewChanger( FXMLLoader.load(getClass().getResource("studyStart.fxml")),
+                "Workhour counter has started!");
+
+
+    }
+
+    @FXML
+    public void studySet() throws Exception{
+
+        viewChanger(FXMLLoader.load(getClass().getResource("studySettings.fxml")),
+                "Study settings");
     }
 
     @FXML
     public void taskSet() throws Exception{
 
-        Parent task = FXMLLoader.load(getClass().getResource("taskSettings.fxml"));
-
-        Scene taskS = new Scene(task);
-
-        Stage taskW = new Stage();
-
-        taskW.setScene(taskS);
-
-        taskW.show();
+        viewChanger(FXMLLoader.load(getClass().getResource("taskSettings.fxml")),
+                "Task settings");
 
 
     }

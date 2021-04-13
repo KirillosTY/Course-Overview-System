@@ -15,9 +15,6 @@ public class MainController {
 
         CourseHandler startCH = courseHSaver.getCH();
 
-
-
-
         launch(UiMainStart.class);
 
 
