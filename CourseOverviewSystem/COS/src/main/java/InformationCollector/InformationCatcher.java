@@ -33,7 +33,7 @@ public class InformationCatcher {
 
 
 
-    public void createCourseList() throws Exception{
+    public boolean createCourseList() throws Exception {
 
         try (FileOutputStream CW = new FileOutputStream("CourseInfo/courselist.bin")) {
 
@@ -42,8 +42,12 @@ public class InformationCatcher {
             CH = new CourseHandler(courselist,"Write something",0);
 
             OS.writeObject(CH);
-        }
 
+        } catch (Exception e){
+
+            return false;
+        }
+        return true;
     }
 
     public CourseHandler getCH() {
