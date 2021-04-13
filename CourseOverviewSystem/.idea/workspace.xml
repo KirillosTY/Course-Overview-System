@@ -23,23 +23,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abedf39a-5a47-4096-9f02-a39bbc653b2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/COS/src/main/java/Controls/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/COS/src/main/java/InformationCollector/InformationCatcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/COS/src/main/java/Controls/Settings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/src/main/java/Controls/CourseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/COS/src/main/java/Controls/CourseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/src/main/java/Controls/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/COS/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/src/main/java/Controls/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/COS/src/main/java/Controls/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/COS/src/main/java/Controls/WorkHourCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/COS/src/main/java/Controls/WorkHourCounter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/src/main/java/courseoverviewsystem/cos/SecondaryController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/src/main/java/courseoverviewsystem/cos/UiMainStart.java" beforeDir="false" afterPath="$PROJECT_DIR$/COS/src/main/java/courseoverviewsystem/cos/UiMainStart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/src/main/resources/courseoverviewsystem/cos/secondary.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/target/classes/Controls/CourseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/classes/Controls/CourseHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/target/classes/Controls/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/target/classes/Logic/WorkHourCounter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/SecondaryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/UiMainStart.class" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/UiMainStart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/secondary.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/COS/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/src/main/java/courseoverviewsystem/cos/StudySettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/COS/src/main/java/courseoverviewsystem/cos/StudySettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/src/main/java/courseoverviewsystem/cos/StudyStart.java" beforeDir="false" afterPath="$PROJECT_DIR$/COS/src/main/java/courseoverviewsystem/cos/StudyStart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/src/main/java/courseoverviewsystem/cos/UiMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/COS/src/main/java/courseoverviewsystem/cos/UiMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/src/main/resources/courseoverviewsystem/cos/UiMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/COS/src/main/resources/courseoverviewsystem/cos/UiMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/src/main/resources/courseoverviewsystem/cos/studySettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/COS/src/main/resources/courseoverviewsystem/cos/studySettings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/src/main/resources/courseoverviewsystem/cos/taskSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/COS/src/main/resources/courseoverviewsystem/cos/taskSettings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/target/classes/Controls/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/classes/Controls/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/target/classes/Controls/WorkHourCounter.class" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/classes/Controls/WorkHourCounter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/StudySettings.class" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/StudySettings.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/StudyStart$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/StudyStart$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/StudyStart.class" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/StudyStart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/UiMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/UiMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/UiMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/UiMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/studySettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/studySettings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/taskSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/COS/target/classes/courseoverviewsystem/cos/taskSettings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/COS/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +82,7 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.folding" />
   </component>
   <component name="RunManager" selected="Application.MainController">
@@ -155,34 +161,42 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="101" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618294403523" />
-    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser" timestamp="1618300510505">
+    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser" timestamp="1618303269948">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618300510505" />
+    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618303269948" />
     <state x="424" y="235" width="432" height="216" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1618297889553">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="424" y="235" width="432" height="216" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618297889553" />
-    <state width="1237" height="160" key="GridCell.Tab.0.bottom" timestamp="1618300983251">
+    <state width="1222" height="157" key="GridCell.Tab.0.bottom" timestamp="1618324008710">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="160" key="GridCell.Tab.0.bottom/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618300983251" />
-    <state width="1237" height="160" key="GridCell.Tab.0.center" timestamp="1618300983251">
+    <state width="1237" height="160" key="GridCell.Tab.0.bottom/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618307411856" />
+    <state width="1222" height="157" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1618324008710" />
+    <state width="1222" height="157" key="GridCell.Tab.0.center" timestamp="1618324008710">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="160" key="GridCell.Tab.0.center/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618300983251" />
-    <state width="1237" height="160" key="GridCell.Tab.0.left" timestamp="1618300983251">
+    <state width="1237" height="160" key="GridCell.Tab.0.center/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618307411856" />
+    <state width="1222" height="157" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1618324008710" />
+    <state width="1222" height="157" key="GridCell.Tab.0.left" timestamp="1618324008710">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="160" key="GridCell.Tab.0.left/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618300983251" />
-    <state width="1237" height="160" key="GridCell.Tab.0.right" timestamp="1618300983251">
+    <state width="1237" height="160" key="GridCell.Tab.0.left/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618307411855" />
+    <state width="1222" height="157" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1618324008710" />
+    <state width="1222" height="157" key="GridCell.Tab.0.right" timestamp="1618324008710">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="160" key="GridCell.Tab.0.right/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618300983251" />
+    <state width="1237" height="160" key="GridCell.Tab.0.right/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618307411856" />
+    <state width="1222" height="157" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1618324008710" />
     <state x="177" y="0" key="Maven.ArtifactSearchDialog" timestamp="1618294419432">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="177" y="0" key="Maven.ArtifactSearchDialog/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618294419432" />
+    <state x="-1207" y="0" width="939" height="480" maximized="true" key="dock-window-1" timestamp="1618323950375">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="-1207" y="0" width="939" height="480" maximized="true" key="dock-window-1/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1618307407390" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1618295884464">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
