@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="courseoverviewsystem.cos.TaskSettings"
+          prefHeight="400.0" prefWidth="600.0">
+
+
+
+    <Text text="Task info" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <TextField text="Name" GridPane.ColumnIndex="1" GridPane.rowIndex="2"/>
+    <TextField text="Description" GridPane.ColumnIndex="1" GridPane.rowIndex="3"/>
+    <TextArea text="Additional info"  prefWidth="200" prefHeight="200" GridPane.ColumnIndex="1" GridPane.rowIndex="4"/>
+
+    <Text text="Start" GridPane.ColumnIndex="5" GridPane.rowIndex="1" />
+    <DatePicker fx:id="dateStart" GridPane.ColumnIndex="4" GridPane.rowIndex="2" />
+
+    <Text text="Deadline" GridPane.ColumnIndex="5" GridPane.rowIndex="5" />
+    <DatePicker fx:id="dateEnd" GridPane.ColumnIndex="4" GridPane.rowIndex="4" />
+
+
+</GridPane>
