@@ -1,6 +1,6 @@
 # Course Overview System
 
-This application is supposed to help in managing courses, task, notes and projects in general.
+This application is supposed to help in managing courses, tasks, notes and projects in general.
 
 # Documentation
 
