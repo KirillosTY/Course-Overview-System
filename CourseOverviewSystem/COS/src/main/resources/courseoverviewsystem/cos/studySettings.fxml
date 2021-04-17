@@ -5,29 +5,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<BorderPane xmlns="http://javafx.com/javafx"
+<GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="courseoverviewsystem.cos.StudySettings"
-            prefHeight="400.0" prefWidth="600.0" >
+            prefHeight="330.0" prefWidth="430" vgap="10" hgap="10"  >
     <padding>
-        <Insets bottom="30" right="30" left="30"
-                top="30"/>
+        <Insets bottom="10" right="20" left="20"
+                top="10"/>
 
     </padding>
 
 
-    <left>
+
         <VBox spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="1">
 
-            <CheckBox text="Show current time"/>
-            <CheckBox text="Show worktime"/>
-            <CheckBox text="Show breaktime"/>
+            <CheckBox text="Show current time" fx:id="showCT"/>
+            <CheckBox text="Show worktime" fx:id="showWT"/>
+            <CheckBox text="Show breaktime" fx:id="showBT"/>
 
         </VBox>
 
-    </left>
 
-    <right>
+
+
         <VBox spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="3">
                <HBox>
                    <Label text="Worktime in hours : "/>
@@ -46,9 +46,14 @@
                     <Label text="Cycles :" />
                     <TextField fx:id="cycle" prefWidth="25" prefHeight="15"/>
                 </HBox>
-                <TextArea text="Message for yourself!" fx:id="msg" prefWidth="200" prefHeight="200"/>
-                <Button fx:id="save" text="Save" onAction="#saveSet"/>
-            </VBox>
-        </right>
 
-</BorderPane>
+            </VBox>
+
+
+
+        <VBox spacing="10" alignment="BOTTOM_RIGHT"  GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.columnSpan="3">
+        <TextArea text="Message for yourself!" fx:id="msg" prefWidth="200" prefHeight="200" prefColumnCount="3" GridPane.columnSpan="4"  />
+        <Button fx:id="save" text="Save" onAction="#saveSetButton" alignment="BOTTOM_RIGHT"/>
+        </VBox>
+
+</GridPane>

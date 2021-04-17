@@ -1,6 +1,6 @@
 package courseoverviewsystem.cos;
 
-public class TaskSettings {
+public class CreateCourse {
 
-
+    
 }

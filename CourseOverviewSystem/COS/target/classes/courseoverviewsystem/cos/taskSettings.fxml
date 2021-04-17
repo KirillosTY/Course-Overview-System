@@ -5,22 +5,40 @@
 <?import javafx.scene.text.Text?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="courseoverviewsystem.cos.TaskSettings"
-          prefHeight="400.0" prefWidth="600.0">
+          fx:controller="courseoverviewsystem.cos.TaskEditCreation"
+          prefHeight="330.0" prefWidth="430" vgap="10" hgap="10" >
 
 
+    <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+        <Text text="Task info"/>
 
-    <Text text="Task info" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <TextField text="Name" />
+        <TextField text="Description" />
+        <TextArea text="Additional info(ex. notes)"  prefWidth="200" prefHeight="200" />
 
-    <TextField text="Name" GridPane.ColumnIndex="1" GridPane.rowIndex="2"/>
-    <TextField text="Description" GridPane.ColumnIndex="1" GridPane.rowIndex="3"/>
-    <TextArea text="Additional info"  prefWidth="200" prefHeight="200" GridPane.ColumnIndex="1" GridPane.rowIndex="4"/>
+    </VBox>
 
-    <Text text="Start" GridPane.ColumnIndex="5" GridPane.rowIndex="1" />
-    <DatePicker fx:id="dateStart" GridPane.ColumnIndex="4" GridPane.rowIndex="2" />
+    <VBox spacing="10" GridPane.columnIndex="4" GridPane.rowIndex="1" prefHeight="150">
+        <Text text="Start date:" />
+        <DatePicker fx:id="dateStart"  />
+        <HBox>
+            <Label text="Time:"/>
+            <TextField fx:id="startH" text="hh" prefWidth="35" prefHeight="15"/>
+            <TextField fx:id="startM" text="mm" prefWidth="35" prefHeight="15"/>
+        </HBox>
 
-    <Text text="Deadline" GridPane.ColumnIndex="5" GridPane.rowIndex="5" />
-    <DatePicker fx:id="dateEnd" GridPane.ColumnIndex="4" GridPane.rowIndex="4" />
+        <Text text="Deadline:" />
+        <DatePicker fx:id="dateEnd" />
+        <HBox>
+            <Label text="Time:"/>
+            <TextField fx:id="endH" text="hh" prefWidth="35" prefHeight="15"/>
+            <TextField fx:id="endM" text="mm" prefWidth="35" prefHeight="15"/>
+        </HBox>
+
+    </VBox>
+
+    <Button fx:id="save" text="Save" GridPane.columnIndex="4" GridPane.rowIndex="2" prefWidth="70"
+            GridPane.valignment="BOTTOM" GridPane.halignment="RIGHT"/>
 
 
 </GridPane>

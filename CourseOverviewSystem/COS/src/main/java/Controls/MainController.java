@@ -1,19 +1,34 @@
 package Controls;
 
-import InformationCollector.InformationCatcher;
+import InformationCollector.InformationHandler;
 import courseoverviewsystem.cos.UiMainStart;
 
 import static javafx.application.Application.launch;
 
 public class MainController {
 
-    public static void main(String[] args) throws Exception {
+    private static InformationHandler informationHandler;
 
-        InformationCatcher courseHSaver = new InformationCatcher();
+    private static CourseHandler courseHandler;
 
-        courseHSaver.Loader();
+    private static Settings settings;
 
-        CourseHandler startCH = courseHSaver.getCH();
+    public static void main(String[] args)  {
+
+
+        informationHandler = new InformationHandler();
+
+
+
+        if(informationHandler.loadSettings()==null){
+
+            informationHandler.createCourseList();
+            informationHandler.createSettings();
+
+        }
+
+        courseHandler = informationHandler.courseLoader();
+        settings = informationHandler.loadSettings();
 
         launch(UiMainStart.class);
 
@@ -21,5 +36,18 @@ public class MainController {
 
 
 
+    }
+
+    public static InformationHandler getInformationHandler(){
+        return  informationHandler;
+    }
+
+
+    public static CourseHandler getCourseHandler() {
+        return courseHandler;
+    }
+
+    public static Settings getSettings() {
+        return settings;
     }
 }

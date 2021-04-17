@@ -9,18 +9,32 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
 <?import javafx.animation.Animation ?>
-<BorderPane
+<GridPane
           xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="courseoverviewsystem.cos.StudyStart"
-          prefHeight="320.0" prefWidth="480.0">
+          prefHeight="320.0" prefWidth="480.0" hgap="10" vgap="10">
 
-    <center>
-        <VBox alignment="CENTER" spacing="10">
-            <Label fx:id="text"/>
+    <padding>
+        <Insets bottom="10" top="10" left="10" right="10"/>
+    </padding>
 
-            <Button text="Done!" fx:id="done" onAction="#breakAnimation"/>
-        </VBox>
-    </center>
+    <VBox GridPane.rowIndex="1" GridPane.columnIndex="1" >
 
-</BorderPane>
+        <Label text="Current time: " fx:id="CT"/>
+        <Label text="Overall  worktime: " fx:id="WTOverall"/>
+        <Label text="Overall breaktime: " fx:id="BTOverall"/>
+        <Label text="Cycles left: " fx:id="cycles"/>
+
+    </VBox>
+
+    <VBox alignment="CENTER" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="3">
+        <Label fx:id="WTLeft"  GridPane.columnSpan="3"/>
+
+        <TextArea fx:id="msg" GridPane.columnSpan="3"/>
+
+        <Button text="Done!" fx:id="done" onAction="#breakAnimation"/>
+    </VBox>
+
+
+</GridPane>

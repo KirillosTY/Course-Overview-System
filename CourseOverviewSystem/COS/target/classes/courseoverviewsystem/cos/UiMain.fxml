@@ -4,12 +4,10 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-
-
-<?import javafx.scene.text.Text?>
+<?import java.lang.Object?>
+<?import java.lang.String?>
 <BorderPane fx:controller="courseoverviewsystem.cos.UiMain"
             xmlns:fx="http://javafx.com/fxml" >
 
@@ -87,26 +85,18 @@
 
                     </CheckBox>
                 </HBox>
-                <HBox alignment="CENTER">
-                    <Button text="new Task" prefWidth="180" onAction="#taskSet"/>
-
-                    <Button  prefWidth="30" onAction="#taskSet" >
-                        <graphic>
-                            <ImageView fitHeight="17" fitWidth="17">
-                                <Image url="@Settings-icon.png" preserveRatio="true"  > </Image>
-                            </ImageView>
-                        </graphic>
-
-
-                    </Button>
+                <HBox alignment="BASELINE_LEFT">
+                <Button text="new Task" prefWidth="170" onAction="#taskSet"/>
                 </HBox>
+
+
 
 
 
             </VBox>
 
             <VBox alignment="BOTTOM_CENTER" spacing="10" prefWidth="200">
-                <ComboBox prefWidth="200">
+                <ComboBox fx:id="courselist" prefWidth="200">
                     <items>
 
                         <FXCollections fx:factory="observableArrayList">
@@ -115,6 +105,8 @@
 
                     </items>
                 </ComboBox>
+
+                <Button text="Add a course!" fx:id="CB" prefWidth="200"/>
 
                 <HBox alignment="CENTER">
                     <Button text="Upcoming courses" prefWidth="180"/>

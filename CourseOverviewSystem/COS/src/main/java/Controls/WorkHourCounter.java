@@ -1,5 +1,7 @@
 package Controls;
 
+import java.time.LocalDateTime;
+
 public class WorkHourCounter {
 
     private long seconds = 0;
@@ -10,11 +12,26 @@ public class WorkHourCounter {
 
     private long days = 0;
 
+    private Long currentCount;
+
+    private int cycle = 0;
+
+
+
+    private LocalDateTime endDate;
+
+    private LocalDateTime startDate;
+
 
     public WorkHourCounter() {
 
+    this(0L);
 
+    }
 
+    public WorkHourCounter(Long cc){
+
+        currentCount = cc;
     }
 
     public long getSeconds() {
@@ -23,14 +40,29 @@ public class WorkHourCounter {
 
     public void setSeconds(long seconds) {
         this.seconds = seconds;
+
+        if(seconds < 0){
+            this.seconds = 59;
+
+            setMinutes(getMinutes()-1);
+        }
+
     }
 
     public long getMinutes() {
         return minutes;
+
     }
 
     public void setMinutes(long minutes) {
         this.minutes = minutes;
+
+        if(minutes < 0){
+            this.minutes = 59;
+            setHours(getHours()-1);
+        }
+
+
     }
 
     public long getHours() {
@@ -39,6 +71,11 @@ public class WorkHourCounter {
 
     public void setHours(long hours) {
         this.hours = hours;
+
+        if(hours < 0){
+            this.hours = 23;
+            setDays(getDays()-1);
+        }
     }
 
     public long getDays() {
@@ -49,6 +86,36 @@ public class WorkHourCounter {
         this.days = days;
     }
 
+    public int getCycle() {
+        return cycle;
+    }
+
+    public void setCycle(int cycle) {
+        this.cycle = cycle;
+    }
+
+    public long getFullSeconds(){
+
+        return this.seconds+this.minutes*60+this.hours*3600;
+    }
+
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
     public void counter(long countD){
 
         seconds=countD%60;
@@ -56,40 +123,18 @@ public class WorkHourCounter {
         countD/=60;
 
 
-        minutes=countD%60*100;
+        minutes=countD%60;
         countD-=countD%60;
         countD/=60;
 
-        hours=countD%60*10000;
+        hours=countD%60;
         countD-=countD%60;
         countD/=60;
 
-        days= countD%60*1000000;
+        days= countD%24;
 
 
 
-    }
-
-    public long counter(Long countD){
-
-
-        seconds=countD%60;
-        countD-=countD%60;
-        countD/=60;
-
-
-        minutes=countD%60*100;
-        countD-=countD%60;
-        countD/=60;
-
-        hours=countD%60*10000;
-        countD-=countD%60;
-        countD/=60;
-
-        days= countD%60*1000000;
-
-
-        return seconds+minutes+hours;
     }
 
 

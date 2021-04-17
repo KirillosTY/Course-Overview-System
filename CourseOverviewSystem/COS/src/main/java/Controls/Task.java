@@ -2,7 +2,7 @@ package Controls;
 
 import java.time.LocalDateTime;
 
-public class  Task  {
+public class  Task implements Comparable{
 
     private boolean done = false;
 
@@ -10,30 +10,22 @@ public class  Task  {
 
     private LocalDateTime startDate;
 
-    private Long workHoursSpent;
+    private WorkHourCounter workHoursSpent;
 
     private String name;
 
     private String notes;
 
+    private String description;
+
     private Integer priority;
 
 
+    public Task(boolean state, WorkHourCounter wHS,String name,String des, String notes, Integer prio){
 
-    public Task(boolean state, LocalDateTime eD, Long wHS,String name, String notes, Integer prio) {
 
-        this(state, eD, LocalDateTime.now(), wHS, name, notes, prio);
-
-    }
-
-    public Task(boolean state, LocalDateTime eD, LocalDateTime sD,
-                Long wHS,String name, String notes, Integer prio){
-
-        this.startDate = sD;
 
         this.done = state;
-
-        this.endDate = eD;
 
         this.workHoursSpent = wHS;
 
@@ -42,6 +34,8 @@ public class  Task  {
         this.notes = notes;
 
         this.priority = prio;
+
+        this.description = des;
 
 
     }
@@ -70,13 +64,6 @@ public class  Task  {
         this.startDate = startDate;
     }
 
-    public Long getWorkHoursSpent() {
-        return workHoursSpent;
-    }
-
-    public void setWorkHoursSpent(Long workHoursSpent) {
-        this.workHoursSpent = workHoursSpent;
-    }
 
     public String getName() {
         return name;
@@ -92,5 +79,35 @@ public class  Task  {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return priority;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public WorkHourCounter getWorkHoursSpent() {
+        return workHoursSpent;
+    }
+
+    public void setWorkHoursSpent(WorkHourCounter workHoursSpent) {
+        this.workHoursSpent = workHoursSpent;
     }
 }

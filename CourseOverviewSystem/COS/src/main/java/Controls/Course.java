@@ -1,18 +1,14 @@
 package Controls;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Course {
 
 
-    private boolean done = false;
+    private boolean done;
 
-    private LocalDateTime endDate;
-
-    private LocalDateTime startDate;
-
-    private Long workHoursSpent;
+    private WorkHourCounter workHoursSpent;
 
     private String name;
 
@@ -20,26 +16,12 @@ public class Course {
 
     private int value;
 
-    private HashMap<Integer, Controls.Task> taskList;
+    private ArrayList<Task> taskList;
 
 
-    public Course(boolean state, LocalDateTime eD,
-
-                  Long wHS,String name, String notes, int value) {
-
-        this(state, eD, LocalDateTime.now(), wHS, name, notes,value);
-
-    }
-
-    public Course(boolean state, LocalDateTime eD,LocalDateTime sD, Long wHS,
-
-                  String name, String notes,  int value) {
-
-        this.startDate = sD;
+    public Course(boolean state, WorkHourCounter wHS, String name, String notes,  int value) {
 
         this.done = state;
-
-        this.endDate = eD;
 
         this.workHoursSpent = wHS;
 
@@ -49,8 +31,22 @@ public class Course {
 
         this.value = value;
 
-        this.taskList = new HashMap<>();
+        this.taskList = new ArrayList<>();
     }
+
+    public void addTask(boolean state, WorkHourCounter wHS,String name, String des, String notes, Integer prio){
+
+        taskList.add(new Task(state, wHS, name, des, notes, prio));
+
+    }
+
+    public void addTaskStartDate(boolean state, LocalDateTime eD, LocalDateTime sD,
+                                 WorkHourCounter wHS,String name,String des, String notes, Integer prio){
+
+        taskList.add(new Task(state, wHS, name, des, notes, prio));
+    }
+
+
 
 
 
@@ -62,27 +58,12 @@ public class Course {
         this.done = done;
     }
 
-    public LocalDateTime getEndDate() {
-        return endDate;
-    }
 
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
-    }
-
-    public LocalDateTime getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
-    }
-
-    public Long getWorkHoursSpent() {
+    public WorkHourCounter getWorkHoursSpent() {
         return workHoursSpent;
     }
 
-    public void setWorkHoursSpent(Long workHoursSpent) {
+    public void setWorkHoursSpent(WorkHourCounter workHoursSpent) {
         this.workHoursSpent = workHoursSpent;
     }
 
@@ -100,5 +81,21 @@ public class Course {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public ArrayList<Task> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(ArrayList<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }

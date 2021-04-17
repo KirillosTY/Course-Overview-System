@@ -1,12 +1,14 @@
 
 package courseoverviewsystem.cos;
 
-
-
+import Controls.Course;
+import Controls.CourseHandler;
+import Controls.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -20,11 +22,22 @@ public class UiMain {
 
     @FXML
     private Stage currentStage;
+
+    private CourseHandler courseHandler;
+
+    @FXML
+    private ComboBox<Course> courselist;
+
     @FXML
     public void initialize(){
 
+        courseHandler = MainController.getCourseHandler();
 
         text.setText(checkTime() + LocalDate.now());
+
+
+            courselist.getItems().addAll(courseHandler.getCourseList());
+
 
     }
 
@@ -44,48 +57,68 @@ public class UiMain {
 
     }
 
+
+
+    public void addCourse(){
+
+        courseHandler.createCourse();
+    }
+
     @FXML
-    public void viewChanger(Parent root, String windowName) throws Exception{
+    public void viewChanger(Parent root, String windowName) {
 
 
         Scene viewC = new Scene(root);
 
-        Stage startStage = new Stage();
+        currentStage = new Stage();
 
-        startStage.setScene(viewC);
+        currentStage.setScene(viewC);
 
-        startStage.setTitle(windowName);
+        currentStage.setTitle(windowName);
 
-        startStage.showAndWait();
-        currentStage= startStage;
+        currentStage.showAndWait();
+
 
     }
 
     @FXML
-    public void studyStart() throws Exception{
-        if(currentStage!= null){
-            currentStage.close();
-        }
+    public void studyStart(){
 
+        try {
         viewChanger( FXMLLoader.load(getClass().getResource("studyStart.fxml")),
                 "Workhour counter has started!");
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     @FXML
-    public void studySet() throws Exception{
+    public void studySet() {
+        if(currentStage != null){
+            currentStage.close();
+        }
 
+        try {
         viewChanger(FXMLLoader.load(getClass().getResource("studySettings.fxml")),
                 "Study settings");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    public void taskSet() throws Exception{
+    public void taskSet() {
 
-        viewChanger(FXMLLoader.load(getClass().getResource("taskSettings.fxml")),
-                "Task settings");
+        try {
 
+            viewChanger(FXMLLoader.load(getClass().getResource("taskSettings.fxml")),
+                    "Task settings");
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
