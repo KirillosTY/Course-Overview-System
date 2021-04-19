@@ -1,8 +1,9 @@
 package Controls;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class WorkHourCounter {
+public class WorkHourCounter implements Serializable {
 
     private long seconds = 0;
 
@@ -135,6 +136,34 @@ public class WorkHourCounter {
 
 
 
+    }
+
+    public String timeToString(){
+
+        String time;
+
+        if (seconds < 10){
+            time= "0"+seconds;
+
+        } else {
+            time = seconds+"";
+        }
+
+        if(minutes < 10){
+
+            time+=":0"+minutes;
+        } else {
+
+            time+=minutes;
+        }
+
+        if(hours < 10){
+            time+=":0"+hours;
+        } else {
+            time+=hours;
+        }
+
+        return time;
     }
 
 

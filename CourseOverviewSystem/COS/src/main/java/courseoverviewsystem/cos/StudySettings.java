@@ -78,45 +78,33 @@ public class StudySettings {
         showBT.selectedProperty().setValue(settings.isStudyShowBT());
 
 
-
-    }
-
-    public void saveSet(){
-
-    settings.setStudyWorkH(Integer.parseInt(workTH.getText()));
-
-    settings.setStudyWorkM(Integer.parseInt(workTM.getText()));
-
-    settings.setStudyBreakH(Integer.parseInt(breakTH.getText()));
-
-    settings.setStudyBreakM(Integer.parseInt(breakTM.getText()));
-
-    settings.setStudyCycle(Integer.parseInt(cycle.getText()));
-
-    settings.setStudyShowT(showCT.isSelected());
-
-    settings.setStudyShowBT(showBT.isSelected());
-
-    settings.setStudyShowWT(showWT.isSelected());
-
-    settings.setStudyMsg(msg.getText());
-
-
     }
 
     public void saveSetButton(){
 
-        save.setOnAction(closingOnPressed -> {
-            saveSet();
-            MainController.getInformationHandler().saveSettings(settings);
+        settings.setStudyWorkH(Integer.parseInt(workTH.getText()));
 
-            Stage studySetStage = (Stage) save.getScene().getWindow();
-            studySetStage.close();
-        });
+        settings.setStudyWorkM(Integer.parseInt(workTM.getText()));
 
+        settings.setStudyBreakH(Integer.parseInt(breakTH.getText()));
+
+        settings.setStudyBreakM(Integer.parseInt(breakTM.getText()));
+
+        settings.setStudyCycle(Integer.parseInt(cycle.getText()));
+
+        settings.setStudyShowT(showCT.isSelected());
+
+        settings.setStudyShowBT(showBT.isSelected());
+
+        settings.setStudyShowWT(showWT.isSelected());
+
+        settings.setStudyMsg(msg.getText());
+
+        MainController.getInformationHandler().saveSettings(settings);
+
+        Stage studySetStage = (Stage) save.getScene().getWindow();
+        studySetStage.close();
 
     }
-
-
 
 }

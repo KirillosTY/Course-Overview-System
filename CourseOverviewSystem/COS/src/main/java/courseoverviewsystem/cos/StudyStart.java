@@ -158,12 +158,12 @@ public class StudyStart {
 
     public void updatetingStatus(WorkHourCounter tempCount, Long countdown){
 
-        CT.setText("Current time: "+LocalTime.now().format(DateTimeFormatter.ofPattern("ss:mm:HH")));
+        CT.setText("Current time: "+LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm")));
         cycles.setText("Cycles left: "+tempCount.getCycle());
 
         if(working){
             countOverall.counter(countdown);
-            WTOverall.setText("Overall worktime: "+countOverall.getSeconds()+":"+countOverall.getMinutes()+":"+countOverall.getHours());
+            WTOverall.setText("Overall worktime: "+countOverall.timeToString());
         }
 
     }

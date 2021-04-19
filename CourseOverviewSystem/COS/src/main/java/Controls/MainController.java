@@ -20,7 +20,7 @@ public class MainController {
 
 
 
-        if(informationHandler.loadSettings()==null){
+        if(informationHandler.loadSettings() == null){
 
             informationHandler.createCourseList();
             informationHandler.createSettings();
@@ -31,9 +31,6 @@ public class MainController {
         settings = informationHandler.loadSettings();
 
         launch(UiMainStart.class);
-
-
-
 
 
     }

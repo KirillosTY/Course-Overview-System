@@ -27,8 +27,6 @@
             <Label fx:id="text" />
 
 
-
-
             <VBox alignment="CENTER"  spacing="10" prefHeight="200" >
                 <Button text =" (recent tasks)" alignment="BASELINE_CENTER" prefWidth="200" />
                 <Button text="Recent notes"  alignment="BASELINE_CENTER" prefWidth="200"/>
@@ -90,9 +88,6 @@
                 </HBox>
 
 
-
-
-
             </VBox>
 
             <VBox alignment="BOTTOM_CENTER" spacing="10" prefWidth="200">
@@ -106,7 +101,7 @@
                     </items>
                 </ComboBox>
 
-                <Button text="Add a course!" fx:id="CB" prefWidth="200"/>
+                <Button text="Add a course!" onKeyPressed="#courseSet" prefWidth="200" onAction="#courseSet"/>
 
                 <HBox alignment="CENTER">
                     <Button text="Upcoming courses" prefWidth="180"/>

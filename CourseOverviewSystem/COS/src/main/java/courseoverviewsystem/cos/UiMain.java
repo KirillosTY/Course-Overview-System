@@ -4,6 +4,9 @@ package courseoverviewsystem.cos;
 import Controls.Course;
 import Controls.CourseHandler;
 import Controls.MainController;
+import javafx.animation.AnimationTimer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,10 +26,13 @@ public class UiMain {
     @FXML
     private Stage currentStage;
 
+    @FXML
+    private ComboBox<Course> courselist;
+
     private CourseHandler courseHandler;
 
     @FXML
-    private ComboBox<Course> courselist;
+    private ObservableList<Course> observableList;
 
     @FXML
     public void initialize(){
@@ -35,10 +41,11 @@ public class UiMain {
 
         text.setText(checkTime() + LocalDate.now());
 
+        observableList = FXCollections.observableList(courseHandler.getCourseList());
+        courselist.setItems(observableList);
+        courselist.getSelectionModel().select(courseHandler.getCurrent());
 
-            courselist.getItems().addAll(courseHandler.getCourseList());
-
-
+        System.out.println(observableList);
     }
 
     private String checkTime(){
@@ -57,11 +64,25 @@ public class UiMain {
 
     }
 
+    @FXML
+    public void updateLists(){
 
+        new AnimationTimer(){
+            long startCounter;
 
-    public void addCourse(){
+            @Override
+            public void handle(long l) {
+                if (l - startCounter >= 10_000_000_000L) {
 
-        courseHandler.createCourse();
+                   observableList.setAll(MainController.getCourseHandler().getCourseList());
+                    courselist.setItems(observableList);
+                    System.out.println(observableList + ""+courseHandler.getCourseList());
+                    startCounter=l;
+                }
+
+            }
+        }.start();
+
     }
 
     @FXML
@@ -114,11 +135,27 @@ public class UiMain {
 
         try {
 
-            viewChanger(FXMLLoader.load(getClass().getResource("taskSettings.fxml")),
+            viewChanger(FXMLLoader.load(getClass().getResource("TaskEditCreation.fxml")),
                     "Task settings");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void courseSet(){
+
+        try {
+
+            viewChanger(FXMLLoader.load(getClass().getResource("CreateCourse.fxml")),
+                    "Create course!");
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
     }
 }

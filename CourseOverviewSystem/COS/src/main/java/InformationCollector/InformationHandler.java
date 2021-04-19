@@ -1,5 +1,6 @@
 package InformationCollector;
 
+import Controls.Course;
 import Controls.CourseHandler;
 import Controls.Settings;
 
@@ -25,7 +26,7 @@ public class InformationHandler implements Serializable {
 
             OS.writeObject(obj);
 
-        return true;
+            return true;
 
 
         } catch (IOException e) {
@@ -38,17 +39,17 @@ public class InformationHandler implements Serializable {
 
     public Object fileReaderInput(String fileUrl) throws IOException {
 
-      try (FileInputStream CR = new FileInputStream(fileUrl)) {
+        try (FileInputStream CR = new FileInputStream(fileUrl)) {
 
-          return new ObjectInputStream(CR).readObject();
+            return new ObjectInputStream(CR).readObject();
 
-      } catch (ClassNotFoundException e){
+        } catch (ClassNotFoundException e){
 
-          e.printStackTrace();
+            e.printStackTrace();
 
-          //This line will need to handle other exceptions
+            //This line will need to handle other exceptions
 
-      }
+        }
 
 
         return null;
@@ -56,7 +57,8 @@ public class InformationHandler implements Serializable {
 
     public void createCourseList()  {
 
-        try {  CourseHandler CH = new CourseHandler(new ArrayList<>(), "Write something");
+        try {
+            CourseHandler CH = new CourseHandler(new ArrayList<Course>(), "Write something");
 
 
             fileReaderOutput("CourseInfo/courselist.bin",CH);
@@ -88,27 +90,26 @@ public class InformationHandler implements Serializable {
 
     public CourseHandler courseLoader() {
 
-           try {
-               if(fileReaderInput("CourseInfo/courselist.bin")!=null)
+        try {
 
-               return  (CourseHandler) fileReaderInput("CourseInfo/courselist.bin");
+            if(fileReaderInput("CourseInfo/courselist.bin")!=null)
 
-
-           } catch (FileNotFoundException e){
+                return  (CourseHandler) fileReaderInput("CourseInfo/courselist.bin");
 
 
-
-               //this line will need to handle the file not found exception!
-           }
-           catch ( IOException e){
+        } catch (FileNotFoundException e){
 
 
-           }
 
-            return null;
+            //this line will need to handle the file not found exception!
+        }
+        catch ( IOException e){
+
+
+        }
+
+        return null;
     }
-
-
 
 
 

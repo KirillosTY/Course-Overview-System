@@ -1,8 +1,9 @@
 package Controls;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class  Task implements Comparable{
+public class  Task implements Comparable, Serializable {
 
     private boolean done = false;
 
@@ -22,8 +23,6 @@ public class  Task implements Comparable{
 
 
     public Task(boolean state, WorkHourCounter wHS,String name,String des, String notes, Integer prio){
-
-
 
         this.done = state;
 
@@ -109,5 +108,11 @@ public class  Task implements Comparable{
 
     public void setWorkHoursSpent(WorkHourCounter workHoursSpent) {
         this.workHoursSpent = workHoursSpent;
+    }
+
+    @Override
+    public String toString(){
+
+        return this.name;
     }
 }

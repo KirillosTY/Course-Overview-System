@@ -1,33 +1,20 @@
 package Controls;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Course {
+public class Course extends Task implements Serializable {
 
-
-    private boolean done;
-
-    private WorkHourCounter workHoursSpent;
-
-    private String name;
-
-    private String notes;
 
     private int value;
 
     private ArrayList<Task> taskList;
 
 
-    public Course(boolean state, WorkHourCounter wHS, String name, String notes,  int value) {
+    public Course(boolean state, WorkHourCounter wHS, String name, String description, String notes,int priority, int value) {
 
-        this.done = state;
-
-        this.workHoursSpent = wHS;
-
-        this.name = name;
-
-        this.notes = notes;
+        super(state, wHS,name, description,notes, priority);
 
         this.value = value;
 
@@ -47,42 +34,6 @@ public class Course {
     }
 
 
-
-
-
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
-    }
-
-
-    public WorkHourCounter getWorkHoursSpent() {
-        return workHoursSpent;
-    }
-
-    public void setWorkHoursSpent(WorkHourCounter workHoursSpent) {
-        this.workHoursSpent = workHoursSpent;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
     public ArrayList<Task> getTaskList() {
         return taskList;
     }
@@ -97,5 +48,11 @@ public class Course {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString(){
+
+        return super.getName() +" - "+super.getDescription();
     }
 }

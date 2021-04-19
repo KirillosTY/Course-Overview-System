@@ -1,6 +1,7 @@
 package courseoverviewsystem.cos;
 
 
+import Controls.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,7 +24,13 @@ public class UiMainStart extends Application {
     
         stage.setTitle("Course Overview System");
         stage.setScene(scene);
+
+        stage.setOnCloseRequest(e->{
+            MainController.getInformationHandler().saveCourseHandler(MainController.getCourseHandler());
+        });
+
         stage.show();
+
     }
 
     public static void main(String[] args) {

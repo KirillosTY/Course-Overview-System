@@ -12,9 +12,9 @@
     <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
         <Text text="Task info"/>
 
-        <TextField text="Name" />
-        <TextField text="Description" />
-        <TextArea text="Additional info(ex. notes)"  prefWidth="200" prefHeight="200" />
+        <TextField text="Name" fx:id="name" />
+        <TextField text="Description" fx:id="description" />
+        <TextArea text="Additional info(ex. notes)" fx:id="notes"  prefWidth="200" prefHeight="200" />
 
     </VBox>
 
@@ -36,7 +36,7 @@
         </HBox>
         <HBox spacing="10">
             <Label text="Priority:"/>
-            <TextField prefWidth="35" prefHeight="15"/>
+            <TextField fx:id="priority" text="0" prefWidth="35" prefHeight="15"/>
         </HBox>
     </VBox>
 
