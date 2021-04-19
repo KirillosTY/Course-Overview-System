@@ -4,15 +4,15 @@ package courseoverviewsystem.cos;
 import Controls.Course;
 import Controls.CourseHandler;
 import Controls.MainController;
-import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -27,12 +27,24 @@ public class UiMain {
     private Stage currentStage;
 
     @FXML
-    private ComboBox<Course> courselist;
+    protected ComboBox<Course> courselist;
 
     private CourseHandler courseHandler;
 
     @FXML
-    private ObservableList<Course> observableList;
+    private ToggleGroup TaskButtons;
+
+    @FXML
+    private ToggleButton task1;
+
+    @FXML
+    private ToggleButton task2;
+
+    @FXML
+    private ToggleButton task3;
+
+    @FXML
+    private ToggleButton task4;
 
     @FXML
     public void initialize(){
@@ -41,12 +53,30 @@ public class UiMain {
 
         text.setText(checkTime() + LocalDate.now());
 
-        observableList = FXCollections.observableList(courseHandler.getCourseList());
-        courselist.setItems(observableList);
-        courselist.getSelectionModel().select(courseHandler.getCurrent());
+        TaskButtons.getToggles().get(0).isSelected();
 
-        System.out.println(observableList);
+        courselist.setPlaceholder(new Label("Add a course to start!"));
+
+
+        courselist.setOnMouseClicked(e ->{
+            courselist.setPromptText("Add a course to start");
+            updateLists();
+        });
+
+        courselist.setOnAction(taskUpdate ->{
+
+            courseHandler.setCurrent(courselist.getSelectionModel().getSelectedItem());
+        });
+
+        courselist.setVisibleRowCount(5);
+        courselist.setViewOrder(-2);
+        updateLists();
+        //updateTasks();
+
+
+
     }
+
 
     private String checkTime(){
 
@@ -65,23 +95,20 @@ public class UiMain {
     }
 
     @FXML
+    public void updateTasks(){
+
+
+        task1.setText(courseHandler.getCurrent().getTaskList().get(0).toString());
+        task2.setText(courseHandler.getCurrent().getTaskList().get(1).toString());
+    }
+
+    @FXML
     public void updateLists(){
+        courseHandler = MainController.getCourseHandler();
+        courselist.setItems(FXCollections.observableList(courseHandler.getCourseList()));
 
-        new AnimationTimer(){
-            long startCounter;
+            courselist.getSelectionModel().selectFirst();
 
-            @Override
-            public void handle(long l) {
-                if (l - startCounter >= 10_000_000_000L) {
-
-                   observableList.setAll(MainController.getCourseHandler().getCourseList());
-                    courselist.setItems(observableList);
-                    System.out.println(observableList + ""+courseHandler.getCourseList());
-                    startCounter=l;
-                }
-
-            }
-        }.start();
 
     }
 
@@ -145,11 +172,12 @@ public class UiMain {
 
     @FXML
     public void courseSet(){
-
+        System.out.println(courseHandler.getCourseList());
         try {
 
             viewChanger(FXMLLoader.load(getClass().getResource("CreateCourse.fxml")),
                     "Create course!");
+
 
         } catch (Exception e){
             e.printStackTrace();

@@ -62,6 +62,7 @@ public class CourseHandler implements Serializable  {
     }
 
     public void setCurrent(Course current) {
+        System.out.println(current+ " is set");
         this.current = current;
     }
 

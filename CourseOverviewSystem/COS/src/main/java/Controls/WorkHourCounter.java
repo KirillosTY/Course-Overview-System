@@ -17,8 +17,6 @@ public class WorkHourCounter implements Serializable {
 
     private int cycle = 0;
 
-
-
     private LocalDateTime endDate;
 
     private LocalDateTime startDate;
@@ -165,7 +163,6 @@ public class WorkHourCounter implements Serializable {
 
         return time;
     }
-
 
 
 }

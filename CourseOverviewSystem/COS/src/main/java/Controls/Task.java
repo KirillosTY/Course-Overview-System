@@ -1,15 +1,11 @@
 package Controls;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 public class  Task implements Comparable, Serializable {
 
     private boolean done = false;
 
-    private LocalDateTime endDate;
-
-    private LocalDateTime startDate;
 
     private WorkHourCounter workHoursSpent;
 
@@ -47,21 +43,7 @@ public class  Task implements Comparable, Serializable {
         this.done = done;
     }
 
-    public LocalDateTime getEndDate() {
-        return endDate;
-    }
 
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
-    }
-
-    public LocalDateTime getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
-    }
 
 
     public String getName() {
@@ -91,6 +73,7 @@ public class  Task implements Comparable, Serializable {
 
     @Override
     public int compareTo(Object o) {
+
         return priority;
     }
 

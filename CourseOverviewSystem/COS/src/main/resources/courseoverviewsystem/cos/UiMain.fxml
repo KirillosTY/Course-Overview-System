@@ -55,22 +55,14 @@
                     <ToggleGroup fx:id="TaskButtons"/>
                 </fx:define>
                 <HBox spacing="10" alignment="CENTER">
-                    <ToggleButton alignment="CENTER" prefWidth="170" text="Task 1" toggleGroup="$TaskButtons" selected="true"/>
+                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task1" text="Task 1" toggleGroup="$TaskButtons" selected="true"/>
                     <CheckBox alignment="CENTER" prefWidth="30">
 
                     </CheckBox>
                 </HBox>
 
                 <HBox spacing="10" alignment="CENTER">
-                    <ToggleButton alignment="CENTER" prefWidth="170" text="Task 1" toggleGroup="$TaskButtons" selected="true"/>
-                    <CheckBox alignment="CENTER" prefWidth="30">
-
-                    </CheckBox>
-                </HBox>
-
-
-                <HBox spacing="10" alignment="CENTER">
-                    <ToggleButton alignment="CENTER" prefWidth="170" text="Task 1" toggleGroup="$TaskButtons" selected="true"/>
+                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task2" text="Task 1" toggleGroup="$TaskButtons" selected="true"/>
                     <CheckBox alignment="CENTER" prefWidth="30">
 
                     </CheckBox>
@@ -78,7 +70,15 @@
 
 
                 <HBox spacing="10" alignment="CENTER">
-                    <ToggleButton alignment="CENTER" prefWidth="170" text="Task 1" toggleGroup="$TaskButtons" selected="true"/>
+                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task3" text="Task 1" toggleGroup="$TaskButtons" selected="true"/>
+                    <CheckBox alignment="CENTER" prefWidth="30">
+
+                    </CheckBox>
+                </HBox>
+
+
+                <HBox spacing="10" alignment="CENTER">
+                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task4" text="Task 1" toggleGroup="$TaskButtons" selected="true"/>
                     <CheckBox alignment="CENTER" prefWidth="30">
 
                     </CheckBox>
@@ -91,7 +91,7 @@
             </VBox>
 
             <VBox alignment="BOTTOM_CENTER" spacing="10" prefWidth="200">
-                <ComboBox fx:id="courselist" prefWidth="200">
+                <ComboBox fx:id="courselist" promptText="Add a course to start!" prefWidth="200" viewOrder="-NaN">
                     <items>
 
                         <FXCollections fx:factory="observableArrayList">

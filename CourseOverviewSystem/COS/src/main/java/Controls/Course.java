@@ -35,6 +35,9 @@ public class Course extends Task implements Serializable {
 
 
     public ArrayList<Task> getTaskList() {
+
+
+        System.out.println(taskList);
         return taskList;
     }
 
