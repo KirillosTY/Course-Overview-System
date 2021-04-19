@@ -59,19 +59,22 @@ public class UiMain {
 
 
         courselist.setOnMouseClicked(e ->{
-            courselist.setPromptText("Add a course to start");
-            updateLists();
+            if(courselist.getSelectionModel().getSelectedItem()!=null) updateLists();
         });
 
         courselist.setOnAction(taskUpdate ->{
 
             courseHandler.setCurrent(courselist.getSelectionModel().getSelectedItem());
+
+            if(courseHandler.getCurrent()!= null && courselist.getSelectionModel().getSelectedItem()!= null){
+                updateTasks();
+            }
         });
 
         courselist.setVisibleRowCount(5);
         courselist.setViewOrder(-2);
         updateLists();
-        //updateTasks();
+
 
 
 
@@ -97,17 +100,19 @@ public class UiMain {
     @FXML
     public void updateTasks(){
 
-
-        task1.setText(courseHandler.getCurrent().getTaskList().get(0).toString());
-        task2.setText(courseHandler.getCurrent().getTaskList().get(1).toString());
+        if(!courseHandler.getCurrent().getTaskList().isEmpty()) {
+            task1.setText(courseHandler.getCurrent().getTaskList().get(0).toString());
+        }
     }
 
     @FXML
     public void updateLists(){
         courseHandler = MainController.getCourseHandler();
-        courselist.setItems(FXCollections.observableList(courseHandler.getCourseList()));
+        courselist.setItems(FXCollections.observableList(MainController.getCourseHandler().getCourseList()));
 
+        if(courselist.getSelectionModel().getSelectedItem()!=null){
             courselist.getSelectionModel().selectFirst();
+        }
 
 
     }
