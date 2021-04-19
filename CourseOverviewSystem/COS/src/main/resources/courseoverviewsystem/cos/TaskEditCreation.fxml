@@ -21,7 +21,7 @@
     <VBox spacing="10" GridPane.columnIndex="4" GridPane.rowIndex="1" prefHeight="150">
         <Text text="Start date:" />
         <DatePicker fx:id="dateStart"  />
-        <HBox>
+        <HBox spacing="10">
             <Label text="Time:"/>
             <TextField fx:id="startH" text="hh" prefWidth="35" prefHeight="15"/>
             <TextField fx:id="startM" text="mm" prefWidth="35" prefHeight="15"/>
@@ -29,15 +29,18 @@
 
         <Text text="Deadline:" />
         <DatePicker fx:id="dateEnd" />
-        <HBox>
+        <HBox spacing="10">
             <Label text="Time:"/>
-            <TextField fx:id="endH" text="hh" prefWidth="35" prefHeight="15"/>
+            <TextField fx:id="endH" text="hh" prefWidth="35" prefHeight="15" />
             <TextField fx:id="endM" text="mm" prefWidth="35" prefHeight="15"/>
         </HBox>
-
+        <HBox spacing="10">
+            <Label text="Priority:"/>
+            <TextField prefWidth="35" prefHeight="15"/>
+        </HBox>
     </VBox>
 
-    <Button fx:id="save" text="Save" GridPane.columnIndex="4" GridPane.rowIndex="2" prefWidth="70"
+    <Button fx:id="save" text="Save" onAction="#saveTask" GridPane.columnIndex="4" GridPane.rowIndex="2" prefWidth="70"
             GridPane.valignment="BOTTOM" GridPane.halignment="RIGHT"/>
 
 
