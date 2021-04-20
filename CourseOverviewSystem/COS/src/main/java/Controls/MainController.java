@@ -13,14 +13,13 @@ public class MainController {
 
     private static Settings settings;
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
 
         informationHandler = new InformationHandler();
 
 
-
-        if(informationHandler.loadSettings() == null){
+        if (informationHandler.loadSettings() == null) {
 
             informationHandler.createCourseList();
             informationHandler.createSettings();
@@ -35,8 +34,8 @@ public class MainController {
 
     }
 
-    public static InformationHandler getInformationHandler(){
-        return  informationHandler;
+    public static InformationHandler getInformationHandler() {
+        return informationHandler;
     }
 
 

@@ -45,7 +45,7 @@ public class StudySettings {
 
 
     @FXML
-    public void initialize(){
+    public void initialize() {
 
         settings = MainController.getSettings();
 
@@ -54,18 +54,18 @@ public class StudySettings {
 
     }
 
-    public void loadSettings(){
+    public void loadSettings() {
 
 
-        workTH.setText(settings.getStudyWorkH()+"");
+        workTH.setText(settings.getStudyWorkH() + "");
 
-        workTM.setText(settings.getStudyWorkM()+"");
+        workTM.setText(settings.getStudyWorkM() + "");
 
-        breakTH.setText(settings.getStudyBreakH()+"");
+        breakTH.setText(settings.getStudyBreakH() + "");
 
-        breakTM.setText(settings.getStudyBreakM()+"");
+        breakTM.setText(settings.getStudyBreakM() + "");
 
-        cycle.setText(settings.getStudyCycle()+"");
+        cycle.setText(settings.getStudyCycle() + "");
 
         msg.setText(settings.getStudyMsg());
 
@@ -80,7 +80,7 @@ public class StudySettings {
 
     }
 
-    public void saveSetButton(){
+    public void saveSetButton() {
 
         settings.setStudyWorkH(Integer.parseInt(workTH.getText()));
 

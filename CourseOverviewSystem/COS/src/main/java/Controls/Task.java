@@ -2,7 +2,7 @@ package Controls;
 
 import java.io.Serializable;
 
-public class  Task implements Comparable, Serializable {
+public class Task implements Comparable, Serializable {
 
     private boolean done = false;
 
@@ -18,7 +18,7 @@ public class  Task implements Comparable, Serializable {
     private Integer priority;
 
 
-    public Task(boolean state, WorkHourCounter wHS,String name,String des, String notes, Integer prio){
+    public Task(boolean state, WorkHourCounter wHS, String name, String des, String notes, Integer prio) {
 
         this.done = state;
 
@@ -42,8 +42,6 @@ public class  Task implements Comparable, Serializable {
     public void setDone(boolean done) {
         this.done = done;
     }
-
-
 
 
     public String getName() {
@@ -94,7 +92,7 @@ public class  Task implements Comparable, Serializable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
 
         return this.name;
     }

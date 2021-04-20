@@ -24,13 +24,14 @@ public class WorkHourCounter implements Serializable {
 
     public WorkHourCounter() {
 
-    this(0L);
+        this(0L);
 
     }
 
-    public WorkHourCounter(Long cc){
+    public WorkHourCounter(Long cc) {
 
         currentCount = cc;
+        counter(cc);
     }
 
     public long getSeconds() {
@@ -40,10 +41,10 @@ public class WorkHourCounter implements Serializable {
     public void setSeconds(long seconds) {
         this.seconds = seconds;
 
-        if(seconds < 0){
+        if (seconds < 0) {
             this.seconds = 59;
 
-            setMinutes(getMinutes()-1);
+            setMinutes(getMinutes() - 1);
         }
 
     }
@@ -56,9 +57,9 @@ public class WorkHourCounter implements Serializable {
     public void setMinutes(long minutes) {
         this.minutes = minutes;
 
-        if(minutes < 0){
+        if (minutes < 0) {
             this.minutes = 59;
-            setHours(getHours()-1);
+            setHours(getHours() - 1);
         }
 
 
@@ -71,9 +72,9 @@ public class WorkHourCounter implements Serializable {
     public void setHours(long hours) {
         this.hours = hours;
 
-        if(hours < 0){
+        if (hours < 0) {
             this.hours = 23;
-            setDays(getDays()-1);
+            setDays(getDays() - 1);
         }
     }
 
@@ -93,9 +94,9 @@ public class WorkHourCounter implements Serializable {
         this.cycle = cycle;
     }
 
-    public long getFullSeconds(){
+    public long getFullSeconds() {
 
-        return this.seconds+this.minutes*60+this.hours*3600;
+        return this.seconds + this.minutes * 60 + this.hours * 3600;
     }
 
 
@@ -115,50 +116,49 @@ public class WorkHourCounter implements Serializable {
         this.startDate = startDate;
     }
 
-    public void counter(long countD){
+    public void counter(long countD) {
 
-        seconds=countD%60;
-        countD-=countD%60;
-        countD/=60;
+        seconds = countD % 60;
+        countD -= countD % 60;
+        countD /= 60;
 
 
-        minutes=countD%60;
-        countD-=countD%60;
-        countD/=60;
+        minutes = countD % 60;
+        countD -= countD % 60;
+        countD /= 60;
 
-        hours=countD%60;
-        countD-=countD%60;
-        countD/=60;
+        hours = countD % 60;
+        countD -= countD % 60;
+        countD /= 60;
 
-        days= countD%24;
-
+        days = countD % 24;
 
 
     }
 
-    public String timeToString(){
+    public String timeToString() {
 
         String time;
 
-        if (seconds < 10){
-            time= "0"+seconds;
+        if (seconds < 10) {
+            time = "0" + seconds;
 
         } else {
             time = seconds+"";
         }
 
-        if(minutes < 10){
+        if (minutes < 10) {
 
-            time+=":0"+minutes;
+            time += ":0" + minutes;
         } else {
 
-            time+=minutes;
+            time +=":"+ minutes;
         }
 
-        if(hours < 10){
-            time+=":0"+hours;
+        if (hours < 10) {
+            time += ":0" + hours;
         } else {
-            time+=hours;
+            time +=":"+hours;
         }
 
         return time;

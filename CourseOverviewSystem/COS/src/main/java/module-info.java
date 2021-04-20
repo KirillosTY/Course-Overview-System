@@ -6,4 +6,5 @@ module courseoverviewsystem.cos {
 
     opens courseoverviewsystem.cos to javafx.fxml;
     exports courseoverviewsystem.cos;
+
 }

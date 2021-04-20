@@ -53,10 +53,16 @@ public class CreateCourse {
     @FXML
     private Button save;
 
-    private CourseHandler ch;
+    private final CourseHandler ch;
+
+    public CreateCourse() {
+        ch = MainController.getCourseHandler();
+
+
+    }
 
     @FXML
-    public void initialize(){
+    public void initialize() {
 
         dateStart.setValue(LocalDate.now());
         startH.setText("23");
@@ -71,41 +77,33 @@ public class CreateCourse {
 
     }
 
-    public CreateCourse(){
-        ch = MainController.getCourseHandler();
-
-
-    }
-
-
     @FXML
-    public void saveCourse(){
+    public void saveCourse() {
 
         WorkHourCounter courseWHC = new WorkHourCounter();
 
-        LocalTime  timeFormat = LocalTime.of(Integer.parseInt(startH.getText()),
+        LocalTime timeFormat = LocalTime.of(Integer.parseInt(startH.getText()),
                 Integer.parseInt(startM.getText()));
 
         LocalDateTime dateTimeFormat = LocalDateTime.of(dateStart.getValue(), timeFormat);
 
         courseWHC.setStartDate(dateTimeFormat);
 
-       timeFormat = LocalTime.of(Integer.parseInt(endH.getText()),
+        timeFormat = LocalTime.of(Integer.parseInt(endH.getText()),
                 Integer.parseInt(endM.getText()));
 
-       dateTimeFormat = LocalDateTime.of(dateEnd.getValue(), timeFormat);
+        dateTimeFormat = LocalDateTime.of(dateEnd.getValue(), timeFormat);
 
-       int val = Integer.parseInt(value.getText());
-       int prio = Integer.parseInt(priority.getText());
+        int val = Integer.parseInt(value.getText());
+        int prio = Integer.parseInt(priority.getText());
 
-        ch.createCourse(false,courseWHC,
-                name.getText(),description.getText(), notes.getText(), prio, val);
+        ch.createCourse(false, courseWHC,
+                name.getText(), description.getText(), notes.getText(), prio, val);
 
         MainController.getInformationHandler().saveCourseHandler(ch);
         Stage stage = (Stage) save.getScene().getWindow();
 
         stage.close();
-
 
 
     }

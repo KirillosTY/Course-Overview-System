@@ -16,8 +16,6 @@ public class InformationHandler implements Serializable {
 
     }
 
-
-
     public boolean fileReaderOutput(String fileUrl, Object obj) throws FileNotFoundException {
 
         try (FileOutputStream CW = new FileOutputStream(fileUrl)) {
@@ -55,7 +53,7 @@ public class InformationHandler implements Serializable {
         return null;
     }
 
-    public void createCourseList()  {
+    public boolean createCourseList()  {
 
         try {
             CourseHandler CH = new CourseHandler(new ArrayList<Course>(), "Write something");
@@ -63,13 +61,14 @@ public class InformationHandler implements Serializable {
 
             fileReaderOutput("CourseInfo/courselist.bin",CH);
 
+            return true;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
 
             // this line will need to handle exceptions.
         }
-
+        return false;
 
     }
 
@@ -113,19 +112,20 @@ public class InformationHandler implements Serializable {
 
 
 
-    public void createSettings(){
+    public boolean createSettings(){
 
         try {
 
             Settings settings = new Settings();
 
             fileReaderOutput("CourseInfo/settings.bin", settings);
-
+            return true;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
 
             // this line will need to handle exceptions.
         }
+        return false;
 
     }
 

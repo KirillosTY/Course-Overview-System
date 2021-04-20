@@ -16,42 +16,30 @@ import java.time.format.DateTimeFormatter;
 
 public class StudyStart {
 
+    boolean working = true;
+    Settings settings;
     @FXML
     private Label WTLeft;
-
     @FXML
     private Label CT;
-
     @FXML
     private Label WTOverall;
-
     @FXML
     private Label BTOverall;
-
     @FXML
     private TextArea msg;
-
     @FXML
     private Label cycles;
-
-    boolean working = true;
-
-
-
     @FXML
     private Button done;
-
-    Settings settings;
-
     private WorkHourCounter countOverall;
-
 
 
     @FXML
     public void initialize() {
         settings = MainController.getInformationHandler().loadSettings();
 
-        
+
         countOverall = new WorkHourCounter();
 
         WorkHourCounter count = new WorkHourCounter();
@@ -66,7 +54,7 @@ public class StudyStart {
     }
 
 
-    public void breakAnimation(){
+    public void breakAnimation() {
         Stage s = (Stage) done.getScene().getWindow();
 
 
@@ -75,11 +63,11 @@ public class StudyStart {
     }
 
 
-    public void startAnimation(WorkHourCounter tempCount){
+    public void startAnimation(WorkHourCounter tempCount) {
 
         new AnimationTimer() {
 
-            LocalDateTime startTime = LocalDateTime.now().plusSeconds(tempCount.getFullSeconds());
+            final LocalDateTime startTime = LocalDateTime.now().plusSeconds(tempCount.getFullSeconds());
 
             Long countdown = 0L;
             Long startCounter = 0L;
@@ -90,7 +78,7 @@ public class StudyStart {
                 if (currentTime - startCounter >= 1_000_000_000) {
                     countdown++;
                     startCounter = currentTime;
-                    updatetingStatus(tempCount,countdown);
+                    updatetingStatus(tempCount, countdown);
                     clockUpdate(tempCount);
                     tempCount.setSeconds(tempCount.getSeconds() - 1);
                 }
@@ -112,10 +100,10 @@ public class StudyStart {
 
     }
 
-    public void clockUpdate(WorkHourCounter tempCount){
+    public void clockUpdate(WorkHourCounter tempCount) {
 
 
-        if(working){
+        if (working) {
 
             WTLeft.setText("You have " + tempCount.getSeconds()
                     + " seconds " + tempCount.getMinutes() + " minutes "
@@ -130,10 +118,10 @@ public class StudyStart {
         }
     }
 
-    public void swapModes(WorkHourCounter tempCount){
+    public void swapModes(WorkHourCounter tempCount) {
 
 
-        if(working){
+        if (working) {
 
             tempCount.setCycle(tempCount.getCycle() - 1);
 
@@ -141,7 +129,7 @@ public class StudyStart {
 
             tempCount.setHours(settings.getStudyBreakH());
 
-            working= false;
+            working = false;
 
         } else {
 
@@ -156,19 +144,17 @@ public class StudyStart {
 
     }
 
-    public void updatetingStatus(WorkHourCounter tempCount, Long countdown){
+    public void updatetingStatus(WorkHourCounter tempCount, Long countdown) {
 
-        CT.setText("Current time: "+LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm")));
-        cycles.setText("Cycles left: "+tempCount.getCycle());
+        CT.setText("Current time: " + LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm")));
+        cycles.setText("Cycles left: " + tempCount.getCycle());
 
-        if(working){
+        if (working) {
             countOverall.counter(countdown);
-            WTOverall.setText("Overall worktime: "+countOverall.timeToString());
+            WTOverall.setText("Overall worktime: " + countOverall.timeToString());
         }
 
     }
-
-
 
 
 }

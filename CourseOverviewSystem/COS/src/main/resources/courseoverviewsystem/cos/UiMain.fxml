@@ -6,39 +6,37 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import java.lang.Object?>
-<?import java.lang.String?>
-<BorderPane fx:controller="courseoverviewsystem.cos.UiMain"
-            xmlns:fx="http://javafx.com/fxml" >
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="courseoverviewsystem.cos.UiMain">
 
     <padding>
         <Insets bottom="20" right="20" left="20"
-        top="20"/>
+                top="20"/>
 
     </padding>
 
-   <left>
-       <FlowPane prefWidth="200" prefHeight="470" >
+    <left>
+        <FlowPane prefWidth="200" prefHeight="470">
             <padding>
                 <Insets bottom="20" right="20"/>
 
             </padding>
 
-            <Label fx:id="text" />
+            <Label fx:id="text"/>
 
 
-            <VBox alignment="CENTER"  spacing="10" prefHeight="200" >
-                <Button text =" (recent tasks)" alignment="BASELINE_CENTER" prefWidth="200" />
-                <Button text="Recent notes"  alignment="BASELINE_CENTER" prefWidth="200"/>
+            <VBox alignment="CENTER" spacing="10" prefHeight="200">
+                <Button text=" (recent tasks)" alignment="BASELINE_CENTER" prefWidth="200"/>
+                <Button text="Recent notes" alignment="BASELINE_CENTER" prefWidth="200"/>
             </VBox>
 
-           <TextArea  prefWidth="200" prefHeight="420" maxWidth="200" maxHeight="200">
-               General notes
-           </TextArea>
+            <TextArea prefWidth="200" prefHeight="420" maxWidth="200" maxHeight="200">
+                General notes
+            </TextArea>
 
 
         </FlowPane>
-   </left>
+    </left>
 
     <right>
 
@@ -48,29 +46,21 @@
             </Label>
 
 
-
-
             <VBox spacing="5" prefHeight="300" alignment="BASELINE_CENTER">
                 <fx:define>
                     <ToggleGroup fx:id="TaskButtons"/>
                 </fx:define>
                 <HBox spacing="10" alignment="CENTER">
-                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task1" text="Task 1" toggleGroup="$TaskButtons" selected="true"/>
+                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task1" text="Task 1"
+                                  toggleGroup="$TaskButtons" selected="true"/>
                     <CheckBox alignment="CENTER" prefWidth="30">
 
                     </CheckBox>
                 </HBox>
 
                 <HBox spacing="10" alignment="CENTER">
-                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task2" text="Task 1" toggleGroup="$TaskButtons" selected="true"/>
-                    <CheckBox alignment="CENTER" prefWidth="30">
-
-                    </CheckBox>
-                </HBox>
-
-
-                <HBox spacing="10" alignment="CENTER">
-                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task3" text="Task 1" toggleGroup="$TaskButtons" selected="true"/>
+                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task2" text="Task 1"
+                                  toggleGroup="$TaskButtons" selected="true"/>
                     <CheckBox alignment="CENTER" prefWidth="30">
 
                     </CheckBox>
@@ -78,13 +68,23 @@
 
 
                 <HBox spacing="10" alignment="CENTER">
-                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task4" text="Task 1" toggleGroup="$TaskButtons" selected="true"/>
+                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task3" text="Task 1"
+                                  toggleGroup="$TaskButtons" selected="true"/>
+                    <CheckBox alignment="CENTER" prefWidth="30">
+
+                    </CheckBox>
+                </HBox>
+
+
+                <HBox spacing="10" alignment="CENTER">
+                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task4" text="Task 1"
+                                  toggleGroup="$TaskButtons" selected="true"/>
                     <CheckBox alignment="CENTER" prefWidth="30">
 
                     </CheckBox>
                 </HBox>
                 <HBox alignment="BASELINE_LEFT">
-                <Button text="new Task" prefWidth="170" onAction="#taskSet"/>
+                    <Button text="new Task" prefWidth="170" onAction="#taskSet"/>
                 </HBox>
 
 
@@ -105,10 +105,10 @@
 
                 <HBox alignment="CENTER">
                     <Button text="Upcoming courses" prefWidth="180"/>
-                    <Button  prefWidth="30">
+                    <Button prefWidth="30">
                         <graphic>
                             <ImageView fitHeight="17" fitWidth="17">
-                                <Image url="@Settings-icon.png" preserveRatio="true"  > </Image>
+                                <Image url="@Settings-icon.png" preserveRatio="true"></Image>
                             </ImageView>
                         </graphic>
 
@@ -119,10 +119,10 @@
 
                 <HBox alignment="CENTER">
                     <Button text="Past courses" prefWidth="180"/>
-                    <Button  prefWidth="30">
+                    <Button prefWidth="30">
                         <graphic>
                             <ImageView fitHeight="17" fitWidth="17">
-                                <Image url="@Settings-icon.png" preserveRatio="true"  > </Image>
+                                <Image url="@Settings-icon.png" preserveRatio="true"></Image>
                             </ImageView>
                         </graphic>
 
@@ -139,16 +139,15 @@
     <center>
 
 
-
         <FlowPane alignment="CENTER">
 
             <HBox alignment="CENTER">
                 <Button text="Start studying" prefWidth="180" onAction="#studyStart"/>
 
-                <Button  prefWidth="30" onAction="#studySet">
+                <Button prefWidth="30" onAction="#studySet">
                     <graphic>
                         <ImageView fitHeight="17" fitWidth="17">
-                            <Image url="@Settings-icon.png" preserveRatio="true"  > </Image>
+                            <Image url="@Settings-icon.png" preserveRatio="true"></Image>
                         </ImageView>
                     </graphic>
 

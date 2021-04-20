@@ -1,4 +1,3 @@
-
 package courseoverviewsystem.cos;
 
 import Controls.Course;
@@ -21,14 +20,11 @@ import java.time.LocalTime;
 public class UiMain {
 
     @FXML
+    protected ComboBox<Course> courselist;
+    @FXML
     private Label text;
-
     @FXML
     private Stage currentStage;
-
-    @FXML
-    protected ComboBox<Course> courselist;
-
     private CourseHandler courseHandler;
 
     @FXML
@@ -47,7 +43,7 @@ public class UiMain {
     private ToggleButton task4;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
 
         courseHandler = MainController.getCourseHandler();
 
@@ -58,15 +54,15 @@ public class UiMain {
         courselist.setPlaceholder(new Label("Add a course to start!"));
 
 
-        courselist.setOnMouseClicked(e ->{
-            if(courselist.getSelectionModel().getSelectedItem()!=null) updateLists();
+        courselist.setOnMouseClicked(e -> {
+            updateLists();
         });
 
-        courselist.setOnAction(taskUpdate ->{
+        courselist.setOnAction(taskUpdate -> {
 
             courseHandler.setCurrent(courselist.getSelectionModel().getSelectedItem());
 
-            if(courseHandler.getCurrent()!= null && courselist.getSelectionModel().getSelectedItem()!= null){
+            if (courseHandler.getCurrent() != null && courselist.getSelectionModel().getSelectedItem() != null) {
                 updateTasks();
             }
         });
@@ -76,20 +72,18 @@ public class UiMain {
         updateLists();
 
 
-
-
     }
 
 
-    private String checkTime(){
+    private String checkTime() {
 
-        String timeofDay ="Good morning, today is ";
+        String timeofDay = "Good morning, today is ";
 
-        if(LocalTime.now().isAfter(LocalTime.of(12,00))) {
+        if (LocalTime.now().isAfter(LocalTime.of(12, 00))) {
             timeofDay = "Good day, today is ";
-        } else if(LocalTime.now().isAfter(LocalTime.of(16,00))){
+        } else if (LocalTime.now().isAfter(LocalTime.of(16, 00))) {
             timeofDay = "Good afternoon, today is ";
-        } else if(LocalTime.now().isAfter(LocalTime.of(12,00))){
+        } else if (LocalTime.now().isAfter(LocalTime.of(12, 00))) {
             timeofDay = "Evening, today is ";
         }
 
@@ -98,19 +92,19 @@ public class UiMain {
     }
 
     @FXML
-    public void updateTasks(){
+    public void updateTasks() {
 
-        if(!courseHandler.getCurrent().getTaskList().isEmpty()) {
+        if (!courseHandler.getCurrent().getTaskList().isEmpty()) {
             task1.setText(courseHandler.getCurrent().getTaskList().get(0).toString());
         }
     }
 
     @FXML
-    public void updateLists(){
+    public void updateLists() {
         courseHandler = MainController.getCourseHandler();
         courselist.setItems(FXCollections.observableList(MainController.getCourseHandler().getCourseList()));
 
-        if(courselist.getSelectionModel().getSelectedItem()!=null){
+        if (courselist.getSelectionModel().getSelectedItem() != null) {
             courselist.getSelectionModel().selectFirst();
         }
 
@@ -135,11 +129,11 @@ public class UiMain {
     }
 
     @FXML
-    public void studyStart(){
+    public void studyStart() {
 
         try {
-        viewChanger( FXMLLoader.load(getClass().getResource("studyStart.fxml")),
-                "Workhour counter has started!");
+            viewChanger(FXMLLoader.load(getClass().getResource("studyStart.fxml")),
+                    "Workhour counter has started!");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -149,13 +143,13 @@ public class UiMain {
 
     @FXML
     public void studySet() {
-        if(currentStage != null){
+        if (currentStage != null) {
             currentStage.close();
         }
 
         try {
-        viewChanger(FXMLLoader.load(getClass().getResource("studySettings.fxml")),
-                "Study settings");
+            viewChanger(FXMLLoader.load(getClass().getResource("studySettings.fxml")),
+                    "Study settings");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -176,7 +170,7 @@ public class UiMain {
     }
 
     @FXML
-    public void courseSet(){
+    public void courseSet() {
         System.out.println(courseHandler.getCourseList());
         try {
 
@@ -184,10 +178,9 @@ public class UiMain {
                     "Create course!");
 
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
 
 
     }

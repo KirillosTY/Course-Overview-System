@@ -12,23 +12,23 @@ public class Course extends Task implements Serializable {
     private ArrayList<Task> taskList;
 
 
-    public Course(boolean state, WorkHourCounter wHS, String name, String description, String notes,int priority, int value) {
+    public Course(boolean state, WorkHourCounter wHS, String name, String description, String notes, int priority, int value) {
 
-        super(state, wHS,name, description,notes, priority);
+        super(state, wHS, name, description, notes, priority);
 
         this.value = value;
 
         this.taskList = new ArrayList<>();
     }
 
-    public void addTask(boolean state, WorkHourCounter wHS,String name, String des, String notes, Integer prio){
+    public void addTask(boolean state, WorkHourCounter wHS, String name, String des, String notes, Integer prio) {
 
         taskList.add(new Task(state, wHS, name, des, notes, prio));
 
     }
 
     public void addTaskStartDate(boolean state, LocalDateTime eD, LocalDateTime sD,
-                                 WorkHourCounter wHS,String name,String des, String notes, Integer prio){
+                                 WorkHourCounter wHS, String name, String des, String notes, Integer prio) {
 
         taskList.add(new Task(state, wHS, name, des, notes, prio));
     }
@@ -54,8 +54,8 @@ public class Course extends Task implements Serializable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
 
-        return super.getName() +" - "+super.getDescription();
+        return super.getName() + " - " + super.getDescription();
     }
 }

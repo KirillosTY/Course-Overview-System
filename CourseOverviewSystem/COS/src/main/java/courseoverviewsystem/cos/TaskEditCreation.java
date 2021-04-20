@@ -51,10 +51,16 @@ public class TaskEditCreation {
     @FXML
     private Button save;
 
-    private CourseHandler ch;
+    private final CourseHandler ch;
+
+    public TaskEditCreation() {
+
+        ch = MainController.getCourseHandler();
+
+    }
 
     @FXML
-    public void initialize(){
+    public void initialize() {
 
         dateStart.setValue(LocalDate.now());
         startH.setText("23");
@@ -67,19 +73,12 @@ public class TaskEditCreation {
 
     }
 
-    public TaskEditCreation(){
-
-        ch = MainController.getCourseHandler();
-
-    }
-
-
     @FXML
-    public void saveTask(){
+    public void saveTask() {
 
         WorkHourCounter taskWHC = new WorkHourCounter();
 
-        LocalTime  timeFormat = LocalTime.of(Integer.parseInt(startH.getText()),
+        LocalTime timeFormat = LocalTime.of(Integer.parseInt(startH.getText()),
                 Integer.parseInt(startM.getText()));
 
         LocalDateTime dateTimeFormat = LocalDateTime.of(dateStart.getValue(), timeFormat);
@@ -94,11 +93,10 @@ public class TaskEditCreation {
         int prio = Integer.parseInt(priority.getText());
 
         ch.getCurrent().addTask(false, taskWHC,
-                name.getText(),description.getText(), notes.getText(), prio);
+                name.getText(), description.getText(), notes.getText(), prio);
 
         Stage stage = (Stage) save.getScene().getWindow();
         stage.close();
-
 
 
     }

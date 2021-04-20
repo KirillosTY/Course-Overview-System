@@ -7,8 +7,6 @@ public class Settings implements Serializable {
     //name of the user
 
 
-
-
     //Study settings default defined here
     private int studyWorkH = 0;
 
@@ -29,9 +27,7 @@ public class Settings implements Serializable {
     private boolean studyShowBT = false;
 
 
-    public Settings(){
-
-
+    public Settings() {
 
 
     }
@@ -108,7 +104,7 @@ public class Settings implements Serializable {
         this.studyShowBT = studyShowBT;
     }
 
-    public void saveSettings(){
+    public void saveSettings() {
 
 
     }

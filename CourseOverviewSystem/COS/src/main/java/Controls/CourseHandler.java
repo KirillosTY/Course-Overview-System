@@ -3,7 +3,7 @@ package Controls;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CourseHandler implements Serializable  {
+public class CourseHandler implements Serializable {
 
 
     private ArrayList<Course> courseList;
@@ -13,35 +13,34 @@ public class CourseHandler implements Serializable  {
     private String notesOverall;
 
 
-    public CourseHandler (ArrayList<Course> courseL, String notesO) {
+    public CourseHandler(ArrayList<Course> courseL, String notesO) {
 
         this.courseList = courseL;
 
         this.notesOverall = notesO;
 
 
-
     }
 
-    public void createCourse(boolean state, WorkHourCounter wHS,String name, String description
-            , String notes,int priority, int value){
+    public void createCourse(boolean state, WorkHourCounter wHS, String name, String description
+            , String notes, int priority, int value) {
 
         Course course = new Course(state, wHS, name, description, notes, priority, value);
         System.out.println("luotu");
         courseList.add(course);
-        if(current==null){
+        if (current == null) {
             current = course;
         }
 
 
     }
 
-    public void createCourse(Course c){
+    public void createCourse(Course c) {
 
 
         System.out.println("luotu");
         courseList.add(c);
-        if(current==null){
+        if (current == null) {
             current = c;
         }
 
@@ -62,7 +61,7 @@ public class CourseHandler implements Serializable  {
     }
 
     public void setCurrent(Course current) {
-        System.out.println(current+ " is set");
+        System.out.println(current + " is set");
         this.current = current;
     }
 
