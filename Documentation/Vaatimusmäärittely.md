@@ -21,8 +21,8 @@ Tässä näkymässä oikealla ylhäällä on tehtävän valinta rivi. Tehtävän
  - [x]  Ajastin, millä tauottaa putkeen opiskelua.
  2. Kellonaika kirjaus kurssikohtaisesti.
  3. Valmiiden ja tulevien kurssien kirjaaminen.
- 4. Mahdollisuus valita, mitä kurssia työstää sillä hetkellä.
- 5. Viikko tavoitteiden ja tarvittavien tehtävien kirjaaminen.
+ - [x]  Mahdollisuus valita, mitä kurssia työstää sillä hetkellä.
+ - [x] Viikko tavoitteiden ja tarvittavien tehtävien kirjaaminen.
  6. Muistiinpanojen kirjaus kurssikohtaisesti.
  7. Mahdollisuus tarkastella tehtyjä ja tulevia kursseja.
 
