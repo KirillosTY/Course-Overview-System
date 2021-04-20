@@ -18,7 +18,7 @@ Tässä näkymässä oikealla ylhäällä on tehtävän valinta rivi. Tehtävän
 
 
 ##  Alustavat toiminnallisuudet
- 1. Ajastin, millä tauottaa putkeen opiskelua. - [x]
+ 1. Ajastin, millä tauottaa putkeen opiskelua. -[x]
  2. Kellonaika kirjaus kurssikohtaisesti.
  3. Valmiiden ja tulevien kurssien kirjaaminen.
  4. Mahdollisuus valita, mitä kurssia työstää sillä hetkellä.
