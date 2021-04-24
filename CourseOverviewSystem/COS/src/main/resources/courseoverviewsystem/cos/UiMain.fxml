@@ -17,22 +17,22 @@
 
     <left>
         <FlowPane prefWidth="200" prefHeight="470">
-            <padding>
-                <Insets bottom="20" right="20"/>
-
-            </padding>
-
-            <Label fx:id="text"/>
 
 
-            <VBox alignment="CENTER" spacing="10" prefHeight="200">
-                <Button text=" (recent tasks)" alignment="BASELINE_CENTER" prefWidth="200"/>
-                <Button text="Recent notes" alignment="BASELINE_CENTER" prefWidth="200"/>
-            </VBox>
+            <Label fx:id="text" prefHeight="80" alignment="TOP_LEFT"/>
 
-            <TextArea prefWidth="200" prefHeight="420" maxWidth="200" maxHeight="200">
+
+            <VBox alignment="CENTER" spacing="10" prefHeight="350">
+                <Label text="Course and task notes" alignment="CENTER"/>
+                <Button text="Task notes!" fx:id="recentTask" alignment="BASELINE_CENTER" prefWidth="200"/>
+                <Button text="Course notes!" fx:id="recentCourse"  prefWidth="200"  />
+                <Label/>
+            <Label text="General notes" alignment="CENTER"/>
+            <TextArea fx:id="generalNotes" prefWidth="200"  maxWidth="200" maxHeight="150" wrapText="true">
                 General notes
             </TextArea>
+            </VBox>
+
 
 
         </FlowPane>
@@ -40,68 +40,64 @@
 
     <right>
 
-        <FlowPane prefWidth="200" prefHeight="460">
-            <Label text="Tasks" alignment="TOP_CENTER">
+        <FlowPane prefWidth="200" prefHeight="460" alignment="TOP_LEFT">
 
-            </Label>
-
-
-            <VBox spacing="5" prefHeight="300" alignment="BASELINE_CENTER">
-                <fx:define>
-                    <ToggleGroup fx:id="TaskButtons"/>
-                </fx:define>
-                <HBox spacing="10" alignment="CENTER">
-                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task1" text="Task 1"
-                                  toggleGroup="$TaskButtons" selected="true"/>
-                    <CheckBox alignment="CENTER" prefWidth="30">
-
-                    </CheckBox>
-                </HBox>
-
-                <HBox spacing="10" alignment="CENTER">
-                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task2" text="Task 1"
-                                  toggleGroup="$TaskButtons" selected="true"/>
-                    <CheckBox alignment="CENTER" prefWidth="30">
-
-                    </CheckBox>
+            <VBox alignment="BOTTOM_CENTER" spacing="15" prefWidth="200" prefHeight="70">
+                <HBox>
+                    <Button text="Add a course!" onKeyPressed="#courseSet" prefWidth="170" onAction="#courseSet"/>
+                    <Button prefWidth="30">
+                        <graphic>
+                            <ImageView fitHeight="17" fitWidth="17">
+                                <Image url="@Settings-icon.png" preserveRatio="true"></Image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
                 </HBox>
 
 
-                <HBox spacing="10" alignment="CENTER">
-                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task3" text="Task 1"
-                                  toggleGroup="$TaskButtons" selected="true"/>
-                    <CheckBox alignment="CENTER" prefWidth="30">
-
-                    </CheckBox>
-                </HBox>
-
-
-                <HBox spacing="10" alignment="CENTER">
-                    <ToggleButton alignment="CENTER" prefWidth="170" fx:id="task4" text="Task 1"
-                                  toggleGroup="$TaskButtons" selected="true"/>
-                    <CheckBox alignment="CENTER" prefWidth="30">
-
-                    </CheckBox>
-                </HBox>
-                <HBox alignment="BASELINE_LEFT">
-                    <Button text="new Task" prefWidth="170" onAction="#taskSet"/>
-                </HBox>
-
-
-            </VBox>
-
-            <VBox alignment="BOTTOM_CENTER" spacing="10" prefWidth="200">
                 <ComboBox fx:id="courselist" promptText="Add a course to start!" prefWidth="200" viewOrder="-NaN">
                     <items>
 
-                        <FXCollections fx:factory="observableArrayList">
+                        <FXCollections fx:factory="observableArrayList" >
 
                         </FXCollections>
 
                     </items>
                 </ComboBox>
 
-                <Button text="Add a course!" onKeyPressed="#courseSet" prefWidth="200" onAction="#courseSet"/>
+
+
+
+            </VBox>
+
+            <VBox spacing="10" prefHeight="280" alignment="CENTER">
+
+                <Label text="Tasks" alignment="TOP_CENTER">
+
+                </Label>
+
+                <ListView fx:id="tasklist" prefHeight="130" prefWidth="200">
+
+
+                </ListView>
+
+                <HBox alignment="BASELINE_LEFT">
+                    <Button text="new Task" prefWidth="170" onAction="#taskSet"/>
+                    <Button prefWidth="30">
+                        <graphic>
+                            <ImageView fitHeight="17" fitWidth="17">
+                                <Image url="@Settings-icon.png" preserveRatio="true"></Image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+
+                </HBox>
+
+        </VBox>
+
+
+
+            <VBox spacing="10" >
 
                 <HBox alignment="CENTER">
                     <Button text="Upcoming courses" prefWidth="180"/>

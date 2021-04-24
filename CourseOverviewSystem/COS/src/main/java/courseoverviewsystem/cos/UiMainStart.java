@@ -28,9 +28,9 @@ public class UiMainStart extends Application {
         stage.setTitle("Course Overview System");
         stage.setScene(scene);
 
-        stage.setOnCloseRequest(e -> {
-            MainController.getInformationHandler().saveCourseHandler(MainController.getCourseHandler());
-        });
+        stage.setOnCloseRequest(e ->
+                MainController.getInformationHandler().saveCourseHandler(
+                        MainController.getCourseHandler()));
 
         stage.show();
 

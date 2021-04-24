@@ -19,11 +19,11 @@
         <Insets bottom="10" top="10" left="10" right="10"/>
     </padding>
 
-    <VBox GridPane.rowIndex="1" GridPane.columnIndex="1" >
+    <VBox GridPane.rowIndex="1" GridPane.columnIndex="1" spacing="10" >
 
         <Label text="Current time: " fx:id="CT"/>
         <Label text="Overall  worktime: " fx:id="WTOverall"/>
-        <Label text="Overall breaktime: " fx:id="BTOverall"/>
+        <Label text="Current task: " fx:id="currentTask"/>
         <Label text="Cycles left: " fx:id="cycles"/>
 
     </VBox>
@@ -31,9 +31,14 @@
     <VBox alignment="CENTER" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="3">
         <Label fx:id="WTLeft"  GridPane.columnSpan="3"/>
 
-        <TextArea fx:id="msg" GridPane.columnSpan="3"/>
+        <TextArea fx:id="msg" GridPane.columnSpan="3" wrapText="true"/>
 
-        <Button text="Done!" fx:id="done" onAction="#breakAnimation"/>
+    <HBox alignment="CENTER" spacing="200">
+
+           <Button text="Cancel" fx:id="cancel"  onAction="#cancel"/>
+
+           <Button text="Save" fx:id="done" onAction="#breakAnimation"/>
+       </HBox>
     </VBox>
 
 

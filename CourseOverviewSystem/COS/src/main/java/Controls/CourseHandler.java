@@ -12,6 +12,7 @@ public class CourseHandler implements Serializable {
 
     private String notesOverall;
 
+    private Task currentTask;
 
     public CourseHandler(ArrayList<Course> courseL, String notesO) {
 
@@ -19,31 +20,22 @@ public class CourseHandler implements Serializable {
 
         this.notesOverall = notesO;
 
-
     }
 
     public void createCourse(boolean state, WorkHourCounter wHS, String name, String description
             , String notes, int priority, int value) {
 
-        Course course = new Course(state, wHS, name, description, notes, priority, value);
-        System.out.println("luotu");
-        courseList.add(course);
-        if (current == null) {
-            current = course;
-        }
-
+        current = new Course(state, wHS, name, description, notes, priority, value);
+        courseList.add(current);
 
     }
 
     public void createCourse(Course c) {
 
-
-        System.out.println("luotu");
         courseList.add(c);
         if (current == null) {
             current = c;
         }
-
 
     }
 
@@ -61,7 +53,7 @@ public class CourseHandler implements Serializable {
     }
 
     public void setCurrent(Course current) {
-        System.out.println(current + " is set");
+
         this.current = current;
     }
 
@@ -73,5 +65,11 @@ public class CourseHandler implements Serializable {
         this.notesOverall = notesOverall;
     }
 
+    public Task getCurrentTask() {
+        return currentTask;
+    }
 
+    public void setCurrentTask(Task currentTask) {
+        this.currentTask = currentTask;
+    }
 }

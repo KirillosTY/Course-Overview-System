@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="courseoverviewsystem.cos.PopupText"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <padding>
+
+        <Insets top="30" bottom="30" left="30" right="30"/>
+    </padding>
+
+        <center>
+            <VBox spacing="30">
+                <Label fx:id="multiuse" text="Notes" alignment="BASELINE_CENTER"/>
+                <TextArea wrapText="true" fx:id="msg" editable="false"
+                          prefWidth="500" prefHeight="300"/>
+
+            </VBox>
+        </center>
+
+</BorderPane>

@@ -3,15 +3,13 @@ package courseoverviewsystem.cos;
 import Controls.Course;
 import Controls.CourseHandler;
 import Controls.MainController;
+import Controls.Task;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -21,26 +19,27 @@ public class UiMain {
 
     @FXML
     protected ComboBox<Course> courselist;
+
     @FXML
     private Label text;
+
     @FXML
     private Stage currentStage;
+
+    @FXML
+    private ListView<Task> tasklist;
+
+    @FXML
+    private Button recentTask;
+
+    @FXML
+    private Button recentCourse;
+
+    @FXML
+    private TextArea generalNotes;
+
     private CourseHandler courseHandler;
 
-    @FXML
-    private ToggleGroup TaskButtons;
-
-    @FXML
-    private ToggleButton task1;
-
-    @FXML
-    private ToggleButton task2;
-
-    @FXML
-    private ToggleButton task3;
-
-    @FXML
-    private ToggleButton task4;
 
     @FXML
     public void initialize() {
@@ -49,10 +48,31 @@ public class UiMain {
 
         text.setText(checkTime() + LocalDate.now());
 
-        TaskButtons.getToggles().get(0).isSelected();
+        updateLists();
 
-        courselist.setPlaceholder(new Label("Add a course to start!"));
+        defaultStart();
 
+        actionSetups();
+
+    }
+
+    private String checkTime() {
+
+        String timeofDay = "Good morning, today is ";
+
+        if (LocalTime.now().isAfter(LocalTime.of(12, 0))) {
+            timeofDay = "Good day, today is ";
+        } else if (LocalTime.now().isAfter(LocalTime.of(16, 0))) {
+            timeofDay = "Good afternoon, today is ";
+        } else if (LocalTime.now().isAfter(LocalTime.of(12, 0))) {
+            timeofDay = "Evening, today is ";
+        }
+
+        return timeofDay;
+
+    }
+
+    public void actionSetups(){
 
         courselist.setOnMouseClicked(e -> {
             updateLists();
@@ -67,90 +87,137 @@ public class UiMain {
             }
         });
 
+        tasklist.setOnMouseClicked(currentTask -> {
+            if(tasklist.getSelectionModel().getSelectedItem() != null) {
+
+                courseHandler.setCurrentTask(tasklist.getSelectionModel().getSelectedItem());
+            }
+
+        });
+
+    }
+
+    public void defaultStart(){
+
         courselist.setVisibleRowCount(5);
+
         courselist.setViewOrder(-2);
-        updateLists();
 
-
-    }
-
-
-    private String checkTime() {
-
-        String timeofDay = "Good morning, today is ";
-
-        if (LocalTime.now().isAfter(LocalTime.of(12, 00))) {
-            timeofDay = "Good day, today is ";
-        } else if (LocalTime.now().isAfter(LocalTime.of(16, 00))) {
-            timeofDay = "Good afternoon, today is ";
-        } else if (LocalTime.now().isAfter(LocalTime.of(12, 00))) {
-            timeofDay = "Evening, today is ";
+        if(courseHandler.getCurrentTask() != null){
+            recent();
         }
+        generalNotes.setText(courseHandler.getNotesOverall());
 
-        return timeofDay;
-
+        courselist.setPlaceholder(new Label("Add a course to start!"));
     }
+
 
     @FXML
     public void updateTasks() {
 
-        if (!courseHandler.getCurrent().getTaskList().isEmpty()) {
-            task1.setText(courseHandler.getCurrent().getTaskList().get(0).toString());
+        tasklist.getItems().setAll(courseHandler.getCurrent().getTaskList());
+
+        tasklist.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        if(courseHandler.getCurrentTask() == null){
+            tasklist.setPlaceholder(new Label("Add tasks!"));
+        } else if(courseHandler.getCurrent().getTaskList().contains(courseHandler.getCurrentTask())){
+            tasklist.getSelectionModel().select(courseHandler.getCurrentTask());
+        }else {
+            tasklist.setPlaceholder(new Label("Add tasks!"));
         }
     }
 
     @FXML
     public void updateLists() {
-        courseHandler = MainController.getCourseHandler();
-        courselist.setItems(FXCollections.observableList(MainController.getCourseHandler().getCourseList()));
 
-        if (courselist.getSelectionModel().getSelectedItem() != null) {
-            courselist.getSelectionModel().selectFirst();
+        courselist.setItems(FXCollections.observableList(courseHandler.getCourseList()));
+
+        if (courseHandler.getCurrent() != null) {
+            courselist.getSelectionModel().select(courseHandler.getCurrent());
+            updateTasks();
+
+        } else {
+            courselist.setPlaceholder(new Label("Add a course to start!"));
+            tasklist.setPlaceholder(new Label("Add tasks!"));
         }
-
 
     }
 
+
     @FXML
-    public void viewChanger(Parent root, String windowName) {
+    public void  recent(){
+
+        recentTask.setOnAction(notesView -> {
+            MainController.setPopupText(new String[]{
+                    courseHandler.getCurrentTask().toString(),
+                    courseHandler.getCurrentTask().getNotes()});
+            PopupText();
+        });
+
+        recentCourse.setOnAction(notesView -> {
+            MainController.setPopupText(new String[]{
+                    courseHandler.getCurrent().toString(),
+                    courseHandler.getCurrent().getNotes()});
+            PopupText();
+        });
+
+        recentTask.setText(courseHandler.getCurrentTask().toString() + " notes");
+
+        recentCourse.setText(courseHandler.getCurrent().toString()+ " notes");
+    }
 
 
-        Scene viewC = new Scene(root);
 
-        currentStage = new Stage();
+    @FXML
+    public void viewChanger(String resource, String windowName) throws Exception {
 
-        currentStage.setScene(viewC);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
 
-        currentStage.setTitle(windowName);
+            Parent root = loader.load();
 
-        currentStage.showAndWait();
+            Scene viewC = new Scene(root);
 
+            currentStage = new Stage();
+
+            currentStage.setScene(viewC);
+
+            currentStage.setTitle(windowName);
+        } finally {
+
+        }
 
     }
 
     @FXML
     public void studyStart() {
 
-        try {
-            viewChanger(FXMLLoader.load(getClass().getResource("studyStart.fxml")),
-                    "Workhour counter has started!");
+        if(courseHandler.getCurrentTask() != null) {
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                viewChanger("studyStart.fxml",
+                        "Workhour counter has started!");
+
+                currentStage.showAndWait();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            errorHandler();
         }
 
     }
 
     @FXML
     public void studySet() {
-        if (currentStage != null) {
-            currentStage.close();
-        }
 
         try {
-            viewChanger(FXMLLoader.load(getClass().getResource("studySettings.fxml")),
+            viewChanger("studySettings.fxml",
                     "Study settings");
 
+            currentStage.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -159,29 +226,69 @@ public class UiMain {
     @FXML
     public void taskSet() {
 
-        try {
+        if(courseHandler.getCurrent() != null ) {
 
-            viewChanger(FXMLLoader.load(getClass().getResource("TaskEditCreation.fxml")),
-                    "Task settings");
+            try {
+                viewChanger("TaskEditCreation.fxml",
+                        "Task settings");
 
-        } catch (Exception e) {
-            e.printStackTrace();
+                currentStage.setOnHidden((e)->{
+
+                    updateLists();
+                    updateTasks();
+                });
+
+                currentStage.showAndWait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            errorHandler();
         }
     }
 
+
+
     @FXML
     public void courseSet() {
-        System.out.println(courseHandler.getCourseList());
+
         try {
-
-            viewChanger(FXMLLoader.load(getClass().getResource("CreateCourse.fxml")),
+            viewChanger("CreateCourse.fxml",
                     "Create course!");
+            currentStage.setOnHidden((e)->{
 
+                updateLists();
+                updateTasks();
+            });
 
+            currentStage.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+
+    @FXML
+    public void PopupText(){
+
+        try {
+            viewChanger("PopupText.fxml",
+                    MainController.getPopupText()[0]);
+
+            currentStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    @FXML
+    public void errorHandler(){
+
+        System.out.println("Et ole valinnut tehtävää");
 
     }
 }

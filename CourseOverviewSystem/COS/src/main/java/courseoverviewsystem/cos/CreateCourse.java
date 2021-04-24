@@ -1,6 +1,5 @@
 package courseoverviewsystem.cos;
 
-import Controls.CourseHandler;
 import Controls.MainController;
 import Controls.WorkHourCounter;
 import javafx.fxml.FXML;
@@ -53,13 +52,6 @@ public class CreateCourse {
     @FXML
     private Button save;
 
-    private final CourseHandler ch;
-
-    public CreateCourse() {
-        ch = MainController.getCourseHandler();
-
-
-    }
 
     @FXML
     public void initialize() {
@@ -97,10 +89,11 @@ public class CreateCourse {
         int val = Integer.parseInt(value.getText());
         int prio = Integer.parseInt(priority.getText());
 
-        ch.createCourse(false, courseWHC,
+        MainController.getCourseHandler().createCourse(false, courseWHC,
                 name.getText(), description.getText(), notes.getText(), prio, val);
 
-        MainController.getInformationHandler().saveCourseHandler(ch);
+        MainController.getInformationHandler().saveCourseHandler(MainController.getCourseHandler());
+
         Stage stage = (Stage) save.getScene().getWindow();
 
         stage.close();

@@ -1,15 +1,18 @@
 package Controls;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
-public class Course extends Task implements Serializable {
+public class Course extends BasicTask {
 
 
     private int value;
 
     private ArrayList<Task> taskList;
+
+
 
 
     public Course(boolean state, WorkHourCounter wHS, String name, String description, String notes, int priority, int value) {
@@ -22,16 +25,15 @@ public class Course extends Task implements Serializable {
     }
 
     public void addTask(boolean state, WorkHourCounter wHS, String name, String des, String notes, Integer prio) {
+        Task newTask = new Task(state, wHS, name, des, notes, prio);
+        taskList.add(newTask);
 
-        taskList.add(new Task(state, wHS, name, des, notes, prio));
+        if(MainController.getCourseHandler().getCurrentTask()== null){
+            MainController.getCourseHandler().setCurrentTask(newTask);
+        }
 
     }
 
-    public void addTaskStartDate(boolean state, LocalDateTime eD, LocalDateTime sD,
-                                 WorkHourCounter wHS, String name, String des, String notes, Integer prio) {
-
-        taskList.add(new Task(state, wHS, name, des, notes, prio));
-    }
 
 
     public ArrayList<Task> getTaskList() {
@@ -52,6 +54,32 @@ public class Course extends Task implements Serializable {
     public void setValue(int value) {
         this.value = value;
     }
+
+
+    public void saveNotesWithStamp(String notes, String nameOfNote){
+
+        String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
+                FormatStyle.LONG,FormatStyle.MEDIUM));
+
+        StringBuilder  build = new StringBuilder(time+" "+nameOfNote+":\n\n"
+                +notes.split("\n\n\n")[0]);
+        build.append("\n\n\n");
+        build.append(this.getNotes());
+        this.setNotes(build.toString());
+
+    }
+
+
+    public boolean removeTask(Task task){
+
+        if(taskList.remove(task)) {
+            taskList.remove(task);
+
+            return true;
+        } else return false;
+
+    }
+
 
     @Override
     public String toString() {

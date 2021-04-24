@@ -99,6 +99,13 @@ public class WorkHourCounter implements Serializable {
         return this.seconds + this.minutes * 60 + this.hours * 3600;
     }
 
+    public Long getCurrentCount() {
+        return currentCount;
+    }
+
+    public void setCurrentCount(Long currentCount) {
+        this.currentCount = currentCount;
+    }
 
     public LocalDateTime getEndDate() {
         return endDate;

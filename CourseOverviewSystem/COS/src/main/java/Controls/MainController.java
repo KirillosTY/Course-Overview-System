@@ -13,6 +13,8 @@ public class MainController {
 
     private static Settings settings;
 
+    private static String[] popupText;
+
     public static void main(String[] args) {
 
 
@@ -45,5 +47,16 @@ public class MainController {
 
     public static Settings getSettings() {
         return settings;
+    }
+
+    public static String[] getPopupText(){
+        return popupText;
+
+    }
+
+    public static void setPopupText(String[] pops){
+
+        popupText = pops;
+
     }
 }
