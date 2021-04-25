@@ -32,14 +32,12 @@ public class UiMainStart extends Application {
             stage.setScene(scene);
 
             stage.setOnHidden(save -> {
+
                 MainController.getInformationHandler().saveCourseHandler(
                         MainController.getCourseHandler());
                 MainController.getInformationHandler().saveSettings(MainController.getSettings());
             });
 
-            stage.setOnCloseRequest(e ->
-                    MainController.getInformationHandler().saveCourseHandler(
-                            MainController.getCourseHandler()));
 
             stage.show();
         } catch (IOException e){

@@ -76,6 +76,7 @@ public class CreateCourse {
         dateEnd.setValue(LocalDate.now().plusDays(56));
         endH.setText("00");
         endM.setText("00");
+        notes.wrapTextProperty().setValue(true);
 
         value.setText("5");
         courseLoad();
@@ -143,10 +144,10 @@ public class CreateCourse {
 
     @FXML
     public void editcourse(){
+
         if(!isAcceptable()){
             return;
         }
-
 
         course.setName(name.getText());
         course.setDescription(description.getText());
@@ -185,6 +186,11 @@ public class CreateCourse {
 
     @FXML
     public void saveCourse() {
+
+        if(course != null){
+            editcourse();
+            return;
+        }
 
         WorkHourCounter courseWHC = setupWHC();
 

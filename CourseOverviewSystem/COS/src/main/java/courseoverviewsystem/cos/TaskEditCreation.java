@@ -61,8 +61,9 @@ public class TaskEditCreation {
         description.setPromptText("Description");
         notes.setPromptText("Add notes");
         dateStart.setValue(LocalDate.now());
-        startH.setText("23");
-        startM.setText("59");
+        startH.setText("00");
+        startM.setText("00");
+        notes.wrapTextProperty().setValue(true);
 
         dateEnd.setValue(LocalDate.now().plusDays(7));
         endH.setText("23");

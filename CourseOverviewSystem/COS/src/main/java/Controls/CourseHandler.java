@@ -123,4 +123,20 @@ public class CourseHandler implements Serializable {
     public void setCurrentTask(Task currentTask) {
         this.currentTask = currentTask;
     }
+
+    public ArrayList<Course> getPastCourse() {
+        return pastCourse;
+    }
+
+    public void setPastCourse(ArrayList<Course> pastCourse) {
+        this.pastCourse = pastCourse;
+    }
+
+    public ArrayList<Course> getUpcomingCourse() {
+        return upcomingCourse;
+    }
+
+    public void setUpcomingCourse(ArrayList<Course> upcomingCourse) {
+        this.upcomingCourse = upcomingCourse;
+    }
 }

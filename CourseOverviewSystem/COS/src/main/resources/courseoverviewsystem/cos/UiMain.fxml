@@ -48,7 +48,7 @@
 
     <right>
 
-        <FlowPane prefWidth="200" prefHeight="460" alignment="TOP_LEFT">
+        <FlowPane prefWidth="200" prefHeight="460">
 
             <VBox alignment="BOTTOM_CENTER" spacing="15" prefWidth="200" prefHeight="70">
                 <HBox>
@@ -56,7 +56,7 @@
                     <Button prefWidth="30">
                         <graphic>
                             <ImageView fitHeight="17" fitWidth="17">
-                                <Image url="@Settings-icon.png" preserveRatio="true"></Image>
+                                <Image url="@Settings-icon.png" preserveRatio="true"/>
                             </ImageView>
                         </graphic>
                     </Button>
@@ -108,13 +108,11 @@
                     <CheckBox fx:id="doneTask"  onAction="#taskIsDone" alignment="BOTTOM_RIGHT" />
                 </HBox>
 
-        </VBox>
+            </VBox>
 
-
-
+            <Button   alignment="BOTTOM_RIGHT" text="Done for the day!" fx:id="mainDone" onAction="#mainIsDone"/>
 
         </FlowPane>
-
 
     </right>
 
@@ -130,7 +128,7 @@
                 <Button prefWidth="30" onAction="#studySet">
                     <graphic>
                         <ImageView fitHeight="17" fitWidth="17">
-                            <Image url="@Settings-icon.png" preserveRatio="true"></Image>
+                            <Image url="@Settings-icon.png" preserveRatio="true"/>
                         </ImageView>
                     </graphic>
 
@@ -146,7 +144,7 @@
                     <Button prefWidth="30">
                         <graphic>
                             <ImageView fitHeight="17" fitWidth="17">
-                                <Image url="@Settings-icon.png" preserveRatio="true"></Image>
+                                <Image url="@Settings-icon.png" preserveRatio="true"/>
                             </ImageView>
                         </graphic>
 
@@ -160,7 +158,7 @@
                     <Button prefWidth="30">
                         <graphic>
                             <ImageView fitHeight="17" fitWidth="17">
-                                <Image url="@Settings-icon.png" preserveRatio="true"></Image>
+                                <Image url="@Settings-icon.png" preserveRatio="true"/>
                             </ImageView>
                         </graphic>
 

@@ -95,7 +95,7 @@ public class StudyStart {
 
     @FXML
     public void onCloseCounterStop(){
-        stage = (Stage) CT.getScene().getWindow();
+        stage = (Stage) overallVBox.getScene().getWindow();
         stage.setOnHidden(counterStop -> {
             counter.stop();
         });

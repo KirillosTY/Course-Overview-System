@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class UiMain {
 
@@ -27,6 +28,9 @@ public class UiMain {
 
     @FXML
     private Stage currentStage;
+
+    @FXML
+    private Stage mainStage;
 
     @FXML
     private ListView<Task> tasklist;
@@ -64,10 +68,13 @@ public class UiMain {
 
     private CourseHandler courseHandler;
 
+    private ArrayList<Stage> stageControls;
+
 
     @FXML
     public void initialize() {
 
+        stageControls = new ArrayList<>();
         courseHandler = MainController.getCourseHandler();
 
         text.setText(checkTime() + LocalDate.now());
@@ -175,8 +182,7 @@ public class UiMain {
 
     @FXML
     public void updateTasks() {
-
-        tasklist.getItems().setAll(courseHandler.getCurrent().getTaskList());
+        tasklist.setItems(FXCollections.observableList(courseHandler.getCurrent().getTaskList()));
 
         tasklist.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
@@ -278,6 +284,19 @@ public class UiMain {
     }
 
     @FXML
+    public void mainIsDone(){
+        if(currentStage != null){
+            for(Stage s: stageControls){
+                s.close();
+            }
+        }
+
+        mainStage = (Stage) text.getScene().getWindow();
+        mainStage.close();
+
+    }
+
+    @FXML
     public void courseIsDone() {
 
         if (courseHandler.getCurrent() != null) {
@@ -311,18 +330,24 @@ public class UiMain {
 
         try {
 
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
 
             Parent root = loader.load();
 
             Scene viewC = new Scene(root);
 
+
             currentStage = new Stage();
 
             currentStage.setScene(viewC);
 
             currentStage.setTitle(windowName);
+
+            stageControls.add(currentStage);
+
+            mainStage = (Stage) text.getScene().getWindow();
+
+
         } finally {
 
         }
@@ -339,8 +364,7 @@ public class UiMain {
 
 
                 currentStage.setUserData(courseHandler.getCurrentTask());
-                System.out.println("käytiin taskissa");
-                System.out.println(courseHandler.getCurrentTask());
+
                 currentStage.showAndWait();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -361,7 +385,9 @@ public class UiMain {
                         "Edit current Course");
 
                 currentStage.setUserData(courseHandler.getCurrent());
-                System.out.println("käytiin kurssissa");
+                currentStage.setOnHidden(update ->{
+                    updateLists();
+                });
                 currentStage.showAndWait();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -381,9 +407,8 @@ public class UiMain {
             try {
                 viewChanger("studyStart.fxml",
                         "Workhour counter has started!");
-                currentStage.setOnHidden(stopCounter ->{
 
-                });
+
                 currentStage.showAndWait();
 
             } catch (Exception e) {
@@ -465,8 +490,8 @@ public class UiMain {
             e.printStackTrace();
         }
 
-
     }
+
 
 
     @FXML
