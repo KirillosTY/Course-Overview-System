@@ -12,9 +12,9 @@
     <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
         <Text text="Task info"/>
 
-        <TextField text="Name" fx:id="name" />
-        <TextField text="Description" fx:id="description" />
-        <TextArea text="Additional info(ex. notes)" fx:id="notes"  prefWidth="200" prefHeight="200" />
+        <TextField  fx:id="name" />
+        <TextField  fx:id="description" />
+        <TextArea  fx:id="notes"  prefWidth="200" prefHeight="200" />
 
     </VBox>
 
@@ -31,7 +31,7 @@
         <DatePicker fx:id="dateEnd" />
         <HBox spacing="10">
             <Label text="Time:"/>
-            <TextField fx:id="endH" text="hh" prefWidth="35" prefHeight="15" />
+            <TextField fx:id="endH"  text="hh" prefWidth="35" prefHeight="15" />
             <TextField fx:id="endM" text="mm" prefWidth="35" prefHeight="15"/>
         </HBox>
         <HBox spacing="10">

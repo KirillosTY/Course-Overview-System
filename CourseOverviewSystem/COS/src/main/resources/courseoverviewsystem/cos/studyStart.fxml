@@ -19,7 +19,7 @@
         <Insets bottom="10" top="10" left="10" right="10"/>
     </padding>
 
-    <VBox GridPane.rowIndex="1" GridPane.columnIndex="1" spacing="10" >
+    <VBox fx:id="overallVBox" GridPane.rowIndex="1" GridPane.columnIndex="1" spacing="10" >
 
         <Label text="Current time: " fx:id="CT"/>
         <Label text="Overall  worktime: " fx:id="WTOverall"/>

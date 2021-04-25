@@ -13,16 +13,16 @@ public class PopupText {
     @FXML
     private Label multiuse;
 
+    public PopupText() {
+
+    }
+
     @FXML
-    public void initialize(){
+    public void initialize() {
 
         multiuse.setText(MainController.getPopupText()[0]);
 
         msg.setText(MainController.getPopupText()[1]);
-
-    }
-
-    public PopupText(){
 
     }
 

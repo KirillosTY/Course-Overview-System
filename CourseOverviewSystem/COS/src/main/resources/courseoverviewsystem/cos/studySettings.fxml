@@ -21,7 +21,7 @@
 
             <CheckBox text="Show current time" fx:id="showCT"/>
             <CheckBox text="Show worktime" fx:id="showWT"/>
-            <CheckBox text="Show breaktime" fx:id="showBT"/>
+            <CheckBox text="Show cycles left" fx:id="showCycles"/>
 
         </VBox>
 

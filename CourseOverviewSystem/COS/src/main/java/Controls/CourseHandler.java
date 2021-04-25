@@ -1,12 +1,17 @@
 package Controls;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class CourseHandler implements Serializable {
 
 
     private ArrayList<Course> courseList;
+
+    private ArrayList<Course> pastCourse;
+
+    private ArrayList<Course> upcomingCourse;
 
     private Course current;
 
@@ -20,13 +25,44 @@ public class CourseHandler implements Serializable {
 
         this.notesOverall = notesO;
 
+        pastCourse = new ArrayList<>();
+
+        upcomingCourse = new ArrayList<>();
     }
 
     public void createCourse(boolean state, WorkHourCounter wHS, String name, String description
             , String notes, int priority, int value) {
 
         current = new Course(state, wHS, name, description, notes, priority, value);
-        courseList.add(current);
+
+        courseListDecider(current);
+        MainController.getInformationHandler().saveCourseHandler(MainController.getCourseHandler());
+
+    }
+
+    public void courseDateUpdater(){
+
+        upcomingCourse.removeIf(c -> courseListDecider(c) != 1);
+        courseList.removeIf(c -> courseListDecider(c) != 2);
+    }
+
+    public int courseListDecider(Course c){
+
+        if(current.getWorkHoursSpent().getStartDate().isAfter(LocalDateTime.now())){
+
+            if(!upcomingCourse.contains(c)) upcomingCourse.add(current);
+
+            return 1;
+        } else if(current.getWorkHoursSpent().getStartDate().isBefore(LocalDateTime.now())
+            && current.getWorkHoursSpent().getEndDate().isAfter(LocalDateTime.now())){
+
+            if(!courseList.contains(c)) courseList.add(current);
+            return 2;
+        } else {
+
+            pastCourse.add(current);
+            return 3;
+        }
 
     }
 
@@ -35,6 +71,21 @@ public class CourseHandler implements Serializable {
         courseList.add(c);
         if (current == null) {
             current = c;
+        }
+
+    }
+
+    public void markCourseAsDone(Course c, boolean delete){
+
+        if(courseList.contains(c)){
+
+            if(delete) {
+
+                courseList.remove(c);
+            } else {
+                courseList.remove(c);
+                pastCourse.add(c);
+            }
         }
 
     }

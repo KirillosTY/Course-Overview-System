@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
  * JavaFX UiMainStart
  */
@@ -19,20 +21,30 @@ public class UiMainStart extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
 
-        Parent root = FXMLLoader.load(getClass().getResource("UiMain.fxml"));
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("UiMain.fxml"));
 
-        Scene scene = new Scene(root, 770, 470);
+            Scene scene = new Scene(root, 820, 470);
 
-        stage.setTitle("Course Overview System");
-        stage.setScene(scene);
+            stage.setTitle("Course Overview System");
+            stage.setScene(scene);
 
-        stage.setOnCloseRequest(e ->
+            stage.setOnHidden(save -> {
                 MainController.getInformationHandler().saveCourseHandler(
-                        MainController.getCourseHandler()));
+                        MainController.getCourseHandler());
+                MainController.getInformationHandler().saveSettings(MainController.getSettings());
+            });
 
-        stage.show();
+            stage.setOnCloseRequest(e ->
+                    MainController.getInformationHandler().saveCourseHandler(
+                            MainController.getCourseHandler()));
+
+            stage.show();
+        } catch (IOException e){
+
+        }
 
     }
 

@@ -4,6 +4,8 @@ import Controls.Course;
 import Controls.CourseHandler;
 import Controls.MainController;
 import Controls.Task;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +40,28 @@ public class UiMain {
     @FXML
     private TextArea generalNotes;
 
+    @FXML
+    private Button gNSave;
+
+    @FXML
+    private Button gNClear;
+
+    @FXML
+    private Button gNRedo;
+
+    @FXML
+    private Button editTask;
+
+    @FXML
+    private CheckBox doneTask;
+
+    @FXML
+    private Button editCourse;
+
+    @FXML
+    private CheckBox doneCourse;
+
+
     private CourseHandler courseHandler;
 
 
@@ -48,11 +72,12 @@ public class UiMain {
 
         text.setText(checkTime() + LocalDate.now());
 
-        updateLists();
-
+        courselist.setItems(FXCollections.observableList(courseHandler.getCourseList()));
         defaultStart();
-
-        actionSetups();
+        actionSetupsCourse();
+        actionSetupTasks();
+        updateLists();
+        gNsetup();
 
     }
 
@@ -72,41 +97,77 @@ public class UiMain {
 
     }
 
-    public void actionSetups(){
+    public void actionSetupsCourse() {
 
-        courselist.setOnMouseClicked(e -> {
-            updateLists();
-        });
+        courselist.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Course>() {
+            @Override
+            public void changed(ObservableValue<? extends Course> observableValue, Course course, Course t1) {
 
-        courselist.setOnAction(taskUpdate -> {
+                if (t1 != null) {
+                    courseHandler.setCurrent(courselist.getSelectionModel().getSelectedItem());
+                    updateTasks();
+                    recent();
+                }
 
-            courseHandler.setCurrent(courselist.getSelectionModel().getSelectedItem());
-
-            if (courseHandler.getCurrent() != null && courselist.getSelectionModel().getSelectedItem() != null) {
-                updateTasks();
             }
         });
 
-        tasklist.setOnMouseClicked(currentTask -> {
-            if(tasklist.getSelectionModel().getSelectedItem() != null) {
+        doneCourse.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
+            Course tempCourse = courseHandler.getCurrent();
+            courseHandler.setCurrent(null);
+            courseHandler.setCurrentTask(null);
+            courseHandler.markCourseAsDone(tempCourse, false);
+            tasklist.getItems().clear();
+            updateLists();
+            doneCourse.setSelected(false);
 
-                courseHandler.setCurrentTask(tasklist.getSelectionModel().getSelectedItem());
+        });
+
+
+
+
+    }
+
+    public void actionSetupTasks(){
+
+        tasklist.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
+            @Override
+            public void changed(ObservableValue<? extends Task> observableValue, Task task, Task t1) {
+                if (tasklist.getSelectionModel().getSelectedItem() != null) {
+
+                    courseHandler.setCurrentTask(tasklist.getSelectionModel().getSelectedItem());
+
+                    recent();
+                }
+            }
+        });
+
+        doneTask.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
+            if(courseHandler.getCurrentTask() != null) {
+                Task tempT = courseHandler.getCurrentTask();
+                courseHandler.setCurrentTask(null);
+                courseHandler.getCurrent().removeTask(tempT);
+                updateLists();
+                doneTask.setSelected(false);
+            } else {
+                doneTask.setSelected(false);
             }
 
         });
 
     }
 
-    public void defaultStart(){
+    public void defaultStart() {
 
         courselist.setVisibleRowCount(5);
 
         courselist.setViewOrder(-2);
 
-        if(courseHandler.getCurrentTask() != null){
+        tasklist.setMaxWidth(200);
+
+        if (courseHandler.getCurrentTask() != null) {
             recent();
         }
-        generalNotes.setText(courseHandler.getNotesOverall());
 
         courselist.setPlaceholder(new Label("Add a course to start!"));
     }
@@ -119,19 +180,20 @@ public class UiMain {
 
         tasklist.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        if(courseHandler.getCurrentTask() == null){
+        if (courseHandler.getCurrentTask() == null) {
             tasklist.setPlaceholder(new Label("Add tasks!"));
-        } else if(courseHandler.getCurrent().getTaskList().contains(courseHandler.getCurrentTask())){
+        } else if (courseHandler.getCurrent().getTaskList().contains(courseHandler.getCurrentTask())) {
             tasklist.getSelectionModel().select(courseHandler.getCurrentTask());
-        }else {
+        } else {
             tasklist.setPlaceholder(new Label("Add tasks!"));
         }
+
     }
 
     @FXML
     public void updateLists() {
 
-        courselist.setItems(FXCollections.observableList(courseHandler.getCourseList()));
+        courselist.setItems(FXCollections.observableList(MainController.getCourseHandler().getCourseList()));
 
         if (courseHandler.getCurrent() != null) {
             courselist.getSelectionModel().select(courseHandler.getCurrent());
@@ -144,35 +206,112 @@ public class UiMain {
 
     }
 
-
     @FXML
-    public void  recent(){
+    public void recentTask(){
 
         recentTask.setOnAction(notesView -> {
-            MainController.setPopupText(new String[]{
-                    courseHandler.getCurrentTask().toString(),
-                    courseHandler.getCurrentTask().getNotes()});
-            PopupText();
+            if(courseHandler.getCurrentTask() != null) {
+                MainController.setPopupText(new String[]{
+                        courseHandler.getCurrentTask().toString(),
+                        courseHandler.getCurrentTask().getNotes()});
+                PopupText();
+            }
         });
 
-        recentCourse.setOnAction(notesView -> {
-            MainController.setPopupText(new String[]{
-                    courseHandler.getCurrent().toString(),
-                    courseHandler.getCurrent().getNotes()});
-            PopupText();
-        });
+        if (courseHandler.getCurrentTask() != null) {
+            recentTask.setText(courseHandler.getCurrentTask().toString() + " notes");
+        } else {
+            recentTask.setText("Task notes(empty)");
+        }
 
-        recentTask.setText(courseHandler.getCurrentTask().toString() + " notes");
-
-        recentCourse.setText(courseHandler.getCurrent().toString()+ " notes");
     }
 
+    @FXML
+    public void recentCourse(){
+
+        recentCourse.setOnAction(notesView -> {
+            if(courseHandler.getCurrent() != null) {
+                MainController.setPopupText(new String[]{
+                        courseHandler.getCurrent().toString(),
+                        courseHandler.getCurrent().getNotes()});
+                PopupText();
+
+            }
+        });
+
+        if(courseHandler.getCurrent() != null) {
+            recentCourse.setText(courseHandler.getCurrent().toString() + " notes");
+        } else {
+            recentCourse.setText("Course notes(empty)");
+        }
+    }
+
+
+    @FXML
+    public void recent() {
+
+        recentCourse();
+        recentTask();
+    }
+
+    @FXML
+    public void gNsetup() {
+
+        generalNotes.setText(courseHandler.getNotesOverall());
+
+
+        gNSave.setOnAction(saveGN -> {
+            courseHandler.setNotesOverall(generalNotes.getText());
+        });
+
+        gNRedo.setOnAction(redoGN -> {
+            generalNotes.undo();
+        });
+
+        gNClear.setOnAction(clearGN -> {
+
+            generalNotes.clear();
+
+        });
+
+
+    }
+
+    @FXML
+    public void courseIsDone() {
+
+        if (courseHandler.getCurrent() != null) {
+
+            courseHandler.markCourseAsDone(courseHandler.getCurrent(),false);
+            courseHandler.setCurrent(null);
+            courseHandler.setCurrentTask(null);
+            updateLists();
+            updateTasks();
+        }
+
+    }
+
+    @FXML
+    public void taskIsDone() {
+
+        if (courseHandler.getCurrentTask() != null) {
+
+            courseHandler.getCurrent().removeTask(courseHandler.getCurrentTask());
+            courseHandler.setCurrentTask(null);
+            updateLists();
+            updateTasks();
+
+        }
+
+    }
 
 
     @FXML
     public void viewChanger(String resource, String windowName) throws Exception {
 
         try {
+
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
 
             Parent root = loader.load();
@@ -191,14 +330,60 @@ public class UiMain {
     }
 
     @FXML
+    public void taskEdit() {
+
+        if (courseHandler.getCurrentTask() != null) {
+            try {
+                viewChanger("TaskEditCreation.fxml",
+                        "Edit current task");
+
+
+                currentStage.setUserData(courseHandler.getCurrentTask());
+                System.out.println("käytiin taskissa");
+                System.out.println(courseHandler.getCurrentTask());
+                currentStage.showAndWait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            errorHandler();
+        }
+
+    }
+
+    @FXML
+    public void courseEdit() {
+
+        if (courseHandler.getCurrent() != null) {
+            try {
+                viewChanger("CreateCourse.fxml",
+                        "Edit current Course");
+
+                currentStage.setUserData(courseHandler.getCurrent());
+                System.out.println("käytiin kurssissa");
+                currentStage.showAndWait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            errorHandler();
+        }
+
+    }
+
+    @FXML
     public void studyStart() {
 
-        if(courseHandler.getCurrentTask() != null) {
+        if (courseHandler.getCurrentTask() != null) {
 
             try {
                 viewChanger("studyStart.fxml",
                         "Workhour counter has started!");
+                currentStage.setOnHidden(stopCounter ->{
 
+                });
                 currentStage.showAndWait();
 
             } catch (Exception e) {
@@ -226,13 +411,13 @@ public class UiMain {
     @FXML
     public void taskSet() {
 
-        if(courseHandler.getCurrent() != null ) {
+        if (courseHandler.getCurrent() != null) {
 
             try {
                 viewChanger("TaskEditCreation.fxml",
-                        "Task settings");
+                        "Task Creation");
 
-                currentStage.setOnHidden((e)->{
+                currentStage.setOnHidden((e) -> {
 
                     updateLists();
                     updateTasks();
@@ -248,14 +433,13 @@ public class UiMain {
     }
 
 
-
     @FXML
     public void courseSet() {
 
         try {
             viewChanger("CreateCourse.fxml",
                     "Create course!");
-            currentStage.setOnHidden((e)->{
+            currentStage.setOnHidden((e) -> {
 
                 updateLists();
                 updateTasks();
@@ -270,7 +454,7 @@ public class UiMain {
 
 
     @FXML
-    public void PopupText(){
+    public void PopupText() {
 
         try {
             viewChanger("PopupText.fxml",
@@ -286,7 +470,7 @@ public class UiMain {
 
 
     @FXML
-    public void errorHandler(){
+    public void errorHandler() {
 
         System.out.println("Et ole valinnut tehtävää");
 

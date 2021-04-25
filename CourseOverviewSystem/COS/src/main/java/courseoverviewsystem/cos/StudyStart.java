@@ -4,10 +4,12 @@ import Controls.MainController;
 import Controls.Settings;
 import Controls.WorkHourCounter;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.time.LocalDateTime;
@@ -33,24 +35,40 @@ public class StudyStart {
     private Button cancel;
 
     @FXML
+    private VBox overallVBox;
+
+    @FXML
     private Label cycles;
+
     @FXML
     private Button done;
 
     private WorkHourCounter countOverall;
 
     private WorkHourCounter count;
-
+    @FXML
     private AnimationTimer counter;
 
     private long startHours;
 
+    @FXML
     private Stage stage;
 
 
     @FXML
     public void initialize() {
         settings = MainController.getInformationHandler().loadSettings();
+
+        if(!settings.isStudyShowT()){
+            overallVBox.getChildren().remove(CT);
+        }
+        if(!settings.isStudyShowWT()){
+            overallVBox.getChildren().remove(WTOverall);
+        }
+        if(!settings.isStudyShowCycles()){
+            overallVBox.getChildren().remove(cycles);
+        }
+
 
         countOverall = MainController.getCourseHandler().getCurrentTask().getWorkHoursSpent();
         startHours = countOverall.getCurrentCount();
@@ -61,26 +79,42 @@ public class StudyStart {
         counter.start();
     }
 
-    public void defaultStart(){
+    public void defaultStart() {
         count.setMinutes(settings.getStudyWorkM());
         count.setHours(settings.getStudyWorkH());
         count.setCycle(settings.getStudyCycle());
-        currentTask.setText("Current task: "+MainController.getCourseHandler().getCurrentTask());
-        msg.setText("\n\n\n"+MainController.getCourseHandler().getCurrentTask().getNotes());
+        currentTask.setText("Current task: " + MainController.getCourseHandler().getCurrentTask());
+        msg.setText("\n\n\n" + MainController.getCourseHandler().getCurrentTask().getNotes());
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                onCloseCounterStop();
+            }
+        });
     }
 
+    @FXML
+    public void onCloseCounterStop(){
+        stage = (Stage) CT.getScene().getWindow();
+        stage.setOnHidden(counterStop -> {
+            counter.stop();
+        });
 
+    }
+
+    @FXML
     public void breakAnimation() {
-        stage = (Stage) done.getScene().getWindow();
-        saveNotes();
 
+        saveNotes();
+        long courseOverall = MainController.getCourseHandler().getCurrent().getWorkHoursSpent().getCurrentCount();
+        MainController.getCourseHandler().getCurrent().getWorkHoursSpent()
+                .setCurrentCount(courseOverall + countOverall.getCurrentCount()-startHours);
         MainController.getInformationHandler().saveCourseHandler(MainController.getCourseHandler());
-        counter.stop();
         stage.close();
 
     }
 
-    public void cancel(){
+    public void cancel() {
         Stage s = (Stage) cancel.getScene().getWindow();
         countOverall.setCurrentCount(startHours);
         counter.stop();
@@ -88,7 +122,7 @@ public class StudyStart {
 
     }
 
-    public void saveNotes(){
+    public void saveNotes() {
 
         MainController.getCourseHandler().getCurrentTask().saveNotesWithStamp(msg.getText());
         MainController.getCourseHandler().getCurrent().saveNotesWithStamp(msg.getText(),
@@ -131,6 +165,7 @@ public class StudyStart {
 
 
         };
+
 
 
     }

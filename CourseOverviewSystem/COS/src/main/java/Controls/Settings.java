@@ -24,7 +24,7 @@ public class Settings implements Serializable {
 
     private boolean studyShowWT = true;
 
-    private boolean studyShowBT = false;
+    private boolean studyShowCycles = false;
 
 
     public Settings() {
@@ -96,12 +96,12 @@ public class Settings implements Serializable {
         this.studyShowWT = studyShowWT;
     }
 
-    public boolean isStudyShowBT() {
-        return studyShowBT;
+    public boolean isStudyShowCycles() {
+        return studyShowCycles;
     }
 
-    public void setStudyShowBT(boolean studyShowBT) {
-        this.studyShowBT = studyShowBT;
+    public void setStudyShowCycles(boolean studyShowCycles) {
+        this.studyShowCycles = studyShowCycles;
     }
 
     public void saveSettings() {

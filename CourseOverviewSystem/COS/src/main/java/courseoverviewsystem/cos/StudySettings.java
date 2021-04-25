@@ -38,7 +38,7 @@ public class StudySettings {
     private CheckBox showWT;
 
     @FXML
-    private CheckBox showBT;
+    private CheckBox showCycles;
 
     @FXML
     private TextArea msg;
@@ -75,7 +75,7 @@ public class StudySettings {
         showWT.selectedProperty().setValue(settings.isStudyShowWT());
 
 
-        showBT.selectedProperty().setValue(settings.isStudyShowBT());
+        showCycles.selectedProperty().setValue(settings.isStudyShowCycles());
 
 
     }
@@ -94,7 +94,7 @@ public class StudySettings {
 
         settings.setStudyShowT(showCT.isSelected());
 
-        settings.setStudyShowBT(showBT.isSelected());
+        settings.setStudyShowCycles(showCycles.isSelected());
 
         settings.setStudyShowWT(showWT.isSelected());
 

@@ -31,6 +31,8 @@ public class MainController {
         courseHandler = informationHandler.courseLoader();
         settings = informationHandler.loadSettings();
 
+        courseHandler.courseDateUpdater();
+
         launch(UiMainStart.class);
 
 

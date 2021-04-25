@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Course extends BasicTask {
 
@@ -12,7 +13,7 @@ public class Course extends BasicTask {
 
     private ArrayList<Task> taskList;
 
-
+    private ArrayList<Task> doneTasks;
 
 
     public Course(boolean state, WorkHourCounter wHS, String name, String description, String notes, int priority, int value) {
@@ -22,12 +23,14 @@ public class Course extends BasicTask {
         this.value = value;
 
         this.taskList = new ArrayList<>();
+
+        this.doneTasks = new ArrayList<>();
     }
 
     public void addTask(boolean state, WorkHourCounter wHS, String name, String des, String notes, Integer prio) {
         Task newTask = new Task(state, wHS, name, des, notes, prio);
         taskList.add(newTask);
-
+        taskDateUpdater();
         if(MainController.getCourseHandler().getCurrentTask()== null){
             MainController.getCourseHandler().setCurrentTask(newTask);
         }
@@ -38,8 +41,6 @@ public class Course extends BasicTask {
 
     public ArrayList<Task> getTaskList() {
 
-
-        System.out.println(taskList);
         return taskList;
     }
 
@@ -60,20 +61,45 @@ public class Course extends BasicTask {
 
         String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
                 FormatStyle.LONG,FormatStyle.MEDIUM));
+        if(notes.split("\n\n\n").length>0) {
 
-        StringBuilder  build = new StringBuilder(time+" "+nameOfNote+":\n\n"
-                +notes.split("\n\n\n")[0]);
-        build.append("\n\n\n");
-        build.append(this.getNotes());
-        this.setNotes(build.toString());
+            StringBuilder build = new StringBuilder(time + " " + nameOfNote + ":\n\n"
+                    + notes.split("\n\n\n")[0]);
+            build.append("\n\n\n");
+            build.append(this.getNotes());
+            this.setNotes(build.toString());
+        }
 
     }
+
+    public void taskDateUpdater(){
+
+        for(Task t: taskList){
+
+            if(t.getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now())){
+               doneTasks.add(t);
+            }
+        }
+
+        taskList.removeIf(t ->t.getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now()));
+        taskListSort();
+    }
+
+    public void taskListSort(){
+        taskList.sort(Comparator.comparing((t1)-> t1.getWorkHoursSpent().getStartDate()));
+
+
+    }
+
+
+
 
 
     public boolean removeTask(Task task){
 
         if(taskList.remove(task)) {
             taskList.remove(task);
+
 
             return true;
         } else return false;

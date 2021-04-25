@@ -6,11 +6,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="courseoverviewsystem.cos.UiMain">
 
     <padding>
-        <Insets bottom="20" right="20" left="20"
+        <Insets bottom="20" right="30" left="30"
                 top="20"/>
 
     </padding>
@@ -24,13 +25,20 @@
 
             <VBox alignment="CENTER" spacing="10" prefHeight="350">
                 <Label text="Course and task notes" alignment="CENTER"/>
-                <Button text="Task notes!" fx:id="recentTask" alignment="BASELINE_CENTER" prefWidth="200"/>
-                <Button text="Course notes!" fx:id="recentCourse"  prefWidth="200"  />
+                <Button text="Task notes(empty)" fx:id="recentTask" alignment="BASELINE_CENTER" prefWidth="200"/>
+                <Button text="Course notes(empty)" fx:id="recentCourse"  prefWidth="200"  />
                 <Label/>
-            <Label text="General notes" alignment="CENTER"/>
-            <TextArea fx:id="generalNotes" prefWidth="200"  maxWidth="200" maxHeight="150" wrapText="true">
-                General notes
-            </TextArea>
+
+                <Label text="General notes" alignment="CENTER"/>
+
+                <HBox spacing="3">
+                    <TextArea fx:id="generalNotes" prefWidth="200"  maxWidth="200" maxHeight="150" wrapText="true"/>
+                    <VBox spacing="34">
+                        <Button text="S" fx:id="gNSave"/>
+                        <Button text="R" fx:id="gNRedo"/>
+                        <Button text="C" fx:id="gNClear"/>
+                    </VBox>
+                </HBox>
             </VBox>
 
 
@@ -65,6 +73,12 @@
                     </items>
                 </ComboBox>
 
+                <HBox spacing="5"  alignment="BOTTOM_LEFT">
+                <Button text="Edit course" fx:id="editCourse" onAction="#courseEdit"/>
+                <Label text="  course is done!" alignment="BOTTOM_RIGHT"/>
+                <CheckBox fx:id="doneCourse"  onAction="#courseIsDone" alignment="BOTTOM_RIGHT" />
+                </HBox>
+
 
 
 
@@ -72,17 +86,8 @@
 
             <VBox spacing="10" prefHeight="280" alignment="CENTER">
 
-                <Label text="Tasks" alignment="TOP_CENTER">
-
-                </Label>
-
-                <ListView fx:id="tasklist" prefHeight="130" prefWidth="200">
-
-
-                </ListView>
-
                 <HBox alignment="BASELINE_LEFT">
-                    <Button text="new Task" prefWidth="170" onAction="#taskSet"/>
+                    <Button text="Add a Task" prefWidth="170" onAction="#taskSet"/>
                     <Button prefWidth="30">
                         <graphic>
                             <ImageView fitHeight="17" fitWidth="17">
@@ -91,42 +96,23 @@
                         </graphic>
                     </Button>
 
+                </HBox>
+
+                <ListView fx:id="tasklist" maxHeight="130" maxWidth="200" >
+
+                </ListView>
+
+                <HBox spacing="5"  alignment="BOTTOM_LEFT">
+                    <Button text="Edit task" fx:id="editTask" onAction="#taskEdit"/>
+                    <Label text="           Task is done!" alignment="BOTTOM_RIGHT"/>
+                    <CheckBox fx:id="doneTask"  onAction="#taskIsDone" alignment="BOTTOM_RIGHT" />
                 </HBox>
 
         </VBox>
 
 
 
-            <VBox spacing="10" >
 
-                <HBox alignment="CENTER">
-                    <Button text="Upcoming courses" prefWidth="180"/>
-                    <Button prefWidth="30">
-                        <graphic>
-                            <ImageView fitHeight="17" fitWidth="17">
-                                <Image url="@Settings-icon.png" preserveRatio="true"></Image>
-                            </ImageView>
-                        </graphic>
-
-
-                    </Button>
-
-                </HBox>
-
-                <HBox alignment="CENTER">
-                    <Button text="Past courses" prefWidth="180"/>
-                    <Button prefWidth="30">
-                        <graphic>
-                            <ImageView fitHeight="17" fitWidth="17">
-                                <Image url="@Settings-icon.png" preserveRatio="true"></Image>
-                            </ImageView>
-                        </graphic>
-
-
-                    </Button>
-                </HBox>
-
-            </VBox>
         </FlowPane>
 
 
@@ -136,8 +122,9 @@
 
 
         <FlowPane alignment="CENTER">
+            <VBox spacing="10" alignment="BOTTOM_LEFT" >
 
-            <HBox alignment="CENTER">
+                <HBox alignment="CENTER" prefHeight="250">
                 <Button text="Start studying" prefWidth="180" onAction="#studyStart"/>
 
                 <Button prefWidth="30" onAction="#studySet">
@@ -151,6 +138,37 @@
                 </Button>
 
             </HBox>
+
+
+
+                <HBox alignment="CENTER">
+                    <Button text="Upcoming courses" prefWidth="170"/>
+                    <Button prefWidth="30">
+                        <graphic>
+                            <ImageView fitHeight="17" fitWidth="17">
+                                <Image url="@Settings-icon.png" preserveRatio="true"></Image>
+                            </ImageView>
+                        </graphic>
+
+
+                    </Button>
+
+                </HBox>
+
+                <HBox alignment="CENTER">
+                    <Button text="Past courses" prefWidth="170"/>
+                    <Button prefWidth="30">
+                        <graphic>
+                            <ImageView fitHeight="17" fitWidth="17">
+                                <Image url="@Settings-icon.png" preserveRatio="true"></Image>
+                            </ImageView>
+                        </graphic>
+
+
+                    </Button>
+                </HBox>
+
+            </VBox>
 
         </FlowPane>
 
