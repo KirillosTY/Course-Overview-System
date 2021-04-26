@@ -32,7 +32,7 @@ mvn compile exec:java -Dexec.mainClass=Controls.MainController
 
 The program will create necessary files on startup. Most of the options will be unavailable until you add a course throught the "Add a course"-Button, on the top right side of the basic user interface.
 
-![Basic ui](https://github.com/KirillosTY/Course-Overview-System/blob/720f0122139abb98bf4fc25b16d143310d3f236a/Documentation/Kuvat/BasicUIStart.png)
+![Basic ui](https://github.com/KirillosTY/Course-Overview-System/blob/f407fd2047e4aed1e5f124bfbf495c0413d34001/Documentation/Kuvat/basic%20UI.png)
 
 ## description of buttons, numbers correspond to the objects on the picture above.
 
