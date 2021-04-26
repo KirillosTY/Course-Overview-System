@@ -41,7 +41,7 @@ Currently the only working thing is the work counter, which starts to count the 
 
 ## Documentation
 
-[Manual](https://github.com/KirillosTY/Course-Overview-System/blob/69b19f9351c57b942dd23e9f52cbcac4e74591b8/Dokumentaatio/Manual.md)
+[Manual](https://github.com/KirillosTY/Course-Overview-System/blob/933cf0dc6535f9578e584ccbd6ac1443b2881d93/Documentation/Manual.md)
 
 [Functional requirements](Documentation/Vaatimusmäärittely.md)
 
