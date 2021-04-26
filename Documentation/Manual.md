@@ -32,7 +32,7 @@ mvn compile exec:java -Dexec.mainClass=Controls.MainController
 
 The program will create necessary files on startup. Most of the options will be unavailable until you add a course throught the "Add a course"-Button, on the top right side of the basic user interface.
 
-[Basic ui]!(Documentation/Kuvat/basic UI.png)
+[Basic ui](Documentation/Kuvat/basic UI.png)
 
 ## description of buttons, numbers correspond to the objects on the picture above.
 
@@ -59,19 +59,22 @@ Below are detailed instructions on windows opening to the user(ex. add a course)
 ## Create course/Task
 
 Here is the basic course/task creation view. Important things to know currently: You should only enter 2 digit numbers to the time section(it currently does not display error, but will it will soon). You must also add a name and a description, else it will show the the field in red as an error, as show in the picture below.
-[Create C/T]!(Documentation/Kuvat/basic UI- create.png)
+
+[Create C/T](Documentation/Kuvat/basic UI- create.png)
 
 
 ## Study settings
 
 
 Study settings allows you to make specific choises to what you wish to see in the studying timer. pressing save sets the defaults for the timer (note: motivational message field is currently unassigned and will not be shown in the timer).
-[studyset]!(Documentation/Kuvat/basic UI-Start settings.png)
+
+[studyset](Documentation/Kuvat/basic UI-Start settings.png)
 
 ## Study timer
 
 Once open it will automatically start timer on the task, counting all of the seconds of work youve put in the task itself as well as in the course it is under in. On the left will be displayed the task name and information you have chosen to be displayed. Once the work timer runs out, it will automatically switch to the break timer, this action completes one cycle. The textarea will have all the notes youve currently written under the task. Pressing save will save the notes to the task and course it is related to. If closed from cancel or top right it will not save notes or work hours. 
 
+[studyingtimer](Documentation/Kuvat/basic UI-Start.png)
 
 
 
