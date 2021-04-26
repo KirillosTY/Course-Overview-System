@@ -6,7 +6,7 @@ This application is supposed to help in managing courses, tasks, notes and proje
 
 Linkistä COS.jar voit ladata sovelluksen. Sovelluksen voi käynnistää painamalla tai komennolla:
 
-[COS.jar](CourseOverviewSystem/COS/COS.jar)
+[COS.jar](https://github.com/KirillosTY/Course-Overview-System/blob/d0324f9d76aa36b2395d0c94a4bc19e630e875b8/CourseOverviewSystem/COS/COS.jar)
 ```
 java -jar COS.jar
 ``` 
@@ -20,7 +20,7 @@ Tällä hetkellä vain "Start studying"-napista käynnistyvä laskuri toimii ja 
 # English version 
 To try the application just download the file COS.jar and open it!
 
-[COS.jar](CourseOverviewSystem/COS/COS.jar)
+[COS.jar](https://github.com/KirillosTY/Course-Overview-System/blob/d0324f9d76aa36b2395d0c94a4bc19e630e875b8/CourseOverviewSystem/COS/COS.jar)
 
 You can start the file with the command:
 ```
