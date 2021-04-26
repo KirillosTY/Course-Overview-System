@@ -105,6 +105,7 @@ public class WorkHourCounter implements Serializable {
 
     public void setCurrentCount(Long currentCount) {
         this.currentCount = currentCount;
+        counter(currentCount);
     }
 
     public LocalDateTime getEndDate() {
@@ -151,7 +152,7 @@ public class WorkHourCounter implements Serializable {
             time = "0" + seconds;
 
         } else {
-            time = seconds+"";
+            time = seconds + "";
         }
 
         if (minutes < 10) {
@@ -159,13 +160,13 @@ public class WorkHourCounter implements Serializable {
             time += ":0" + minutes;
         } else {
 
-            time +=":"+ minutes;
+            time += ":" + minutes;
         }
 
         if (hours < 10) {
             time += ":0" + hours;
         } else {
-            time +=":"+hours;
+            time += ":" + hours;
         }
 
         return time;

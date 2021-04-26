@@ -7,7 +7,10 @@ import Controls.WorkHourCounter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -17,6 +20,8 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class TaskEditCreation {
 
@@ -188,8 +193,11 @@ public class TaskEditCreation {
 
         int prio = Integer.parseInt(priority.getText());
 
+        String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
+                FormatStyle.LONG,FormatStyle.MEDIUM));
+
         ch.getCurrent().addTask(false, taskWHC,
-                name.getText(), description.getText(), notes.getText(), prio);
+                name.getText(), description.getText(),time+":\n\n"+notes.getText(), prio);
 
         close();
 

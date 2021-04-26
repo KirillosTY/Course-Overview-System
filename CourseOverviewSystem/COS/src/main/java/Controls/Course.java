@@ -37,6 +37,13 @@ public class Course extends BasicTask {
 
     }
 
+    public void addTask(Task task){
+
+        taskList.add(task);
+        taskDateUpdater();
+
+    }
+
 
 
     public ArrayList<Task> getTaskList() {
@@ -86,7 +93,10 @@ public class Course extends BasicTask {
     }
 
     public void taskListSort(){
+
         taskList.sort(Comparator.comparing((t1)-> t1.getWorkHoursSpent().getStartDate()));
+        taskList.sort(Comparator.comparing((t1)-> t1.getWorkHoursSpent().getEndDate()));
+
 
 
     }

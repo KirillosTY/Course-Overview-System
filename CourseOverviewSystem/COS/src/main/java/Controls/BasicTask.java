@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
-public class BasicTask implements Comparable, Serializable {
+public class BasicTask implements  Serializable {
 
 
     private boolean done = false;
@@ -72,11 +72,7 @@ public class BasicTask implements Comparable, Serializable {
         this.priority = priority;
     }
 
-    @Override
-    public int compareTo(Object o) {
 
-        return priority;
-    }
 
     public String getDescription() {
         return description;

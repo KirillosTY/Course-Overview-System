@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 public class StudyStart {
 
     boolean working = true;
+
     private Settings settings;
     @FXML
     private Label WTLeft;
@@ -80,6 +81,7 @@ public class StudyStart {
     }
 
     public void defaultStart() {
+        count.setSeconds(5);
         count.setMinutes(settings.getStudyWorkM());
         count.setHours(settings.getStudyWorkH());
         count.setCycle(settings.getStudyCycle());
@@ -157,16 +159,14 @@ public class StudyStart {
                     swapModes(tempCount);
 
                     if (tempCount.getCycle() > 0) startAnimation(tempCount);
+                    counter.start();
 
                     stop();
 
                 }
             }
 
-
         };
-
-
 
     }
 
