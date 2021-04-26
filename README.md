@@ -4,7 +4,7 @@ This application is supposed to help in managing courses, tasks, notes and proje
 
 # Manual
 
-Linkistä COS.jar voit ladata sovelluksen. Sovelluksen voi käynnistää painamalla tai komennolla(Huom! tällä hetkellä sovellus odottaa, että käynnistys sijainnisa on kansio "CourseInfo", korjaan tämän pian):
+Linkistä COS.jar voit ladata sovelluksen. Sovelluksen voi käynnistää painamalla tai komennolla(Huom! tällä hetkellä sovellus odottaa, että käynnistys sijainnisssa on kansio nimeltä "CourseInfo", korjaan tämän pian):
 
 [COS.jar](https://github.com/KirillosTY/Course-Overview-System/blob/b7a4c4cecb0ccf053d20b16a3508b24e5e4ca894/CourseOverviewSystem/COS/COS.jar)
 ```
