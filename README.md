@@ -47,7 +47,7 @@ Currently the only working thing is the work counter, which starts to count the 
 
 [Architecture](https://github.com/KirillosTY/Course-Overview-System/blob/05d7623690ac84c01097ee8f81aee742d673a6e2/Documentation/Architecture.md)
 
-[Workhours](https://github.com/KirillosTY/Course-Overview-System/blob/00539cb27fb19f251819ebd984353ae9e612cdac/Documentation/workhours.md)
+[Workhours](https://github.com/KirillosTY/Course-Overview-System/blob/27eff8c3c573e25ba664f8e06519b9c1ed484d0d/Documentation/workhours.md)
 
 [Sources](https://github.com/KirillosTY/Course-Overview-System/blob/31b5304e729e51ac6abdbc645ae2f2cb87f23967/Documentation/Sources.md)
 
