@@ -16,7 +16,7 @@ Sekä menemällä COS kansioon ja ajamalla seuraavaa komento:
 ```
 mvn compile exec:java -Dexec.mainClass=Controls.MainController
 ```
-Manuaalissa on nyt tarkemmin neuvoa.
+Manuaalissa on nyt tarkemmin neuvoa, suosittelen katsomaan.
 
 # English version 
 To try the application just download the file COS.jar and open it!
@@ -33,7 +33,7 @@ or by going into the main folder named COS and running the following command:
 mvn compile exec:java -Dexec.mainClass=Controls.MainController
 ```
 
-The manual contains instructions on how to use the application, I reading before using.
+The manual contains instructions on how to use the application, I recommend reading before using.
 
 
 
