@@ -18,12 +18,16 @@ public class InformationHandlerTest {
 
     @Before
     public void initialize(){
+
         tester = new InformationHandler();
+
     }
+
 
 
     @Test
     public void creatingFile() {
+
         try {
             tester.fileReaderOutput("CourseInfo/test.bin", new Settings());
 

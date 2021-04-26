@@ -23,10 +23,25 @@ public class MainController {
 
         if (informationHandler.loadSettings() == null) {
 
-            informationHandler.createCourseList();
-            informationHandler.createSettings();
+            if(informationHandler.createCourseList()){
 
-        }
+
+                if(informationHandler.createSettings()){
+                    courseHandler = informationHandler.courseLoader();
+                    settings = informationHandler.loadSettings();
+
+                    courseHandler.courseDateUpdater();
+
+                    launch(UiMainStart.class);
+
+                }
+            }
+
+
+
+
+
+        } else {
 
         courseHandler = informationHandler.courseLoader();
         settings = informationHandler.loadSettings();
@@ -34,6 +49,7 @@ public class MainController {
         courseHandler.courseDateUpdater();
 
         launch(UiMainStart.class);
+        }
 
 
     }

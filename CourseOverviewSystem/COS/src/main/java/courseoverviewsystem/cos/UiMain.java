@@ -319,9 +319,10 @@ public class UiMain {
             courseHandler.markCourseAsDone(courseHandler.getCurrent(),false);
             courseHandler.setCurrent(null);
             courseHandler.setCurrentTask(null);
-            updateLists();
-            updateTasks();
+
         }
+        updateLists();
+        recent();
 
     }
 
@@ -332,11 +333,12 @@ public class UiMain {
 
             courseHandler.getCurrent().removeTask(courseHandler.getCurrentTask());
             courseHandler.setCurrentTask(null);
-            updateLists();
-            updateTasks();
+
 
         }
-
+        updateLists();
+        updateTasks();
+        recent();
     }
 
 
@@ -379,6 +381,9 @@ public class UiMain {
 
 
                 currentStage.setUserData(courseHandler.getCurrentTask());
+                currentStage.setOnHidden(updateRec ->{
+                    recent();
+                });
 
                 currentStage.showAndWait();
             } catch (Exception e) {
@@ -402,6 +407,7 @@ public class UiMain {
                 currentStage.setUserData(courseHandler.getCurrent());
                 currentStage.setOnHidden(update ->{
                     updateLists();
+                    recent();
                 });
                 currentStage.showAndWait();
             } catch (Exception e) {
@@ -482,7 +488,8 @@ public class UiMain {
             currentStage.setOnHidden((e) -> {
 
                 updateLists();
-                updateTasks();
+                recent();
+
             });
 
             currentStage.showAndWait();

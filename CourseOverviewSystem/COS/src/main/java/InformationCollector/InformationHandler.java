@@ -24,15 +24,14 @@ public class InformationHandler implements Serializable {
 
             OS.writeObject(obj);
 
-            return true;
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("tämä");
             return false;
         }
 
-
+        return true;
     }
 
     public Object fileReaderInput(String fileUrl) throws IOException {
@@ -61,15 +60,15 @@ public class InformationHandler implements Serializable {
 
             fileReaderOutput("CourseInfo/courselist.bin",CH);
 
-            return true;
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-
+            return false;
             // this line will need to handle exceptions.
         }
-        return false;
 
+        return true;
     }
 
     public boolean saveCourseHandler(CourseHandler courseHandler){

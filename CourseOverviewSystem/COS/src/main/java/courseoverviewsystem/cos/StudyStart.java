@@ -124,6 +124,13 @@ public class StudyStart {
 
     }
 
+    public void dayDone(WorkHourCounter tempCount){
+        WTLeft.setText("The day is over, well done! Your notes were saved automatically.");
+        saveNotes();
+        counter.stop();
+
+    }
+
     public void saveNotes() {
 
         MainController.getCourseHandler().getCurrentTask().saveNotesWithStamp(msg.getText());
@@ -158,11 +165,15 @@ public class StudyStart {
 
                     swapModes(tempCount);
 
-                    if (tempCount.getCycle() > 0) startAnimation(tempCount);
-                    counter.start();
+                    if (tempCount.getCycle() >= 0) {
+                        startAnimation(tempCount);
+                        counter.start();
 
-                    stop();
+                        stop();
+                    } else {
+                        dayDone(tempCount);
 
+                    }
                 }
             }
 
@@ -194,7 +205,7 @@ public class StudyStart {
         if (working) {
 
             tempCount.setCycle(tempCount.getCycle() - 1);
-
+            tempCount.setSeconds(5);
             tempCount.setMinutes(settings.getStudyBreakM());
 
             tempCount.setHours(settings.getStudyBreakH());

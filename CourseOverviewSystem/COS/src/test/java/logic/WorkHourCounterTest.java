@@ -45,6 +45,13 @@ public class WorkHourCounterTest {
 
     }
 
+    @Test
+    public void setAppliesCount(){
+
+        whc.setCurrentCount(4827L);
+        assertEquals("27:20:01",whc.timeToString());
+
+    }
 
 
 }
