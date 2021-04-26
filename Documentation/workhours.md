@@ -14,6 +14,13 @@
 | 17.4 | 8-12 | Rakenteen muokkausta ja koodin siistimistä |
 | 19.4 | 8-15 | Kurssien ja tehtävien lisäämistä käyttöliittymään|
 | 20.4 | 17-19| Testien lisäämistä, checkstyle kokeilua(ei toiminut) ja luokka/pakkauskaavion luonti |
+| 21.4 | 7-13 | tehtävien ja kurssien lisäämisen luontia..|
+| 22.4 | 8-12 | -||- |
+| 24.4 | 7-13 | Tehtävät voi ottaa nyt työn alle ja liittää kursseihin |
+| 25.4 | 0-2  | Tehtävien ja kurssien poiston luomista.|
+| 25.4 | 7-14 | tehtävät ja kurssit voi merkata tehdyiksi, popup ikkunat tulevat työn alle ja muistiinpanot tallentuvat autom. |
 
-Yhteensä: 43h
+
+
+Yhteensä: 68h
 
