@@ -34,7 +34,7 @@ The program will create necessary files on startup. Most of the options will be 
 
 ![Basic ui](https://github.com/KirillosTY/Course-Overview-System/blob/f407fd2047e4aed1e5f124bfbf495c0413d34001/Documentation/Kuvat/basic%20UI.png)
 
-## description of buttons, numbers correspond to the objects on the picture above.
+## Description of buttons, numbers correspond to the objects on the picture above.
 
 1. Allows you to add a course. A course must have a name and a description. Each course will also have editable start and end dates(default 56 days and start date will be current date).
 2. Course choser. Allows you to choose the course you want to work on (When creating a course for the first time it will be automatically chosen!).
