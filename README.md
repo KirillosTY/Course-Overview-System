@@ -43,7 +43,7 @@ Currently the only working thing is the work counter, which starts to count the 
 
 [Manual](https://github.com/KirillosTY/Course-Overview-System/blob/69b19f9351c57b942dd23e9f52cbcac4e74591b8/Dokumentaatio/Manual.md)
 
-[Functional requirements](https://github.com/KirillosTY/Course-Overview-System/blob/208b9f6b8d2c072931bd8dd6558755eefaf38996/Documentation/Vaatimusm%C3%A4%C3%A4rittely.md)
+[Functional requirements](Documentation/Vaatimusmäärittely.md)
 
 [Architecture](https://github.com/KirillosTY/Course-Overview-System/blob/05d7623690ac84c01097ee8f81aee742d673a6e2/Documentation/Architecture.md)
 
