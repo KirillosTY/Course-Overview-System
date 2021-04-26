@@ -4,6 +4,7 @@ import Controls.Course;
 import Controls.CourseHandler;
 import Controls.MainController;
 import Controls.Task;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -74,7 +75,7 @@ public class UiMain {
     @FXML
     public void initialize() {
 
-        stageControls = new ArrayList<>();
+
         courseHandler = MainController.getCourseHandler();
 
         text.setText(checkTime() + LocalDate.now());
@@ -85,6 +86,8 @@ public class UiMain {
         actionSetupTasks();
         updateLists();
         gNsetup();
+
+        setStageWindows();
 
     }
 
@@ -164,8 +167,18 @@ public class UiMain {
 
     }
 
-    public void defaultStart() {
+    public void setStageWindows(){
 
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                stageControls = (ArrayList<Stage>) text.getScene().getWindow().getUserData();
+            }
+        });
+
+    }
+
+    public void defaultStart() {
         courselist.setVisibleRowCount(5);
 
         courselist.setViewOrder(-2);
@@ -178,6 +191,8 @@ public class UiMain {
 
         courselist.setPlaceholder(new Label("Add a course to start!"));
     }
+
+
 
 
     @FXML

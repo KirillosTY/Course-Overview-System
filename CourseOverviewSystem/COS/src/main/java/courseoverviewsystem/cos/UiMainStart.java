@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * JavaFX UiMainStart
@@ -31,11 +32,17 @@ public class UiMainStart extends Application {
             stage.setTitle("Course Overview System");
             stage.setScene(scene);
 
+            ArrayList<Stage> closingStages = new ArrayList<>();
+            stage.setUserData(closingStages);
+
             stage.setOnHidden(save -> {
 
                 MainController.getInformationHandler().saveCourseHandler(
                         MainController.getCourseHandler());
                 MainController.getInformationHandler().saveSettings(MainController.getSettings());
+                for(Stage s: closingStages){
+                    s.close();
+                }
             });
 
 
