@@ -19,8 +19,8 @@
 | 24.4 | 7-13 | Tehtävät voi ottaa nyt työn alle ja liittää kursseihin |
 | 25.4 | 0-2  | Tehtävien ja kurssien poiston luomista.|
 | 25.4 | 7-14 | tehtävät ja kurssit voi merkata tehdyiksi, popup ikkunat tulevat työn alle ja muistiinpanot tallentuvat autom. |
+| 26.4 | 8-14 | Manuaalin päivitystä, readmen korjausta ja snapshotin uusiminen. Study timerin korjausta. Ikkunat sulkeutuvat myös hyvin nyt.| 
 
 
-
-Yhteensä: 68h
+Yhteensä: 74h
 
