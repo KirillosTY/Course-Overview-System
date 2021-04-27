@@ -39,7 +39,7 @@ The manual contains instructions on how to use the application, I recommend read
 
 ## Documentation
 
-[Manual](https://github.com/KirillosTY/Course-Overview-System/blob/add458b133a8899c24060d1ac7bb28f35db63aca/Documentation/Manual.md)
+[Manual](https://github.com/KirillosTY/Course-Overview-System/blob/41b8a0a041fe6a04a0e036e7bfdf97d23bfe82cb/Documentation/Manual.md)
 
 [Functional requirements](Documentation/Vaatimusmäärittely.md)
 
