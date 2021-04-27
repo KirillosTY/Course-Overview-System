@@ -1,8 +1,8 @@
 package courseoverviewsystem.cos;
 
-import Controls.Course;
-import Controls.MainController;
-import Controls.WorkHourCounter;
+import controls.Course;
+import controls.MainController;
+import controls.WorkHourCounter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;

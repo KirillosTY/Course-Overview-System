@@ -1,7 +1,7 @@
 package courseoverviewsystem.cos;
 
-import Controls.MainController;
-import Controls.Settings;
+import controls.MainController;
+import controls.Settings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;

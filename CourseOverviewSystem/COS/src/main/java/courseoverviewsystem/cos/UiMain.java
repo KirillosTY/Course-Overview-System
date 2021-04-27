@@ -1,9 +1,9 @@
 package courseoverviewsystem.cos;
 
-import Controls.Course;
-import Controls.CourseHandler;
-import Controls.MainController;
-import Controls.Task;
+import controls.Course;
+import controls.CourseHandler;
+import controls.MainController;
+import controls.Task;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

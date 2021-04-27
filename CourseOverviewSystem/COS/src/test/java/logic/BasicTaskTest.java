@@ -1,7 +1,7 @@
 package logic;
 
-import Controls.BasicTask;
-import Controls.WorkHourCounter;
+import controls.BasicTask;
+import controls.WorkHourCounter;
 import org.junit.Before;
 import org.junit.Test;
 
