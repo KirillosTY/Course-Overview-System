@@ -49,4 +49,9 @@ The manual contains instructions on how to use the application, I recommend read
 
 [Sources](https://github.com/KirillosTY/Course-Overview-System/blob/31b5304e729e51ac6abdbc645ae2f2cb87f23967/Documentation/Sources.md)
 
+## Releases
+
+[viikko 5](https://github.com/KirillosTY/Course-Overview-System/releases/tag/viikko5)
+
+
 ### This project is changing it´s main language to english. Some parts may be in only finnish for now, but will be updated soon.
