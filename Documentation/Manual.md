@@ -2,7 +2,7 @@
 
 Linkistä COS.jar voit ladata sovelluksen. Sovelluksen voi käynnistää painamalla tai komennolla:
 
-[COS.jar](https://github.com/KirillosTY/Course-Overview-System/raw/3c356b95f53e11128cf166d50db6a25c6d4c198c/CourseOverviewSystem/COS/COS.jar)
+[COS.jar](https://github.com/KirillosTY/Course-Overview-System/blob/ce7a2367f21c8f6ca11ecd88dd96dbb9e89431ef/CourseOverviewSystem/COS/COS.jar)
 ```
 java -jar COS.jar
 ``` 
@@ -16,7 +16,7 @@ Tällä hetkellä vain "Start studying"-napista käynnistyvä laskuri toimii ja 
 # English version 
 To try the application just download the file COS.jar and open it!
 
-[COS.jar](https://github.com/KirillosTY/Course-Overview-System/raw/3c356b95f53e11128cf166d50db6a25c6d4c198c/CourseOverviewSystem/COS/COS.jar)
+[COS.jar](https://github.com/KirillosTY/Course-Overview-System/blob/ce7a2367f21c8f6ca11ecd88dd96dbb9e89431ef/CourseOverviewSystem/COS/COS.jar)
 
 You can start the file with the command:
 ```
