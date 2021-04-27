@@ -30,7 +30,7 @@ mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
 
 # Starting up the first time!
 
-The program will create necessary files on startup. Most of the options will be unavailable until you add a course throught the "Add a course"-Button, on the top right side of the basic user interface.
+The program will create necessary files on startup, in to a folder named "CourseInfo", make sure folder exists in start location. Most of the options will be unavailable until you add a course throught the "Add a course"-Button, on the top right side of the basic user interface.
 
 ![Basic ui](https://github.com/KirillosTY/Course-Overview-System/blob/f407fd2047e4aed1e5f124bfbf495c0413d34001/Documentation/Kuvat/basic%20UI.png)
 
