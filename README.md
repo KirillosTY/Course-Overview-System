@@ -14,7 +14,7 @@ java -jar COS.jar
 Sekä menemällä COS kansioon ja ajamalla seuraavaa komento: 
 
 ```
-mvn compile exec:java -Dexec.mainClass=Controls.MainController
+mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
 ```
 Manuaalissa on nyt tarkemmin neuvoa, suosittelen katsomaan.
 
@@ -30,7 +30,7 @@ java -jar COS.jar
 or by going into the main folder named COS and running the following command:
 
 ```
-mvn compile exec:java -Dexec.mainClass=Controls.MainController
+mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
 ```
 
 The manual contains instructions on how to use the application, I recommend reading before using.
