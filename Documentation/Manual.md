@@ -9,7 +9,7 @@ java -jar COS.jar
 Sekä menemällä COS kansioon ja ajamalla seuraavaa komento: 
 
 ```
-mvn compile exec:java -Dexec.mainClass=Controls.MainController
+mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
 ```
 Tällä hetkellä vain "Start studying"-napista käynnistyvä laskuri toimii ja tiedoston luonti. 
  
@@ -25,7 +25,7 @@ java -jar COS.jar
 or by going into the main folder named COS and running the following command:
 
 ```
-mvn compile exec:java -Dexec.mainClass=Controls.MainController
+mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
 ```
 
 # Starting up the first time!
