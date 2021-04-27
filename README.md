@@ -53,5 +53,33 @@ The manual contains instructions on how to use the application, I recommend read
 
 [viikko 5](https://github.com/KirillosTY/Course-Overview-System/releases/tag/viikko5)
 
+## Command line tools
+
+Start the program by using the following command:
+```
+java -jar COS.jar
+```
+
+Create a jar file by using the following command:
+```
+mvn package
+```
+
+Start testing by using the following command:
+```
+mvn test
+```
+
+Get a report of the tests using the following command:
+```
+mvn test jacoco:report
+```
+Run checkstyle with the following commnad:
+```
+mvn jxr:jxr checkstyle:checkstyle
+``` 
+
+
+
 
 ### This project is changing it´s main language to english. Some parts may be in only finnish for now, but will be updated soon.
