@@ -1,8 +1,8 @@
 package logic;
 
-import controls.Course;
-import controls.Task;
-import controls.WorkHourCounter;
+import cos.controls.Course;
+import cos.controls.Task;
+import cos.controls.WorkHourCounter;
 import org.junit.Before;
 import org.junit.Test;
 

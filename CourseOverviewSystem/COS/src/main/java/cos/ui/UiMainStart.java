@@ -1,7 +1,7 @@
-package courseoverviewsystem.cos;
+package cos.ui;
 
 
-import controls.MainController;
+import cos.controls.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

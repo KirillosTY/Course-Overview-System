@@ -1,6 +1,6 @@
 package logic;
 
-import controls.WorkHourCounter;
+import cos.controls.WorkHourCounter;
 import org.junit.Before;
 import org.junit.Test;
 

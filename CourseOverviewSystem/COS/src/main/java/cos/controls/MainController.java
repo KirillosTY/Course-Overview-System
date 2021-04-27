@@ -1,7 +1,7 @@
-package controls;
+package cos.controls;
 
-import informationprocessing.InformationHandler;
-import courseoverviewsystem.cos.UiMainStart;
+import cos.informationprocessing.InformationHandler;
+import cos.ui.UiMainStart;
 
 import static javafx.application.Application.launch;
 

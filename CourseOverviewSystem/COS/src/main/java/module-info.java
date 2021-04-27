@@ -1,10 +1,10 @@
-module courseoverviewsystem.cos {
+module cos.ui {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
     requires javafx.base;
 
-    opens courseoverviewsystem.cos to javafx.fxml;
-    exports courseoverviewsystem.cos;
+    opens cos.ui to javafx.fxml;
+    exports cos.ui;
 
 }

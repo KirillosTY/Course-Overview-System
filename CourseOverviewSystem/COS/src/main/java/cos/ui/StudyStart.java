@@ -1,8 +1,8 @@
-package courseoverviewsystem.cos;
+package cos.ui;
 
-import controls.MainController;
-import controls.Settings;
-import controls.WorkHourCounter;
+import cos.controls.MainController;
+import cos.controls.Settings;
+import cos.controls.WorkHourCounter;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;

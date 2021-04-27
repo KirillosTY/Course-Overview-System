@@ -1,9 +1,8 @@
-package courseoverviewsystem.cos;
+package cos.ui;
 
-import controls.CourseHandler;
-import controls.MainController;
-import controls.Task;
-import controls.WorkHourCounter;
+import cos.controls.Course;
+import cos.controls.MainController;
+import cos.controls.WorkHourCounter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -20,82 +19,91 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
-public class TaskEditCreation {
+public class CreateCourse {
 
 
-    private  CourseHandler ch;
     @FXML
     private TextField name;
+
     @FXML
     private TextField description;
+
     @FXML
     private TextArea notes;
+
     @FXML
     private TextField startH;
+
     @FXML
     private TextField startM;
+
     @FXML
     private DatePicker dateStart;
+
     @FXML
     private TextField endH;
+
     @FXML
     private TextField endM;
+
     @FXML
     private DatePicker dateEnd;
+
     @FXML
     private TextField priority;
+
+    @FXML
+    private TextField value;
+
     @FXML
     private Button save;
 
-    private Task task;
+    private Course course;
 
-    public TaskEditCreation() {
-
-        ch = MainController.getCourseHandler();
-
-    }
 
     @FXML
     public void initialize() {
 
-
         name.setPromptText("Name");
         description.setPromptText("Description");
         notes.setPromptText("Add notes");
+
         dateStart.setValue(LocalDate.now());
         startH.setText("00");
         startM.setText("00");
+
+        dateEnd.setValue(LocalDate.now().plusDays(56));
+        endH.setText("00");
+        endM.setText("00");
         notes.wrapTextProperty().setValue(true);
 
-        dateEnd.setValue(LocalDate.now().plusDays(7));
-        endH.setText("23");
-        endM.setText("59");
-        taskLoad();
+        value.setText("5");
+        courseLoad();
+
     }
 
     @FXML
     public void editDefault(){
 
-        dateStart.setValue(task.getWorkHoursSpent().getStartDate().toLocalDate());
-        startH.setText(task.getWorkHoursSpent().getStartDate().toLocalTime().toString().substring(0,2));
-        startM.setText(task.getWorkHoursSpent().getStartDate().toLocalTime().toString().substring(3,5));
+        dateStart.setValue(course.getWorkHoursSpent().getStartDate().toLocalDate());
+        startH.setText(course.getWorkHoursSpent().getStartDate().toLocalTime().toString().substring(0,2));
+        startM.setText(course.getWorkHoursSpent().getStartDate().toLocalTime().toString().substring(3,5));
 
-        dateEnd.setValue(task.getWorkHoursSpent().getEndDate().toLocalDate());
-        endH.setText(task.getWorkHoursSpent().getEndDate().toLocalTime().toString().substring(0,2));
-        endM.setText(task.getWorkHoursSpent().getEndDate().toLocalTime().toString().substring(3,5));
+        dateEnd.setValue(course.getWorkHoursSpent().getEndDate().toLocalDate());
+        endH.setText(course.getWorkHoursSpent().getEndDate().toLocalTime().toString().substring(0,2));
+        endM.setText(course.getWorkHoursSpent().getEndDate().toLocalTime().toString().substring(3,5));
 
-        notes.setText(task.getNotes());
-        name.setText(task.getName());
-        description.setText(task.getDescription());
-        priority.setText(task.getPriority()+"");
+        notes.setText(course.getNotes());
+        name.setText(course.getName());
+        description.setText(course.getDescription());
+        priority.setText(course.getPriority()+"");
+        value.setText(course.getValue()+"");
 
     }
 
     @FXML
-    public void taskLoad(){
+    public void courseLoad(){
 
         Runnable update = new Runnable() {
             @Override
@@ -104,9 +112,8 @@ public class TaskEditCreation {
                     @Override
                     public void run() {
                         Stage stage = (Stage) dateEnd.getScene().getWindow();
-                        task  = (Task) stage.getUserData();
-
-                        if(task != null){
+                        course = (Course) stage.getUserData();
+                        if(course != null){
                             editDefault();
                         }
                     }
@@ -136,21 +143,21 @@ public class TaskEditCreation {
     }
 
     @FXML
-    public void editTask(){
-       if(!isAcceptable()){
-           return;
-       }
+    public void editcourse(){
 
-        task.setName(name.getText());
-        task.setDescription(description.getText());
-        task.setNotes(notes.getText());
+        if(!isAcceptable()){
+            return;
+        }
 
+        course.setName(name.getText());
+        course.setDescription(description.getText());
+        course.setNotes(notes.getText());
+        course.setValue(Integer.parseInt(value.getText()));
         WorkHourCounter dates = setupWHC();
 
-        task.setWorkHoursSpent(dates);
+        course.setWorkHoursSpent(dates);
         close();
     }
-
 
     public WorkHourCounter setupWHC(){
 
@@ -175,31 +182,33 @@ public class TaskEditCreation {
         return taskWHC;
     }
 
-    @FXML
-    public void saveTask() {
 
-        if(task != null){
-            System.out.println(task);
-            editTask();
+
+    @FXML
+    public void saveCourse() {
+
+        if(course != null){
+            editcourse();
             return;
         }
 
-       if(!isAcceptable()){
-           return;
-       }
+        WorkHourCounter courseWHC = setupWHC();
 
-
-        WorkHourCounter taskWHC = setupWHC();
-
+        int val = Integer.parseInt(value.getText());
         int prio = Integer.parseInt(priority.getText());
 
-        String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
-                FormatStyle.LONG,FormatStyle.MEDIUM));
+      if(!isAcceptable()){
+          return;
+      }
 
-        ch.getCurrent().addTask(false, taskWHC,
-                name.getText(), description.getText(),time+":\n\n"+notes.getText(), prio);
+        MainController.getCourseHandler().createCourse(false, courseWHC,
+                name.getText(), description.getText(), notes.getText(), prio, val);
 
-        close();
+
+
+        Stage stage = (Stage) save.getScene().getWindow();
+
+        stage.close();
 
 
     }

@@ -5,11 +5,11 @@
         "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-    <suppress files="courseoverviewsystem.cos.UiMain" checks="[a-zA-Z0-9]*"/>
-    <suppress files="courseoverviewsystem.cos.CreateCourse" checks="[a-zA-Z0-9]*"/>
-    <suppress files="courseoverviewsystem.cos.TaskEditCreation" checks="[a-zA-Z0-9]*"/>
-    <suppress files="courseoverviewsystem.cos.StudySettings" checks="[a-zA-Z0-9]*"/>
-    <suppress files="courseoverviewsystem.cos.UiMainStart" checks="[a-zA-Z0-9]*"/>
-    <suppress files="courseoverviewsystem.cos.StudyStart" checks="[a-zA-Z0-9]*"/>
+    <suppress files="cos.ui.UiMain" checks="[a-zA-Z0-9]*"/>
+    <suppress files="cos.ui.CreateCourse" checks="[a-zA-Z0-9]*"/>
+    <suppress files="cos.ui.TaskEditCreation" checks="[a-zA-Z0-9]*"/>
+    <suppress files="cos.ui.StudySettings" checks="[a-zA-Z0-9]*"/>
+    <suppress files="cos.ui.UiMainStart" checks="[a-zA-Z0-9]*"/>
+    <suppress files="cos.ui.StudyStart" checks="[a-zA-Z0-9]*"/>
     <suppress files="module-info.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

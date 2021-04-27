@@ -1,8 +1,8 @@
-package informationprocessing;
+package cos.informationprocessing;
 
-import controls.Course;
-import controls.CourseHandler;
-import controls.Settings;
+import cos.controls.Course;
+import cos.controls.CourseHandler;
+import cos.controls.Settings;
 
 import java.io.*;
 import java.util.ArrayList;

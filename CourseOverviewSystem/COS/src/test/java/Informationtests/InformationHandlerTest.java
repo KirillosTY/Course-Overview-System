@@ -1,9 +1,9 @@
 package Informationtests;
 
 
-import controls.CourseHandler;
-import controls.Settings;
-import informationprocessing.InformationHandler;
+import cos.controls.CourseHandler;
+import cos.controls.Settings;
+import cos.informationprocessing.InformationHandler;
 import org.junit.Before;
 import org.junit.Test;
 

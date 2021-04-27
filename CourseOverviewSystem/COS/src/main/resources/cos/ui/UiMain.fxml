@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="courseoverviewsystem.cos.UiMain">
+            fx:controller="cos.ui.UiMain">
 
     <padding>
         <Insets bottom="20" right="30" left="30"

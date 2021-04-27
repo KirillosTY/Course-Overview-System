@@ -5,16 +5,16 @@
 <?import javafx.scene.text.Text?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="courseoverviewsystem.cos.TaskEditCreation"
+          fx:controller="cos.ui.CreateCourse"
           prefHeight="330.0" prefWidth="430" vgap="10" hgap="10" >
 
 
     <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
-        <Text text="Task info"/>
+        <Text text="Course info"/>
 
-        <TextField  fx:id="name" />
-        <TextField  fx:id="description" />
-        <TextArea  fx:id="notes"  prefWidth="200" prefHeight="200" />
+        <TextField  fx:id="name"/>
+        <TextField  fx:id="description"/>
+        <TextArea fx:id="notes" prefWidth="200" prefHeight="200" />
 
     </VBox>
 
@@ -31,16 +31,20 @@
         <DatePicker fx:id="dateEnd" />
         <HBox spacing="10">
             <Label text="Time:"/>
-            <TextField fx:id="endH"  text="hh" prefWidth="35" prefHeight="15" />
+            <TextField fx:id="endH" text="hh" prefWidth="35" prefHeight="15" />
             <TextField fx:id="endM" text="mm" prefWidth="35" prefHeight="15"/>
         </HBox>
         <HBox spacing="10">
             <Label text="Priority:"/>
             <TextField fx:id="priority" text="0" prefWidth="35" prefHeight="15"/>
         </HBox>
+        <HBox spacing="10">
+            <Label text="value:"/>
+            <TextField fx:id="value" text="0" prefWidth="35" prefHeight="15"/>
+        </HBox>
     </VBox>
 
-    <Button fx:id="save" text="Save" onAction="#saveTask" GridPane.columnIndex="4" GridPane.rowIndex="2" prefWidth="70"
+    <Button fx:id="save" text="Save" onAction="#saveCourse" GridPane.columnIndex="4" GridPane.rowIndex="2" prefWidth="70"
             GridPane.valignment="BOTTOM" GridPane.halignment="RIGHT"/>
 
 

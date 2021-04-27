@@ -1,4 +1,4 @@
-package controls;
+package cos.controls;
 
 public class Task extends BasicTask {
 
