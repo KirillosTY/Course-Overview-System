@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ListView?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cos.ui.EditCourseAll"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <padding>
+
+        <Insets right="20" left="20" bottom="20" top="10"/>
+    </padding>
+
+    <left>
+
+        <FlowPane>
+
+            <VBox spacing="15">
+                <HBox spacing="10">
+                    <Label text="Select courselist: "/>
+
+                    <ComboBox fx:id="courseListSelector">
+
+                        <items>
+
+                            <FXCollections fx:factory="observableArrayList">
+
+                            </FXCollections>
+
+
+
+
+                        </items>
+
+                    </ComboBox>
+
+                </HBox>
+                <HBox spacing="10">
+                    <ComboBox fx:id="courseSelector" promptText="You have not added any courses!">
+
+                      <items>
+                            <FXCollections fx:factory="observableArrayList"/>
+
+                      </items>
+
+                    </ComboBox>
+
+                    <VBox spacing="10">
+                        <Button text="Edit course" fx:id="editC" onAction="#editCourse" />
+                        <Button text="Add course" fx:id="addC"  onAction="#createCourse"/>
+
+                    </VBox>
+                </HBox>
+                <Label text="Course notes"/>
+                <TextArea fx:id="courseNotes" prefWidth="300" prefHeight="400"/>
+            </VBox>
+
+
+        </FlowPane>
+
+
+    </left>
+
+    <right>
+
+
+        <FlowPane>
+
+            <VBox spacing="15">
+
+                <HBox spacing="10">
+                    <ListView fx:id="taskSelector" prefWidth="300" prefHeight="100" >
+
+                        <items>
+                            <FXCollections fx:factory="observableArrayList"/>
+
+                        </items>
+
+                    </ListView>
+
+                    <VBox spacing="10">
+                        <Button text="Edit task" fx:id="editT" onAction="#editTask"/>
+                        <Button text="Add task" fx:id="addT" onAction="#createTask"/>
+
+                    </VBox>
+                </HBox>
+                <Label text="Task notes"/>
+                <TextArea fx:id="taskNotes" prefWidth="300" prefHeight="400"/>
+            </VBox>
+
+
+        </FlowPane>
+
+    </right>
+
+
+</BorderPane>

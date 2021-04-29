@@ -9,15 +9,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class UiMain {
 
@@ -66,11 +63,15 @@ public class UiMain {
     @FXML
     private CheckBox doneCourse;
 
+    @FXML
+    private BorderPane mainBorder;
+
 
     private CourseHandler courseHandler;
 
-    private ArrayList<Stage> stageControls;
 
+    @FXML
+    private boolean UPCcheck = false;
 
     @FXML
     public void initialize() {
@@ -169,10 +170,12 @@ public class UiMain {
 
     public void setStageWindows(){
 
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                stageControls = (ArrayList<Stage>) text.getScene().getWindow().getUserData();
+
+                mainStage = (Stage) text.getScene().getWindow();
             }
         });
 
@@ -301,7 +304,7 @@ public class UiMain {
     @FXML
     public void mainIsDone(){
         if(currentStage != null){
-            for(Stage s: stageControls){
+            for(Stage s: UiMainStart.stageControls){
                 s.close();
             }
         }
@@ -342,42 +345,37 @@ public class UiMain {
     }
 
 
-    @FXML
-    public void viewChanger(String resource, String windowName) throws Exception {
+    public void closeAllExceptMain(){
 
-        try {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                UiMainStart.stageControls.forEach(s ->{
+                    if(s != mainStage && s != currentStage){
+                        s.close();
+                    }
+                });
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
+            }
+        });
+    }
 
-            Parent root = loader.load();
+    public void disableMain(boolean usable){
 
-            Scene viewC = new Scene(root);
-
-
-            currentStage = new Stage();
-
-            currentStage.setScene(viewC);
-
-            currentStage.setTitle(windowName);
-
-            stageControls.add(currentStage);
-
-            mainStage = (Stage) text.getScene().getWindow();
-
-
-        } finally {
-
-        }
+        mainBorder.setDisable(usable);
 
     }
 
+
     @FXML
     public void taskEdit() {
+        closeAllExceptMain();
 
         if (courseHandler.getCurrentTask() != null) {
+
             try {
-                viewChanger("TaskEditCreation.fxml",
-                        "Edit current task");
+               currentStage = UiMainStart.viewChanger("TaskEditCreation.fxml",
+                        "Edit current task", false);
 
 
                 currentStage.setUserData(courseHandler.getCurrentTask());
@@ -398,11 +396,13 @@ public class UiMain {
 
     @FXML
     public void courseEdit() {
+        closeAllExceptMain();
 
         if (courseHandler.getCurrent() != null) {
+
             try {
-                viewChanger("CreateCourse.fxml",
-                        "Edit current Course");
+                currentStage = UiMainStart.viewChanger("CreateCourse.fxml",
+                        "Edit current Course",false);
 
                 currentStage.setUserData(courseHandler.getCurrent());
                 currentStage.setOnHidden(update ->{
@@ -422,12 +422,13 @@ public class UiMain {
 
     @FXML
     public void studyStart() {
+        closeAllExceptMain();
 
         if (courseHandler.getCurrentTask() != null) {
 
             try {
-                viewChanger("studyStart.fxml",
-                        "Workhour counter has started!");
+                currentStage =  UiMainStart.viewChanger("studyStart.fxml",
+                        "Workhour counter has started!", false);
 
 
                 currentStage.showAndWait();
@@ -443,10 +444,11 @@ public class UiMain {
 
     @FXML
     public void studySet() {
+        closeAllExceptMain();
 
         try {
-            viewChanger("studySettings.fxml",
-                    "Study settings");
+            currentStage = UiMainStart.viewChanger("studySettings.fxml",
+                    "Study settings", false);
 
             currentStage.showAndWait();
         } catch (Exception e) {
@@ -455,13 +457,14 @@ public class UiMain {
     }
 
     @FXML
-    public void taskSet() {
+    public void taskCreate() {
+        closeAllExceptMain();
 
         if (courseHandler.getCurrent() != null) {
 
             try {
-                viewChanger("TaskEditCreation.fxml",
-                        "Task Creation");
+                currentStage = UiMainStart.viewChanger("TaskEditCreation.fxml",
+                        "Task Creation", false);
 
                 currentStage.setOnHidden((e) -> {
 
@@ -480,11 +483,12 @@ public class UiMain {
 
 
     @FXML
-    public void courseSet() {
+    public void courseCreate() {
+        closeAllExceptMain();
 
         try {
-            viewChanger("CreateCourse.fxml",
-                    "Create course!");
+            currentStage = UiMainStart.viewChanger("CreateCourse.fxml",
+                    "Course creation!",false);
             currentStage.setOnHidden((e) -> {
 
                 updateLists();
@@ -501,11 +505,37 @@ public class UiMain {
 
 
     @FXML
+    public void pastUpcomingCurrentEdit(){
+
+        closeAllExceptMain();
+        disableMain(true);
+        try {
+
+            currentStage = UiMainStart.viewChanger("EditCourseAll.fxml",
+                    "Manage all courses through here!", false);
+
+            currentStage.setOnHidden(e ->{
+                    disableMain(false);
+                System.out.println("käytiin");
+
+        });
+            currentStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    @FXML
     public void PopupText() {
+        closeAllExceptMain();
 
         try {
-            viewChanger("PopupText.fxml",
-                    MainController.getPopupText()[0]);
+            currentStage =  UiMainStart.viewChanger("PopupText.fxml",
+                    MainController.getPopupText()[0], false);
 
             currentStage.showAndWait();
         } catch (Exception e) {
@@ -518,6 +548,7 @@ public class UiMain {
 
     @FXML
     public void errorHandler() {
+        closeAllExceptMain();
 
         System.out.println("Et ole valinnut tehtävää");
 

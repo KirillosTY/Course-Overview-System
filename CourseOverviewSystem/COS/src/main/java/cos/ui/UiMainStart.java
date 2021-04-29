@@ -3,6 +3,8 @@ package cos.ui;
 
 import cos.controls.MainController;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,12 +19,19 @@ import java.util.ArrayList;
 public class UiMainStart extends Application {
 
 
+    protected static ArrayList<Stage> stageControls;
+
+    protected static ArrayList<Stage> loadNeeded;
+
+
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage stage) {
+        setStageWindows();
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("UiMain.fxml"));
@@ -34,7 +43,7 @@ public class UiMainStart extends Application {
 
             ArrayList<Stage> closingStages = new ArrayList<>();
             stage.setUserData(closingStages);
-
+            stageControls.add(stage);
             stage.setOnHidden(save -> {
 
                 MainController.getInformationHandler().saveCourseHandler(
@@ -46,10 +55,60 @@ public class UiMainStart extends Application {
             });
 
 
+
             stage.show();
         } catch (IOException e){
 
         }
+
+    }
+
+    @FXML
+    public static Stage viewChanger(String resource, String windowName, boolean load) throws Exception {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(UiMainStart.class.getResource(resource));
+
+            Parent root = loader.load();
+
+            Scene viewC = new Scene(root);
+
+
+            Stage  created= new Stage();
+
+            created.setScene(viewC);
+
+            created.setTitle(windowName);
+
+            stageControls.add(created);
+            if(load) {
+                addStagesLater(created);
+            }
+
+        return created;
+
+        } catch (Exception e){
+
+            return null;
+        }
+
+    }
+
+    public void setStageWindows(){
+
+        loadNeeded = new ArrayList<>();
+
+        stageControls = new ArrayList<>();
+
+    }
+
+    private static void addStagesLater(Stage created){
+
+        Platform.runLater(()-> {
+
+        loadNeeded.add(created);
+        });
 
     }
 

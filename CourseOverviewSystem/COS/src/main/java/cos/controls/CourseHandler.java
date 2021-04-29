@@ -143,4 +143,6 @@ public class CourseHandler implements Serializable {
     public void setUpcomingCourse(ArrayList<Course> upcomingCourse) {
         this.upcomingCourse = upcomingCourse;
     }
+
+
 }
