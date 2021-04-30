@@ -99,18 +99,24 @@ public class Course extends BasicTask {
 
     }
 
+    public boolean markTaskDone(Task task){
+
+        if(MainController.getCourseHandler().getCurrent().getTaskList().contains(task)) {
+            doneTasks.add(task);
+            return taskList.remove(task);
+
+        } else return false;
+    }
+
 
     public boolean removeTask(Task task) {
 
-        if (taskList.remove(task)) {
-            taskList.remove(task);
+           return taskList.remove(task);
 
+    }
 
-            return true;
-        } else {
-            return false;
-        }
-
+    public ArrayList<Task> getDoneTasks(){
+        return doneTasks;
     }
 
 

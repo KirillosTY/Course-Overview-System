@@ -14,6 +14,7 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class EditCourseAll {
@@ -57,7 +58,7 @@ public class EditCourseAll {
     @FXML
     private HashMap<String, Stage> stagesNeeded;
 
-    private CourseHandler cHandler;
+    private static CourseHandler cHandler;
 
     private ArrayList<Course> currentCourseList;
 
@@ -69,7 +70,6 @@ public class EditCourseAll {
     @FXML
     public void initialize(){
 
-
         cHandler = MainController.getCourseHandler();
 
         upcoming = "Upcoming courses";
@@ -77,9 +77,14 @@ public class EditCourseAll {
         current = "Current courses";
 
         setupControls();
+        courseListSelector.setItems(FXCollections.observableList(
+                new ArrayList<>(Arrays.asList(current,upcoming,past))));
 
-        courlistSeleUpdate();
 
+        currentCourseList = cHandler.getCourseList();
+
+        courseListSelector.getSelectionModel().selectFirst();
+        courListUpdate();
 
     }
 
@@ -94,14 +99,25 @@ public class EditCourseAll {
         });
 
     }
+
     @FXML
     public void courlistSeleUpdate(){
+        cHandler = MainController.getCourseHandler();
 
-        courseListSelector.getItems().addAll(current,past,upcoming);
 
-        currentCourseList = cHandler.getCourseList();
+        String chosenCourseList = courseListSelector.getSelectionModel().getSelectedItem();
 
-        courseListSelector.getSelectionModel().selectFirst();
+        if(chosenCourseList.equals(upcoming)){
+            currentCourseList = cHandler.getUpcomingCourse();
+
+        }
+        if(chosenCourseList.equals(past)){
+            currentCourseList = cHandler.getPastCourse();
+
+        }
+        if(chosenCourseList.equals(current)){
+            currentCourseList = cHandler.getCourseList();
+        }
 
         courListUpdate();
 
@@ -110,32 +126,39 @@ public class EditCourseAll {
     @FXML
     public void courListUpdate(){
 
+
+
+        courseSelector.setItems(FXCollections.observableList(currentCourseList));
+
         if(!courseSelector.getItems().isEmpty()){
 
             if (courseSelector.getSelectionModel().getSelectedItem() == null) {
-
                 courseSelector.getSelectionModel().selectFirst();
 
             }
-
             cHandler.setCurrent(courseSelector.getSelectionModel().getSelectedItem());
-            taskSelector.setItems(FXCollections.observableList(cHandler.getCurrent().getTaskList()));
             msgSets();
+            taskListUpdater();
 
         } else {
                 taskNotes.clear();
                 courseNotes.clear();
-                taskSelector.setItems(FXCollections.observableList(new ArrayList<>()));
+                taskSelector.setItems(null);
         }
+
 
     }
 
 
     @FXML
     public void taskListUpdater(){
+        ArrayList<Task> combinedArrays= new ArrayList();
+        combinedArrays.addAll(cHandler.getCurrent().getTaskList());
+        combinedArrays.addAll(cHandler.getCurrent().getDoneTasks());
+
+        taskSelector.setItems(FXCollections.observableList(combinedArrays));
 
             if(!taskSelector.getItems().isEmpty()){
-
 
                 if(taskSelector.getSelectionModel().getSelectedItem() == null){
 
@@ -146,6 +169,7 @@ public class EditCourseAll {
                 msgSetsTask();
             } else {
                 taskNotes.clear();
+                taskSelector.setItems(null);
             }
 
     }
@@ -155,21 +179,8 @@ public class EditCourseAll {
 
        courseListSelector.setOnAction(updateList->{
 
-          String chosenCourseList = courseListSelector.getSelectionModel().getSelectedItem();
 
-          if(chosenCourseList.equals(upcoming)){
-              currentCourseList = cHandler.getUpcomingCourse();
-
-          }
-          if(chosenCourseList.equals(past)){
-              currentCourseList = cHandler.getPastCourse();
-
-          }
-          if(chosenCourseList.equals(current)){
-              currentCourseList = cHandler.getCourseList();
-          }
-          courseSelector.setItems(FXCollections.observableList(currentCourseList));
-          courListUpdate();
+          courlistSeleUpdate();
 
        });
 
@@ -181,18 +192,19 @@ public class EditCourseAll {
                msgSets();
                taskListUpdater();
            } else {
-               currentCourse = null;
+               cHandler.setCurrent(null);
            }
 
 
        });
 
-        taskSelector.getSelectionModel().selectedItemProperty().addListener((observableValue, aBoolean, course)-> {
+        taskSelector.getSelectionModel().selectedItemProperty().addListener((observableValue, aBoolean, task)-> {
             if(taskSelector.getSelectionModel().getSelectedItem() != null) {
+
+                cHandler.setCurrentTask(task);
                 msgSetsTask();
-                currentTask = taskSelector.getSelectionModel().getSelectedItem();
             } else {
-                currentTask = null;
+                cHandler.setCurrentTask(null);
             }
         });
 
@@ -232,23 +244,25 @@ public class EditCourseAll {
         createEditCourse(true);
 
     }
-
+    // add the stoppers for opening the windows unless the correct lists are in place...
     @FXML
     public void createEditCourse(boolean create) {
         closeAllExceptECA();
-
-        if(currentCourseList == null){
-            return;
-        }
         try {
             Stage editStage = UiMainStart.viewChanger("CreateCourse.fxml", "Edit course", true);
 
             if(editStage != null) {
 
                 if(!create) {
-                    editStage.setUserData(currentCourse);
+                    if(cHandler.getCurrent()== null){
+                        return;
+                    }
+                    editStage.setUserData(cHandler.getCurrent());
                 }
-
+                editStage.setOnHidden(updates ->{
+                    courlistSeleUpdate();
+                    courListUpdate();
+                });
                 editStage.showAndWait();
             }
         }catch (Exception ECAec){
@@ -261,18 +275,24 @@ public class EditCourseAll {
     @FXML
     public void createEditTask(boolean create){
         closeAllExceptECA();
-        if(currentCourse == null){
-            return;
-        }
+        if(cHandler.getCurrent()== null) return;
         try {
             Stage editStage = UiMainStart.viewChanger("TaskEditCreation.fxml", "Edit Task", true);
 
             if(editStage != null) {
                 if(!create) {
-                    editStage.setUserData(currentTask);
+                    if(cHandler.getCurrentTask() == null){
+                        return;
+                    }
+                    editStage.setUserData(cHandler.getCurrentTask());
                 }
+                editStage.setOnHidden(update ->{
+                    taskListUpdater();
+                });
                 editStage.showAndWait();
             }
+
+
         }catch (Exception ECAec){
             System.out.println("ECAec");
         }
@@ -290,8 +310,13 @@ public class EditCourseAll {
         });
 
     }
+    @FXML
+    public void close(){
 
-
+        Stage closer = (Stage) courseListSelector.getScene().getWindow();
+        MainController.getInformationHandler().saveCourseHandler(cHandler);
+        closer.close();
+    }
 
 
 }

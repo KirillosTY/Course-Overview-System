@@ -47,6 +47,10 @@ public class TaskEditCreation {
     private DatePicker dateEnd;
     @FXML
     private TextField priority;
+
+    @FXML
+    private Button remove;
+
     @FXML
     private Button save;
 
@@ -91,6 +95,8 @@ public class TaskEditCreation {
         name.setText(task.getName());
         description.setText(task.getDescription());
         priority.setText(task.getPriority()+"");
+
+        remove.setVisible(true);
 
     }
 
@@ -179,7 +185,7 @@ public class TaskEditCreation {
     public void saveTask() {
 
         if(task != null){
-            System.out.println(task);
+
             editTask();
             return;
         }

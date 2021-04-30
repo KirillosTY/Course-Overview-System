@@ -40,8 +40,10 @@
         </HBox>
     </VBox>
 
-    <Button fx:id="save" text="Save" onAction="#saveTask" GridPane.columnIndex="4" GridPane.rowIndex="2" prefWidth="70"
-            GridPane.valignment="BOTTOM" GridPane.halignment="RIGHT"/>
+    <HBox prefHeight="50" minWidth="200" spacing="50" GridPane.columnIndex="4" GridPane.rowIndex="3" prefWidth="70"
+        GridPane.valignment="BOTTOM" GridPane.halignment="RIGHT">
+        <Button fx:id="remove" prefHeight="20" text="remove" visible="false" prefWidth="60" alignment="BOTTOM_LEFT"/>
 
-
+        <Button prefHeight="30" prefWidth="80" alignment="BOTTOM_RIGHT" fx:id="save" text="Save" onAction="#saveTask"/>
+    </HBox>
 </GridPane>

@@ -6,7 +6,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="cos.ui.CreateCourse"
-          prefHeight="330.0" prefWidth="430" vgap="10" hgap="10" >
+          prefHeight="330.0" prefWidth="470" vgap="10" hgap="10" >
 
 
     <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
@@ -43,9 +43,10 @@
             <TextField fx:id="value" text="0" prefWidth="35" prefHeight="15"/>
         </HBox>
     </VBox>
+    <HBox prefHeight="50" minWidth="200" spacing="50" GridPane.columnIndex="4" GridPane.rowIndex="2" prefWidth="70"
+          GridPane.valignment="BOTTOM" GridPane.halignment="RIGHT">
+        <Button fx:id="remove" onAction="#remove" prefHeight="20" text="remove" visible="false" prefWidth="60" alignment="BOTTOM_LEFT"/>
 
-    <Button fx:id="save" text="Save" onAction="#saveCourse" GridPane.columnIndex="4" GridPane.rowIndex="2" prefWidth="70"
-            GridPane.valignment="BOTTOM" GridPane.halignment="RIGHT"/>
-
-
+        <Button prefHeight="30" prefWidth="80" alignment="BOTTOM_RIGHT" fx:id="save" text="Save" onAction="#saveCourse"/>
+    </HBox>
 </GridPane>

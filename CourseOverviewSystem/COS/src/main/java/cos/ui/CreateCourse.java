@@ -57,7 +57,12 @@ public class CreateCourse {
     private TextField value;
 
     @FXML
+    private Button remove;
+
+    @FXML
     private Button save;
+
+
 
     private Course course;
 
@@ -99,6 +104,7 @@ public class CreateCourse {
         description.setText(course.getDescription());
         priority.setText(course.getPriority()+"");
         value.setText(course.getValue()+"");
+        remove.setVisible(true);
 
     }
 
@@ -210,6 +216,14 @@ public class CreateCourse {
 
         stage.close();
 
+
+    }
+
+    @FXML
+    public void remove(){
+        MainController.getCourseHandler().setCurrent(null);
+        MainController.getCourseHandler().markCourseAsDone(course, true);
+        close();
 
     }
 

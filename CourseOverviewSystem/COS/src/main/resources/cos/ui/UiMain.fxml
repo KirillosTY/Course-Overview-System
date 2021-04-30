@@ -4,88 +4,61 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-
+<?import javax.swing.text.Style?>
+<?import javafx.scene.control.cell.TextFieldListCell?>
+<?import javafx.scene.text.Text?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="cos.ui.UiMain" style="-fx-background-color: #E4C5AF" fx:id="mainBorder">
+            fx:controller="cos.ui.UiMain" style="-fx-background-color: #E4C5AF" fx:id="mainBorder" >
 
     <padding>
-        <Insets bottom="20" right="30" left="30"
+        <Insets bottom="20" right="20" left="20"
                 top="20"/>
 
     </padding>
 
-    <right>
-        <FlowPane prefWidth="200" prefHeight="470">
 
-            <VBox alignment="CENTER" spacing="10" prefHeight="350">
-                <Label text="Course and task notes" alignment="CENTER"/>
-                <Button text="Task notes(empty)" fx:id="recentTask" alignment="BASELINE_CENTER" prefWidth="200"/>
-                <Button text="Course notes(empty)" fx:id="recentCourse"  prefWidth="200" />
-                <Label/>
-
-                <Label text="General notes" alignment="CENTER"/>
-
-                <HBox spacing="3">
-                    <TextArea fx:id="generalNotes" prefWidth="200"  maxWidth="200" maxHeight="150" wrapText="true"/>
-                    <VBox spacing="34">
-                        <Button text="S" fx:id="gNSave"/>
-                        <Button text="R" fx:id="gNRedo"/>
-                        <Button text="C" fx:id="gNClear"/>
-                    </VBox>
-                </HBox>
-            </VBox>
-
-
-            <Button   alignment="BOTTOM_RIGHT" text="Done for the day!" fx:id="mainDone" onAction="#mainIsDone"/>
-        </FlowPane>
-    </right>
 
     <left>
 
 
-        <FlowPane prefWidth="200" prefHeight="460">
-            <Label fx:id="text" prefHeight="80" alignment="TOP_LEFT"/>
+        <FlowPane prefWidth="200" prefHeight="460" >
+            <Label fx:id="text" prefHeight="60" alignment="TOP_LEFT"/>
             <VBox alignment="BOTTOM_CENTER" spacing="15" prefWidth="200" prefHeight="70" >
                 <Label text="Courses" style="-fx-text-fill: white;"/>
 
-                    <Button text="Add a course!" onKeyPressed="#courseCreate" prefWidth="200" onAction="#courseCreate"  style="-fx-text-fill: white; -fx-background-color: #095256;"/>
+                    <Button text="Add a course!" onKeyPressed="#courseCreate" prefWidth="200" onAction="#courseCreate" alignment="CENTER"
+                            style="-fx-text-fill: white; -fx-background-color: #095256;-fx-background-radius: 1em 1em 1em 1em;"/>
 
 
-                <ComboBox fx:id="courselist" promptText="Add a course to start!" prefWidth="200" viewOrder="-NaN" style="-fx-text-fill: white; -fx-background-color: #095256;">
+                <ComboBox fx:id="courselist" promptText="Add a course to start!" prefWidth="200" viewOrder="-NaN" style="-fx-text-fill: white; -fx-background-color: #095256;-fx-background-radius: 1em 1em 1em 1em;" cellFactory="" >
+
                     <items>
 
-                        <FXCollections fx:factory="observableArrayList"  >
+                        <FXCollections fx:factory="observableArrayList">
 
                         </FXCollections>
 
                     </items>
                 </ComboBox>
 
-                <HBox spacing="5"  alignment="BOTTOM_LEFT">
-                <Button text="Edit course" fx:id="editCourse" onAction="#courseEdit" style="-fx-text-fill: white; -fx-background-color: #095256;"/>
-                <Label text="  course is done!" alignment="BOTTOM_RIGHT" />
-                <CheckBox fx:id="doneCourse"  onAction="#courseIsDone" alignment="BOTTOM_RIGHT"  />
+                <HBox spacing="5"  alignment="BOTTOM_LEFT" >
+                    <Button text="Course notes" fx:id="recentCourse"  prefWidth="90"  style="-fx-text-fill: white; -fx-background-color: #095256;-fx-background-radius: 1em 1em 1em 1em;-fx-color-picker: "/>
+                    <Label text="course is done!" alignment="BOTTOM_RIGHT" />
+                    <CheckBox fx:id="doneCourse"  onAction="#courseIsDone" alignment="BOTTOM_RIGHT"  />
                 </HBox>
 
 
 
 
             </VBox>
-
-            <VBox spacing="10" prefHeight="280" alignment="CENTER">
+            <Label minWidth="200" minHeight="30"/>
+            <VBox spacing="10" prefHeight="290" >
 
                 <HBox alignment="BASELINE_LEFT">
-                    <Button text="Add a Task" prefWidth="170" onAction="#taskCreate"/>
-                    <Button prefWidth="30">
-                        <graphic>
-                            <ImageView fitHeight="17" fitWidth="17">
-                                <Image url="@Settings-icon.png" preserveRatio="true"></Image>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-
+                    <Button text="Add a Task" prefWidth="200"  alignment="CENTER" onAction="#taskCreate"/>
                 </HBox>
 
                 <ListView fx:id="tasklist" maxHeight="130" maxWidth="200" >
@@ -93,8 +66,8 @@
                 </ListView>
 
                 <HBox spacing="5"  alignment="BOTTOM_LEFT">
-                    <Button text="Edit task" fx:id="editTask" onAction="#taskEdit"/>
-                    <Label text="           Task is done!" alignment="BOTTOM_RIGHT"/>
+                    <Button text="Task notes" fx:id="recentTask" onAction="#recentTask" prefWidth="90"  style="-fx-background-radius: 1em 1em 1em 1em;"/>
+                    <Label text="    Task is done!" alignment="BOTTOM_RIGHT"  style="-fx-background-radius: 1em 1em 1em 1em;"/>
                     <CheckBox fx:id="doneTask"  onAction="#taskIsDone" alignment="BOTTOM_RIGHT" />
                 </HBox>
 
@@ -109,53 +82,39 @@
     <center>
 
 
-        <FlowPane alignment="CENTER">
-            <VBox spacing="10" alignment="BOTTOM_LEFT" >
+        <FlowPane alignment="TOP_CENTER">
 
-                <HBox alignment="CENTER" prefHeight="250">
-                <Button text="Start studying" prefWidth="180" onAction="#studyStart"/>
+            <VBox spacing="10" alignment="BOTTOM_RIGHT"  style="-fx-background-radius: 5em 5em 5em 5em /5em 5em 5em 5em;" >
 
-                <Button prefWidth="30" onAction="#studySet">
-                    <graphic>
-                        <ImageView fitHeight="17" fitWidth="17">
-                            <Image url="@Settings-icon.png" preserveRatio="true"/>
-                        </ImageView>
-                    </graphic>
+                <VBox alignment="BOTTOM_CENTER" spacing="10" prefHeight="161">
+                    <Label text="General notes" alignment="CENTER"/>
 
+                    <HBox spacing="3" alignment="CENTER">
+                        <TextArea fx:id="generalNotes" prefWidth="190"  maxWidth="200" maxHeight="70" wrapText="true"/>
+                        <Button fx:id="gNSave" prefHeight="70" prefWidth="15"  style="-fx-background-radius: 1em 1em 1em 1em;"/>
+                    </HBox>
 
-                </Button>
-
-            </HBox>
+                </VBox>
 
 
 
-                <HBox alignment="CENTER">
-                    <Button text="Upcoming courses" prefWidth="170" onAction="#pastUpcomingCurrentEdit"/>
-                    <Button prefWidth="30">
+                <HBox alignment="CENTER" prefHeight="171" >
+                    <Button text="Start studying" fx:id="startTime" prefWidth="180" prefHeight="110" onAction="#studyStart" style="-fx-background-radius: 5em 0em 0em 5em /5em 0em 0em 5em;" />
+
+                    <Button text="" prefWidth="40" onAction="#studySet" prefHeight="110" style="-fx-background-radius: 0em 5em 5em 0em /0em 5em 5em 0em; ">
                         <graphic>
                             <ImageView fitHeight="17" fitWidth="17">
                                 <Image url="@Settings-icon.png" preserveRatio="true"/>
                             </ImageView>
                         </graphic>
 
-
                     </Button>
 
-                </HBox>
+                 </HBox>
 
-                <HBox alignment="CENTER">
-                    <Button text="Past courses" prefWidth="170" onAction="#pastUpcomingCurrentEdit"/>
-                    <Button prefWidth="30">
-                        <graphic>
-                            <ImageView fitHeight="17" fitWidth="17">
-                                <Image url="@Settings-icon.png" preserveRatio="true"/>
-                            </ImageView>
-                        </graphic>
+                    <Button text="Overview all courses and tasks" prefWidth="220"  prefHeight="30" onAction="#pastUpcomingCurrentEdit"  style="-fx-background-radius: 1em 1em 1em 1em;"/>
 
-
-                    </Button>
-                </HBox>
-
+                    <Button  alignment="BOTTOM_LEFT" text="Done for the day!" fx:id="mainDone" prefHeight="40" prefWidth="220" onAction="#mainIsDone" style="-fx-background-radius: 1em 1em 1em 1em;"/>
             </VBox>
 
         </FlowPane>

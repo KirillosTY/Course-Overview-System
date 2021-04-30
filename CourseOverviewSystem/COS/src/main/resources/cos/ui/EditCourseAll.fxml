@@ -15,22 +15,21 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="cos.ui.EditCourseAll"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="430.0" prefWidth="790.0">
 
     <padding>
 
-        <Insets right="20" left="20" bottom="20" top="10"/>
+        <Insets right="20" left="20" bottom="20" top="20"/>
     </padding>
 
     <left>
 
-        <FlowPane>
 
             <VBox spacing="15">
-                <HBox spacing="10">
-                    <Label text="Select courselist: "/>
+                <HBox spacing="10" >
+                    <Label text="Select courselist: " alignment="BASELINE_LEFT"/>
 
-                    <ComboBox fx:id="courseListSelector">
+                    <ComboBox fx:id="courseListSelector"  prefWidth="200" >
 
                         <items>
 
@@ -38,16 +37,13 @@
 
                             </FXCollections>
 
-
-
-
                         </items>
 
                     </ComboBox>
 
                 </HBox>
-                <HBox spacing="10">
-                    <ComboBox fx:id="courseSelector" promptText="You have not added any courses!">
+                <HBox spacing="10" alignment="TOP_RIGHT">
+                    <ComboBox fx:id="courseSelector" prefWidth="190" promptText="You have not added any courses!">
 
                       <items>
                             <FXCollections fx:factory="observableArrayList"/>
@@ -56,18 +52,15 @@
 
                     </ComboBox>
 
-                    <VBox spacing="10">
-                        <Button text="Edit course" fx:id="editC" onAction="#editCourse" />
-                        <Button text="Add course" fx:id="addC"  onAction="#createCourse"/>
+                    <VBox spacing="10" alignment="TOP_RIGHT">
+                        <Button text="Edit course"  prefWidth="100" fx:id="editC" onAction="#editCourse" />
+                        <Button text="Add course"  prefWidth="100" fx:id="addC"  onAction="#createCourse"/>
 
                     </VBox>
                 </HBox>
-                <Label text="Course notes"/>
-                <TextArea fx:id="courseNotes" prefWidth="300" prefHeight="400"/>
+                <Label text="Course notes" alignment="BOTTOM_LEFT"/>
+                <TextArea fx:id="courseNotes" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350"/>
             </VBox>
-
-
-        </FlowPane>
 
 
     </left>
@@ -75,7 +68,7 @@
     <right>
 
 
-        <FlowPane>
+
 
             <VBox spacing="15">
 
@@ -90,17 +83,22 @@
                     </ListView>
 
                     <VBox spacing="10">
-                        <Button text="Edit task" fx:id="editT" onAction="#editTask"/>
-                        <Button text="Add task" fx:id="addT" onAction="#createTask"/>
+                        <Button text="Edit task" fx:id="editT" prefWidth="100" onAction="#editTask"/>
+                        <Button text="Add task" fx:id="addT" prefWidth="100" onAction="#createTask"/>
 
                     </VBox>
                 </HBox>
+
                 <Label text="Task notes"/>
-                <TextArea fx:id="taskNotes" prefWidth="300" prefHeight="400"/>
+                <HBox spacing="10" prefWidth="350">
+                    <TextArea fx:id="taskNotes" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350"/>
+                     <VBox alignment="BOTTOM_RIGHT">
+                         <Button text="Done"  prefWidth="100" onAction="#close"/>
+                     </VBox>
+                </HBox>
             </VBox>
 
 
-        </FlowPane>
 
     </right>
 

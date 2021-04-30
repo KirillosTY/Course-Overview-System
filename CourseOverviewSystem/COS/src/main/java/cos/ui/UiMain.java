@@ -46,10 +46,7 @@ public class UiMain {
     private Button gNSave;
 
     @FXML
-    private Button gNClear;
-
-    @FXML
-    private Button gNRedo;
+    private Button startTime;
 
     @FXML
     private Button editTask;
@@ -67,7 +64,7 @@ public class UiMain {
     private BorderPane mainBorder;
 
 
-    private CourseHandler courseHandler;
+    private static CourseHandler courseHandler;
 
 
     @FXML
@@ -128,7 +125,7 @@ public class UiMain {
             courseHandler.setCurrent(null);
             courseHandler.setCurrentTask(null);
             courseHandler.markCourseAsDone(tempCourse, false);
-            tasklist.getItems().clear();
+            tasklist.setItems(null);
             updateLists();
             doneCourse.setSelected(false);
 
@@ -153,12 +150,9 @@ public class UiMain {
             }
         });
 
-        doneTask.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
+        doneTask.selectedProperty().addListener((observableValue, aBoolean, task) -> {
             if(courseHandler.getCurrentTask() != null) {
-                Task tempT = courseHandler.getCurrentTask();
-                courseHandler.setCurrentTask(null);
-                courseHandler.getCurrent().removeTask(tempT);
-                updateLists();
+                taskIsDone();
                 doneTask.setSelected(false);
             } else {
                 doneTask.setSelected(false);
@@ -219,7 +213,7 @@ public class UiMain {
 
         courselist.setItems(FXCollections.observableList(MainController.getCourseHandler().getCourseList()));
 
-        if (courseHandler.getCurrent() != null) {
+        if (courseHandler.getCurrent() != null && courseHandler.getCourseList().contains(courseHandler.getCurrent())) {
             courselist.getSelectionModel().select(courseHandler.getCurrent());
             updateTasks();
 
@@ -243,9 +237,9 @@ public class UiMain {
         });
 
         if (courseHandler.getCurrentTask() != null) {
-            recentTask.setText(courseHandler.getCurrentTask().toString() + " notes");
+            recentTask.setText("Task notes");
         } else {
-            recentTask.setText("Task notes(empty)");
+            recentTask.setText("Notes (empty)");
         }
 
     }
@@ -264,9 +258,9 @@ public class UiMain {
         });
 
         if(courseHandler.getCurrent() != null) {
-            recentCourse.setText(courseHandler.getCurrent().toString() + " notes");
+            recentCourse.setText("Course notes");
         } else {
-            recentCourse.setText("Course notes(empty)");
+            recentCourse.setText("Notes (empty)");
         }
     }
 
@@ -282,22 +276,10 @@ public class UiMain {
     public void gNsetup() {
 
         generalNotes.setText(courseHandler.getNotesOverall());
-
-
+        gNSave.setText("S\na\nv\ne");
         gNSave.setOnAction(saveGN -> {
             courseHandler.setNotesOverall(generalNotes.getText());
         });
-
-        gNRedo.setOnAction(redoGN -> {
-            generalNotes.undo();
-        });
-
-        gNClear.setOnAction(clearGN -> {
-
-            generalNotes.clear();
-
-        });
-
 
     }
 
@@ -318,7 +300,6 @@ public class UiMain {
     public void courseIsDone() {
 
         if (courseHandler.getCurrent() != null) {
-
             courseHandler.markCourseAsDone(courseHandler.getCurrent(),false);
             courseHandler.setCurrent(null);
             courseHandler.setCurrentTask(null);
@@ -333,10 +314,8 @@ public class UiMain {
     public void taskIsDone() {
 
         if (courseHandler.getCurrentTask() != null) {
-
-            courseHandler.getCurrent().removeTask(courseHandler.getCurrentTask());
+            courseHandler.getCurrent().markTaskDone(courseHandler.getCurrentTask());
             courseHandler.setCurrentTask(null);
-
 
         }
         updateLists();
@@ -380,6 +359,7 @@ public class UiMain {
 
                 currentStage.setUserData(courseHandler.getCurrentTask());
                 currentStage.setOnHidden(updateRec ->{
+                    updateTasks();
                     recent();
                 });
 
@@ -515,8 +495,13 @@ public class UiMain {
                     "Manage all courses through here!", false);
 
             currentStage.setOnHidden(e ->{
-                    disableMain(false);
-                System.out.println("käytiin");
+                updateLists();
+                courseHandler.setCurrent(null);
+                courseHandler.setCurrentTask(null);
+                recent();
+
+                disableMain(false);
+
 
         });
             currentStage.showAndWait();

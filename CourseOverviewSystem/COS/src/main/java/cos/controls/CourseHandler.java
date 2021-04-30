@@ -38,6 +38,8 @@ public class CourseHandler implements Serializable {
         courseListDecider(current);
         MainController.getInformationHandler().saveCourseHandler(MainController.getCourseHandler());
 
+
+
     }
 
     public void courseDateUpdater() {
@@ -48,23 +50,23 @@ public class CourseHandler implements Serializable {
 
     public int courseListDecider(Course c) {
 
-        if (current.getWorkHoursSpent().getStartDate().isAfter(LocalDateTime.now())) {
+        if (c.getWorkHoursSpent().getStartDate().isAfter(LocalDateTime.now())) {
 
             if (!upcomingCourse.contains(c)) {
-                upcomingCourse.add(current);
+                upcomingCourse.add(c);
             }
 
             return 1;
-        } else if (current.getWorkHoursSpent().getStartDate().isBefore(LocalDateTime.now())
-                && current.getWorkHoursSpent().getEndDate().isAfter(LocalDateTime.now())) {
+        } else if (c.getWorkHoursSpent().getStartDate().isBefore(LocalDateTime.now())
+                && c.getWorkHoursSpent().getEndDate().isAfter(LocalDateTime.now())) {
 
             if (!courseList.contains(c)) {
-                courseList.add(current);
+                courseList.add(c);
             }
             return 2;
         } else {
 
-            pastCourse.add(current);
+            pastCourse.add(c);
             return 3;
         }
 
@@ -79,17 +81,46 @@ public class CourseHandler implements Serializable {
 
     }
 
+    public int checkList(Course c){
+
+        if(courseList.contains(c)){
+            return 1;
+        }
+
+        if(pastCourse.contains(c)){
+            return  2;
+        }
+
+        if(upcomingCourse.contains(c)){
+            return 3;
+        }
+        return -1;
+
+    }
+
+
     public void markCourseAsDone(Course c, boolean delete) {
 
-        if (courseList.contains(c)) {
+        ArrayList<Course> cList = new ArrayList<>();
 
-            if (delete) {
+        int list = checkList(c);
+        if(list == -1){
+            return;
+        }
 
-                courseList.remove(c);
-            } else {
-                courseList.remove(c);
-                pastCourse.add(c);
-            }
+        if(list == 1) cList = courseList;
+
+        if(list == 2) cList = pastCourse;
+
+        if(list == 3) cList = upcomingCourse;
+
+        if (delete) {
+            cList.remove(c);
+        } else if(list != 2) {
+
+            pastCourse.add(c);
+            cList.remove(c);
+
         }
 
     }

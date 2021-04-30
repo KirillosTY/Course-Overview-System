@@ -36,7 +36,7 @@ public class UiMainStart extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("UiMain.fxml"));
 
-            Scene scene = new Scene(root, 820, 470);
+            Scene scene = new Scene(root, 820, 520);
 
             stage.setTitle("Course Overview System");
             stage.setScene(scene);
