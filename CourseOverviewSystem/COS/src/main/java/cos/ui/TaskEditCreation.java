@@ -204,9 +204,17 @@ public class TaskEditCreation {
 
         ch.getCurrent().addTask(false, taskWHC,
                 name.getText(), description.getText(),time+":\n\n"+notes.getText(), prio);
+        ch.getCurrent().saveNotesWithStamp(notes.getText(),name.getText());
 
         close();
 
+
+    }
+    @FXML
+    public void remove(){
+        MainController.getCourseHandler().setCurrentTask(null);
+        MainController.getCourseHandler().getCurrent().removeTask(task);
+        close();
 
     }
 

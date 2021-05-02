@@ -6,7 +6,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="cos.ui.CreateCourse"
-          prefHeight="330.0" prefWidth="470" vgap="10" hgap="10" style="-fx-background-color: #E4C5AF">
+          prefHeight="330.0" prefWidth="470" vgap="10" hgap="10" style="-fx-background-color: #E4C5AF;-fx-font-family: Franklin Gothic Medium;">
 
 
     <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
@@ -45,7 +45,8 @@
     </VBox>
     <HBox prefHeight="50" minWidth="200" spacing="50" GridPane.columnIndex="4" GridPane.rowIndex="2" prefWidth="70"
           GridPane.valignment="BOTTOM" GridPane.halignment="RIGHT">
-        <Button fx:id="remove" onAction="#remove" prefHeight="20" text="remove" visible="false" prefWidth="60" alignment="BOTTOM_LEFT"/>
+        <Button fx:id="remove" onAction="#remove" prefHeight="20" text="remove" visible="false" prefWidth="60" alignment="BOTTOM_LEFT" style="-fx-text-fill: white;
+    -fx-background-color:#B01307;-fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian ,#E3170A,10 , 0.5 , 3, 3 );"/>
 
         <Button prefHeight="30" prefWidth="80" alignment="BOTTOM_RIGHT" fx:id="save" text="Save" onAction="#saveCourse" stylesheets="@styles.css"/>
     </HBox>

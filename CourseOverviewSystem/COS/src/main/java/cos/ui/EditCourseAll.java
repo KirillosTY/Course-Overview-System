@@ -307,6 +307,7 @@ public class EditCourseAll {
                 }
                 editStage.setOnHidden(update ->{
                     taskListUpdater();
+                    courListUpdate();
                 });
                 editStage.showAndWait();
             }

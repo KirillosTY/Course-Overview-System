@@ -13,7 +13,7 @@
           xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="cos.ui.StudyStart"
-          prefHeight="320.0" prefWidth="480.0" hgap="10" vgap="10" style="-fx-background-color: #E4C5AF">
+          prefHeight="320.0" prefWidth="480.0" hgap="10" vgap="10" style="-fx-background-color: #E4C5AF" stylesheets="@styles.css">
 
     <padding>
         <Insets bottom="10" top="10" left="10" right="10"/>
@@ -37,7 +37,7 @@
 
            <Button text="Cancel" fx:id="cancel"  onAction="#cancel"/>
 
-           <Button text="Save" fx:id="done" onAction="#breakAnimation" style="-fx-text-fill: white; -fx-background-color:#2B644D;
+           <Button text="Save" fx:id="done" prefWidth="70" onAction="#breakAnimation" style="-fx-text-fill: white; -fx-background-color:#2B644D;
                     -fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian ,#439D79 ,10 , 0.5 , 3, 3 )"/>
        </HBox>
     </VBox>

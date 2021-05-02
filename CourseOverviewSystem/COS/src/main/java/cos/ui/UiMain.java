@@ -9,12 +9,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -57,17 +53,6 @@ public class UiMain {
     @FXML
     private ListView<Task> tasklist;
 
-    @FXML
-    private Button recentTask;
-
-    @FXML
-    private Button recentCourse;
-
-    @FXML
-    private TextArea generalNotes;
-
-    @FXML
-    private Button gNSave;
 
     @FXML
     private Button startTime;
@@ -85,7 +70,7 @@ public class UiMain {
     private CheckBox doneCourse;
 
     @FXML
-    private BorderPane mainBorder;
+    private FlowPane mainBorder;
 
 
     private static CourseHandler courseHandler;
@@ -107,9 +92,7 @@ public class UiMain {
         actionSetupsCourse();
         actionSetupTasks();
         updateLists();
-        gNsetup();
         listUISets();
-
         setStageWindows();
     }
 
@@ -123,6 +106,7 @@ public class UiMain {
                 ListCells styled = new ListCells();
                 styled.setTextFill(Paint.valueOf("#8D3016"));
                 styled.setStyle("-fx-background-color: transparent (#8D3016); ");
+
                 return styled;
             }
         });
@@ -157,11 +141,11 @@ public class UiMain {
                 if (t1 != null) {
                     courseHandler.setCurrent(courselist.getSelectionModel().getSelectedItem());
                     updateTasks();
-                    recent();
+
                 } else {
                     courseHandler.setCurrent(null);
                     courseHandler.setCurrentTask(null);
-                    recent();
+
                 }
 
             }
@@ -192,10 +176,10 @@ public class UiMain {
 
                     courseHandler.setCurrentTask(tasklist.getSelectionModel().getSelectedItem());
 
-                    recent();
+
                 } else {
                     courseHandler.setCurrentTask(null);
-                    recent();
+
                 }
             }
         });
@@ -232,9 +216,7 @@ public class UiMain {
 
         tasklist.setMaxWidth(200);
 
-        if (courseHandler.getCurrentTask() != null) {
-            recent();
-        }
+
 
         courselist.setPlaceholder(new Label("Add a course to start!"));
     }
@@ -274,67 +256,7 @@ public class UiMain {
 
     }
 
-    @FXML
-    public void recentTask(){
 
-        recentTask.setOnAction(notesView -> {
-            if(courseHandler.getCurrentTask() != null) {
-                MainController.setPopupText(new String[]{
-                        courseHandler.getCurrentTask().toString(),
-                        courseHandler.getCurrentTask().getNotes()});
-                PopupText();
-            }
-        });
-
-        if (courseHandler.getCurrentTask() != null) {
-            recentTask.setText("Task notes");
-        } else {
-            recentTask.setText("Notes (empty)");
-        }
-
-    }
-
-    @FXML
-    public void recentCourse(){
-
-        recentCourse.setOnAction(notesView -> {
-            if(courseHandler.getCurrent() != null) {
-                MainController.setPopupText(new String[]{
-                        courseHandler.getCurrent().toString(),
-                        courseHandler.getCurrent().getNotes()});
-                PopupText();
-
-            }
-        });
-
-        if(courseHandler.getCurrent() != null) {
-            recentCourse.setText("Course notes");
-        } else {
-            recentCourse.setText("Notes (empty)");
-        }
-    }
-
-
-    @FXML
-    public void recent() {
-
-        recentCourse();
-        recentTask();
-    }
-
-    @FXML
-    public void gNsetup() {
-
-        generalNotes.setText(courseHandler.getNotesOverall());
-        gNSave.setText("S\na\nv\ne");
-        gNSave.setOnAction(saveGN -> {
-            courseHandler.setNotesOverall(generalNotes.getText());
-        });
-
-
-        generalNotes.setBackground(new Background(new BackgroundFill(Paint.valueOf("#084749"), new CornerRadii(5,true), new Insets(10,10,10,10))));
-
-    }
 
     @FXML
     public void mainIsDone(){
@@ -359,21 +281,22 @@ public class UiMain {
 
         }
         updateLists();
-        recent();
+
 
     }
 
     @FXML
     public void taskIsDone() {
+        if(courseHandler.getCurrentTask() == null){
 
-        if (courseHandler.getCurrentTask() != null) {
-            courseHandler.getCurrent().markTaskDone(courseHandler.getCurrentTask());
-            courseHandler.setCurrentTask(null);
-
+            return;
         }
+
+        courseHandler.getCurrent().markTaskDone(courseHandler.getCurrentTask());
+        courseHandler.setCurrentTask(null);
         updateLists();
         updateTasks();
-        recent();
+
     }
 
 
@@ -451,7 +374,7 @@ public class UiMain {
 
                     updateLists();
                     updateTasks();
-                    recent();
+
                 });
 
                 currentStage.showAndWait();
@@ -474,8 +397,8 @@ public class UiMain {
             currentStage.setOnHidden((e) -> {
 
                 updateLists();
-                updateTasks();
-                recent();
+
+
 
             });
 
@@ -501,7 +424,7 @@ public class UiMain {
 
                 courseHandler.setCurrent(null);
                 courseHandler.setCurrentTask(null);
-                recent();
+
                 updateLists();
                 disableMain(false);
 

@@ -15,7 +15,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="cos.ui.EditCourseAll"
-            prefHeight="430.0" prefWidth="790.0" style="-fx-background-color: #E4C5AF">
+            prefHeight="430.0" prefWidth="790.0" style="-fx-background-color: #E4C5AF" stylesheets="@styles.css">
 
     <padding>
 
@@ -62,7 +62,7 @@
                     </VBox>
                 </HBox>
                 <Label text="Course notes" alignment="BOTTOM_LEFT"/>
-                <TextArea fx:id="courseNotes" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350" stylesheets="@styles.css"/>
+                <TextArea fx:id="courseNotes" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350" stylesheets="@styles.css" editable="false"/>
             </VBox>
 
 
@@ -76,7 +76,8 @@
             <VBox spacing="15">
 
                 <HBox spacing="10">
-                    <ListView fx:id="taskSelector" prefWidth="300" prefHeight="100" style="-fx-background-color: transparent ;-fx-border-color: #8D3016;-fx-border-radius: 1em 1em 1em 1em;" >
+                    <ListView fx:id="taskSelector" prefWidth="300" prefHeight="100" stylesheets="@styles.css"
+                              style="-fx-background-color: transparent ;-fx-border-color: #8D3016;-fx-border-radius: 1em 1em 1em 1em;" >
 
                         <items>
                             <FXCollections fx:factory="observableArrayList"/>
@@ -96,7 +97,7 @@
 
                 <Label text="Task notes"/>
                 <HBox spacing="10" prefWidth="350">
-                    <TextArea fx:id="taskNotes" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350" stylesheets="@styles.css"/>
+                    <TextArea fx:id="taskNotes" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350" stylesheets="@styles.css" editable="false"/>
                      <VBox alignment="BOTTOM_RIGHT">
                          <Button text="Done"  prefWidth="100" onAction="#close" stylesheets="@styles.css"/>
                      </VBox>

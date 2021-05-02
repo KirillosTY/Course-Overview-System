@@ -5,6 +5,14 @@
 -fx-effect: innershadow( gaussian ,#439D79 ,10 , 0.5 , 3, 3 );
 }
 
+#cancel.button {
+    -fx-text-fill: white;
+    -fx-background-color:#B01307;
+    -fx-background-radius: 1em 1em 1em 1em;
+    -fx-effect: innershadow( gaussian ,#E3170A,10 , 0.5 , 3, 3 )
+    
+}
+
 .text-area {
 
     -fx-control-inner-background: #F0DED1; 
@@ -21,7 +29,35 @@
 
 .check-box .box{
 
+    -fx-border-color: #063437;
+    -fx-background-color: transparent; 
+}
 
-    -fx-background-color: #6FC3A0; 
+
+.check-box .list-cell {
+
+    -fx-background-color: transparent;
+    -fx-border-color: #063437;
+}
+.text {
+
+-fx-font-family: "Franklin Gothic Medium";
 
 }
+
+.combo-box {
+    -fx-background-color: transparent;
+    -fx-border-color: #095256;
+    -fx-border-radius: 1em 1em 1em 1em;
+
+}
+
+
+.combo-box-base {
+    -fx-background-color: #E4C5AF;
+    -fx-border-color:  #095256;
+    -fx-border-radius: 1em 1em 1em 1em;
+
+
+}
+
