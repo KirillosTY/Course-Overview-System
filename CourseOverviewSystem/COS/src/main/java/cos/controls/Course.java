@@ -1,5 +1,6 @@
 package cos.controls;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -123,6 +124,6 @@ public class Course extends BasicTask {
     @Override
     public String toString() {
 
-        return super.getName() + " - " + super.getDescription();
+        return this.getName() + " - Days left: " + Duration.between(LocalDateTime.now(),this.getWorkHoursSpent().getEndDate()).toDays();
     }
 }

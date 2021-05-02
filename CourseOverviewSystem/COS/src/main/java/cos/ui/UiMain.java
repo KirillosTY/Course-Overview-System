@@ -176,7 +176,6 @@ public class UiMain {
 
                     courseHandler.setCurrentTask(tasklist.getSelectionModel().getSelectedItem());
 
-
                 } else {
                     courseHandler.setCurrentTask(null);
 
