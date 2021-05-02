@@ -7,11 +7,10 @@ import cos.controls.Task;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,6 +84,7 @@ public class EditCourseAll {
 
         courseListSelector.getSelectionModel().selectFirst();
         courListUpdate();
+        listUISets();
 
     }
 
@@ -97,6 +97,25 @@ public class EditCourseAll {
                 stagesNeeded = (HashMap<String,Stage>) stage.getUserData();
             }
         });
+
+    }
+
+    @FXML
+    public void listUISets() {
+
+        taskSelector.setCellFactory(new Callback<ListView<Task>, ListCell<Task>>() {
+            @Override
+            public ListCell<Task> call(ListView<Task> taskListView) {
+
+                ListCells styled = new ListCells();
+                styled.setTextFill(Paint.valueOf("#8D3016"));
+                styled.setStyle("-fx-background-color: transparent (#8D3016); ");
+                return styled;
+            }
+        });
+
+
+
 
     }
 

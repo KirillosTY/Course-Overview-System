@@ -6,7 +6,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="cos.ui.TaskEditCreation"
-          prefHeight="330.0" prefWidth="430" vgap="10" hgap="10" >
+          prefHeight="330.0" prefWidth="430" vgap="10" hgap="10" style="-fx-background-color: #E4C5AF" >
 
 
     <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
@@ -14,7 +14,8 @@
 
         <TextField  fx:id="name" />
         <TextField  fx:id="description" />
-        <TextArea  fx:id="notes"  prefWidth="200" prefHeight="200" />
+        <TextArea  fx:id="notes"  prefWidth="200" prefHeight="200"
+                   stylesheets="@styles.css"/>
 
     </VBox>
 
@@ -44,6 +45,7 @@
         GridPane.valignment="BOTTOM" GridPane.halignment="RIGHT">
         <Button fx:id="remove" prefHeight="20" text="remove" visible="false" prefWidth="60" alignment="BOTTOM_LEFT"/>
 
-        <Button prefHeight="30" prefWidth="80" alignment="BOTTOM_RIGHT" fx:id="save" text="Save" onAction="#saveTask"/>
+        <Button prefHeight="30" prefWidth="80" alignment="BOTTOM_RIGHT" fx:id="save" text="Save" onAction="#saveTask" style="-fx-text-fill: white; -fx-background-color:#2B644D;
+                    -fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian ,#439D79 ,10 , 0.5 , 3, 3 )"/>
     </HBox>
 </GridPane>

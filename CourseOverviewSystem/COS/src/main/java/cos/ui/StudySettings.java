@@ -5,7 +5,6 @@ import cos.controls.Settings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -40,8 +39,6 @@ public class StudySettings {
     @FXML
     private CheckBox showCycles;
 
-    @FXML
-    private TextArea msg;
 
 
     @FXML
@@ -67,7 +64,7 @@ public class StudySettings {
 
         cycle.setText(settings.getStudyCycle() + "");
 
-        msg.setText(settings.getStudyMsg());
+
 
         showCT.selectedProperty().setValue(settings.isStudyShowT());
 
@@ -98,7 +95,6 @@ public class StudySettings {
 
         settings.setStudyShowWT(showWT.isSelected());
 
-        settings.setStudyMsg(msg.getText());
 
         MainController.getInformationHandler().saveSettings(settings);
 

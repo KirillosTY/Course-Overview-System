@@ -10,7 +10,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="cos.ui.PopupText"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E4C5AF">
 
     <padding>
 
@@ -21,7 +21,7 @@
             <VBox spacing="30">
                 <Label fx:id="multiuse" text="Notes" alignment="BASELINE_CENTER"/>
                 <TextArea wrapText="true" fx:id="msg" editable="false"
-                          prefWidth="500" prefHeight="300"/>
+                          prefWidth="500" prefHeight="300" stylesheets="@styles.css"/>
 
             </VBox>
         </center>

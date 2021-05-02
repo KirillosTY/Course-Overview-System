@@ -1,0 +1,27 @@
+.button {
+-fx-text-fill: white;
+-fx-background-color: #2B644D;
+-fx-background-radius: 1em 1em 1em 1em;
+-fx-effect: innershadow( gaussian ,#439D79 ,10 , 0.5 , 3, 3 );
+}
+
+.text-area {
+
+    -fx-control-inner-background: #F0DED1; 
+    -fx-control-border-color:#095256;
+    -fx-focus-color: black;
+    -fx-focus-highlight-color: transparent;
+    -fx-text-box-border: #063437;
+    -fx-highlight-fill: #063437;
+    -fx-highlight-text-fill: white;
+    -fx-text-fill: #063437;
+
+}
+
+
+.check-box .box{
+
+
+    -fx-background-color: #6FC3A0; 
+
+}

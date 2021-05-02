@@ -8,7 +8,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="cos.ui.StudySettings"
-            prefHeight="330.0" prefWidth="430" vgap="10" hgap="10"  >
+            prefHeight="150.0" prefWidth="430" vgap="10" hgap="10" style="-fx-background-color: #E4C5AF" >
     <padding>
         <Insets bottom="10" right="20" left="20"
                 top="10"/>
@@ -52,8 +52,8 @@
 
 
         <VBox spacing="10" alignment="BOTTOM_RIGHT"  GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.columnSpan="3">
-        <TextArea text="Message for yourself!" fx:id="msg" prefWidth="200" prefHeight="200" prefColumnCount="3" GridPane.columnSpan="4"  />
-        <Button fx:id="save" text="Save" onAction="#saveSetButton" alignment="BOTTOM_RIGHT"/>
+        <Button fx:id="save" text="Save" onAction="#saveSetButton" alignment="BOTTOM_RIGHT" style="-fx-text-fill: white; -fx-background-color:#2B644D;
+                    -fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian ,#439D79 ,10 , 0.5 , 3, 3 )"/>
         </VBox>
 
 </GridPane>

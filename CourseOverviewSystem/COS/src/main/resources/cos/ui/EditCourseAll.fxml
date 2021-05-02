@@ -15,7 +15,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="cos.ui.EditCourseAll"
-            prefHeight="430.0" prefWidth="790.0">
+            prefHeight="430.0" prefWidth="790.0" style="-fx-background-color: #E4C5AF">
 
     <padding>
 
@@ -29,7 +29,8 @@
                 <HBox spacing="10" >
                     <Label text="Select courselist: " alignment="BASELINE_LEFT"/>
 
-                    <ComboBox fx:id="courseListSelector"  prefWidth="200" >
+                    <ComboBox fx:id="courseListSelector"  prefWidth="200" style="-fx-background-color: transparent;
+                -fx-border-color: #095256;-fx-border-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian , #084749, 5 , 0.2 , 3, 3 );" >
 
                         <items>
 
@@ -43,7 +44,9 @@
 
                 </HBox>
                 <HBox spacing="10" alignment="TOP_RIGHT">
-                    <ComboBox fx:id="courseSelector" prefWidth="190" promptText="You have not added any courses!">
+                    <ComboBox fx:id="courseSelector" prefWidth="190" promptText="You have not added any courses!"
+                              style="-fx-background-color: transparent;
+                -fx-border-color: #095256;-fx-border-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian , #084749, 5 , 0.2 , 3, 3 );">
 
                       <items>
                             <FXCollections fx:factory="observableArrayList"/>
@@ -53,13 +56,13 @@
                     </ComboBox>
 
                     <VBox spacing="10" alignment="TOP_RIGHT">
-                        <Button text="Edit course"  prefWidth="100" fx:id="editC" onAction="#editCourse" />
-                        <Button text="Add course"  prefWidth="100" fx:id="addC"  onAction="#createCourse"/>
+                        <Button text="Edit course"  prefWidth="100" fx:id="editC" onAction="#editCourse"  style="-fx-text-fill: white; -fx-background-color: #095256;-fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian , teal, 5 , 0.2 , 3, 3 );" />
+                        <Button text="Add course"  prefWidth="100" fx:id="addC"  onAction="#createCourse" style="-fx-text-fill: white; -fx-background-color: #095256;-fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian , teal, 5 , 0.2 , 3, 3 );"/>
 
                     </VBox>
                 </HBox>
                 <Label text="Course notes" alignment="BOTTOM_LEFT"/>
-                <TextArea fx:id="courseNotes" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350"/>
+                <TextArea fx:id="courseNotes" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350" stylesheets="@styles.css"/>
             </VBox>
 
 
@@ -73,7 +76,7 @@
             <VBox spacing="15">
 
                 <HBox spacing="10">
-                    <ListView fx:id="taskSelector" prefWidth="300" prefHeight="100" >
+                    <ListView fx:id="taskSelector" prefWidth="300" prefHeight="100" style="-fx-background-color: transparent ;-fx-border-color: #8D3016;-fx-border-radius: 1em 1em 1em 1em;" >
 
                         <items>
                             <FXCollections fx:factory="observableArrayList"/>
@@ -83,17 +86,19 @@
                     </ListView>
 
                     <VBox spacing="10">
-                        <Button text="Edit task" fx:id="editT" prefWidth="100" onAction="#editTask"/>
-                        <Button text="Add task" fx:id="addT" prefWidth="100" onAction="#createTask"/>
+                        <Button text="Edit task" fx:id="editT" prefWidth="100" onAction="#editTask" style="-fx-text-fill: white; -fx-background-color: #ba3f1d;
+                    -fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian , #E0613E,10 , 0.5 , 3, 3 )"/>
+                        <Button text="Add task" fx:id="addT" prefWidth="100" onAction="#createTask" style="-fx-text-fill: white; -fx-background-color: #ba3f1d;
+                    -fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian , #E0613E,10 , 0.5 , 3, 3 )"/>
 
                     </VBox>
                 </HBox>
 
                 <Label text="Task notes"/>
                 <HBox spacing="10" prefWidth="350">
-                    <TextArea fx:id="taskNotes" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350"/>
+                    <TextArea fx:id="taskNotes" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350" stylesheets="@styles.css"/>
                      <VBox alignment="BOTTOM_RIGHT">
-                         <Button text="Done"  prefWidth="100" onAction="#close"/>
+                         <Button text="Done"  prefWidth="100" onAction="#close" stylesheets="@styles.css"/>
                      </VBox>
                 </HBox>
             </VBox>

@@ -10,8 +10,11 @@
 <?import javax.swing.text.Style?>
 <?import javafx.scene.control.cell.TextFieldListCell?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.cell.TreeItemPropertyValueFactory?>
+<?import com.sun.javafx.scene.control.IntegerField?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="cos.ui.UiMain" style="-fx-background-color: #E4C5AF" fx:id="mainBorder" >
+            fx:controller="cos.ui.UiMain" style="-fx-background-color: #E4C5AF" fx:id="mainBorder">
 
     <padding>
         <Insets bottom="20" right="20" left="20"
@@ -19,22 +22,20 @@
 
     </padding>
 
-
-
     <left>
 
 
-        <FlowPane prefWidth="200" prefHeight="460" >
-            <Label fx:id="text" prefHeight="60" alignment="TOP_LEFT"/>
+        <FlowPane prefWidth="200" maxWidth="200" prefHeight="460" >
+            <Label fx:id="text" prefHeight="32" alignment="TOP_LEFT" prefWidth="200"/>
             <VBox alignment="BOTTOM_CENTER" spacing="15" prefWidth="200" prefHeight="70" >
-                <Label text="Courses" style="-fx-text-fill: white;"/>
+                <Label text="Courses" style="-fx-text-fill: #084749;"/>
 
                     <Button text="Add a course!" onKeyPressed="#courseCreate" prefWidth="200" onAction="#courseCreate" alignment="CENTER"
-                            style="-fx-text-fill: white; -fx-background-color: #095256;-fx-background-radius: 1em 1em 1em 1em;"/>
+                            style="-fx-text-fill: white; -fx-background-color: #095256;-fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian , teal, 5 , 0.2 , 3, 3 );"/>
 
 
-                <ComboBox fx:id="courselist" promptText="Add a course to start!" prefWidth="200" viewOrder="-NaN" style="-fx-text-fill: white; -fx-background-color: #095256;-fx-background-radius: 1em 1em 1em 1em;" cellFactory="" >
-
+                <ComboBox fx:id="courselist" promptText="Add a course to start!" prefWidth="200" viewOrder="-NaN" style="-fx-background-color: transparent;
+                -fx-border-color: #095256;-fx-border-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian , #084749, 5 , 0.2 , 3, 3 );">
                     <items>
 
                         <FXCollections fx:factory="observableArrayList">
@@ -45,9 +46,10 @@
                 </ComboBox>
 
                 <HBox spacing="5"  alignment="BOTTOM_LEFT" >
-                    <Button text="Course notes" fx:id="recentCourse"  prefWidth="90"  style="-fx-text-fill: white; -fx-background-color: #095256;-fx-background-radius: 1em 1em 1em 1em;-fx-color-picker: "/>
+                    <Button text="Course notes" fx:id="recentCourse"  prefWidth="90"  style="-fx-text-fill: white; -fx-background-color: #095256;-fx-background-radius: 1em 1em 1em 1em;-fx-effect:
+                     innershadow( gaussian , teal,10 , 0.5 , 3, 3 )"/>
                     <Label text="course is done!" alignment="BOTTOM_RIGHT" />
-                    <CheckBox fx:id="doneCourse"  onAction="#courseIsDone" alignment="BOTTOM_RIGHT"  />
+                    <CheckBox fx:id="doneCourse"  onAction="#courseIsDone" alignment="BOTTOM_RIGHT" stylesheets="@styles.css"  />
                 </HBox>
 
 
@@ -55,20 +57,20 @@
 
             </VBox>
             <Label minWidth="200" minHeight="30"/>
-            <VBox spacing="10" prefHeight="290" >
+            <VBox spacing="10" prefHeight="290" alignment="TOP_CENTER">
+                    <Label text="Tasks" style="-fx-text-fill:#ba3f1d; " alignment="CENTER"/>
+                    <Button text="Add a Task" prefWidth="200"  alignment="CENTER" onAction="#taskCreate" style="-fx-text-fill: white; -fx-background-color: #ba3f1d;
+                    -fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian , #E0613E,10 , 0.5 , 3, 3 )"/>
 
-                <HBox alignment="BASELINE_LEFT">
-                    <Button text="Add a Task" prefWidth="200"  alignment="CENTER" onAction="#taskCreate"/>
-                </HBox>
-
-                <ListView fx:id="tasklist" maxHeight="130" maxWidth="200" >
+                <ListView fx:id="tasklist" maxHeight="130" maxWidth="200"  style="-fx-background-color: transparent ;-fx-border-color: #8D3016;-fx-border-radius: 1em 1em 1em 1em;" >
 
                 </ListView>
 
                 <HBox spacing="5"  alignment="BOTTOM_LEFT">
-                    <Button text="Task notes" fx:id="recentTask" onAction="#recentTask" prefWidth="90"  style="-fx-background-radius: 1em 1em 1em 1em;"/>
-                    <Label text="    Task is done!" alignment="BOTTOM_RIGHT"  style="-fx-background-radius: 1em 1em 1em 1em;"/>
-                    <CheckBox fx:id="doneTask"  onAction="#taskIsDone" alignment="BOTTOM_RIGHT" />
+                    <Button text="Task notes" fx:id="recentTask" onAction="#recentTask" prefWidth="90" style="-fx-text-fill: white; -fx-background-color: #ba3f1d;
+                    -fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian , #E0613E, 5 , 0.2 , 3, 3 );"/>
+                    <Label text="    Task is done!" alignment="BOTTOM_RIGHT"  style="-fx-background-radius: 1em 1em 1em 1em; -fx-hover-color: white;"/>
+                    <CheckBox fx:id="doneTask"  onAction="#taskIsDone" alignment="BOTTOM_RIGHT"  stylesheets="@styles.css"/>
                 </HBox>
 
             </VBox>
@@ -79,19 +81,19 @@
 
     </left>
 
-    <center>
+    <right>
 
 
-        <FlowPane alignment="TOP_CENTER">
+        <FlowPane alignment="TOP_CENTER" maxWidth="200">
 
-            <VBox spacing="10" alignment="BOTTOM_RIGHT"  style="-fx-background-radius: 5em 5em 5em 5em /5em 5em 5em 5em;" >
+            <VBox spacing="20" alignment="BOTTOM_RIGHT"  style="-fx-background-radius: 5em 5em 5em 5em /5em 5em 5em 5em;" >
 
-                <VBox alignment="BOTTOM_CENTER" spacing="10" prefHeight="161">
-                    <Label text="General notes" alignment="CENTER"/>
-
+                <VBox alignment="BOTTOM_CENTER" spacing="10" prefHeight="131">
+                    <Label text="General notes" alignment="CENTER" style="-fx-font-family: Segoe UI Black;"/>
                     <HBox spacing="3" alignment="CENTER">
-                        <TextArea fx:id="generalNotes" prefWidth="190"  maxWidth="200" maxHeight="70" wrapText="true"/>
-                        <Button fx:id="gNSave" prefHeight="70" prefWidth="15"  style="-fx-background-radius: 1em 1em 1em 1em;"/>
+                        <TextArea fx:id="generalNotes" prefWidth="190"  maxWidth="200" maxHeight="70" wrapText="true"
+                                  stylesheets="@styles.css"/>
+                        <Button fx:id="gNSave" prefHeight="72" prefWidth="15"  style="-fx-background-radius: 1em 1em 1em 1em;" stylesheets="@styles.css"/>
                     </HBox>
 
                 </VBox>
@@ -99,11 +101,13 @@
 
 
                 <HBox alignment="CENTER" prefHeight="171" >
-                    <Button text="Start studying" fx:id="startTime" prefWidth="180" prefHeight="110" onAction="#studyStart" style="-fx-background-radius: 5em 0em 0em 5em /5em 0em 0em 5em;" />
+                    <Button text="Start studying" fx:id="startTime" prefWidth="180" prefHeight="110" onAction="#studyStart" style="-fx-background-radius: 5em 0em 0em 5em /5em 0em 0em 5em;
+                            -fx-text-fill: white; -fx-background-color: #378163; -fx-effect: innershadow( gaussian ,#439D79 ,10 , 0.5 , 3, 3 )"/>
 
-                    <Button text="" prefWidth="40" onAction="#studySet" prefHeight="110" style="-fx-background-radius: 0em 5em 5em 0em /0em 5em 5em 0em; ">
+                    <Button prefWidth="40" onAction="#studySet" prefHeight="110" style="-fx-background-radius: 0em 5em 5em 0em /0em 5em 5em 0em;-fx-text-fill: white;
+                            -fx-background-color: #49AB84; -fx-effect: innershadow( gaussian ,#439D79 ,10 , 0.5 , 3, 3 )">
                         <graphic>
-                            <ImageView fitHeight="17" fitWidth="17">
+                            <ImageView fitHeight="25" fitWidth="25">
                                 <Image url="@Settings-icon.png" preserveRatio="true"/>
                             </ImageView>
                         </graphic>
@@ -112,13 +116,14 @@
 
                  </HBox>
 
-                    <Button text="Overview all courses and tasks" prefWidth="220"  prefHeight="30" onAction="#pastUpcomingCurrentEdit"  style="-fx-background-radius: 1em 1em 1em 1em;"/>
+                    <Button text="Overview all courses and tasks" prefWidth="220"  prefHeight="30" onAction="#pastUpcomingCurrentEdit" style="-fx-text-fill: white; -fx-background-color: #063437;
+                    -fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian , teal,10 , 0.5 , 3, 3 )"/>
 
-                    <Button  alignment="BOTTOM_LEFT" text="Done for the day!" fx:id="mainDone" prefHeight="40" prefWidth="220" onAction="#mainIsDone" style="-fx-background-radius: 1em 1em 1em 1em;"/>
+                    <Button  alignment="BOTTOM_LEFT" text="Done for the day!" fx:id="mainDone" prefHeight="40" prefWidth="220" onAction="#mainIsDone" stylesheets="@styles.css"/>
             </VBox>
 
         </FlowPane>
 
-    </center>
+    </right>
 
 </BorderPane>

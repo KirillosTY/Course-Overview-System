@@ -9,12 +9,36 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+
+class ListCells extends ListCell<Task> {
+
+    @Override
+    protected void updateItem(Task item, boolean empty){
+            super.updateItem(item, empty);
+            if(empty || item == null){
+                setText(null);
+            } else {
+                setText(item.toString());
+                setTextFill(Paint.valueOf("#8D3016"));
+            }
+
+        }
+
+
+
+}
 
 public class UiMain {
 
@@ -84,8 +108,27 @@ public class UiMain {
         actionSetupTasks();
         updateLists();
         gNsetup();
+        listUISets();
 
         setStageWindows();
+    }
+
+    @FXML
+    public void listUISets() {
+
+        tasklist.setCellFactory(new Callback<ListView<Task>, ListCell<Task>>() {
+            @Override
+            public ListCell<Task> call(ListView<Task> taskListView) {
+
+                ListCells styled = new ListCells();
+                styled.setTextFill(Paint.valueOf("#8D3016"));
+                styled.setStyle("-fx-background-color: transparent (#8D3016); ");
+                return styled;
+            }
+        });
+
+
+
 
     }
 
@@ -114,6 +157,10 @@ public class UiMain {
                 if (t1 != null) {
                     courseHandler.setCurrent(courselist.getSelectionModel().getSelectedItem());
                     updateTasks();
+                    recent();
+                } else {
+                    courseHandler.setCurrent(null);
+                    courseHandler.setCurrentTask(null);
                     recent();
                 }
 
@@ -145,6 +192,9 @@ public class UiMain {
 
                     courseHandler.setCurrentTask(tasklist.getSelectionModel().getSelectedItem());
 
+                    recent();
+                } else {
+                    courseHandler.setCurrentTask(null);
                     recent();
                 }
             }
@@ -281,6 +331,9 @@ public class UiMain {
             courseHandler.setNotesOverall(generalNotes.getText());
         });
 
+
+        generalNotes.setBackground(new Background(new BackgroundFill(Paint.valueOf("#084749"), new CornerRadii(5,true), new Insets(10,10,10,10))));
+
     }
 
     @FXML
@@ -346,59 +399,7 @@ public class UiMain {
     }
 
 
-    @FXML
-    public void taskEdit() {
-        closeAllExceptMain();
 
-        if (courseHandler.getCurrentTask() != null) {
-
-            try {
-               currentStage = UiMainStart.viewChanger("TaskEditCreation.fxml",
-                        "Edit current task", false);
-
-
-                currentStage.setUserData(courseHandler.getCurrentTask());
-                currentStage.setOnHidden(updateRec ->{
-                    updateTasks();
-                    recent();
-                });
-
-                currentStage.showAndWait();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-
-            errorHandler();
-        }
-
-    }
-
-    @FXML
-    public void courseEdit() {
-        closeAllExceptMain();
-
-        if (courseHandler.getCurrent() != null) {
-
-            try {
-                currentStage = UiMainStart.viewChanger("CreateCourse.fxml",
-                        "Edit current Course",false);
-
-                currentStage.setUserData(courseHandler.getCurrent());
-                currentStage.setOnHidden(update ->{
-                    updateLists();
-                    recent();
-                });
-                currentStage.showAndWait();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-
-            errorHandler();
-        }
-
-    }
 
     @FXML
     public void studyStart() {
@@ -450,6 +451,7 @@ public class UiMain {
 
                     updateLists();
                     updateTasks();
+                    recent();
                 });
 
                 currentStage.showAndWait();
@@ -472,6 +474,7 @@ public class UiMain {
             currentStage.setOnHidden((e) -> {
 
                 updateLists();
+                updateTasks();
                 recent();
 
             });
@@ -495,11 +498,11 @@ public class UiMain {
                     "Manage all courses through here!", false);
 
             currentStage.setOnHidden(e ->{
-                updateLists();
+
                 courseHandler.setCurrent(null);
                 courseHandler.setCurrentTask(null);
                 recent();
-
+                updateLists();
                 disableMain(false);
 
 
