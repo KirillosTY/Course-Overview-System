@@ -30,19 +30,29 @@ mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
 
 # Starting up the first time!
 
-The program will create necessary files on startup, in to a folder named "CourseInfo", make sure folder exists in start location. Most of the options will be unavailable until you add a course throught the "Add a course"-Button, on the top right side of the basic user interface.
+The program will create necessary files on startup, in to a folder named "CourseInfo", make sure folder exists in start location. Most of the options will be unavailable until you add a course throught the "Add a course"-Button. 
 
 ![Basic ui](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/basic%20UI.png)
 
 ## Description of buttons, numbers correspond to the objects on the picture above.
 
+1. This section manages the current course list. You may add, choose and mark them as done. This section does not include past or upcoming courses, see section 3 for more. Upcoming courses will automatically update to this section when time is due.
+
+2. This section manages the current tasklist. You may add, choose and mark them as done. This section does include tasks done, see section 3 for more.
+
+3. This button opens a window where you can view, edit, add or remove tasks and courses from all lists. See topic section  "Edit and Create courses/Tasks" for more details.
+
+
+4. Button on the left named "Start studying" starts the timer on the current task. Button on the right, with the settings icon allows you to manage settings for this timer. see topic sections "Study settings" and "Study timer" for more detail.
+
+5. This button saves the current state of all courses and tasks and closes all windows. To reduce possible errors, please us this when closing.
 
 
 Below are detailed instructions on windows opening to the user(ex. add a course).
 
 ## Create course/Task
 
-Here is the basic course/task creation view. Important things to know currently: You should only enter 2 digit numbers to the time section(it currently does not display error, but will it will soon). You must also add a name and a description, else it will show the the field in red as an error, as show in the picture below.
+Here is the basic course/task creation view. Important things to know currently: You should only enter 2 digit numbers to the time section(it currently does not display error, but will it will soon). You must also add a name and a description, else it will show the the field in red as an error.
 
 ![Create C/T](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/basicUIcreate.png)
 
@@ -50,7 +60,7 @@ Here is the basic course/task creation view. Important things to know currently:
 ## Study settings
 
 
-Study settings allows you to make specific choises to what you wish to see in the studying timer. pressing save sets the defaults for the timer.
+Study settings allows you to make specific choises to what you wish to see in the studying timer. Pessing save sets the defaults for the timer.
 
 ![studyset](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/BasicUIStartsettings.png)
 
@@ -64,9 +74,11 @@ Once open it will automatically start timer on the task, counting all of the sec
 
 
 
-
 ![EditCreateAll](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/editCreateAll.png)
 
+1. Here you can see which courselist you would like to have under inspection: Upcoming courses, current courses or past courses. 
+
+2. This is a read only window, to edit or remove courses/Tasks use the Edit course/task buttons.
 
 
 
