@@ -60,13 +60,13 @@ public class StudyStart {
     public void initialize() {
         settings = MainController.getInformationHandler().loadSettings();
 
-        if(!settings.isStudyShowT()){
+        if (!settings.isStudyShowT()) {
             overallVBox.getChildren().remove(CT);
         }
-        if(!settings.isStudyShowWT()){
+        if (!settings.isStudyShowWT()) {
             overallVBox.getChildren().remove(WTOverall);
         }
-        if(!settings.isStudyShowCycles()){
+        if (!settings.isStudyShowCycles()) {
             overallVBox.getChildren().remove(cycles);
         }
 
@@ -96,7 +96,7 @@ public class StudyStart {
     }
 
     @FXML
-    public void onCloseCounterStop(){
+    public void onCloseCounterStop() {
         stage = (Stage) overallVBox.getScene().getWindow();
         stage.setOnHidden(counterStop -> {
             counter.stop();
@@ -110,7 +110,7 @@ public class StudyStart {
         saveNotes();
         long courseOverall = MainController.getCourseHandler().getCurrent().getWorkHoursSpent().getCurrentCount();
         MainController.getCourseHandler().getCurrent().getWorkHoursSpent()
-                .setCurrentCount(courseOverall + countOverall.getCurrentCount()-startHours);
+                .setCurrentCount(courseOverall + countOverall.getCurrentCount() - startHours);
         MainController.getInformationHandler().saveCourseHandler(MainController.getCourseHandler());
         stage.close();
 
@@ -124,7 +124,7 @@ public class StudyStart {
 
     }
 
-    public void dayDone(WorkHourCounter tempCount){
+    public void dayDone(WorkHourCounter tempCount) {
         WTLeft.setText("The day is over, well done! Your notes were saved automatically.");
         saveNotes();
         counter.stop();

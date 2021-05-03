@@ -19,7 +19,8 @@ public class BasicTaskTest {
     public void initialize(){
 
         WorkHourCounter testCounter = new WorkHourCounter();
-
+        testCounter.setStartDate(LocalDateTime.now());
+        testCounter.setEndDate(LocalDateTime.now().plusDays(7).plusMinutes(10));
 
         tester = new BasicTask(false, testCounter,"Why","not","",0);
     }
@@ -31,7 +32,7 @@ public class BasicTaskTest {
 
         String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
                 FormatStyle.LONG,FormatStyle.MEDIUM));
-
+        
         assertEquals(tester.getNotes(),time+":\n\n"+"Adding more");
 
 
@@ -41,9 +42,16 @@ public class BasicTaskTest {
     public void stringReturn(){
 
 
-        assertEquals("Why - not",tester.toString());
+        assertEquals("Why - Hours left: 168",tester.toString());
 
     }
 
+    @Test
+    public void nameIsLong(){
+
+        tester.setName("OHJELMISTOT");
+
+        assertEquals("OHJELMISTO... - Hours left: 168",tester.toString());
+    }
 
 }

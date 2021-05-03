@@ -40,7 +40,6 @@ public class StudySettings {
     private CheckBox showCycles;
 
 
-
     @FXML
     public void initialize() {
 
@@ -63,7 +62,6 @@ public class StudySettings {
         breakTM.setText(settings.getStudyBreakM() + "");
 
         cycle.setText(settings.getStudyCycle() + "");
-
 
 
         showCT.selectedProperty().setValue(settings.isStudyShowT());

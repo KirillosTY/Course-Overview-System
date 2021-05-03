@@ -2,6 +2,7 @@ package cos.controls;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class WorkHourCounter implements Serializable {
 
@@ -172,5 +173,22 @@ public class WorkHourCounter implements Serializable {
         return time;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof WorkHourCounter)) {
+            return false;
+        }
+        WorkHourCounter that = (WorkHourCounter) o;
+        return currentCount.equals(that.currentCount) &&
+                endDate.equals(that.endDate) &&
+                startDate.equals(that.startDate);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(currentCount, endDate, startDate);
+    }
 }

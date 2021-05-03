@@ -36,8 +36,6 @@ public class CourseHandler implements Serializable {
         current = new Course(state, wHS, name, description, notes, priority, value);
 
         courseListDecider(current);
-        MainController.getInformationHandler().saveCourseHandler(MainController.getCourseHandler());
-
 
 
     }
@@ -50,7 +48,8 @@ public class CourseHandler implements Serializable {
 
     public int courseListDecider(Course c) {
 
-        if (c.getWorkHoursSpent().getStartDate().isAfter(LocalDateTime.now())) {
+
+        if (c.getWorkHoursSpent().getStartDate().isAfter(LocalDateTime.now()) && c.getWorkHoursSpent().getEndDate().isAfter(LocalDateTime.now())) {
 
             if (!upcomingCourse.contains(c)) {
                 upcomingCourse.add(c);
@@ -78,51 +77,42 @@ public class CourseHandler implements Serializable {
         if (current == null) {
             current = c;
         }
+        courseListDecider(c);
 
     }
 
-    public int checkList(Course c){
+    public ArrayList checkList(Course c) {
 
-        if(courseList.contains(c)){
-            return 1;
+        if (upcomingCourse.contains(c)) {
+            return upcomingCourse;
         }
 
-        if(pastCourse.contains(c)){
-            return  2;
+        if (courseList.contains(c)) {
+            return courseList;
         }
 
-        if(upcomingCourse.contains(c)){
-            return 3;
+        if (pastCourse.contains(c)) {
+            return pastCourse;
         }
-        return -1;
+
+
+        return null;
 
     }
 
 
-    public void markCourseAsDone(Course c, boolean delete) {
-
-        ArrayList<Course> cList = new ArrayList<>();
-
-        int list = checkList(c);
-        if(list == -1){
-            return;
+    public boolean markCourseAsDone(Course c, boolean delete) {
+        ArrayList<Course> checkedList = checkList(c);
+        if(checkedList == null) {
+            return false;
         }
-
-        if(list == 1) cList = courseList;
-
-        if(list == 2) cList = pastCourse;
-
-        if(list == 3) cList = upcomingCourse;
-
         if (delete) {
-            cList.remove(c);
-        } else if(list != 2) {
-
+            checkedList.remove(c);
+        } else if (!checkedList.equals(pastCourse)) {
             pastCourse.add(c);
-            cList.remove(c);
-
+            checkedList.remove(c);
         }
-
+        return true;
     }
 
 

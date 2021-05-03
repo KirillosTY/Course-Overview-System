@@ -26,7 +26,7 @@ import java.time.format.FormatStyle;
 public class TaskEditCreation {
 
 
-    private  CourseHandler ch;
+    private final CourseHandler ch;
     @FXML
     private TextField name;
     @FXML
@@ -81,27 +81,27 @@ public class TaskEditCreation {
     }
 
     @FXML
-    public void editDefault(){
+    public void editDefault() {
 
         dateStart.setValue(task.getWorkHoursSpent().getStartDate().toLocalDate());
-        startH.setText(task.getWorkHoursSpent().getStartDate().toLocalTime().toString().substring(0,2));
-        startM.setText(task.getWorkHoursSpent().getStartDate().toLocalTime().toString().substring(3,5));
+        startH.setText(task.getWorkHoursSpent().getStartDate().toLocalTime().toString().substring(0, 2));
+        startM.setText(task.getWorkHoursSpent().getStartDate().toLocalTime().toString().substring(3, 5));
 
         dateEnd.setValue(task.getWorkHoursSpent().getEndDate().toLocalDate());
-        endH.setText(task.getWorkHoursSpent().getEndDate().toLocalTime().toString().substring(0,2));
-        endM.setText(task.getWorkHoursSpent().getEndDate().toLocalTime().toString().substring(3,5));
+        endH.setText(task.getWorkHoursSpent().getEndDate().toLocalTime().toString().substring(0, 2));
+        endM.setText(task.getWorkHoursSpent().getEndDate().toLocalTime().toString().substring(3, 5));
 
         notes.setText(task.getNotes());
         name.setText(task.getName());
         description.setText(task.getDescription());
-        priority.setText(task.getPriority()+"");
+        priority.setText(task.getPriority() + "");
 
         remove.setVisible(true);
 
     }
 
     @FXML
-    public void taskLoad(){
+    public void taskLoad() {
 
         Runnable update = new Runnable() {
             @Override
@@ -110,9 +110,9 @@ public class TaskEditCreation {
                     @Override
                     public void run() {
                         Stage stage = (Stage) dateEnd.getScene().getWindow();
-                        task  = (Task) stage.getUserData();
+                        task = (Task) stage.getUserData();
 
-                        if(task != null){
+                        if (task != null) {
                             editDefault();
                         }
                     }
@@ -124,15 +124,15 @@ public class TaskEditCreation {
 
     }
 
-    public boolean isAcceptable(){
+    public boolean isAcceptable() {
 
-        if(name.getText().equals("")) {
+        if (name.getText().equals("")) {
             //Error handler
             name.setPromptText("You must add a name");
             name.setBackground(new Background(new BackgroundFill(Color.CRIMSON, new CornerRadii(10), Insets.EMPTY)));
             return false;
         }
-        if(description.getText().equals("")){
+        if (description.getText().equals("")) {
             //Error handler
             description.setPromptText("You must add a description");
             description.setBackground(new Background(new BackgroundFill(Color.CRIMSON, new CornerRadii(10), Insets.EMPTY)));
@@ -142,10 +142,10 @@ public class TaskEditCreation {
     }
 
     @FXML
-    public void editTask(){
-       if(!isAcceptable()){
-           return;
-       }
+    public void editTask() {
+        if (!isAcceptable()) {
+            return;
+        }
 
         task.setName(name.getText());
         task.setDescription(description.getText());
@@ -158,7 +158,7 @@ public class TaskEditCreation {
     }
 
 
-    public WorkHourCounter setupWHC(){
+    public WorkHourCounter setupWHC() {
 
 
         WorkHourCounter taskWHC = new WorkHourCounter();
@@ -184,15 +184,15 @@ public class TaskEditCreation {
     @FXML
     public void saveTask() {
 
-        if(task != null){
+        if (task != null) {
 
             editTask();
             return;
         }
 
-       if(!isAcceptable()){
-           return;
-       }
+        if (!isAcceptable()) {
+            return;
+        }
 
 
         WorkHourCounter taskWHC = setupWHC();
@@ -200,18 +200,19 @@ public class TaskEditCreation {
         int prio = Integer.parseInt(priority.getText());
 
         String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
-                FormatStyle.LONG,FormatStyle.MEDIUM));
+                FormatStyle.LONG, FormatStyle.MEDIUM));
 
         ch.getCurrent().addTask(false, taskWHC,
-                name.getText(), description.getText(),time+":\n\n"+notes.getText(), prio);
-        ch.getCurrent().saveNotesWithStamp(notes.getText(),name.getText());
+                name.getText(), description.getText(), time + ":\n\n" + notes.getText(), prio);
+        ch.getCurrent().saveNotesWithStamp(notes.getText(), name.getText());
 
         close();
 
 
     }
+
     @FXML
-    public void remove(){
+    public void remove() {
         MainController.getCourseHandler().setCurrentTask(null);
         MainController.getCourseHandler().getCurrent().removeTask(task);
         close();
@@ -219,7 +220,7 @@ public class TaskEditCreation {
     }
 
     @FXML
-    public void close(){
+    public void close() {
 
         Stage stage = (Stage) save.getScene().getWindow();
         stage.close();

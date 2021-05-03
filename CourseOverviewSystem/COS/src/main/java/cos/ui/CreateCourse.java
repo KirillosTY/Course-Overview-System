@@ -63,7 +63,6 @@ public class CreateCourse {
     private Button save;
 
 
-
     private Course course;
 
 
@@ -89,27 +88,27 @@ public class CreateCourse {
     }
 
     @FXML
-    public void editDefault(){
+    public void editDefault() {
 
         dateStart.setValue(course.getWorkHoursSpent().getStartDate().toLocalDate());
-        startH.setText(course.getWorkHoursSpent().getStartDate().toLocalTime().toString().substring(0,2));
-        startM.setText(course.getWorkHoursSpent().getStartDate().toLocalTime().toString().substring(3,5));
+        startH.setText(course.getWorkHoursSpent().getStartDate().toLocalTime().toString().substring(0, 2));
+        startM.setText(course.getWorkHoursSpent().getStartDate().toLocalTime().toString().substring(3, 5));
 
         dateEnd.setValue(course.getWorkHoursSpent().getEndDate().toLocalDate());
-        endH.setText(course.getWorkHoursSpent().getEndDate().toLocalTime().toString().substring(0,2));
-        endM.setText(course.getWorkHoursSpent().getEndDate().toLocalTime().toString().substring(3,5));
+        endH.setText(course.getWorkHoursSpent().getEndDate().toLocalTime().toString().substring(0, 2));
+        endM.setText(course.getWorkHoursSpent().getEndDate().toLocalTime().toString().substring(3, 5));
 
         notes.setText(course.getNotes());
         name.setText(course.getName());
         description.setText(course.getDescription());
-        priority.setText(course.getPriority()+"");
-        value.setText(course.getValue()+"");
+        priority.setText(course.getPriority() + "");
+        value.setText(course.getValue() + "");
         remove.setVisible(true);
 
     }
 
     @FXML
-    public void courseLoad(){
+    public void courseLoad() {
 
         Runnable update = new Runnable() {
             @Override
@@ -119,7 +118,7 @@ public class CreateCourse {
                     public void run() {
                         Stage stage = (Stage) dateEnd.getScene().getWindow();
                         course = (Course) stage.getUserData();
-                        if(course != null){
+                        if (course != null) {
                             editDefault();
                         }
                     }
@@ -131,15 +130,15 @@ public class CreateCourse {
 
     }
 
-    public boolean isAcceptable(){
+    public boolean isAcceptable() {
 
-        if(name.getText().equals("")) {
+        if (name.getText().equals("")) {
             //Error handler
             name.setPromptText("You must add a name");
             name.setBackground(new Background(new BackgroundFill(Color.CRIMSON, new CornerRadii(10), Insets.EMPTY)));
             return false;
         }
-        if(description.getText().equals("")){
+        if (description.getText().equals("")) {
             //Error handler
             description.setPromptText("You must add a description");
             description.setBackground(new Background(new BackgroundFill(Color.CRIMSON, new CornerRadii(10), Insets.EMPTY)));
@@ -149,9 +148,9 @@ public class CreateCourse {
     }
 
     @FXML
-    public void editcourse(){
+    public void editcourse() {
 
-        if(!isAcceptable()){
+        if (!isAcceptable()) {
             return;
         }
 
@@ -165,7 +164,7 @@ public class CreateCourse {
         close();
     }
 
-    public WorkHourCounter setupWHC(){
+    public WorkHourCounter setupWHC() {
 
 
         WorkHourCounter taskWHC = new WorkHourCounter();
@@ -189,11 +188,10 @@ public class CreateCourse {
     }
 
 
-
     @FXML
     public void saveCourse() {
 
-        if(course != null){
+        if (course != null) {
             editcourse();
             return;
         }
@@ -203,13 +201,12 @@ public class CreateCourse {
         int val = Integer.parseInt(value.getText());
         int prio = Integer.parseInt(priority.getText());
 
-      if(!isAcceptable()){
-          return;
-      }
+        if (!isAcceptable()) {
+            return;
+        }
 
         MainController.getCourseHandler().createCourse(false, courseWHC,
                 name.getText(), description.getText(), notes.getText(), prio, val);
-
 
 
         Stage stage = (Stage) save.getScene().getWindow();
@@ -220,7 +217,7 @@ public class CreateCourse {
     }
 
     @FXML
-    public void remove(){
+    public void remove() {
         MainController.getCourseHandler().setCurrent(null);
         MainController.getCourseHandler().markCourseAsDone(course, true);
         close();
@@ -228,7 +225,7 @@ public class CreateCourse {
     }
 
     @FXML
-    public void close(){
+    public void close() {
 
         Stage stage = (Stage) save.getScene().getWindow();
         stage.close();

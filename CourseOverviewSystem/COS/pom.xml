@@ -98,7 +98,7 @@
                 <version>0.8.3</version>
                 <configuration>
                     <excludes>
-                        <exclude>courseoverviewsystem/cos/*</exclude>
+                        <exclude>cos/ui/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

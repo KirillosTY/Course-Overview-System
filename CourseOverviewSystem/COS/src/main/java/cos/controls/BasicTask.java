@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Objects;
 
 public class BasicTask implements Serializable {
 
@@ -106,14 +107,36 @@ public class BasicTask implements Serializable {
     @Override
     public String toString() {
 
-        if(name.length() > 10){
+        if (name.length() > 10) {
 
-            return this.name.substring(0,10)+"... - Hours left: "+Duration.between(LocalDateTime.now(),this.getWorkHoursSpent().getEndDate()).toHours();
+            return this.name.substring(0, 10) + "... - Hours left: " + Duration.between(LocalDateTime.now(), this.getWorkHoursSpent().getEndDate()).toHours();
         }
 
 
-        return this.name + " - Hours left: " + Duration.between(LocalDateTime.now(),this.getWorkHoursSpent().getEndDate()).toHours();
+        return this.name + " - Hours left: " + Duration.between(LocalDateTime.now(), this.getWorkHoursSpent().getEndDate()).toHours();
 
 
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof BasicTask)) {
+            return false;
+        }
+        BasicTask basicTask = (BasicTask) o;
+        return done == basicTask.done &&
+                workHoursSpent.equals(basicTask.workHoursSpent) &&
+                name.equals(basicTask.name) &&
+                description.equals(basicTask.description) &&
+                Objects.equals(priority, basicTask.priority);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(done, workHoursSpent, name, description, priority);
     }
 }

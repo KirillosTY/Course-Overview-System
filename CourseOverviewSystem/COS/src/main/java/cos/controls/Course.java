@@ -10,17 +10,16 @@ import java.util.Comparator;
 public class Course extends BasicTask {
 
 
-    private int value;
-
-    private ArrayList<Task> taskList;
-
     private final ArrayList<Task> doneTasks;
+    private int value;
+    private ArrayList<Task> taskList;
 
 
     public Course(boolean state, WorkHourCounter wHS, String name, String description, String notes, int priority, int value) {
 
         super(state, wHS, name, description, notes, priority);
 
+        saveNotesWithStamp(notes);
         this.value = value;
 
         this.taskList = new ArrayList<>();
@@ -100,23 +99,25 @@ public class Course extends BasicTask {
 
     }
 
-    public boolean markTaskDone(Task task){
+    public boolean markTaskDone(Task task) {
 
-        if(MainController.getCourseHandler().getCurrent().getTaskList().contains(task)) {
+        if (this.getTaskList().contains(task)) {
             doneTasks.add(task);
             return taskList.remove(task);
 
-        } else return false;
+        } else {
+            return false;
+        }
     }
 
 
     public boolean removeTask(Task task) {
 
-           return taskList.remove(task);
+        return taskList.remove(task);
 
     }
 
-    public ArrayList<Task> getDoneTasks(){
+    public ArrayList<Task> getDoneTasks() {
         return doneTasks;
     }
 
@@ -124,6 +125,6 @@ public class Course extends BasicTask {
     @Override
     public String toString() {
 
-        return this.getName() + " - Days left: " + Duration.between(LocalDateTime.now(),this.getWorkHoursSpent().getEndDate()).toDays();
+        return this.getName() + " - Days left: " + Duration.between(LocalDateTime.now(), this.getWorkHoursSpent().getEndDate()).toDays();
     }
 }

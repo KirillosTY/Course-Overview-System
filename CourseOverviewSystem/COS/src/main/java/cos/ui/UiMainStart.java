@@ -24,43 +24,8 @@ public class UiMainStart extends Application {
     protected static ArrayList<Stage> loadNeeded;
 
 
-
     public static void main(String[] args) {
         launch(args);
-    }
-
-    @Override
-    public void start(Stage stage) {
-        setStageWindows();
-
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("UiMain.fxml"));
-
-            Scene scene = new Scene(root, 270,590 );
-
-            stage.setTitle("Course Overview System");
-            stage.setScene(scene);
-
-            ArrayList<Stage> closingStages = new ArrayList<>();
-            stage.setUserData(closingStages);
-            stageControls.add(stage);
-            stage.setOnHidden(save -> {
-
-                MainController.getInformationHandler().saveCourseHandler(
-                        MainController.getCourseHandler());
-                MainController.getInformationHandler().saveSettings(MainController.getSettings());
-                for(Stage s: closingStages){
-                    s.close();
-                }
-            });
-
-
-
-            stage.show();
-        } catch (IOException e){
-
-        }
-
     }
 
     @FXML
@@ -75,40 +40,73 @@ public class UiMainStart extends Application {
             Scene viewC = new Scene(root);
 
 
-            Stage  created= new Stage();
+            Stage created = new Stage();
 
             created.setScene(viewC);
 
             created.setTitle(windowName);
 
             stageControls.add(created);
-            if(load) {
+            if (load) {
                 addStagesLater(created);
             }
 
-        return created;
+            return created;
 
-        } catch (Exception e){
+        } catch (Exception e) {
 
             return null;
         }
 
     }
 
-    public void setStageWindows(){
+    private static void addStagesLater(Stage created) {
+
+        Platform.runLater(() -> {
+
+            loadNeeded.add(created);
+        });
+
+    }
+
+    @Override
+    public void start(Stage stage) {
+        setStageWindows();
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("UiMain.fxml"));
+
+            Scene scene = new Scene(root, 270, 590);
+
+            stage.setTitle("Course Overview System");
+            stage.setScene(scene);
+
+            ArrayList<Stage> closingStages = new ArrayList<>();
+            stage.setUserData(closingStages);
+            stageControls.add(stage);
+            stage.setOnHidden(save -> {
+
+                MainController.getInformationHandler().saveCourseHandler(
+                        MainController.getCourseHandler());
+                MainController.getInformationHandler().saveSettings(MainController.getSettings());
+                for (Stage s : closingStages) {
+                    s.close();
+                }
+            });
+
+
+            stage.show();
+        } catch (IOException e) {
+
+        }
+
+    }
+
+    public void setStageWindows() {
 
         loadNeeded = new ArrayList<>();
 
         stageControls = new ArrayList<>();
-
-    }
-
-    private static void addStagesLater(Stage created){
-
-        Platform.runLater(()-> {
-
-        loadNeeded.add(created);
-        });
 
     }
 

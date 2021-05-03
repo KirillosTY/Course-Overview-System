@@ -11,5 +11,6 @@
     <suppress files="cos.ui.StudySettings" checks="[a-zA-Z0-9]*"/>
     <suppress files="cos.ui.UiMainStart" checks="[a-zA-Z0-9]*"/>
     <suppress files="cos.ui.StudyStart" checks="[a-zA-Z0-9]*"/>
+    <suppress files="cos.ui.EditCourseAll" checks="[a-zA-Z0-9]*"/>
     <suppress files="module-info.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>
