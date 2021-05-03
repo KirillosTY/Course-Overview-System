@@ -7,6 +7,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Objects;
 
+/**
+ * The basis of courses and tasks. This class offers all the basic implementation of courses and tasks.
+ *
+ *
+ */
+
+
 public class BasicTask implements Serializable {
 
 
@@ -21,6 +28,16 @@ public class BasicTask implements Serializable {
     private String description;
 
     private Integer priority;
+
+    /**
+     * Creates a task object.
+     * @param state Marks the tasks as done or undone.
+     * @param wHS WorkHourCounter object
+     * @param name name of the object
+     * @param des Description of the object
+     * @param notes
+     * @param prio
+     */
 
 
     public BasicTask(boolean state, WorkHourCounter wHS, String name, String des, String notes, Integer prio) {
@@ -91,6 +108,13 @@ public class BasicTask implements Serializable {
         this.workHoursSpent = workHoursSpent;
     }
 
+    /**
+     * adds the string as note to this objects current notes.
+     *
+     *
+     * @param notes
+     */
+
     public void saveNotesWithStamp(String notes) {
 
         String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
@@ -104,6 +128,16 @@ public class BasicTask implements Serializable {
 
     }
 
+    /**
+     * Returns a string representation of the objects name and timeleft to deadline.
+     * Shortens any number longer than characters.
+     * If task is done it display date completed instead of time left.
+     *
+     *
+     * @return name and current state of time on the object.
+     */
+
+
     @Override
     public String toString() {
         String tempN = this.name;
@@ -111,7 +145,6 @@ public class BasicTask implements Serializable {
             tempN = this.name.substring(0, 10) + "...";
         }
         if (getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now())) {
-
 
             return tempN + "... - Completed: " + getWorkHoursSpent().getEndDate().toLocalDate();
 

@@ -10,9 +10,20 @@ import java.util.Comparator;
 public class Course extends BasicTask {
 
 
-    private final ArrayList<Task> doneTasks;
+    private ArrayList<Task> doneTasks;
     private int value;
     private ArrayList<Task> taskList;
+
+    /**
+     * Creates a course object.
+     * @param state
+     * @param wHS
+     * @param name
+     * @param description
+     * @param notes Will be saved with a timestamp.
+     * @param priority
+     * @param value
+     */
 
 
     public Course(boolean state, WorkHourCounter wHS, String name, String description, String notes, int priority, int value) {
@@ -26,6 +37,17 @@ public class Course extends BasicTask {
 
         this.doneTasks = new ArrayList<>();
     }
+
+    /**
+     *
+     *
+     * @param state
+     * @param wHS
+     * @param name
+     * @param des
+     * @param notes
+     * @param prio
+     */
 
     public void addTask(boolean state, WorkHourCounter wHS, String name, String des, String notes, Integer prio) {
         Task newTask = new Task(state, wHS, name, des, notes, prio);
