@@ -102,6 +102,8 @@ public class Course extends BasicTask {
     public boolean markTaskDone(Task task) {
 
         if (this.getTaskList().contains(task)) {
+            task.getWorkHoursSpent().setEndDate(LocalDateTime.now());
+            task.setName(task.getName());
             doneTasks.add(task);
             return taskList.remove(task);
 

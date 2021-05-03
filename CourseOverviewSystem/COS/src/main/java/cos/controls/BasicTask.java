@@ -106,14 +106,17 @@ public class BasicTask implements Serializable {
 
     @Override
     public String toString() {
-
+        String tempN = this.name;
         if (name.length() > 10) {
-
-            return this.name.substring(0, 10) + "... - Hours left: " + Duration.between(LocalDateTime.now(), this.getWorkHoursSpent().getEndDate()).toHours();
+            tempN =  this.name.substring(0, 10)+"...";
         }
+        if(getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now())){
 
 
-        return this.name + " - Hours left: " + Duration.between(LocalDateTime.now(), this.getWorkHoursSpent().getEndDate()).toHours();
+            return tempN + "... - Completed: " + getWorkHoursSpent().getEndDate().toLocalDate();
+
+        }
+        return tempN + " - Hours left: " + Duration.between(LocalDateTime.now(), this.getWorkHoursSpent().getEndDate()).toHours();
 
 
     }
