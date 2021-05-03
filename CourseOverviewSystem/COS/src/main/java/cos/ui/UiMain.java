@@ -225,14 +225,19 @@ public class UiMain {
 
     @FXML
     public void updateTasks() {
-        tasklist.setItems(FXCollections.observableList(courseHandler.getCurrent().getTaskList()));
 
-        tasklist.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        if(courseHandler.getCurrent() != null) {
+            tasklist.setItems(FXCollections.observableList(courseHandler.getCurrent().getTaskList()));
 
-        if (courseHandler.getCurrentTask() == null) {
-            tasklist.setPlaceholder(new Label("Add tasks!"));
-        } else if (courseHandler.getCurrent().getTaskList().contains(courseHandler.getCurrentTask())) {
-            tasklist.getSelectionModel().select(courseHandler.getCurrentTask());
+            tasklist.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+            if (courseHandler.getCurrentTask() == null) {
+                tasklist.setPlaceholder(new Label("Add tasks!"));
+            } else if (courseHandler.getCurrent().getTaskList().contains(courseHandler.getCurrentTask())) {
+                tasklist.getSelectionModel().select(courseHandler.getCurrentTask());
+            } else {
+                tasklist.setPlaceholder(new Label("Add tasks!"));
+            }
         } else {
             tasklist.setPlaceholder(new Label("Add tasks!"));
         }
@@ -425,6 +430,7 @@ public class UiMain {
                 courseHandler.setCurrentTask(null);
 
                 updateLists();
+                updateTasks();
                 disableMain(false);
 
 

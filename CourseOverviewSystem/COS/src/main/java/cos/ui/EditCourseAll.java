@@ -268,7 +268,7 @@ public class EditCourseAll {
     public void createEditCourse(boolean create) {
         closeAllExceptECA();
         try {
-            Stage editStage = UiMainStart.viewChanger("CreateCourse.fxml", "Edit course", true);
+            Stage editStage = UiMainStart.viewChanger("CreateCourse.fxml", "Create course", true);
 
             if(editStage != null) {
 
@@ -276,6 +276,7 @@ public class EditCourseAll {
                     if(cHandler.getCurrent()== null){
                         return;
                     }
+                    editStage.setTitle("Edit course");
                     editStage.setUserData(cHandler.getCurrent());
                 }
                 editStage.setOnHidden(updates ->{
@@ -295,14 +296,16 @@ public class EditCourseAll {
     public void createEditTask(boolean create){
         closeAllExceptECA();
         if(cHandler.getCurrent()== null) return;
+
         try {
-            Stage editStage = UiMainStart.viewChanger("TaskEditCreation.fxml", "Edit Task", true);
+            Stage editStage = UiMainStart.viewChanger("TaskEditCreation.fxml", "Create task", true);
 
             if(editStage != null) {
                 if(!create) {
                     if(cHandler.getCurrentTask() == null){
                         return;
                     }
+                    editStage.setTitle("Edit task");
                     editStage.setUserData(cHandler.getCurrentTask());
                 }
                 editStage.setOnHidden(update ->{
