@@ -156,8 +156,11 @@ public class UiMain {
 
                     courseHandler.setCurrentTask(tasklist.getSelectionModel().getSelectedItem());
 
+                    startTime.setText("Start studying: "+courseHandler.getCurrentTask().getName());
+
                 } else {
                     courseHandler.setCurrentTask(null);
+                    startTime.setText("Start studying");
 
                 }
             }
@@ -212,8 +215,10 @@ public class UiMain {
                 tasklist.setPlaceholder(new Label("Add tasks!"));
             } else if (courseHandler.getCurrent().getTaskList().contains(courseHandler.getCurrentTask())) {
                 tasklist.getSelectionModel().select(courseHandler.getCurrentTask());
+
             } else {
                 tasklist.setPlaceholder(new Label("Add tasks!"));
+
             }
         } else {
             tasklist.setPlaceholder(new Label("Add tasks!"));
@@ -311,7 +316,6 @@ public class UiMain {
             try {
                 currentStage = UiMainStart.viewChanger("studyStart.fxml",
                         "Workhour counter has started!", false);
-
 
                 currentStage.showAndWait();
 

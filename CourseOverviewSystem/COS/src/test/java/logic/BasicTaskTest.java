@@ -32,7 +32,7 @@ public class BasicTaskTest {
 
         String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
                 FormatStyle.LONG,FormatStyle.MEDIUM));
-        
+
         assertEquals(tester.getNotes(),time+":\n\n"+"Adding more");
 
 
