@@ -52,7 +52,9 @@ Below are detailed instructions on windows opening to the user(ex. add a course)
 
 ## Create course/Task
 
-Here is the basic course/task creation view. Important things to know currently: You should only enter 2 digit numbers to the time section(it currently does not display error, but will it will soon). You must also add a name and a description, else it will show the the field in red as an error. Courses will be automatically added to 3 different lists based on the start and end date. First, if the start date is in the future and end date has yet to pass, it will be put on the Upcoming courses list. Second, if the start date has passed and end date is in the future it will be  put on the current list. Third, if the end date is in the past it will be put on the Past courses list.
+Here is the basic course/task creation view. Important things to know currently: You should only enter 2 digit numbers to the time section(it currently does not display error, but will it will soon). You must also add a name and a description, else it will show the the field in red as an error. 
+
+**Note: Courses will be automatically added to 3 different lists based on the start and end date. First, if the start date is in the future and end date has yet to pass, it will be put on the Upcoming courses list. Second, if the start date has passed and end date is in the future it will be  put on the current list. Third, if the end date is in the past it will be put on the Past courses list.**
 
 ![Create C/T](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/basicUIcreate.png)
 
