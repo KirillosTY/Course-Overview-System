@@ -108,9 +108,9 @@ public class BasicTask implements Serializable {
     public String toString() {
         String tempN = this.name;
         if (name.length() > 10) {
-            tempN =  this.name.substring(0, 10)+"...";
+            tempN = this.name.substring(0, 10) + "...";
         }
-        if(getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now())){
+        if (getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now())) {
 
 
             return tempN + "... - Completed: " + getWorkHoursSpent().getEndDate().toLocalDate();

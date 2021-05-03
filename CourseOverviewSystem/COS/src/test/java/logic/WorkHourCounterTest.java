@@ -41,7 +41,7 @@ public class WorkHourCounterTest {
 
         whc.counter(4827L);
 
-        assertEquals("27:20:01",whc.timeToString());
+        assertEquals("01:20:27",whc.timeToString());
 
     }
 
@@ -49,7 +49,7 @@ public class WorkHourCounterTest {
     public void setAppliesCount(){
 
         whc.setCurrentCount(4827L);
-        assertEquals("27:20:01",whc.timeToString());
+        assertEquals("01:20:27",whc.timeToString());
 
     }
 

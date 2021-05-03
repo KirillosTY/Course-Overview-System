@@ -103,7 +103,7 @@ public class CourseHandler implements Serializable {
 
     public boolean markCourseAsDone(Course c, boolean delete) {
         ArrayList<Course> checkedList = checkList(c);
-        if(checkedList == null) {
+        if (checkedList == null) {
             return false;
         }
         if (delete) {

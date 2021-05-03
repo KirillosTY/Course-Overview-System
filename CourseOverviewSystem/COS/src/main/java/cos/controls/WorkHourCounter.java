@@ -148,12 +148,10 @@ public class WorkHourCounter implements Serializable {
     public String timeToString() {
 
         String time;
-
-        if (seconds < 10) {
-            time = "0" + seconds;
-
+        if (hours < 10) {
+            time = "0" + hours;
         } else {
-            time = seconds + "";
+            time = hours + "";
         }
 
         if (minutes < 10) {
@@ -163,11 +161,11 @@ public class WorkHourCounter implements Serializable {
 
             time += ":" + minutes;
         }
+        if (seconds < 10) {
+            time += ":0" + seconds;
 
-        if (hours < 10) {
-            time += ":0" + hours;
         } else {
-            time += ":" + hours;
+            time += ":" + seconds;
         }
 
         return time;

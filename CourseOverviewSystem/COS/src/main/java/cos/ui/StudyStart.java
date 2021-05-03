@@ -186,16 +186,12 @@ public class StudyStart {
 
         if (working) {
 
-            WTLeft.setText("You have " + tempCount.getSeconds()
-                    + " seconds " + tempCount.getMinutes() + " minutes "
-                    + tempCount.getHours() + " hours left of work");
+            WTLeft.setText(tempCount.timeToString()+" left for break");
 
 
         } else {
 
-            WTLeft.setText("You have " + tempCount.getSeconds()
-                    + " seconds " + tempCount.getMinutes() + " minutes "
-                    + tempCount.getHours() + " hours left of break. Go get coffee!");
+            WTLeft.setText(tempCount.timeToString()+" left for work");
         }
     }
 
@@ -233,7 +229,8 @@ public class StudyStart {
 
         if (working) {
             countOverall.counter(countOverall.getCurrentCount());
-            WTOverall.setText("Overall worktime: " + countOverall.timeToString());
+            WTOverall.setText("You have worked for " + countOverall.getDays()+ " days " + countOverall.getHours()+" hours "
+                    +  countOverall.getMinutes() + " minutes.");
         }
 
     }
