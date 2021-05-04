@@ -1,34 +1,48 @@
-# Vaatimusmäärittely
+# Functional requirements
 
-## Sovelluksen käyttötarkoitus
+## Main use of purpose.
 
-Sovelluksen on tarkoitus helpottaa opiskelua tarjoamalla tukea kurssien suorittamiseen erilaisilla työkaluilla.
+This application is meant to help you time manage courses, tasks and notes related to both. 
 
-## Käyttäjä
+## Users
 
-Sovellus on tarkoitettu vain henkilökohtaiseen käyttöön, joten alustavasti on vain yksi pääkäyttäjä
+For now there can be only one main user at a time. 
 
-## Käyttöliittymäluonnos
-
-Sovellus koostuu pääosin kahdesta näkymästä. 
-![Päänäkymä](https://github.com/KirillosTY/ot-harjoitustyo/blob/4eadba473b1be987d2399b5fa9acc7c69a403d0c/Dokumentaatio/Kuvat/aloitus.png)
-Tässä näkymässä oikealla ylhäällä on tehtävän valinta rivi. Tehtävän rivinalapuolella on kurssit. Numeroidut tähdet osoittavat toisen kuvan eri kohtiin, missä "+" kohtaa painamalla aukeaa joko uuden lisääminen, nykyisen muokkaaminen tai työnaloituksen asetukset(*5).
-
-![Asetukset](https://github.com/KirillosTY/Course-Overview-System/blob/c85e50fa3b2d2fb49003c16b62f6b3d6ccd17056/Documentation/Kuvat/20210328_164239.jpg)
+## UI
 
 
-##  Alustavat toiminnallisuudet
- - [x]  Ajastin, millä tauottaa putkeen opiskelua.
- - [x] Kellonaika kirjaus kurssikohtaisesti.
- - [x] Valmiiden ja tulevien kurssien kirjaaminen.
- - [x] Viikko tavoitteiden ja tarvittavien tehtävien kirjaaminen.
- - [x]  Mahdollisuus valita, mitä kurssia työstää sillä hetkellä.
- - [x] Mahdollisuus työstää tiettyä tehtävää ja tallentaa muistiinpanoja.  
-- [x] Muistiinpanojen kirjaus ja lukeminen kurssi- ja tehtäväkohtaisesti.
-- [x] Mahdollisuus jättää itselleen muistiinpanoja pääikkunaan.
- 7. Mahdollisuus tarkastella tehtyjä ja tulevia kursseja.
+The app  consists of 3 main windows, the basic, the Overview of courses and tasks, and finally the study timer. Rest of them are mainly used for quickly adding or setting something.
+![Päänäkymä](https://github.com/KirillosTY/Course-Overview-System/blob/78b398dc1fc88955ed4f3f276a204dd6863098b7/Documentation/Kuvat/basic%20UI.png)
 
-## Jatkokehitysideaoita 
- 1. Linkittää kursseja, mitkä ovat toisiinsa yhteydessä.
- 2. Oman päiväsuoritusten arviointikysely, jolla voisi seurata omaa jaksamista ja tehokkuutta.
+From here one can do all the basics, add courses/tasks, start working on a task. You can also open the view window to manage every task and course, including past and upcoming.
+
+![Create](https://github.com/KirillosTY/Course-Overview-System/blob/78b398dc1fc88955ed4f3f276a204dd6863098b7/Documentation/Kuvat/basicUIcreate.png)
+ Create task or course view.
+ 
+ ![Timer](https://github.com/KirillosTY/Course-Overview-System/blob/78b398dc1fc88955ed4f3f276a204dd6863098b7/Documentation/Kuvat/BasicUIStart.png)
+  Study timer which also saves notes.
+
+![Asetukset](https://github.com/KirillosTY/Course-Overview-System/blob/78b398dc1fc88955ed4f3f276a204dd6863098b7/Documentation/Kuvat/BasicUIStartsettings.png)
+Settings for the timer.
+
+![ManageCourses](https://github.com/KirillosTY/Course-Overview-System/blob/78b398dc1fc88955ed4f3f276a204dd6863098b7/Documentation/Kuvat/editCreateAll.png)
+Manage all courses and task.
+
+##  Current functional operations
+ - [x]  A Timer with which you time your studies.
+ - [x] Adding deadlines to courses and tasks.
+ - [x] Adding past or upcoming courses. 
+ - [x] Adding tasks.
+ - [x] Option to choose which course you are working on.
+ - [x] Option to choose which task you are on. Saving notes and timestamping them.
+- [x] Notes add automatically from courses with timestamps and name of the task it is done in.
+ -[x] Manage all current,upcoming or past  courses and tasks.
+ -[x] Window resizing allows 3 different ways to use the main window.
+
+## Further development idea
+ 1. Linking courses to another.
+ 2. Exporting notes to text.
+ 3. Allowing multiple users
+ 4. Allowing user to set main window size prefrence.
+ 5. Exporting data to google drive.
  
