@@ -12,20 +12,25 @@ For now there can be only one main user at a time.
 
 
 The app  consists of 3 main windows, the basic, the Overview of courses and tasks, and finally the study timer. Rest of them are mainly used for quickly adding or setting something.
+
 ![Päänäkymä](https://github.com/KirillosTY/Course-Overview-System/blob/78b398dc1fc88955ed4f3f276a204dd6863098b7/Documentation/Kuvat/basic%20UI.png)
 
 From here one can do all the basics, add courses/tasks, start working on a task. You can also open the view window to manage every task and course, including past and upcoming.
 
 ![Create](https://github.com/KirillosTY/Course-Overview-System/blob/78b398dc1fc88955ed4f3f276a204dd6863098b7/Documentation/Kuvat/basicUIcreate.png)
+ 
  Create task or course view.
  
  ![Timer](https://github.com/KirillosTY/Course-Overview-System/blob/78b398dc1fc88955ed4f3f276a204dd6863098b7/Documentation/Kuvat/BasicUIStart.png)
+  
   Study timer which also saves notes.
 
 ![Asetukset](https://github.com/KirillosTY/Course-Overview-System/blob/78b398dc1fc88955ed4f3f276a204dd6863098b7/Documentation/Kuvat/BasicUIStartsettings.png)
+
 Settings for the timer.
 
 ![ManageCourses](https://github.com/KirillosTY/Course-Overview-System/blob/78b398dc1fc88955ed4f3f276a204dd6863098b7/Documentation/Kuvat/editCreateAll.png)
+
 Manage all courses and task.
 
 ##  Current functional operations
