@@ -41,8 +41,8 @@ Manage all courses and task.
  - [x] Option to choose which course you are working on.
  - [x] Option to choose which task you are on. Saving notes and timestamping them.
 - [x] Notes add automatically from courses with timestamps and name of the task it is done in.
- -[x] Manage all current,upcoming or past  courses and tasks.
- -[x] Window resizing allows 3 different ways to use the main window.
+ - [x] Manage all current,upcoming or past  courses and tasks.
+ - [x] Window resizing allows 3 different ways to use the main window.
 
 ## Further development idea
  1. Linking courses to another.
