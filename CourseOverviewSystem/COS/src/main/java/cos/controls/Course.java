@@ -7,6 +7,11 @@ import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+
+/**
+ * The base class for all courses.
+ */
+
 public class Course extends BasicTask {
 
 
@@ -16,13 +21,14 @@ public class Course extends BasicTask {
 
     /**
      * Creates a course object.
-     * @param state
-     * @param wHS
-     * @param name
-     * @param description
-     * @param notes Will be saved with a timestamp.
-     * @param priority
-     * @param value
+     *
+     * @param state Marks the course as done or undone.
+     * @param wHS WorkHourCounter object
+     * @param name name of the object
+     * @param description Description of the object
+     * @param notes Notes of the object
+     * @param priority Value of priority.
+     * @param value Value of the course.
      */
 
 
@@ -39,14 +45,14 @@ public class Course extends BasicTask {
     }
 
     /**
+     * Creates a task object. Updates the dates on all the tasks as this is done and sets a current task to the CourseHandler if null.
      *
-     *
-     * @param state
-     * @param wHS
-     * @param name
-     * @param des
-     * @param notes
-     * @param prio
+     * @param state Marks the tasks as done or undone.
+     * @param wHS WorkHourCounter object
+     * @param name name of the object
+     * @param des Description of the object
+     * @param notes Notes of the object
+     * @param prio Value of priority.
      */
 
     public void addTask(boolean state, WorkHourCounter wHS, String name, String des, String notes, Integer prio) {

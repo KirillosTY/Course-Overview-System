@@ -31,12 +31,13 @@ public class BasicTask implements Serializable {
 
     /**
      * Creates a task object.
+     *
      * @param state Marks the tasks as done or undone.
      * @param wHS WorkHourCounter object
      * @param name name of the object
      * @param des Description of the object
-     * @param notes
-     * @param prio
+     * @param notes Notes of the object
+     * @param prio Value of priority.
      */
 
 
@@ -112,7 +113,7 @@ public class BasicTask implements Serializable {
      * adds the string as note to this objects current notes.
      *
      *
-     * @param notes
+     * @param notes to be saved with timestamp.
      */
 
     public void saveNotesWithStamp(String notes) {

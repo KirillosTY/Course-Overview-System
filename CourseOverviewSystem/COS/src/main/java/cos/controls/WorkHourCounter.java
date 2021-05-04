@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * This class holds the start and dates of basic task in @LOCALDATETIME format.
+ * It also implements various of ways of getting @Long values to time based strings.
+ *
+ */
+
 public class WorkHourCounter implements Serializable {
 
     private long seconds = 0;
@@ -28,6 +34,12 @@ public class WorkHourCounter implements Serializable {
         this(0L);
 
     }
+
+    /**
+     * Creates a new WorkHourCounter with values that turn into days, hours, minutes and seconds.
+     *
+     * @param cc Number is treated as seconds.
+     */
 
     public WorkHourCounter(Long cc) {
 
@@ -95,6 +107,11 @@ public class WorkHourCounter implements Serializable {
         this.cycle = cycle;
     }
 
+    /**
+     * Retuns the current count of this object as seconds.
+     * @return overall seconds passed.
+     */
+
     public long getFullSeconds() {
 
         return this.seconds + this.minutes * 60 + this.hours * 3600;
@@ -125,6 +142,12 @@ public class WorkHourCounter implements Serializable {
         this.startDate = startDate;
     }
 
+
+    /**
+     * Turns seconds into days, hours, minutes and seconds.
+     * @param countD this Long value represents seconds.
+     */
+
     public void counter(long countD) {
 
         seconds = countD % 60;
@@ -144,6 +167,11 @@ public class WorkHourCounter implements Serializable {
 
 
     }
+
+    /**
+     * Returns the current time of the object in a string format of "HH:MM:SS".
+     * @return time as string
+     */
 
     public String timeToString() {
 

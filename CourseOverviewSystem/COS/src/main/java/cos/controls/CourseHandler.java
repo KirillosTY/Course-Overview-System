@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * This class handles all the courses of this application.
+ *
+ */
+
 public class CourseHandler implements Serializable {
 
 
@@ -30,6 +35,19 @@ public class CourseHandler implements Serializable {
         upcomingCourse = new ArrayList<>();
     }
 
+    /**
+     * Creates a course on the given parameters and then passes the course to method courselistDecider.
+     *
+     *
+     * @param state Marks the course as done or undone.
+     * @param wHS WorkHourCounter object
+     * @param name name of the object
+     * @param description Description of the object
+     * @param notes Notes of the object
+     * @param priority Value of priority.
+     * @param value Value of the course.
+     */
+
     public void createCourse(boolean state, WorkHourCounter wHS, String name, String description
             , String notes, int priority, int value) {
 
@@ -40,11 +58,25 @@ public class CourseHandler implements Serializable {
 
     }
 
+    /**
+     * Updates Upcoming and current courselist by start and end dates using the courseListDecider method.
+     *
+     */
+
     public void courseDateUpdater() {
 
         upcomingCourse.removeIf(c -> courseListDecider(c) != 1);
         courseList.removeIf(c -> courseListDecider(c) != 2);
     }
+
+
+    /**
+     * Assigns the given parameter to the right list based on start and end date.
+     *
+     * @param c Course to be evaluated.
+     *
+     * @return number represents list that the course got moved to.
+     */
 
     public int courseListDecider(Course c) {
 
@@ -80,6 +112,13 @@ public class CourseHandler implements Serializable {
         courseListDecider(c);
 
     }
+
+    /**
+     * Checks on which list the course is currently on.
+     *
+     * @param c Course to be evaluated.
+     * @return Courselist where course is found. if not found then null.
+     */
 
     public ArrayList checkList(Course c) {
 
