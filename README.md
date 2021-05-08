@@ -79,6 +79,11 @@ Run checkstyle with the following commnad:
 mvn jxr:jxr checkstyle:checkstyle
 ``` 
 
+Generate java documentation with the following command:
+```
+mvn javadoc:javadoc
+``` 
+
 
 
 
