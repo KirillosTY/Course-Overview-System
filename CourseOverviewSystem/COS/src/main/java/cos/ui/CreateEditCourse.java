@@ -26,43 +26,23 @@ public class CreateEditCourse {
 
 
     @FXML
-    private TextField name;
-
-    @FXML
-    private TextField description;
+    private TextField name, description;
 
     @FXML
     private TextArea notes;
 
     @FXML
-    private TextField startH;
+    private TextField startH, startM, endH, endM;
 
     @FXML
-    private TextField startM;
+    private DatePicker dateStart, dateEnd;
 
     @FXML
-    private DatePicker dateStart;
+    private TextField priority, value;
 
     @FXML
-    private TextField endH;
+    private Button save, remove;
 
-    @FXML
-    private TextField endM;
-
-    @FXML
-    private DatePicker dateEnd;
-
-    @FXML
-    private TextField priority;
-
-    @FXML
-    private TextField value;
-
-    @FXML
-    private Button remove;
-
-    @FXML
-    private Button save;
 
 
     private Course course;

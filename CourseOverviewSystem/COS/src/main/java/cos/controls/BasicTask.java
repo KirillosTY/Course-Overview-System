@@ -9,13 +9,10 @@ import java.util.Objects;
 
 /**
  * The basis of courses and tasks. This class offers all the basic implementation of courses and tasks.
- *
- *
  */
 
 
 public class BasicTask implements Serializable {
-
 
 
     private boolean done = false;
@@ -34,11 +31,11 @@ public class BasicTask implements Serializable {
      * Creates a task object.
      *
      * @param state Marks the tasks as done or undone.
-     * @param wHS WorkHourCounter object
-     * @param name name of the object
-     * @param des Description of the object
+     * @param wHS   WorkHourCounter object
+     * @param name  name of the object
+     * @param des   Description of the object
      * @param notes Notes of the object
-     * @param prio Value of priority.
+     * @param prio  Value of priority.
      */
 
 
@@ -113,7 +110,6 @@ public class BasicTask implements Serializable {
     /**
      * adds the string as note to this objects current notes.
      *
-     *
      * @param notes to be saved with timestamp.
      */
 
@@ -135,7 +131,6 @@ public class BasicTask implements Serializable {
      * Shortens any number longer than characters.
      * If task is done it display date completed instead of time left.
      *
-     *
      * @return name and current state of time on the object.
      */
 
@@ -151,7 +146,7 @@ public class BasicTask implements Serializable {
             return tempN + "... - Completed: " + getWorkHoursSpent().getEndDate().toLocalDate();
 
         }
-        return tempN + " - " + Duration.between(LocalDateTime.now(), this.getWorkHoursSpent().getEndDate()).toHours()+" Hours left";
+        return tempN + " - " + Duration.between(LocalDateTime.now(), this.getWorkHoursSpent().getEndDate()).toHours() + " Hours left";
 
 
     }

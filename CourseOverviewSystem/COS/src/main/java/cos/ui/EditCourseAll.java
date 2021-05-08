@@ -14,7 +14,6 @@ import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class EditCourseAll {
 
@@ -26,25 +25,12 @@ public class EditCourseAll {
     @FXML
     private ListView<Task> taskSelector;
     @FXML
-    private Button editC;
+    private Button editC, addC, editT,addT;
     @FXML
-    private Button addC;
+    private TextArea courseNotes,taskNotes;
     @FXML
-    private Button editT;
-    @FXML
-    private Button addT;
-    @FXML
-    private TextArea courseNotes;
-    @FXML
-    private TextArea taskNotes;
-    @FXML
-    private String upcoming;
-    @FXML
-    private String past;
-    @FXML
-    private String current;
-    @FXML
-    private HashMap<String, Stage> stagesNeeded;
+    private String upcoming, current, past;
+
     private ArrayList<Course> currentCourseList;
 
     private Course currentCourse;
@@ -73,17 +59,6 @@ public class EditCourseAll {
 
     }
 
-    public void loadStages() {
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                Stage stage = (Stage) courseListSelector.getScene().getWindow();
-                stagesNeeded = (HashMap) stage.getUserData();
-            }
-        });
-
-    }
 
     @FXML
     public void listUISets() {

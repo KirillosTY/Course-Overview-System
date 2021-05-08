@@ -22,13 +22,13 @@ public class InformationHandler implements Serializable {
     }
 
 
-    public void loadProperties(){
+    public void loadProperties() {
 
 
         try {
-           properties = (Properties) fileReaderInput("src/main/resources/config.properties");
-           courseHandlerURL = properties.getProperty("CourseHandler");
-           settingsURL = properties.getProperty("Settings");
+            properties = (Properties) fileReaderInput("src/main/resources/config.properties");
+            courseHandlerURL = properties.getProperty("CourseHandler");
+            settingsURL = properties.getProperty("Settings");
 
         } catch (ClassNotFoundException | IOException e) {
 
@@ -37,28 +37,26 @@ public class InformationHandler implements Serializable {
     }
 
 
-
-    public void createProperties(){
+    public void createProperties() {
 
         try (OutputStream outprop = new FileOutputStream("src/main/resources/config.properties")) {
-                properties = new Properties();
-                properties.setProperty("CourseHandler","src/main/resources/courselist.bin");
-                properties.setProperty("Settings","src/main/resources/settings.bin");
-                courseHandlerURL = "src/main/resources/courselist.bin";
-                settingsURL = "src/main/resources/settings.bin";
-                properties.store(outprop,null);
+            properties = new Properties();
+            properties.setProperty("CourseHandler", "src/main/resources/courselist.bin");
+            properties.setProperty("Settings", "src/main/resources/settings.bin");
+            courseHandlerURL = "src/main/resources/courselist.bin";
+            settingsURL = "src/main/resources/settings.bin";
+            properties.store(outprop, null);
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
     }
 
 
+    public boolean checkForProp() {
 
-    public boolean checkForProp(){
-
-        try (FileInputStream propL = new FileInputStream("src/main/resources/config.properties")){
+        try (FileInputStream propL = new FileInputStream("src/main/resources/config.properties")) {
             properties.load(propL);
 
             settingsURL = properties.getProperty("Settings");
@@ -72,7 +70,7 @@ public class InformationHandler implements Serializable {
 
     }
 
-    public boolean fileReaderOutput(String fileUrl, Object obj)  {
+    public boolean fileReaderOutput(String fileUrl, Object obj) {
 
         try (BufferedOutputStream cW = new BufferedOutputStream(new FileOutputStream(fileUrl))) {
 
@@ -101,16 +99,15 @@ public class InformationHandler implements Serializable {
     public boolean createCourseList() {
 
 
-            CourseHandler cH = new CourseHandler(new ArrayList<Course>(), "Write something");
+        CourseHandler cH = new CourseHandler(new ArrayList<Course>(), "Write something");
 
-            return fileReaderOutput(courseHandlerURL, cH);
+        return fileReaderOutput(courseHandlerURL, cH);
 
     }
 
     public boolean saveCourseHandler(CourseHandler courseHandler) {
 
         return fileReaderOutput(courseHandlerURL, courseHandler);
-
 
 
     }
@@ -122,7 +119,7 @@ public class InformationHandler implements Serializable {
             return (CourseHandler) fileReaderInput(courseHandlerURL);
 
 
-        } catch (ClassNotFoundException | IOException e)  {
+        } catch (ClassNotFoundException | IOException e) {
 
 
         }
@@ -135,8 +132,7 @@ public class InformationHandler implements Serializable {
 
         Settings settings = new Settings();
 
-       return fileReaderOutput(settingsURL, settings);
-
+        return fileReaderOutput(settingsURL, settings);
 
 
     }
@@ -172,23 +168,5 @@ public class InformationHandler implements Serializable {
         return properties;
     }
 
-    public void setProperties(Properties properties) {
-        this.properties = properties;
-    }
 
-    public String getCourseHandlerURL() {
-        return courseHandlerURL;
-    }
-
-    public void setCourseHandlerURL(String courseHandlerURL) {
-        this.courseHandlerURL = courseHandlerURL;
-    }
-
-    public String getSettingsURL() {
-        return settingsURL;
-    }
-
-    public void setSettingsURL(String settingsURL) {
-        this.settingsURL = settingsURL;
-    }
 }

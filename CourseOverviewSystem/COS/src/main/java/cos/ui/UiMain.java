@@ -31,7 +31,7 @@ class ListCells extends ListCell<Task> {
         } else {
             setText(item.toString());
             setTextFill(Paint.valueOf("#8D3016"));
-            setTooltip(new Tooltip(item.getName()+" - "+item.getDescription()));
+            setTooltip(new Tooltip(item.getName() + " - " + item.getDescription()));
         }
 
     }
@@ -44,31 +44,19 @@ public class UiMain {
     private static CourseHandler courseHandler;
     @FXML
     protected ComboBox<Course> courselist;
-
-    @FXML
-    private Button addC;
-
-    @FXML
-    private Button addT;
-
     @FXML
     private Label text;
     @FXML
-    private Stage currentStage;
-    @FXML
-    private Stage mainStage;
+    private Stage mainStage,currentStage;
     @FXML
     private ListView<Task> tasklist;
     @FXML
     private Button startTime;
     @FXML
-    private Button editTask;
+    private Button editCourse,editTask,addC, addT;;
     @FXML
-    private CheckBox doneTask;
-    @FXML
-    private Button editCourse;
-    @FXML
-    private CheckBox doneCourse;
+    private CheckBox doneCourse, doneTask;
+
     @FXML
     private FlowPane mainBorder;
 
@@ -108,6 +96,7 @@ public class UiMain {
         text.setText(timeofDay + LocalDate.now());
 
     }
+
     public void defaultStart() {
         courselist.setVisibleRowCount(5);
 
@@ -121,13 +110,13 @@ public class UiMain {
 
     public void actionSetupsCourse() {
 
-       listCActionSetup();
-       doneCActionSetup();
+        listCActionSetup();
+        doneCActionSetup();
 
     }
 
     @FXML
-    public void listCActionSetup(){
+    public void listCActionSetup() {
         courselist.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Course>() {
             @Override
             public void changed(ObservableValue<? extends Course> observableValue, Course course, Course t1) {
@@ -148,7 +137,7 @@ public class UiMain {
     }
 
     @FXML
-    public void doneCActionSetup(){
+    public void doneCActionSetup() {
         doneCourse.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
             Course tempCourse = courseHandler.getCurrent();
             courseHandler.setCurrent(null);
@@ -165,8 +154,8 @@ public class UiMain {
 
     public void actionSetupTasks() {
 
-       listTActionSetup();
-       doneTActionSetup();
+        listTActionSetup();
+        doneTActionSetup();
 
     }
 
@@ -179,7 +168,7 @@ public class UiMain {
 
                     courseHandler.setCurrentTask(tasklist.getSelectionModel().getSelectedItem());
 
-                    startTime.setText("Start studying: "+courseHandler.getCurrentTask().getName());
+                    startTime.setText("Start studying: " + courseHandler.getCurrentTask().getName());
 
                 } else {
                     courseHandler.setCurrentTask(null);
@@ -191,7 +180,7 @@ public class UiMain {
     }
 
     @FXML
-    public void doneTActionSetup(){
+    public void doneTActionSetup() {
         doneTask.selectedProperty().addListener((observableValue, aBoolean, task) -> {
             if (courseHandler.getCurrentTask() != null) {
                 taskIsDone();
@@ -275,13 +264,13 @@ public class UiMain {
     }
 
     @FXML
-    public void setupStageLoc(){
+    public void setupStageLoc() {
         mainStage.getScene().setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
 
-                mouseLocationX = mainStage.getX()-mouseEvent.getScreenX();
-                mouseLocationY = mainStage.getY()-mouseEvent.getScreenY();
+                mouseLocationX = mainStage.getX() - mouseEvent.getScreenX();
+                mouseLocationY = mainStage.getY() - mouseEvent.getScreenY();
             }
         });
 
@@ -290,7 +279,7 @@ public class UiMain {
             public void handle(MouseEvent mouseEvent) {
 
                 mainStage.setX(mouseLocationX + mouseEvent.getScreenX());
-                mainStage.setY(mouseLocationY +mouseEvent.getScreenY());
+                mainStage.setY(mouseLocationY + mouseEvent.getScreenY());
             }
         });
 
@@ -310,8 +299,8 @@ public class UiMain {
         setupTooltipLocation(startTime);
     }
 
-    public void setupTooltipLocation(Control e){
-        e.setOnMousePressed(location ->{
+    public void setupTooltipLocation(Control e) {
+        e.setOnMousePressed(location -> {
             mouseLocationX = location.getScreenX();
 
             mouseLocationY = location.getScreenY();
@@ -319,7 +308,7 @@ public class UiMain {
         tooltipActionSetup(e.getTooltip());
     }
 
-    public void tooltipActionSetup(Tooltip tip){
+    public void tooltipActionSetup(Tooltip tip) {
 
         tip.setShowDelay(Duration.seconds(3));
         tip.setShowDuration(Duration.seconds(2));
@@ -404,7 +393,7 @@ public class UiMain {
                 currentStage.showAndWait();
 
             } catch (Exception e) {
-                UiMainStart.popupText("Study start" ,"Something went wrong opening this window, please restart the application");
+                UiMainStart.popupText("Study start", "Something went wrong opening this window, please restart the application");
             }
         } else {
             errorHandler();
@@ -422,7 +411,7 @@ public class UiMain {
 
             currentStage.showAndWait();
         } catch (Exception e) {
-            UiMainStart.popupText("Study settings" ,"Something went wrong opening this  window, please restart the application");
+            UiMainStart.popupText("Study settings", "Something went wrong opening this  window, please restart the application");
         }
     }
 
@@ -443,7 +432,7 @@ public class UiMain {
                 });
                 currentStage.showAndWait();
             } catch (Exception e) {
-                UiMainStart.popupText("Task creation" ,"Something went wrong opening this  window, please restart the application");
+                UiMainStart.popupText("Task creation", "Something went wrong opening this  window, please restart the application");
             }
         } else {
             errorHandler();
@@ -468,7 +457,7 @@ public class UiMain {
 
             currentStage.showAndWait();
         } catch (Exception e) {
-            UiMainStart.popupText("Course creation" ,"Something went wrong opening this  window, please restart the application");
+            UiMainStart.popupText("Course creation", "Something went wrong opening this  window, please restart the application");
         }
 
     }
@@ -496,32 +485,29 @@ public class UiMain {
             currentStage.showAndWait();
 
         } catch (Exception e) {
-            UiMainStart.popupText("Manage all courses" ,"Something went wrong opening this  window, please restart the application");
+            UiMainStart.popupText("Manage all courses", "Something went wrong opening this  window, please restart the application");
         }
     }
-
-
-
 
 
     @FXML
     public void errorHandler() {
         Tooltip tipError = new Tooltip();
         tooltipActionSetup(tipError);
-        if(courseHandler.getCourseList().isEmpty()){
+        if (courseHandler.getCourseList().isEmpty()) {
             tipError.setText("Add a course first!");
             tipError.show(addC, mouseLocationX, mouseLocationY);
 
-        } else if(courseHandler.getCurrent() == null){
+        } else if (courseHandler.getCurrent() == null) {
             tipError.setText("Select a course first!");
             tipError.show(courselist, mouseLocationX, mouseLocationY);
 
-        } else if(courseHandler.getCurrent().getTaskList().isEmpty()){
+        } else if (courseHandler.getCurrent().getTaskList().isEmpty()) {
             tipError.setText("Add a task first!");
             tipError.show(addT, mouseLocationX, mouseLocationY);
 
 
-        } else if(courseHandler.getCurrentTask() == null){
+        } else if (courseHandler.getCurrentTask() == null) {
             tipError.setText("Select a task first!");
             tipError.show(tasklist, mouseLocationX, mouseLocationY);
 

@@ -16,28 +16,13 @@ public class StudySettings {
     private Button save;
 
     @FXML
-    private TextField workTM;
-
-    @FXML
-    private TextField workTH;
-
-    @FXML
-    private TextField breakTM;
-
-    @FXML
-    private TextField breakTH;
+    private TextField workTH, workTM,  breakTM, breakTH;
 
     @FXML
     private TextField cycle;
 
     @FXML
-    private CheckBox showCT;
-
-    @FXML
-    private CheckBox showWT;
-
-    @FXML
-    private CheckBox showCycles;
+    private CheckBox showCT, showWT, showCycles;
 
 
     @FXML

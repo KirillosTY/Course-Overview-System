@@ -29,32 +29,24 @@ public class TaskEditCreation {
 
 
     private final CourseHandler ch;
+
     @FXML
-    private TextField name;
-    @FXML
-    private TextField description;
+    private TextField name, description;
+
     @FXML
     private TextArea notes;
+
     @FXML
-    private TextField startH;
+    private DatePicker dateStart, dateEnd;
+
     @FXML
-    private TextField startM;
-    @FXML
-    private DatePicker dateStart;
-    @FXML
-    private TextField endH;
-    @FXML
-    private TextField endM;
-    @FXML
-    private DatePicker dateEnd;
+    private TextField startH, startM, endH, endM;
+
     @FXML
     private TextField priority;
 
     @FXML
-    private Button remove;
-
-    @FXML
-    private Button save;
+    private Button save, remove;
 
     private Task task;
 
@@ -75,8 +67,8 @@ public class TaskEditCreation {
         startH.setText("00");
         startM.setText("00");
         notes.wrapTextProperty().setValue(true);
-        textFNumSetup(startH,startM);
-        textFNumSetup(endH,endM);
+        textFNumSetup(startH, startM);
+        textFNumSetup(endH, endM);
 
         dateEnd.setValue(LocalDate.now().plusDays(7));
         endH.setText("23");
@@ -85,7 +77,7 @@ public class TaskEditCreation {
     }
 
     @FXML
-    public void textFNumSetup(TextField setH, TextField setM){
+    public void textFNumSetup(TextField setH, TextField setM) {
         setH.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s,
@@ -94,8 +86,8 @@ public class TaskEditCreation {
                     if (!input.matches("\\d*")) {
                         setH.setText(input.replaceAll("[^\\d]", ""));
                     }
-                    if(input.length() > 2){
-                        setH.setText(input.replaceAll("[^\\d]", "").substring(0,2));
+                    if (input.length() > 2) {
+                        setH.setText(input.replaceAll("[^\\d]", "").substring(0, 2));
                     }
                 }
             }
@@ -109,8 +101,8 @@ public class TaskEditCreation {
                     if (!input.matches("\\d*")) {
                         setM.setText(input.replaceAll("[^\\d]", ""));
                     }
-                    if(input.length() > 2){
-                        setM.setText(input.replaceAll("[^\\d]", "").substring(0,2));
+                    if (input.length() > 2) {
+                        setM.setText(input.replaceAll("[^\\d]", "").substring(0, 2));
                     }
                 }
             }
@@ -137,7 +129,6 @@ public class TaskEditCreation {
         remove.setVisible(true);
 
     }
-
 
 
     @FXML
@@ -197,18 +188,18 @@ public class TaskEditCreation {
         close();
     }
 
-    private void numberChecker(TextField timeH,TextField timeM){
-        if(Integer.parseInt(timeH.getText()) > 23){
+    private void numberChecker(TextField timeH, TextField timeM) {
+        if (Integer.parseInt(timeH.getText()) > 23) {
             timeH.setText("23");
         }
-        if(Integer.parseInt(timeM.getText()) > 59){
+        if (Integer.parseInt(timeM.getText()) > 59) {
             timeM.setText("59");
         }
     }
 
-    public void checkTimes(){
+    public void checkTimes() {
         numberChecker(startH, startM);
-        numberChecker(endH,endM);
+        numberChecker(endH, endM);
     }
 
     public WorkHourCounter setupWHC() {

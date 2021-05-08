@@ -20,10 +20,10 @@ public class MainController {
 
         informationHandler = new InformationHandler();
 
-        if(!informationHandler.checkForProp()){
+        if (!informationHandler.checkForProp()) {
             System.out.println("käydään");
             informationHandler.createProperties();
-            System.out.println( informationHandler.getProperties().get("CourseHandler"));
+            System.out.println(informationHandler.getProperties().get("CourseHandler"));
             System.out.println(informationHandler.createCourseList());
             System.out.println(informationHandler.createSettings());
 
@@ -33,14 +33,11 @@ public class MainController {
         courseHandler = informationHandler.courseLoader();
         settings = informationHandler.loadSettings();
 
-        if(!(courseHandler.getCourseList().isEmpty() && courseHandler.getUpcomingCourse().isEmpty())){
+        if (!(courseHandler.getCourseList().isEmpty() && courseHandler.getUpcomingCourse().isEmpty())) {
             courseHandler.courseDateUpdater();
         }
 
         launch(UiMainStart.class);
-
-
-
 
 
     }
