@@ -21,7 +21,7 @@
 
     <VBox spacing="10" GridPane.columnIndex="4" GridPane.rowIndex="1" prefHeight="150">
         <Text text="Start date:" />
-        <DatePicker fx:id="dateStart"  />
+        <DatePicker fx:id="dateStart" editable="false"  />
         <HBox spacing="10">
             <Label text="Time:"/>
             <TextField fx:id="startH" text="hh" prefWidth="35" prefHeight="15"/>
@@ -29,7 +29,7 @@
         </HBox>
 
         <Text text="Deadline:" />
-        <DatePicker fx:id="dateEnd" />
+        <DatePicker fx:id="dateEnd"  editable="false"/>
         <HBox spacing="10">
             <Label text="Time:"/>
             <TextField fx:id="endH"  text="hh" prefWidth="35" prefHeight="15" />

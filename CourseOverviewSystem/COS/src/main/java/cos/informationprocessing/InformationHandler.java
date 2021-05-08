@@ -6,77 +6,112 @@ import cos.controls.Settings;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class InformationHandler implements Serializable {
 
+    private Properties properties;
+
+    private String courseHandlerURL;
+
+    private String settingsURL;
+
     public InformationHandler() {
+        properties = new Properties();
+
+    }
+
+
+    public void loadProperties(){
+
+
+        try {
+           properties = (Properties) fileReaderInput("src/main/resources/config.properties");
+           courseHandlerURL = properties.getProperty("CourseHandler");
+           settingsURL = properties.getProperty("Settings");
+
+        } catch (ClassNotFoundException | IOException e) {
+
+        }
+
+    }
+
+
+
+    public void createProperties(){
+
+        try (OutputStream outprop = new FileOutputStream("src/main/resources/config.properties")) {
+                properties = new Properties();
+                properties.setProperty("CourseHandler","src/main/resources/courselist.bin");
+                properties.setProperty("Settings","src/main/resources/settings.bin");
+                courseHandlerURL = "src/main/resources/courselist.bin";
+                settingsURL = "src/main/resources/settings.bin";
+                properties.store(outprop,null);
+
+        }catch (Exception e){
+
+        }
+
+    }
+
+
+
+    public boolean checkForProp(){
+
+        try (FileInputStream propL = new FileInputStream("src/main/resources/config.properties")){
+            properties.load(propL);
+
+            settingsURL = properties.getProperty("Settings");
+            courseHandlerURL = properties.getProperty("CourseHandler");
+
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
 
 
     }
 
-    public boolean fileReaderOutput(String fileUrl, Object obj) throws FileNotFoundException {
+    public boolean fileReaderOutput(String fileUrl, Object obj)  {
 
-        try (FileOutputStream cW = new FileOutputStream(fileUrl)) {
+        try (BufferedOutputStream cW = new BufferedOutputStream(new FileOutputStream(fileUrl))) {
 
             ObjectOutputStream oS = new ObjectOutputStream(cW);
 
             oS.writeObject(obj);
-
-
+            oS.close();
         } catch (IOException e) {
-            System.out.println("tämä");
+            e.printStackTrace();
+
             return false;
         }
 
         return true;
     }
 
-    public Object fileReaderInput(String fileUrl) throws IOException {
+    public Object fileReaderInput(String fileUrl) throws IOException, ClassNotFoundException {
 
-        try (FileInputStream cR = new FileInputStream(fileUrl)) {
+        BufferedInputStream cR = new BufferedInputStream(new FileInputStream(fileUrl));
 
-            return new ObjectInputStream(cR).readObject();
-
-        } catch (ClassNotFoundException e) {
-
-            e.printStackTrace();
-
-            //This line will need to handle other exceptions
-
-        }
+        return new ObjectInputStream(cR).readObject();
 
 
-        return null;
     }
 
     public boolean createCourseList() {
 
-        try {
+
             CourseHandler cH = new CourseHandler(new ArrayList<Course>(), "Write something");
 
-            fileReaderOutput("CourseInfo/courselist.bin", cH);
+            return fileReaderOutput(courseHandlerURL, cH);
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return false;
-            // this line will need to handle exceptions.
-        }
-
-        return true;
     }
 
     public boolean saveCourseHandler(CourseHandler courseHandler) {
 
-        try {
+        return fileReaderOutput(courseHandlerURL, courseHandler);
 
-            return fileReaderOutput("CourseInfo/courselist.bin", courseHandler);
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-
-            // this line will need to handle settings.
-        }
-        return false;
 
     }
 
@@ -84,17 +119,10 @@ public class InformationHandler implements Serializable {
 
         try {
 
-            if (fileReaderInput("CourseInfo/courselist.bin") != null) {
-
-                return (CourseHandler) fileReaderInput("CourseInfo/courselist.bin");
-            }
+            return (CourseHandler) fileReaderInput(courseHandlerURL);
 
 
-        } catch (FileNotFoundException e) {
-
-
-            //this line will need to handle the file not found exception!
-        } catch (IOException e) {
+        } catch (ClassNotFoundException | IOException e)  {
 
 
         }
@@ -105,53 +133,34 @@ public class InformationHandler implements Serializable {
 
     public boolean createSettings() {
 
-        try {
+        Settings settings = new Settings();
 
-            Settings settings = new Settings();
+       return fileReaderOutput(settingsURL, settings);
 
-            fileReaderOutput("CourseInfo/settings.bin", settings);
-            return true;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
 
-            // this line will need to handle exceptions.
-        }
-        return false;
 
     }
 
     public boolean saveSettings(Settings saveSetting) {
 
-        try {
+        return fileReaderOutput(settingsURL, saveSetting);
 
-            return fileReaderOutput("CourseInfo/settings.bin", saveSetting);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-
-            // this line will need to handle settings.
-        }
-        return false;
 
     }
 
     public Settings loadSettings() {
 
-
         try {
-            if (fileReaderInput("CourseInfo/Settings.bin") != null) {
-                Settings settings = (Settings) fileReaderInput("CourseInfo/Settings.bin");
+            if (fileReaderInput(settingsURL) != null) {
+                Settings settings = (Settings) fileReaderInput(settingsURL);
                 return settings;
             }
 
 
-        } catch (FileNotFoundException e) {
-            System.out.println("Ei löytynyt luodaan");
+        } catch (ClassNotFoundException | IOException e) {
+
             //this line will need to handle the file not found exception!
             return null;
-
-        } catch (IOException e) {
-
 
         }
 
@@ -159,5 +168,27 @@ public class InformationHandler implements Serializable {
 
     }
 
+    public Properties getProperties() {
+        return properties;
+    }
 
+    public void setProperties(Properties properties) {
+        this.properties = properties;
+    }
+
+    public String getCourseHandlerURL() {
+        return courseHandlerURL;
+    }
+
+    public void setCourseHandlerURL(String courseHandlerURL) {
+        this.courseHandlerURL = courseHandlerURL;
+    }
+
+    public String getSettingsURL() {
+        return settingsURL;
+    }
+
+    public void setSettingsURL(String settingsURL) {
+        this.settingsURL = settingsURL;
+    }
 }

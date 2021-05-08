@@ -4,6 +4,8 @@ import cos.controls.Course;
 import cos.controls.MainController;
 import cos.controls.WorkHourCounter;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -20,7 +22,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class CreateCourse {
+public class CreateEditCourse {
 
 
     @FXML
@@ -74,16 +76,48 @@ public class CreateCourse {
         notes.setPromptText("Add notes");
 
         dateStart.setValue(LocalDate.now());
-        startH.setText("00");
-        startM.setText("00");
-
         dateEnd.setValue(LocalDate.now().plusDays(56));
-        endH.setText("00");
-        endM.setText("00");
+        textFNumSetup(startH,startM);
+        textFNumSetup(endH,endM);
+
         notes.wrapTextProperty().setValue(true);
 
         value.setText("5");
         courseLoad();
+
+    }
+
+    @FXML
+    public void textFNumSetup(TextField setH, TextField setM){
+        setH.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s,
+                                String input) {
+                if (!input.isEmpty()) {
+                    if (!input.matches("\\d*")) {
+                        setH.setText(input.replaceAll("[^\\d]", ""));
+                    }
+                    if(input.length() > 2){
+                        setH.setText(input.replaceAll("[^\\d]", "").substring(0,2));
+                    }
+                }
+            }
+        });
+
+        setM.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s,
+                                String input) {
+                if (!input.isEmpty()) {
+                    if (!input.matches("\\d*")) {
+                        setM.setText(input.replaceAll("[^\\d]", ""));
+                    }
+                    if(input.length() > 2){
+                        setM.setText(input.replaceAll("[^\\d]", "").substring(0,2));
+                    }
+                }
+            }
+        });
 
     }
 
@@ -103,9 +137,14 @@ public class CreateCourse {
         description.setText(course.getDescription());
         priority.setText(course.getPriority() + "");
         value.setText(course.getValue() + "");
-        remove.setVisible(true);
 
+        remove.setText("Remove");
+        remove.setOnAction(cancel ->{
+            remove();
+        });
     }
+
+
 
     @FXML
     public void courseLoad() {
@@ -130,7 +169,7 @@ public class CreateCourse {
 
     }
 
-    public boolean isAcceptable() {
+    private boolean isAcceptable() {
 
         if (name.getText().equals("")) {
             //Error handler
@@ -138,6 +177,7 @@ public class CreateCourse {
             name.setBackground(new Background(new BackgroundFill(Color.CRIMSON, new CornerRadii(10), Insets.EMPTY)));
             return false;
         }
+
         if (description.getText().equals("")) {
             //Error handler
             description.setPromptText("You must add a description");
@@ -145,6 +185,15 @@ public class CreateCourse {
             return false;
         }
         return true;
+    }
+
+    private void numberChecker(TextField timeH,TextField timeM){
+        if(Integer.parseInt(timeH.getText()) > 23){
+            timeH.setText("23");
+        }
+        if(Integer.parseInt(timeM.getText()) > 59){
+            timeM.setText("59");
+        }
     }
 
     @FXML
@@ -164,9 +213,14 @@ public class CreateCourse {
         close();
     }
 
+    public void checkTimes(){
+        numberChecker(startH, startM);
+        numberChecker(endH,endM);
+    }
+
     public WorkHourCounter setupWHC() {
 
-
+        checkTimes();
         WorkHourCounter taskWHC = new WorkHourCounter();
 
         LocalTime timeFormat = LocalTime.of(Integer.parseInt(startH.getText()),
@@ -196,6 +250,7 @@ public class CreateCourse {
             return;
         }
 
+
         WorkHourCounter courseWHC = setupWHC();
 
         int val = Integer.parseInt(value.getText());
@@ -208,11 +263,9 @@ public class CreateCourse {
         MainController.getCourseHandler().createCourse(false, courseWHC,
                 name.getText(), description.getText(), notes.getText(), prio, val);
 
-
         Stage stage = (Stage) save.getScene().getWindow();
 
         stage.close();
-
 
     }
 

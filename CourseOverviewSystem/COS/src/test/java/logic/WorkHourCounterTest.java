@@ -24,22 +24,22 @@ public class WorkHourCounterTest {
 
         whc = new WorkHourCounter(10000L);
 
-        assertEquals(10000, whc.getFullSeconds());
+        assertEquals(10000L,(long) whc.getCurrentCount());
     }
 
     @Test
     public void counterCheck(){
 
-        whc.counter(1000L);
+        whc.setCurrentCount(1000L);
 
-        assertEquals(1000, whc.getFullSeconds());
+        assertEquals(1000, (long) whc.getCurrentCount());
 
     }
 
     @Test
     public void counterString(){
 
-        whc.counter(4827L);
+        whc.setCurrentCount(4827L);
 
         assertEquals("01:20:27",whc.timeToString());
 

@@ -15,6 +15,7 @@ import java.util.Comparator;
 public class Course extends BasicTask {
 
 
+
     private ArrayList<Task> doneTasks;
     private int value;
     private ArrayList<Task> taskList;
@@ -33,6 +34,7 @@ public class Course extends BasicTask {
 
 
     public Course(boolean state, WorkHourCounter wHS, String name, String description, String notes, int priority, int value) {
+
 
         super(state, wHS, name, description, notes, priority);
 

@@ -2,6 +2,7 @@ package cos.ui;
 
 import cos.controls.MainController;
 import cos.controls.Settings;
+import cos.controls.Task;
 import cos.controls.WorkHourCounter;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -12,6 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -82,10 +84,13 @@ public class StudyStart {
 
     public void defaultStart() {
         count.setSeconds(5);
-        count.setMinutes(settings.getStudyWorkM());
-        count.setHours(settings.getStudyWorkH());
+        count.setCurrentCount(settings.getStudyWorkH()*3600L+settings.getStudyWorkM()*60+5);
         count.setCycle(settings.getStudyCycle());
-        currentTask.setText("Current task: " + MainController.getCourseHandler().getCurrentTask());
+
+        Task task = MainController.getCourseHandler().getCurrentTask();
+        currentTask.setText("Current task: " + task.getName()+ " - "+task.getDescription()+ " - "
+                + Duration.between(LocalDateTime.now(), task.getWorkHoursSpent().getEndDate()).toHours()
+                +" Hours left");
         msg.setText("\n\n\n" + MainController.getCourseHandler().getCurrentTask().getNotes());
         Platform.runLater(new Runnable() {
             @Override
@@ -132,10 +137,11 @@ public class StudyStart {
     }
 
     public void saveNotes() {
-
+        if(msg.getText().length() > 2){
         MainController.getCourseHandler().getCurrentTask().saveNotesWithStamp(msg.getText());
         MainController.getCourseHandler().getCurrent().saveNotesWithStamp(msg.getText(),
                 MainController.getCourseHandler().getCurrentTask().toString());
+        }
     }
 
 
@@ -143,7 +149,7 @@ public class StudyStart {
 
         counter = new AnimationTimer() {
 
-            final LocalDateTime startTime = LocalDateTime.now().plusSeconds(tempCount.getFullSeconds());
+            final LocalDateTime startTime = LocalDateTime.now().plusSeconds(tempCount.getCurrentCount());
 
             Long countdown = 0L;
             Long startCounter = 0L;
@@ -201,10 +207,9 @@ public class StudyStart {
         if (working) {
 
             tempCount.setCycle(tempCount.getCycle() - 1);
-            tempCount.setSeconds(5);
-            tempCount.setMinutes(settings.getStudyBreakM());
 
-            tempCount.setHours(settings.getStudyBreakH());
+            count.setCurrentCount(settings.getStudyBreakH()*3600L
+                    +settings.getStudyBreakM()*60+5);
 
             working = false;
 
@@ -212,9 +217,9 @@ public class StudyStart {
 
             saveNotes();
 
-            tempCount.setMinutes(settings.getStudyWorkM());
+            tempCount.setCurrentCount(settings.getStudyWorkH()*3600L
+                    +settings.getStudyWorkM()*60+5);
 
-            tempCount.setHours(settings.getStudyWorkH());
 
             working = true;
         }
@@ -228,7 +233,7 @@ public class StudyStart {
         cycles.setText("Cycles left: " + tempCount.getCycle());
 
         if (working) {
-            countOverall.counter(countOverall.getCurrentCount());
+            countOverall.setCurrentCount(countOverall.getCurrentCount());
             WTOverall.setText("You have worked for " + countOverall.getDays()+ " days " + countOverall.getHours()+" hours "
                     +  countOverall.getMinutes() + " minutes.");
         }

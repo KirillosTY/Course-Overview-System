@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Text?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="cos.ui.CreateCourse"
+          fx:controller="cos.ui.CreateEditCourse"
           prefHeight="330.0" prefWidth="470" vgap="10" hgap="10" style="-fx-background-color: #E4C5AF;-fx-font-family: Franklin Gothic Medium;">
 
 
@@ -20,19 +20,19 @@
 
     <VBox spacing="10" GridPane.columnIndex="4" GridPane.rowIndex="1" prefHeight="150">
         <Text text="Start date:" />
-        <DatePicker fx:id="dateStart"  />
+        <DatePicker fx:id="dateStart" editable="false" />
         <HBox spacing="10">
             <Label text="Time:"/>
-            <TextField fx:id="startH" text="hh" prefWidth="35" prefHeight="15"/>
-            <TextField fx:id="startM" text="mm" prefWidth="35" prefHeight="15"/>
+            <TextField fx:id="startH" text="00" prefWidth="35" prefHeight="15"/>
+            <TextField fx:id="startM" text="00" prefWidth="35" prefHeight="15"/>
         </HBox>
 
         <Text text="Deadline:" />
-        <DatePicker fx:id="dateEnd" />
+        <DatePicker fx:id="dateEnd" editable="false" />
         <HBox spacing="10">
             <Label text="Time:"/>
-            <TextField fx:id="endH" text="hh" prefWidth="35" prefHeight="15" />
-            <TextField fx:id="endM" text="mm" prefWidth="35" prefHeight="15"/>
+            <TextField fx:id="endH" text="23" prefWidth="35" prefHeight="15" />
+            <TextField fx:id="endM" text="59" prefWidth="35" prefHeight="15"/>
         </HBox>
         <HBox spacing="10">
             <Label text="Priority:"/>
@@ -45,7 +45,7 @@
     </VBox>
     <HBox prefHeight="50" minWidth="200" spacing="50" GridPane.columnIndex="4" GridPane.rowIndex="2" prefWidth="70"
           GridPane.valignment="BOTTOM" GridPane.halignment="RIGHT">
-        <Button fx:id="remove" onAction="#remove" prefHeight="20" text="remove" visible="false" prefWidth="60" alignment="BOTTOM_LEFT" style="-fx-text-fill: white;
+        <Button fx:id="remove" onAction="#close" prefHeight="20" text="Cancel" prefWidth="60" alignment="BOTTOM_LEFT" style="-fx-text-fill: white;
     -fx-background-color:#B01307;-fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian ,#E3170A,10 , 0.5 , 3, 3 );"/>
 
         <Button prefHeight="30" prefWidth="80" alignment="BOTTOM_RIGHT" fx:id="save" text="Save" onAction="#saveCourse" stylesheets="@styles.css"/>

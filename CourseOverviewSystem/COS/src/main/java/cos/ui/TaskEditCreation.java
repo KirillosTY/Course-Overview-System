@@ -5,6 +5,8 @@ import cos.controls.MainController;
 import cos.controls.Task;
 import cos.controls.WorkHourCounter;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -73,11 +75,47 @@ public class TaskEditCreation {
         startH.setText("00");
         startM.setText("00");
         notes.wrapTextProperty().setValue(true);
+        textFNumSetup(startH,startM);
+        textFNumSetup(endH,endM);
 
         dateEnd.setValue(LocalDate.now().plusDays(7));
         endH.setText("23");
         endM.setText("59");
         taskLoad();
+    }
+
+    @FXML
+    public void textFNumSetup(TextField setH, TextField setM){
+        setH.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s,
+                                String input) {
+                if (!input.isEmpty()) {
+                    if (!input.matches("\\d*")) {
+                        setH.setText(input.replaceAll("[^\\d]", ""));
+                    }
+                    if(input.length() > 2){
+                        setH.setText(input.replaceAll("[^\\d]", "").substring(0,2));
+                    }
+                }
+            }
+        });
+
+        setM.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s,
+                                String input) {
+                if (!input.isEmpty()) {
+                    if (!input.matches("\\d*")) {
+                        setM.setText(input.replaceAll("[^\\d]", ""));
+                    }
+                    if(input.length() > 2){
+                        setM.setText(input.replaceAll("[^\\d]", "").substring(0,2));
+                    }
+                }
+            }
+        });
+
     }
 
     @FXML
@@ -99,6 +137,8 @@ public class TaskEditCreation {
         remove.setVisible(true);
 
     }
+
+
 
     @FXML
     public void taskLoad() {
@@ -157,10 +197,23 @@ public class TaskEditCreation {
         close();
     }
 
+    private void numberChecker(TextField timeH,TextField timeM){
+        if(Integer.parseInt(timeH.getText()) > 23){
+            timeH.setText("23");
+        }
+        if(Integer.parseInt(timeM.getText()) > 59){
+            timeM.setText("59");
+        }
+    }
+
+    public void checkTimes(){
+        numberChecker(startH, startM);
+        numberChecker(endH,endM);
+    }
 
     public WorkHourCounter setupWHC() {
 
-
+        checkTimes();
         WorkHourCounter taskWHC = new WorkHourCounter();
 
         LocalTime timeFormat = LocalTime.of(Integer.parseInt(startH.getText()),

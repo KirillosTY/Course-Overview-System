@@ -65,7 +65,6 @@ public class EditCourseAll {
         courseListSelector.setItems(FXCollections.observableList(
                 new ArrayList<>(Arrays.asList(current, upcoming, past))));
 
-
         currentCourseList = cHandler.getCourseList();
 
         courseListSelector.getSelectionModel().selectFirst();
@@ -271,7 +270,7 @@ public class EditCourseAll {
                 editStage.showAndWait();
             }
         } catch (Exception ECAec) {
-            System.out.println("ECAec");
+            UiMainStart.popupText("Creating and editing courses" ,"Something went wrong opening this the timer window, please restart the application");
         }
     }
 
@@ -298,12 +297,9 @@ public class EditCourseAll {
                 });
                 editStage.showAndWait();
             }
-
-
         } catch (Exception ECAec) {
-            System.out.println("ECAec");
+            UiMainStart.popupText("Creating and editing tasks" ,"Something went wrong opening this the timer window, please restart the application");
         }
-
     }
 
     public void closeAllExceptECA() {

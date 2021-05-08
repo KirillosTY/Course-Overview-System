@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class UiMainStart extends Application {
     }
 
     @FXML
-    public static Stage viewChanger(String resource, String windowName, boolean load) throws Exception {
+    public static Stage viewChanger(String resource, String windowName, boolean load)  {
 
         try {
 
@@ -39,11 +40,9 @@ public class UiMainStart extends Application {
 
             Scene viewC = new Scene(root);
 
-
             Stage created = new Stage();
 
             created.setScene(viewC);
-
             created.setTitle(windowName);
 
             stageControls.add(created);
@@ -53,8 +52,9 @@ public class UiMainStart extends Application {
 
             return created;
 
-        } catch (Exception e) {
-
+        } catch (IOException e) {
+            popupText(windowName,"Please restart the application. This is most likely an user error, has to be." +
+                    "please say it is a user error");
             return null;
         }
 
@@ -85,7 +85,7 @@ public class UiMainStart extends Application {
             stage.setUserData(closingStages);
             stageControls.add(stage);
             stage.setOnHidden(save -> {
-
+                MainController.getInformationHandler().createProperties();
                 MainController.getInformationHandler().saveCourseHandler(
                         MainController.getCourseHandler());
                 MainController.getInformationHandler().saveSettings(MainController.getSettings());
@@ -98,6 +98,7 @@ public class UiMainStart extends Application {
             stage.show();
         } catch (IOException e) {
 
+            popupText("Main ","Please restart the application.");
         }
 
     }
@@ -108,6 +109,17 @@ public class UiMainStart extends Application {
 
         stageControls = new ArrayList<>();
 
+    }
+
+    @FXML
+    public static void popupText(String windowName, String errorMSG) {
+
+
+        Alert error = new Alert(Alert.AlertType.WARNING);
+
+        error.setTitle("Error"+windowName);
+        error.setHeaderText(errorMSG);
+        error.showAndWait();
     }
 
 

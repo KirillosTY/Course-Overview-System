@@ -7,10 +7,10 @@ import cos.informationprocessing.InformationHandler;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class InformationHandlerTest {
 
@@ -28,13 +28,8 @@ public class InformationHandlerTest {
     @Test
     public void creatingFile() {
 
-        try {
-            tester.fileReaderOutput("CourseInfo/test.bin", new Settings());
+        tester.fileReaderOutput("CourseInfo/test.bin", new Settings());
 
-            assert true;
-        } catch (FileNotFoundException e){
-            assert false;
-        }
 
 
     }

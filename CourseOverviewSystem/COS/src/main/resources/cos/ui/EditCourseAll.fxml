@@ -62,7 +62,7 @@
                     </VBox>
                 </HBox>
                 <Label text="Course notes" alignment="BOTTOM_LEFT"/>
-                <TextArea fx:id="courseNotes" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350" stylesheets="@styles.css" editable="false"/>
+                <TextArea fx:id="courseNotes" wrapText="true" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350" stylesheets="@styles.css" editable="false"/>
             </VBox>
 
 
@@ -97,7 +97,7 @@
 
                 <Label text="Task notes"/>
                 <HBox spacing="10" prefWidth="350">
-                    <TextArea fx:id="taskNotes" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350" stylesheets="@styles.css" editable="false"/>
+                    <TextArea fx:id="taskNotes" wrapText="true" maxWidth="300" maxHeight="350" minWidth="200" minHeight="350" stylesheets="@styles.css" editable="false"/>
                      <VBox alignment="BOTTOM_RIGHT">
                          <Button text="Done"  prefWidth="100" onAction="#close" stylesheets="@styles.css"/>
                      </VBox>

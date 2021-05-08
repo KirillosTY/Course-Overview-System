@@ -12,6 +12,8 @@ import java.util.Objects;
 
 public class WorkHourCounter implements Serializable {
 
+    private long serialVersionUID = 1L;
+
     private long seconds = 0;
 
     private long minutes = 0;
@@ -44,7 +46,7 @@ public class WorkHourCounter implements Serializable {
     public WorkHourCounter(Long cc) {
 
         currentCount = cc;
-        counter(cc);
+        setCurrentCount(cc);
     }
 
     public long getSeconds() {
@@ -112,10 +114,6 @@ public class WorkHourCounter implements Serializable {
      * @return overall seconds passed.
      */
 
-    public long getFullSeconds() {
-
-        return this.seconds + this.minutes * 60 + this.hours * 3600;
-    }
 
     public Long getCurrentCount() {
         return currentCount;
@@ -123,7 +121,21 @@ public class WorkHourCounter implements Serializable {
 
     public void setCurrentCount(Long currentCount) {
         this.currentCount = currentCount;
-        counter(currentCount);
+
+        seconds = currentCount % 60;
+        currentCount -= currentCount % 60;
+        currentCount /= 60;
+
+
+        minutes = currentCount % 60;
+        currentCount -= currentCount % 60;
+        currentCount /= 60;
+
+        hours = currentCount % 60;
+        currentCount -= currentCount % 60;
+        currentCount /= 60;
+
+        days = currentCount % 24;
     }
 
     public LocalDateTime getEndDate() {
@@ -148,25 +160,7 @@ public class WorkHourCounter implements Serializable {
      * @param countD this Long value represents seconds.
      */
 
-    public void counter(long countD) {
 
-        seconds = countD % 60;
-        countD -= countD % 60;
-        countD /= 60;
-
-
-        minutes = countD % 60;
-        countD -= countD % 60;
-        countD /= 60;
-
-        hours = countD % 60;
-        countD -= countD % 60;
-        countD /= 60;
-
-        days = countD % 24;
-
-
-    }
 
     /**
      * Returns the current time of the object in a string format of "HH:MM:SS".

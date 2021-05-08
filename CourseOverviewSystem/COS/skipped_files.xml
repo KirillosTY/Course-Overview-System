@@ -6,7 +6,7 @@
 
 <suppressions>
     <suppress files="cos.ui.UiMain" checks="[a-zA-Z0-9]*"/>
-    <suppress files="cos.ui.CreateCourse" checks="[a-zA-Z0-9]*"/>
+    <suppress files="cos.ui.CreateEditCourse" checks="[a-zA-Z0-9]*"/>
     <suppress files="cos.ui.TaskEditCreation" checks="[a-zA-Z0-9]*"/>
     <suppress files="cos.ui.StudySettings" checks="[a-zA-Z0-9]*"/>
     <suppress files="cos.ui.UiMainStart" checks="[a-zA-Z0-9]*"/>

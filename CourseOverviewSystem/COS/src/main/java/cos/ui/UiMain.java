@@ -8,12 +8,15 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Duration;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -28,6 +31,7 @@ class ListCells extends ListCell<Task> {
         } else {
             setText(item.toString());
             setTextFill(Paint.valueOf("#8D3016"));
+            setTooltip(new Tooltip(item.getName()+" - "+item.getDescription()));
         }
 
     }
@@ -40,6 +44,13 @@ public class UiMain {
     private static CourseHandler courseHandler;
     @FXML
     protected ComboBox<Course> courselist;
+
+    @FXML
+    private Button addC;
+
+    @FXML
+    private Button addT;
+
     @FXML
     private Label text;
     @FXML
@@ -60,24 +71,175 @@ public class UiMain {
     private CheckBox doneCourse;
     @FXML
     private FlowPane mainBorder;
-    @FXML
-    private final boolean UPCcheck = false;
+
+    private double mouseLocationX;
+
+    private double mouseLocationY;
 
     @FXML
     public void initialize() {
 
 
         courseHandler = MainController.getCourseHandler();
-
-        text.setText(checkTime() + LocalDate.now());
-
         courselist.setItems(FXCollections.observableList(courseHandler.getCourseList()));
+        checkTime();
         defaultStart();
         actionSetupsCourse();
         actionSetupTasks();
         updateLists();
         listUISets();
         setStageWindows();
+        tooltipSetup();
+    }
+
+
+    private void checkTime() {
+
+        String timeofDay = "Good morning, today is ";
+
+        if (LocalTime.now().isAfter(LocalTime.of(12, 0))) {
+            timeofDay = "Good day, today is ";
+        } else if (LocalTime.now().isAfter(LocalTime.of(16, 0))) {
+            timeofDay = "Good afternoon, today is ";
+        } else if (LocalTime.now().isAfter(LocalTime.of(12, 0))) {
+            timeofDay = "Evening, today is ";
+        }
+
+        text.setText(timeofDay + LocalDate.now());
+
+    }
+    public void defaultStart() {
+        courselist.setVisibleRowCount(5);
+
+        courselist.setViewOrder(-2);
+
+        tasklist.setMaxWidth(200);
+
+
+        courselist.setPlaceholder(new Label("Add a course to start!"));
+    }
+
+    public void actionSetupsCourse() {
+
+       listCActionSetup();
+       doneCActionSetup();
+
+    }
+
+    @FXML
+    public void listCActionSetup(){
+        courselist.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Course>() {
+            @Override
+            public void changed(ObservableValue<? extends Course> observableValue, Course course, Course t1) {
+
+                if (t1 != null) {
+                    courseHandler.setCurrent(courselist.getSelectionModel().getSelectedItem());
+                    updateTasks();
+
+                } else {
+                    courseHandler.setCurrent(null);
+                    courseHandler.setCurrentTask(null);
+
+                }
+
+            }
+        });
+
+    }
+
+    @FXML
+    public void doneCActionSetup(){
+        doneCourse.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
+            Course tempCourse = courseHandler.getCurrent();
+            courseHandler.setCurrent(null);
+            courseHandler.setCurrentTask(null);
+            courseHandler.markCourseAsDone(tempCourse, false);
+            tasklist.setItems(null);
+            updateLists();
+            doneCourse.setSelected(false);
+
+        });
+
+    }
+
+
+    public void actionSetupTasks() {
+
+       listTActionSetup();
+       doneTActionSetup();
+
+    }
+
+    @FXML
+    public void listTActionSetup() {
+        tasklist.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
+            @Override
+            public void changed(ObservableValue<? extends Task> observableValue, Task task, Task t1) {
+                if (tasklist.getSelectionModel().getSelectedItem() != null) {
+
+                    courseHandler.setCurrentTask(tasklist.getSelectionModel().getSelectedItem());
+
+                    startTime.setText("Start studying: "+courseHandler.getCurrentTask().getName());
+
+                } else {
+                    courseHandler.setCurrentTask(null);
+                    startTime.setText("Start studying");
+
+                }
+            }
+        });
+    }
+
+    @FXML
+    public void doneTActionSetup(){
+        doneTask.selectedProperty().addListener((observableValue, aBoolean, task) -> {
+            if (courseHandler.getCurrentTask() != null) {
+                taskIsDone();
+                doneTask.setSelected(false);
+            } else {
+                doneTask.setSelected(false);
+            }
+
+        });
+    }
+
+    @FXML
+    public void updateLists() {
+
+        courselist.setItems(FXCollections.observableList(MainController.getCourseHandler().getCourseList()));
+
+        if (courseHandler.getCurrent() != null && courseHandler.getCourseList().contains(courseHandler.getCurrent())) {
+            courselist.getSelectionModel().select(courseHandler.getCurrent());
+            updateTasks();
+
+        } else {
+            courselist.setPlaceholder(new Label("Add a course to start!"));
+            tasklist.setPlaceholder(new Label("Add tasks!"));
+        }
+
+    }
+
+
+    @FXML
+    public void updateTasks() {
+
+        if (courseHandler.getCurrent() != null) {
+            tasklist.setItems(FXCollections.observableList(courseHandler.getCurrent().getTaskList()));
+            tasklist.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+            if (courseHandler.getCurrentTask() == null) {
+                tasklist.setPlaceholder(new Label("Add tasks!"));
+            } else if (courseHandler.getCurrent().getTaskList().contains(courseHandler.getCurrentTask())) {
+                tasklist.getSelectionModel().select(courseHandler.getCurrentTask());
+
+            } else {
+                tasklist.setPlaceholder(new Label("Add tasks!"));
+
+            }
+        } else {
+            tasklist.setPlaceholder(new Label("Add tasks!"));
+        }
+
     }
 
     @FXML
@@ -98,148 +260,71 @@ public class UiMain {
 
     }
 
-    private String checkTime() {
-
-        String timeofDay = "Good morning, today is ";
-
-        if (LocalTime.now().isAfter(LocalTime.of(12, 0))) {
-            timeofDay = "Good day, today is ";
-        } else if (LocalTime.now().isAfter(LocalTime.of(16, 0))) {
-            timeofDay = "Good afternoon, today is ";
-        } else if (LocalTime.now().isAfter(LocalTime.of(12, 0))) {
-            timeofDay = "Evening, today is ";
-        }
-
-        return timeofDay;
-
-    }
-
-    public void actionSetupsCourse() {
-
-        courselist.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Course>() {
-            @Override
-            public void changed(ObservableValue<? extends Course> observableValue, Course course, Course t1) {
-
-                if (t1 != null) {
-                    courseHandler.setCurrent(courselist.getSelectionModel().getSelectedItem());
-                    updateTasks();
-
-                } else {
-                    courseHandler.setCurrent(null);
-                    courseHandler.setCurrentTask(null);
-
-                }
-
-            }
-        });
-
-        doneCourse.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
-            Course tempCourse = courseHandler.getCurrent();
-            courseHandler.setCurrent(null);
-            courseHandler.setCurrentTask(null);
-            courseHandler.markCourseAsDone(tempCourse, false);
-            tasklist.setItems(null);
-            updateLists();
-            doneCourse.setSelected(false);
-
-        });
-
-
-    }
-
-    public void actionSetupTasks() {
-
-        tasklist.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
-            @Override
-            public void changed(ObservableValue<? extends Task> observableValue, Task task, Task t1) {
-                if (tasklist.getSelectionModel().getSelectedItem() != null) {
-
-                    courseHandler.setCurrentTask(tasklist.getSelectionModel().getSelectedItem());
-
-                    startTime.setText("Start studying: "+courseHandler.getCurrentTask().getName());
-
-                } else {
-                    courseHandler.setCurrentTask(null);
-                    startTime.setText("Start studying");
-
-                }
-            }
-        });
-
-        doneTask.selectedProperty().addListener((observableValue, aBoolean, task) -> {
-            if (courseHandler.getCurrentTask() != null) {
-                taskIsDone();
-                doneTask.setSelected(false);
-            } else {
-                doneTask.setSelected(false);
-            }
-
-        });
-
-    }
-
     public void setStageWindows() {
-
 
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
 
                 mainStage = (Stage) text.getScene().getWindow();
+                setupStageLoc();
+
             }
         });
 
     }
 
-    public void defaultStart() {
-        courselist.setVisibleRowCount(5);
-
-        courselist.setViewOrder(-2);
-
-        tasklist.setMaxWidth(200);
-
-
-        courselist.setPlaceholder(new Label("Add a course to start!"));
-    }
-
-
     @FXML
-    public void updateTasks() {
+    public void setupStageLoc(){
+        mainStage.getScene().setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
 
-        if (courseHandler.getCurrent() != null) {
-            tasklist.setItems(FXCollections.observableList(courseHandler.getCurrent().getTaskList()));
-
-            tasklist.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
-            if (courseHandler.getCurrentTask() == null) {
-                tasklist.setPlaceholder(new Label("Add tasks!"));
-            } else if (courseHandler.getCurrent().getTaskList().contains(courseHandler.getCurrentTask())) {
-                tasklist.getSelectionModel().select(courseHandler.getCurrentTask());
-
-            } else {
-                tasklist.setPlaceholder(new Label("Add tasks!"));
-
+                mouseLocationX = mainStage.getX()-mouseEvent.getScreenX();
+                mouseLocationY = mainStage.getY()-mouseEvent.getScreenY();
             }
-        } else {
-            tasklist.setPlaceholder(new Label("Add tasks!"));
-        }
+        });
+
+        mainStage.getScene().setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+                mainStage.setX(mouseLocationX + mouseEvent.getScreenX());
+                mainStage.setY(mouseLocationY +mouseEvent.getScreenY());
+            }
+        });
 
     }
 
     @FXML
-    public void updateLists() {
+    private void tooltipSetup() {
+        courselist.setTooltip(new Tooltip("Select a course!"));
+        addC.setTooltip(new Tooltip("Add a course!"));
 
-        courselist.setItems(FXCollections.observableList(MainController.getCourseHandler().getCourseList()));
+        addT.setTooltip(new Tooltip("Add a task!"));
+        startTime.setTooltip(new Tooltip("Remember to choose the correct task!"));
 
-        if (courseHandler.getCurrent() != null && courseHandler.getCourseList().contains(courseHandler.getCurrent())) {
-            courselist.getSelectionModel().select(courseHandler.getCurrent());
-            updateTasks();
+        setupTooltipLocation(courselist);
+        setupTooltipLocation(addC);
+        setupTooltipLocation(addT);
+        setupTooltipLocation(startTime);
+    }
 
-        } else {
-            courselist.setPlaceholder(new Label("Add a course to start!"));
-            tasklist.setPlaceholder(new Label("Add tasks!"));
-        }
+    public void setupTooltipLocation(Control e){
+        e.setOnMousePressed(location ->{
+            mouseLocationX = location.getScreenX();
 
+            mouseLocationY = location.getScreenY();
+        });
+        tooltipActionSetup(e.getTooltip());
+    }
+
+    public void tooltipActionSetup(Tooltip tip){
+
+        tip.setShowDelay(Duration.seconds(3));
+        tip.setShowDuration(Duration.seconds(2));
+        tip.setHideOnEscape(true);
+        tip.setAutoHide(true);
     }
 
 
@@ -266,7 +351,6 @@ public class UiMain {
 
         }
         updateLists();
-
 
     }
 
@@ -320,7 +404,7 @@ public class UiMain {
                 currentStage.showAndWait();
 
             } catch (Exception e) {
-                e.printStackTrace();
+                UiMainStart.popupText("Study start" ,"Something went wrong opening this window, please restart the application");
             }
         } else {
             errorHandler();
@@ -333,12 +417,12 @@ public class UiMain {
         closeAllExceptMain();
 
         try {
-            currentStage = UiMainStart.viewChanger("studySettings.fxml",
+            currentStage = UiMainStart.viewChanger("studysettings.fxml",
                     "Study settings", false);
 
             currentStage.showAndWait();
         } catch (Exception e) {
-            e.printStackTrace();
+            UiMainStart.popupText("Study settings" ,"Something went wrong opening this  window, please restart the application");
         }
     }
 
@@ -353,15 +437,13 @@ public class UiMain {
                         "Task Creation", false);
 
                 currentStage.setOnHidden((e) -> {
-
                     updateLists();
                     updateTasks();
 
                 });
-
                 currentStage.showAndWait();
             } catch (Exception e) {
-                e.printStackTrace();
+                UiMainStart.popupText("Task creation" ,"Something went wrong opening this  window, please restart the application");
             }
         } else {
             errorHandler();
@@ -386,7 +468,7 @@ public class UiMain {
 
             currentStage.showAndWait();
         } catch (Exception e) {
-            e.printStackTrace();
+            UiMainStart.popupText("Course creation" ,"Something went wrong opening this  window, please restart the application");
         }
 
     }
@@ -406,42 +488,43 @@ public class UiMain {
 
                 courseHandler.setCurrent(null);
                 courseHandler.setCurrentTask(null);
-
                 updateLists();
                 updateTasks();
                 disableMain(false);
-
 
             });
             currentStage.showAndWait();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            UiMainStart.popupText("Manage all courses" ,"Something went wrong opening this  window, please restart the application");
         }
     }
 
 
-    @FXML
-    public void PopupText() {
-        closeAllExceptMain();
 
-        try {
-            currentStage = UiMainStart.viewChanger("PopupText.fxml",
-                    MainController.getPopupText()[0], false);
-
-            currentStage.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
 
     @FXML
     public void errorHandler() {
-        closeAllExceptMain();
+        Tooltip tipError = new Tooltip();
+        tooltipActionSetup(tipError);
+        if(courseHandler.getCourseList().isEmpty()){
+            tipError.setText("Add a course first!");
+            tipError.show(addC, mouseLocationX, mouseLocationY);
 
-        System.out.println("Et ole valinnut tehtävää");
+        } else if(courseHandler.getCurrent() == null){
+            tipError.setText("Select a course first!");
+            tipError.show(courselist, mouseLocationX, mouseLocationY);
 
+        } else if(courseHandler.getCurrent().getTaskList().isEmpty()){
+            tipError.setText("Add a task first!");
+            tipError.show(addT, mouseLocationX, mouseLocationY);
+
+
+        } else if(courseHandler.getCurrentTask() == null){
+            tipError.setText("Select a task first!");
+            tipError.show(tasklist, mouseLocationX, mouseLocationY);
+
+        }
     }
 }

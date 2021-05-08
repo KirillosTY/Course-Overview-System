@@ -17,6 +17,7 @@ import java.util.Objects;
 public class BasicTask implements Serializable {
 
 
+
     private boolean done = false;
 
     private WorkHourCounter workHoursSpent;
@@ -150,7 +151,7 @@ public class BasicTask implements Serializable {
             return tempN + "... - Completed: " + getWorkHoursSpent().getEndDate().toLocalDate();
 
         }
-        return tempN + " - Hours left: " + Duration.between(LocalDateTime.now(), this.getWorkHoursSpent().getEndDate()).toHours();
+        return tempN + " - " + Duration.between(LocalDateTime.now(), this.getWorkHoursSpent().getEndDate()).toHours()+" Hours left";
 
 
     }
