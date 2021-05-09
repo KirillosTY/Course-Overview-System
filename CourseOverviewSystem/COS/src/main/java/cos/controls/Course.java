@@ -112,7 +112,7 @@ public class Course extends BasicTask {
 
         for (Task t : taskList) {
 
-            if (t.getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now())) {
+            if (t.getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now()) ) {
                 doneTasks.add(t);
             }
         }
