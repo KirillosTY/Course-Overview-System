@@ -48,7 +48,6 @@ public class MainController {
     private static void propertiesSetup(){
         if(!informationHandler.loadProp()){
             informationHandler.createDefaultProperties();
-
             informationHandler.loadProp();
         }
 

@@ -132,7 +132,6 @@ public class CourseTest {
         testCourse.addTask(testTask);
 
         testCourse.markTaskDone(testTask);
-
         assertEquals(2, testCourse.getDoneTasks().size());
 
     }
