@@ -42,6 +42,8 @@ public class InformationHandler implements Serializable {
 
             properties.setProperty("CourseHandler", "courselist.bin");
             properties.setProperty("Settings", "settings.bin");
+            properties.setProperty("setTest","settTest.bin");
+            properties.setProperty("chTest","chTest.bin");
             courseHandlerURL = "courselist.bin";
             settingsURL = "settings.bin";
             properties.store(outprop, null);
@@ -74,26 +76,25 @@ public class InformationHandler implements Serializable {
      */
 
 
-    public boolean loadProp() {
+    public int loadProp() {
 
         try (InputStream propLocation = new FileInputStream("config.properties")) {
 
             properties.load(propLocation);
             setURLS("CourseHandler", "Settings");
-
+            return 1;
         } catch (Exception e) {
 
             try (InputStream propL = InformationHandler.class.getClassLoader().getResourceAsStream("config.properties")) {
 
                 properties.load(propL);
                 setURLS("CourseHandler", "Settings");
+                return 2;
             } catch (Exception s) {
-                return false;
+                return 0;
             }
 
         }
-        return true;
-
 
     }
 

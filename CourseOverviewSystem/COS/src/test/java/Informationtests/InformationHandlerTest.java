@@ -18,46 +18,30 @@ import static org.junit.Assert.*;
 public class InformationHandlerTest {
 
     private static InformationHandler tester = new InformationHandler();
-    private Properties testProp;
-    private static TemporaryFolder removeF = new TemporaryFolder();
+    private static Properties configBefore;
+    private static int configLoc;
+
 
     @Rule
     public  TemporaryFolder testF = new TemporaryFolder();
 
-    @Before
-    public  void initialize(){
-
-
-        tester = new InformationHandler();
-
-        loadingTestProp();
-        setURL();
-        createSettings();
-        createCourse();
-    }
-
-    @Test
-    public void loadingTestProp(){
-
-
-        if(!tester.loadProp()){
-            Assert.fail();
-        }
-
-
-
-    }
-
-    @Test
-    public  void setURL(){
-
+    @BeforeClass
+    public static void start(){
+        configLoc = tester.loadProp();
+        configBefore = tester.getProperties();
         tester.getProperties().setProperty("setTest","settTest.bin");
 
         tester.getProperties().setProperty("chTest","chTest.bin");
 
         tester.setURLS("chTest","setTest");
+        tester.createSettings();
+        tester.createCourseList();
 
     }
+
+
+
+
 
     @Test
     public void saveProp(){
@@ -181,20 +165,29 @@ public class InformationHandlerTest {
 
     @AfterClass
     public static void removeFiles(){
-
+        System.out.println(configLoc);
         try {
             Files.deleteIfExists(Paths.get(tester.getProperties().getProperty("setTest")));
 
         } catch (Exception e){
-            e.printStackTrace();
+
         }
         try {
             Files.deleteIfExists(Paths.get(tester.getProperties().getProperty("chTest")));
 
         } catch (Exception e){
-            e.printStackTrace();
+
 
         }
+
+        if(configLoc == 2){
+            try {
+                Files.deleteIfExists(Paths.get("config.properties"));
+            } catch (Exception e){
+
+            }
+        }
+
 
     }
 

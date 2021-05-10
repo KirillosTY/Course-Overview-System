@@ -49,7 +49,7 @@ public class MainController {
     }
 
     private static void propertiesSetup() {
-        if (!informationHandler.loadProp()) {
+        if (informationHandler.loadProp() == 0) {
             informationHandler.createDefaultProperties();
             informationHandler.loadProp();
         }

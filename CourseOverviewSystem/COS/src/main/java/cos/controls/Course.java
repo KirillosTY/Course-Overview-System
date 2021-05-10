@@ -81,9 +81,7 @@ public class Course extends BasicTask {
         taskList.add(task);
         taskDateUpdater();
         saveNotesWithStamp(task.getNotes(), task.getName());
-        if (MainController.getCourseHandler().getCurrentTask() == null) {
-            MainController.getCourseHandler().setCurrentTask(task);
-        }
+
     }
 
 
