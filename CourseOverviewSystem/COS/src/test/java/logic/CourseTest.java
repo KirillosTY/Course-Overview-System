@@ -1,26 +1,31 @@
 package logic;
 
-import cos.controls.Course;
-import cos.controls.Task;
-import cos.controls.WorkHourCounter;
+import cos.controls.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
 public class CourseTest {
 
+    private CourseHandler testch;
     private Task  testTask;
     private Course testCourse;
     private WorkHourCounter testWHC;
 
     @Before
     public void initialize(){
+
+        testch = new CourseHandler(new ArrayList<>(),"");
         testWHC = new WorkHourCounter();
         testWHC.setStartDate(LocalDateTime.now());
         testWHC.setEndDate(LocalDateTime.now().plusDays(55).plusMinutes(10));
+
         testCourse = new Course(false,testWHC,
                 "test","no need","notes",0,0);
 
@@ -32,6 +37,36 @@ public class CourseTest {
             testTask = new Task(false, testWHC,"task"+i,""+i,"",0);
             testCourse.addTask(testTask);
         }
+        testch.createCourse(testCourse);
+
+    }
+
+    @Test
+    public void taskCreate(){
+        MainController.setCourseHandler(testch);
+        testWHC = new WorkHourCounter();
+        testWHC.setEndDate(LocalDateTime.now().minusDays(1));
+        testWHC.setStartDate(LocalDateTime.now().minusDays(2));
+
+        testCourse .addTask(true, testWHC,"Sauli","Niinistö","eh",1);
+        assertEquals(1, testCourse.getDoneTasks().size());
+
+    }
+
+    @Test
+    public void taskCreateSaveNotes(){
+        MainController.setCourseHandler(testch);
+        testWHC = new WorkHourCounter();
+        testWHC.setEndDate(LocalDateTime.now().minusDays(1));
+        testWHC.setStartDate(LocalDateTime.now().minusDays(2));
+        testTask = new Task(true, testWHC,"Sauli","Niinistö","eh",1);
+        testCourse.setNotes("");
+        testCourse.addTask(testTask);
+        String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
+                FormatStyle.LONG, FormatStyle.MEDIUM));
+
+        assertEquals(time + " " + testTask.getName() + ":\n\n"+testTask.getNotes()+"\n\n\n"
+                , testCourse.getNotes());
 
     }
 

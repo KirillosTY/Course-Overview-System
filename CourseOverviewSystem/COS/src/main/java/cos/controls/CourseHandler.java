@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class CourseHandler implements Serializable {
 
 
-
     private ArrayList<Course> courseList;
 
     private ArrayList<Course> pastCourse;

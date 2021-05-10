@@ -143,7 +143,7 @@ public class BasicTask implements Serializable {
         }
         if (getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now())) {
 
-            return tempN + "... - Completed: " + getWorkHoursSpent().getEndDate().toLocalDate();
+            return tempN + " - Completed: " + getWorkHoursSpent().getEndDate().toLocalDate();
 
         }
         return tempN + " - " + Duration.between(LocalDateTime.now(), this.getWorkHoursSpent().getEndDate()).toHours() + " Hours left";

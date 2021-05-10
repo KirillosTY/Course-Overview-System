@@ -16,6 +16,8 @@ public class WorkHourCounterTest {
     public void initialize(){
 
         whc = new WorkHourCounter();
+
+        whc.setCurrentCount(3660L*100);
     }
 
 
@@ -52,6 +54,10 @@ public class WorkHourCounterTest {
         assertEquals("01:20:27",whc.timeToString());
 
     }
+
+
+
+
 
 
 }

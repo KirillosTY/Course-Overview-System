@@ -17,34 +17,25 @@ public class InformationHandler implements Serializable {
     private String settingsURL;
 
     public InformationHandler() {
-        properties = new Properties();
+        this(new Properties());
+
+    }
+
+    public InformationHandler(Properties propset) {
+        properties = propset;
 
     }
 
 
-    public void loadProperties() {
 
+    public void createDefaultProperties() {
 
-        try {
-            properties = (Properties) fileReaderInput("src/main/resources/config.properties");
-            courseHandlerURL = properties.getProperty("CourseHandler");
-            settingsURL = properties.getProperty("Settings");
-
-        } catch (ClassNotFoundException | IOException e) {
-
-        }
-
-    }
-
-
-    public void createProperties() {
-
-        try (OutputStream outprop = new FileOutputStream("src/main/resources/config.properties")) {
-            properties = new Properties();
-            properties.setProperty("CourseHandler", "src/main/resources/courselist.bin");
-            properties.setProperty("Settings", "src/main/resources/settings.bin");
-            courseHandlerURL = "src/main/resources/courselist.bin";
-            settingsURL = "src/main/resources/settings.bin";
+        try (OutputStream outprop = new FileOutputStream("config.properties")) {
+            properties.setProperty("Propset","true");
+            properties.setProperty("CourseHandler", "courselist.bin");
+            properties.setProperty("Settings", "settings.bin");
+            courseHandlerURL = "courselist.bin";
+            settingsURL = "settings.bin";
             properties.store(outprop, null);
 
         } catch (Exception e) {
@@ -53,22 +44,44 @@ public class InformationHandler implements Serializable {
 
     }
 
+    public void saveProperties() throws IOException{
 
-    public boolean checkForProp() {
+        try (OutputStream outprop = new FileOutputStream("config.properties")) {
 
-        try (FileInputStream propL = new FileInputStream("src/main/resources/config.properties")) {
-            properties.load(propL);
+            properties.store(outprop,null);
 
-            settingsURL = properties.getProperty("Settings");
-            courseHandlerURL = properties.getProperty("CourseHandler");
-
-            return true;
-        } catch (IOException e) {
-            return false;
         }
+    }
+
+
+    public boolean loadProp() {
+
+        try (InputStream propLocation = new FileInputStream("config.properties")) {
+
+            properties.load(propLocation);
+
+        } catch (Exception e){
+
+            try (InputStream propL = InformationHandler.class.getClassLoader().getResourceAsStream("config.properties")) {
+
+                properties.load(propL);
+            }catch (Exception s ){
+            return false;
+            }
+
+        }
+        return true;
 
 
     }
+
+    public void setURLS(String courseH, String settings){
+        settingsURL = properties.getProperty(settings);
+        courseHandlerURL = properties.getProperty(courseH);
+
+
+    }
+
 
     public boolean fileReaderOutput(String fileUrl, Object obj) {
 
@@ -79,7 +92,7 @@ public class InformationHandler implements Serializable {
             oS.writeObject(obj);
             oS.close();
         } catch (IOException e) {
-            e.printStackTrace();
+
 
             return false;
         }
@@ -90,15 +103,19 @@ public class InformationHandler implements Serializable {
     public Object fileReaderInput(String fileUrl) throws IOException, ClassNotFoundException {
 
         BufferedInputStream cR = new BufferedInputStream(new FileInputStream(fileUrl));
+        ObjectInputStream closeMe =new ObjectInputStream(cR);
+        Object sendAway = closeMe.readObject();
+        closeMe.close();
 
-        return new ObjectInputStream(cR).readObject();
+
+        return sendAway;
 
 
     }
 
     public boolean createCourseList() {
 
-
+        properties.setProperty("CHCreated","true");
         CourseHandler cH = new CourseHandler(new ArrayList<Course>(), "Write something");
 
         return fileReaderOutput(courseHandlerURL, cH);
@@ -130,9 +147,10 @@ public class InformationHandler implements Serializable {
 
     public boolean createSettings() {
 
+        properties.setProperty("settingsCreated","true");
         Settings settings = new Settings();
 
-        return fileReaderOutput(settingsURL, settings);
+        return this.saveSettings(settings);
 
 
     }
@@ -147,10 +165,9 @@ public class InformationHandler implements Serializable {
     public Settings loadSettings() {
 
         try {
-            if (fileReaderInput(settingsURL) != null) {
+
                 Settings settings = (Settings) fileReaderInput(settingsURL);
                 return settings;
-            }
 
 
         } catch (ClassNotFoundException | IOException e) {
@@ -160,13 +177,16 @@ public class InformationHandler implements Serializable {
 
         }
 
-        return null;
+
 
     }
 
     public Properties getProperties() {
         return properties;
     }
+
+
+
 
 
 }

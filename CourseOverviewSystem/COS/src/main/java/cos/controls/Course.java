@@ -14,8 +14,6 @@ import java.util.Comparator;
 
 public class Course extends BasicTask {
 
-
-
     private ArrayList<Task> doneTasks;
     private int value;
     private ArrayList<Task> taskList;
@@ -61,6 +59,7 @@ public class Course extends BasicTask {
         Task newTask = new Task(state, wHS, name, des, notes, prio);
         taskList.add(newTask);
         taskDateUpdater();
+        saveNotesWithStamp(notes, name);
         if (MainController.getCourseHandler().getCurrentTask() == null) {
             MainController.getCourseHandler().setCurrentTask(newTask);
         }
@@ -71,7 +70,7 @@ public class Course extends BasicTask {
 
         taskList.add(task);
         taskDateUpdater();
-
+        saveNotesWithStamp(task.getNotes(), task.getName());
     }
 
 
@@ -112,11 +111,11 @@ public class Course extends BasicTask {
 
         for (Task t : taskList) {
 
-            if (t.getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now()) ) {
+            if (t.getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now()) || t.isDone()) {
                 doneTasks.add(t);
             }
         }
-
+        taskList.removeIf(Task::isDone);
         taskList.removeIf(t -> t.getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now()));
         taskListSort();
     }

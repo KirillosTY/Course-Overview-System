@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class WorkHourCounter implements Serializable {
 
-    private long serialVersionUID = 1L;
+
 
     private long seconds = 0;
 
@@ -53,45 +53,19 @@ public class WorkHourCounter implements Serializable {
         return seconds;
     }
 
-    public void setSeconds(long seconds) {
-        this.seconds = seconds;
-
-        if (seconds < 0) {
-            this.seconds = 59;
-
-            setMinutes(getMinutes() - 1);
-        }
-
-    }
 
     public long getMinutes() {
         return minutes;
 
     }
 
-    public void setMinutes(long minutes) {
-        this.minutes = minutes;
 
-        if (minutes < 0) {
-            this.minutes = 59;
-            setHours(getHours() - 1);
-        }
-
-
-    }
 
     public long getHours() {
         return hours;
     }
 
-    public void setHours(long hours) {
-        this.hours = hours;
 
-        if (hours < 0) {
-            this.hours = 23;
-            setDays(getDays() - 1);
-        }
-    }
 
     public long getDays() {
         return days;

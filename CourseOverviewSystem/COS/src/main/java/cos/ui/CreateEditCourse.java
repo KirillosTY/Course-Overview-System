@@ -57,8 +57,10 @@ public class CreateEditCourse {
 
         dateStart.setValue(LocalDate.now());
         dateEnd.setValue(LocalDate.now().plusDays(56));
-        textFNumSetup(startH,startM);
-        textFNumSetup(endH,endM);
+        textFNumSetupHour(startH);
+        textFNumSetupMin(startM);
+        textFNumSetupHour(endH);
+        textFNumSetupMin(endM);
 
         notes.wrapTextProperty().setValue(true);
 
@@ -68,7 +70,7 @@ public class CreateEditCourse {
     }
 
     @FXML
-    public void textFNumSetup(TextField setH, TextField setM){
+    public void textFNumSetupHour(TextField setH) {
         setH.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s,
@@ -77,12 +79,16 @@ public class CreateEditCourse {
                     if (!input.matches("\\d*")) {
                         setH.setText(input.replaceAll("[^\\d]", ""));
                     }
-                    if(input.length() > 2){
-                        setH.setText(input.replaceAll("[^\\d]", "").substring(0,2));
+                    if (input.length() > 2) {
+                        setH.setText(input.replaceAll("[^\\d]", "").substring(0, 2));
                     }
                 }
             }
         });
+    }
+
+    @FXML
+    public void textFNumSetupMin(TextField setM){
 
         setM.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -101,7 +107,9 @@ public class CreateEditCourse {
 
     }
 
-    @FXML
+
+
+        @FXML
     public void editDefault() {
 
         dateStart.setValue(course.getWorkHoursSpent().getStartDate().toLocalDate());

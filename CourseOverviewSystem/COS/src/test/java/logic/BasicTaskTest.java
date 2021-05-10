@@ -42,7 +42,7 @@ public class BasicTaskTest {
     public void stringReturn(){
 
 
-        assertEquals("Why - Hours left: 168",tester.toString());
+        assertEquals("Why - 168 Hours left",tester.toString());
 
     }
 
@@ -51,7 +51,25 @@ public class BasicTaskTest {
 
         tester.setName("OHJELMISTOT");
 
-        assertEquals("OHJELMISTO... - Hours left: 168",tester.toString());
+        assertEquals("OHJELMISTO... - 168 Hours left",tester.toString());
     }
 
+    @Test
+    public void isCompletedString(){
+
+        tester.getWorkHoursSpent().setEndDate(LocalDateTime.now().minusDays(2));
+        tester.setName("Ohje");
+
+        assertEquals("Ohje - Completed: " + LocalDateTime.now().minusDays(2).toLocalDate(),tester.toString());
+    }
+
+
+    @Test
+    public void isCompletedStringLong(){
+
+        tester.getWorkHoursSpent().setEndDate(LocalDateTime.now().minusDays(2));
+        tester.setName("Ohjelmistote");
+
+        assertEquals("Ohjelmisto... - Completed: " + LocalDateTime.now().minusDays(2).toLocalDate(),tester.toString());
+    }
 }

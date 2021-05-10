@@ -19,29 +19,41 @@ public class MainController {
 
 
         informationHandler = new InformationHandler();
-
-        if (!informationHandler.checkForProp()) {
-            System.out.println("käydään");
-            informationHandler.createProperties();
-            System.out.println(informationHandler.getProperties().get("CourseHandler"));
-            System.out.println(informationHandler.createCourseList());
-            System.out.println(informationHandler.createSettings());
-
-        } else {
-            informationHandler.loadProperties();
-        }
+        propertiesSetup();
         courseHandler = informationHandler.courseLoader();
         settings = informationHandler.loadSettings();
+        try {
+            if (!(courseHandler.getCourseList().isEmpty() && courseHandler.getUpcomingCourse().isEmpty())) {
+                courseHandler.courseDateUpdater();
+            }
 
-        if (!(courseHandler.getCourseList().isEmpty() && courseHandler.getUpcomingCourse().isEmpty())) {
-            courseHandler.courseDateUpdater();
+            launch(UiMainStart.class);
+        } catch (Exception e){
+            launch(UiMainStart.class);
+
         }
 
-        launch(UiMainStart.class);
 
 
     }
 
+    private static void propertiesSetup(){
+        if(!informationHandler.loadProp()){
+            informationHandler.createDefaultProperties();
+            informationHandler.createSettings();
+            informationHandler.createCourseList();
+        }
+        informationHandler.setURLS("CourseHandler","Settings");
+        if(!informationHandler.getProperties().containsKey("CHCreated")){
+            informationHandler.createCourseList();
+        }
+
+        if(!informationHandler.getProperties().containsKey("settingsCreated")){
+            informationHandler.createSettings();
+        }
+
+
+    }
     public static InformationHandler getInformationHandler() {
         return informationHandler;
     }
@@ -64,5 +76,9 @@ public class MainController {
 
         popupText = pops;
 
+    }
+
+    public static void setCourseHandler(CourseHandler ch){
+        courseHandler = ch;
     }
 }

@@ -76,7 +76,7 @@ public class UiMainStart extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("UiMain.fxml"));
 
-            Scene scene = new Scene(root, 270, 590);
+            Scene scene = new Scene(root, 270, 625);
 
             stage.setTitle("Course Overview System");
             stage.setScene(scene);
@@ -85,7 +85,7 @@ public class UiMainStart extends Application {
             stage.setUserData(closingStages);
             stageControls.add(stage);
             stage.setOnHidden(save -> {
-                MainController.getInformationHandler().createProperties();
+
                 MainController.getInformationHandler().saveCourseHandler(
                         MainController.getCourseHandler());
                 MainController.getInformationHandler().saveSettings(MainController.getSettings());
@@ -96,9 +96,10 @@ public class UiMainStart extends Application {
 
 
             stage.show();
-        } catch (IOException e) {
+        } catch (Exception e) {
 
-            popupText("Main ","Please restart the application.");
+            popupText(" Loading files and main Window ","" +
+                    "loaded coursehandler/settings.bin does not match the version of this program. Check files, remove config if necessary(Will also wipe out data).");
         }
 
     }
@@ -114,12 +115,16 @@ public class UiMainStart extends Application {
     @FXML
     public static void popupText(String windowName, String errorMSG) {
 
+        try {
 
-        Alert error = new Alert(Alert.AlertType.WARNING);
+            Alert error = new Alert(Alert.AlertType.WARNING);
+            error.setTitle("Error" + windowName);
+            error.setHeaderText(errorMSG);
+            error.setWidth(200);
+            error.showAndWait();
+        } catch (Exception e){
 
-        error.setTitle("Error"+windowName);
-        error.setHeaderText(errorMSG);
-        error.showAndWait();
+        }
     }
 
 

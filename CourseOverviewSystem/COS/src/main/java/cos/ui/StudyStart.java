@@ -83,7 +83,6 @@ public class StudyStart {
     }
 
     public void defaultStart() {
-        count.setSeconds(5);
         count.setCurrentCount(settings.getStudyWorkH()*3600L+settings.getStudyWorkM()*60+5);
         count.setCycle(settings.getStudyCycle());
 
@@ -146,24 +145,21 @@ public class StudyStart {
 
 
     public void startAnimation(WorkHourCounter tempCount) {
+        final LocalDateTime startTime = LocalDateTime.now().plusSeconds(tempCount.getCurrentCount());
 
         counter = new AnimationTimer() {
 
-            final LocalDateTime startTime = LocalDateTime.now().plusSeconds(tempCount.getCurrentCount());
-
-            Long countdown = 0L;
             Long startCounter = 0L;
 
             @Override
             public void handle(long currentTime) {
 
                 if (currentTime - startCounter >= 1_000_000_000) {
-                    countdown++;
-                    countOverall.setCurrentCount(countOverall.getCurrentCount() + 1);
                     startCounter = currentTime;
-                    updatetingStatus(tempCount, countdown);
+                    updatetingStatus(tempCount);
                     clockUpdate(tempCount);
-                    tempCount.setSeconds(tempCount.getSeconds() - 1);
+                    tempCount.setCurrentCount(tempCount.getCurrentCount() - 1);
+
                 }
 
 
@@ -220,20 +216,19 @@ public class StudyStart {
             tempCount.setCurrentCount(settings.getStudyWorkH()*3600L
                     +settings.getStudyWorkM()*60+5);
 
-
             working = true;
         }
 
 
     }
 
-    public void updatetingStatus(WorkHourCounter tempCount, Long countdown) {
+    public void updatetingStatus(WorkHourCounter tempCount) {
 
         CT.setText("Current time: " + LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm")));
         cycles.setText("Cycles left: " + tempCount.getCycle());
 
         if (working) {
-            countOverall.setCurrentCount(countOverall.getCurrentCount());
+            countOverall.setCurrentCount(countOverall.getCurrentCount()+1);
             WTOverall.setText("You have worked for " + countOverall.getDays()+ " days " + countOverall.getHours()+" hours "
                     +  countOverall.getMinutes() + " minutes.");
         }
