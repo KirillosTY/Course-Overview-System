@@ -95,5 +95,4 @@ Once open it will automatically start timer on the task, counting all of the sec
 ![studyingtimer](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/BasicUIStart.png)
 
 
-## 5. This button will closes all windows and save all list as they are.
 
