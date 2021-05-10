@@ -83,13 +83,13 @@ public class StudyStart {
     }
 
     public void defaultStart() {
-        count.setCurrentCount(settings.getStudyWorkH()*3600L+settings.getStudyWorkM()*60+5);
+        count.setCurrentCount(settings.getStudyWorkH() * 3600L + settings.getStudyWorkM() * 60 + 5);
         count.setCycle(settings.getStudyCycle());
 
         Task task = MainController.getCourseHandler().getCurrentTask();
-        currentTask.setText("Current task: " + task.getName()+ " - "+task.getDescription()+ " - "
+        currentTask.setText("Current task: " + task.getName() + " - " + task.getDescription() + " - "
                 + Duration.between(LocalDateTime.now(), task.getWorkHoursSpent().getEndDate()).toHours()
-                +" Hours left");
+                + " Hours left");
         msg.setText("\n\n\n" + MainController.getCourseHandler().getCurrentTask().getNotes());
         Platform.runLater(new Runnable() {
             @Override
@@ -136,10 +136,10 @@ public class StudyStart {
     }
 
     public void saveNotes() {
-        if(msg.getText().length() > 2){
-        MainController.getCourseHandler().getCurrentTask().saveNotesWithStamp(msg.getText());
-        MainController.getCourseHandler().getCurrent().saveNotesWithStamp(msg.getText(),
-                MainController.getCourseHandler().getCurrentTask().toString());
+        if (msg.getText().length() > 2) {
+            MainController.getCourseHandler().getCurrentTask().saveNotesWithStamp(msg.getText());
+            MainController.getCourseHandler().getCurrent().saveNotesWithStamp(msg.getText(),
+                    MainController.getCourseHandler().getCurrentTask().toString());
         }
     }
 
@@ -188,12 +188,12 @@ public class StudyStart {
 
         if (working) {
 
-            WTLeft.setText(tempCount.timeToString()+" left for break");
+            WTLeft.setText(tempCount.timeToString() + " left for break");
 
 
         } else {
 
-            WTLeft.setText(tempCount.timeToString()+" left for work");
+            WTLeft.setText(tempCount.timeToString() + " left for work");
         }
     }
 
@@ -204,8 +204,8 @@ public class StudyStart {
 
             tempCount.setCycle(tempCount.getCycle() - 1);
 
-            count.setCurrentCount(settings.getStudyBreakH()*3600L
-                    +settings.getStudyBreakM()*60+5);
+            count.setCurrentCount(settings.getStudyBreakH() * 3600L
+                    + settings.getStudyBreakM() * 60 + 5);
 
             working = false;
 
@@ -213,8 +213,8 @@ public class StudyStart {
 
             saveNotes();
 
-            tempCount.setCurrentCount(settings.getStudyWorkH()*3600L
-                    +settings.getStudyWorkM()*60+5);
+            tempCount.setCurrentCount(settings.getStudyWorkH() * 3600L
+                    + settings.getStudyWorkM() * 60 + 5);
 
             working = true;
         }
@@ -228,9 +228,9 @@ public class StudyStart {
         cycles.setText("Cycles left: " + tempCount.getCycle());
 
         if (working) {
-            countOverall.setCurrentCount(countOverall.getCurrentCount()+1);
-            WTOverall.setText("You have worked for " + countOverall.getDays()+ " days " + countOverall.getHours()+" hours "
-                    +  countOverall.getMinutes() + " minutes.");
+            countOverall.setCurrentCount(countOverall.getCurrentCount() + 1);
+            WTOverall.setText("You have worked for " + countOverall.getDays() + " days " + countOverall.getHours() + " hours "
+                    + countOverall.getMinutes() + " minutes.");
         }
 
     }

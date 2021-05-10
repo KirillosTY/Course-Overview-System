@@ -1,7 +1,12 @@
 package cos.controls;
 
-public class Task extends BasicTask {
 
+/**
+ * this class contains all the basic of course tasks, and all future implementations will be made here.
+ *
+ */
+
+public class Task extends BasicTask {
 
 
 

@@ -30,7 +30,7 @@ public class UiMainStart extends Application {
     }
 
     @FXML
-    public static Stage viewChanger(String resource, String windowName, boolean load)  {
+    public static Stage viewChanger(String resource, String windowName, boolean load) {
 
         try {
 
@@ -53,7 +53,7 @@ public class UiMainStart extends Application {
             return created;
 
         } catch (IOException e) {
-            popupText(windowName,"Please restart the application. This is most likely an user error, has to be." +
+            popupText(windowName, "Please restart the application. This is most likely an user error, has to be." +
                     "please say it is a user error");
             return null;
         }
@@ -67,6 +67,21 @@ public class UiMainStart extends Application {
             loadNeeded.add(created);
         });
 
+    }
+
+    @FXML
+    public static void popupText(String windowName, String errorMSG) {
+
+        try {
+
+            Alert error = new Alert(Alert.AlertType.WARNING);
+            error.setTitle("Error" + windowName);
+            error.setHeaderText(errorMSG);
+            error.setWidth(200);
+            error.showAndWait();
+        } catch (Exception e) {
+
+        }
     }
 
     @Override
@@ -98,7 +113,7 @@ public class UiMainStart extends Application {
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
-            popupText(" Loading files and main Window ","" +
+            popupText(" Loading files and main Window ", "" +
                     "loaded coursehandler/settings.bin does not match the version of this program. Check files, remove config if necessary(Will also wipe out data).");
         }
 
@@ -110,21 +125,6 @@ public class UiMainStart extends Application {
 
         stageControls = new ArrayList<>();
 
-    }
-
-    @FXML
-    public static void popupText(String windowName, String errorMSG) {
-
-        try {
-
-            Alert error = new Alert(Alert.AlertType.WARNING);
-            error.setTitle("Error" + windowName);
-            error.setHeaderText(errorMSG);
-            error.setWidth(200);
-            error.showAndWait();
-        } catch (Exception e){
-
-        }
     }
 
 

@@ -14,20 +14,20 @@ import java.util.Comparator;
 
 public class Course extends BasicTask {
 
-    private ArrayList<Task> doneTasks;
+    private final ArrayList<Task> doneTasks;
     private int value;
     private ArrayList<Task> taskList;
 
     /**
      * Creates a course object.
      *
-     * @param state Marks the course as done or undone.
-     * @param wHS WorkHourCounter object
-     * @param name name of the object
+     * @param state       Marks the course as done or undone.
+     * @param wHS         WorkHourCounter object
+     * @param name        name of the object
      * @param description Description of the object
-     * @param notes Notes of the object
-     * @param priority Value of priority.
-     * @param value Value of the course.
+     * @param notes       Notes of the object
+     * @param priority    Value of priority.
+     * @param value       Value of the course.
      */
 
 
@@ -48,11 +48,11 @@ public class Course extends BasicTask {
      * Creates a task object. Updates the dates on all the tasks as this is done and sets a current task to the CourseHandler if null.
      *
      * @param state Marks the tasks as done or undone.
-     * @param wHS WorkHourCounter object
-     * @param name name of the object
-     * @param des Description of the object
+     * @param wHS   WorkHourCounter object
+     * @param name  name of the object
+     * @param des   Description of the object
      * @param notes Notes of the object
-     * @param prio Value of priority.
+     * @param prio  Value of priority.
      */
 
     public void addTask(boolean state, WorkHourCounter wHS, String name, String des, String notes, Integer prio) {
@@ -66,11 +66,24 @@ public class Course extends BasicTask {
 
     }
 
+    /**
+     * adds a task object to the tasklist then updates through taskDateUpdater() method.
+     * and saves notes to this course through saveNotesWithSTamp method.
+     *
+     * @see Course#saveNotesWithStamp(String, String)
+     * @see Course#taskDateUpdater()
+     *
+     * @param task task object
+     */
+
     public void addTask(Task task) {
 
         taskList.add(task);
         taskDateUpdater();
         saveNotesWithStamp(task.getNotes(), task.getName());
+        if (MainController.getCourseHandler().getCurrentTask() == null) {
+            MainController.getCourseHandler().setCurrentTask(task);
+        }
     }
 
 
@@ -91,6 +104,12 @@ public class Course extends BasicTask {
         this.value = value;
     }
 
+    /**
+     * adds the notes as a note to this objects current notes with the nameOfNote as a stamp.
+     *
+     * @param notes notes written in the task
+     * @param nameOfNote name of the task object
+     */
 
     public void saveNotesWithStamp(String notes, String nameOfNote) {
 
@@ -107,6 +126,16 @@ public class Course extends BasicTask {
 
     }
 
+    /**
+     * Updates tasks based on the end on the WorkHourCounter.
+     * if end date is past current time it is  moved to the doneTasks list.
+     * afterwards it will call taskListSort() to sort them.
+     *
+     * @see WorkHourCounter#getEndDate()
+     *
+     *
+     */
+
     public void taskDateUpdater() {
 
         for (Task t : taskList) {
@@ -120,6 +149,11 @@ public class Course extends BasicTask {
         taskListSort();
     }
 
+    /**
+     * Sorts tasks first by end date and secondly by starting date.
+     *
+     */
+
     public void taskListSort() {
 
         taskList.sort(Comparator.comparing((t1) -> t1.getWorkHoursSpent().getStartDate()));
@@ -127,6 +161,14 @@ public class Course extends BasicTask {
 
 
     }
+
+    /**
+     * If given parameter is found on this objects tasklist it is moved to the doneTasks list and its end date set
+     * for current time.
+     *
+     * @param task task object
+     * @return returns true or false based on successful action.
+     */
 
     public boolean markTaskDone(Task task) {
 
@@ -140,6 +182,11 @@ public class Course extends BasicTask {
         }
     }
 
+    /**
+     * removes given parameter from the tasklist.
+     * @param task Task object
+     * @return returns true or false based on successful action.
+     */
 
     public boolean removeTask(Task task) {
 
@@ -151,6 +198,12 @@ public class Course extends BasicTask {
         return doneTasks;
     }
 
+    /**
+     * Returns a string representation of the objects name and  days left to deadline.
+     *
+     *
+     * @return name and current state of time on the object.
+     */
 
     @Override
     public String toString() {

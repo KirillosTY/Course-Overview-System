@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 /**
  * This class handles all the courses of this application.
- *
  */
 
 public class CourseHandler implements Serializable {
@@ -38,14 +37,13 @@ public class CourseHandler implements Serializable {
     /**
      * Creates a course on the given parameters and then passes the course to method courselistDecider.
      *
-     *
-     * @param state Marks the course as done or undone.
-     * @param wHS WorkHourCounter object
-     * @param name name of the object
+     * @param state       Marks the course as done or undone.
+     * @param wHS         WorkHourCounter object
+     * @param name        name of the object
      * @param description Description of the object
-     * @param notes Notes of the object
-     * @param priority Value of priority.
-     * @param value Value of the course.
+     * @param notes       Notes of the object
+     * @param priority    Value of priority.
+     * @param value       Value of the course.
      */
 
     public void createCourse(boolean state, WorkHourCounter wHS, String name, String description
@@ -60,7 +58,6 @@ public class CourseHandler implements Serializable {
 
     /**
      * Updates Upcoming and current courselist by start and end dates using the courseListDecider method.
-     *
      */
 
     public void courseDateUpdater() {
@@ -74,7 +71,6 @@ public class CourseHandler implements Serializable {
      * Assigns the given parameter to the right list based on start and end date.
      *
      * @param c Course to be evaluated.
-     *
      * @return number represents list that the course got moved to.
      */
 
@@ -102,6 +98,15 @@ public class CourseHandler implements Serializable {
         }
 
     }
+
+    /**
+     * Adds thee given parameter to the courseList, then passes it to courseListDecider().
+     *
+     * @param c  Course to be added and evaluated.
+     *
+     */
+
+
 
     public void createCourse(Course c) {
 
@@ -138,6 +143,15 @@ public class CourseHandler implements Serializable {
         return null;
 
     }
+
+    /**
+     * Checks on which list the course is the marks the course as done and moves it the pastCourse list
+     * Or if parameter delete is true, then it just removes the course from the given list.
+     *
+     * @param c course to be checked and, marked or deleted.
+     * @param delete defines if course will be deleted.
+     * @return returns true or false based on finding the course.
+     */
 
 
     public boolean markCourseAsDone(Course c, boolean delete) {

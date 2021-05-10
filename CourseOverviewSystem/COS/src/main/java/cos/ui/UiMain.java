@@ -48,13 +48,13 @@ public class UiMain {
     @FXML
     private Label text;
     @FXML
-    private Stage mainStage,currentStage;
+    private Stage mainStage, currentStage;
     @FXML
     private ListView<Task> tasklist;
     @FXML
     private Button startTime;
     @FXML
-    private Button editCourse,editTask,addC, addT;;
+    private Button editCourse, editTask, addC, addT;
     @FXML
     private CheckBox doneCourse, doneTask;
 

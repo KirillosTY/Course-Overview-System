@@ -17,7 +17,6 @@ public class Settings implements Serializable {
 
     private int studyCycle = 7;
 
-    private String studyMsg = "Add a motivational message";
 
     private boolean studyShowT = false;
 
@@ -69,14 +68,6 @@ public class Settings implements Serializable {
 
     public void setStudyBreakM(int studyBreakM) {
         this.studyBreakM = studyBreakM;
-    }
-
-    public String getStudyMsg() {
-        return studyMsg;
-    }
-
-    public void setStudyMsg(String studyMsg) {
-        this.studyMsg = studyMsg;
     }
 
     public boolean isStudyShowT() {

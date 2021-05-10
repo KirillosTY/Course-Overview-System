@@ -40,7 +40,7 @@ public class StudySettings {
 
 
     @FXML
-    public void textNumSetCycle(){
+    public void textNumSetCycle() {
         cycle.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s,
@@ -73,15 +73,15 @@ public class StudySettings {
     }
 
     @FXML
-    public void textFNumSetupMin(TextField setM){
+    public void textFNumSetupMin(TextField setM) {
 
         setM.textProperty().addListener((observableValue, s, input) -> {
             if (!input.isEmpty()) {
                 if (!input.matches("\\d*")) {
                     setM.setText(input.replaceAll("[^\\d]", ""));
                 }
-                if(input.length() > 2){
-                    setM.setText(input.replaceAll("[^\\d]", "").substring(0,2));
+                if (input.length() > 2) {
+                    setM.setText(input.replaceAll("[^\\d]", "").substring(0, 2));
                 }
             }
         });
@@ -113,47 +113,47 @@ public class StudySettings {
 
     }
 
-    public void isAcceptableSet(){
+    public void isAcceptableSet() {
 
-        if(workTH.getText().isEmpty()){
+        if (workTH.getText().isEmpty()) {
             workTH.setText("00");
 
         }
-        if(workTM.getText().isEmpty()){
+        if (workTM.getText().isEmpty()) {
             workTM.setText("45");
         }
-        if(breakTH.getText().isEmpty()){
+        if (breakTH.getText().isEmpty()) {
             breakTH.setText("00");
         }
-        if(breakTM.getText().isEmpty()){
+        if (breakTM.getText().isEmpty()) {
             breakTM.setText("15");
         }
-        if(cycle.getText().isEmpty()){
+        if (cycle.getText().isEmpty()) {
             cycle.setText("7");
         }
 
     }
 
-    public boolean checkWithinParameters(){
+    public boolean checkWithinParameters() {
 
         boolean check = true;
-        if(Integer.parseInt(workTH.getText()) > 23){
+        if (Integer.parseInt(workTH.getText()) > 23) {
             workTH.setText("23");
             check = false;
         }
 
-        if(Integer.parseInt(breakTH.getText()) > 23){
+        if (Integer.parseInt(breakTH.getText()) > 23) {
             breakTH.setText("23");
             check = false;
         }
 
 
-        if(Integer.parseInt(workTM.getText()) > 59){
+        if (Integer.parseInt(workTM.getText()) > 59) {
             workTM.setText("59");
             check = false;
         }
 
-        if(Integer.parseInt(breakTM.getText()) > 59){
+        if (Integer.parseInt(breakTM.getText()) > 59) {
             breakTM.setText("59");
             check = false;
         }

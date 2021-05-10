@@ -25,9 +25,9 @@ public class EditCourseAll {
     @FXML
     private ListView<Task> taskSelector;
     @FXML
-    private Button editC, addC, editT,addT;
+    private Button editC, addC, editT, addT;
     @FXML
-    private TextArea courseNotes,taskNotes;
+    private TextArea courseNotes, taskNotes;
     @FXML
     private String upcoming, current, past;
 
@@ -245,7 +245,7 @@ public class EditCourseAll {
                 editStage.showAndWait();
             }
         } catch (Exception ECAec) {
-            UiMainStart.popupText("Creating and editing courses" ,"Something went wrong opening this the timer window, please restart the application");
+            UiMainStart.popupText("Creating and editing courses", "Something went wrong opening this the timer window, please restart the application");
         }
     }
 
@@ -273,7 +273,7 @@ public class EditCourseAll {
                 editStage.showAndWait();
             }
         } catch (Exception ECAec) {
-            UiMainStart.popupText("Creating and editing tasks" ,"Something went wrong opening this the timer window, please restart the application");
+            UiMainStart.popupText("Creating and editing tasks", "Something went wrong opening this the timer window, please restart the application");
         }
     }
 

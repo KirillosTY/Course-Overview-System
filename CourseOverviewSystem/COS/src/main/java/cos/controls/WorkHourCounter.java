@@ -7,11 +7,9 @@ import java.util.Objects;
 /**
  * This class holds the start and dates of basic task in @LOCALDATETIME format.
  * It also implements various of ways of getting @Long values to time based strings.
- *
  */
 
 public class WorkHourCounter implements Serializable {
-
 
 
     private long seconds = 0;
@@ -60,11 +58,9 @@ public class WorkHourCounter implements Serializable {
     }
 
 
-
     public long getHours() {
         return hours;
     }
-
 
 
     public long getDays() {
@@ -85,6 +81,7 @@ public class WorkHourCounter implements Serializable {
 
     /**
      * Retuns the current count of this object as seconds.
+     *
      * @return overall seconds passed.
      */
 
@@ -92,6 +89,12 @@ public class WorkHourCounter implements Serializable {
     public Long getCurrentCount() {
         return currentCount;
     }
+
+    /**
+     * Takes the given parameter as a seconds and converts it to seconds, minutes, hours and days.
+     *
+     * @param currentCount Long as seconds
+     */
 
     public void setCurrentCount(Long currentCount) {
         this.currentCount = currentCount;
@@ -135,9 +138,9 @@ public class WorkHourCounter implements Serializable {
      */
 
 
-
     /**
      * Returns the current time of the object in a string format of "HH:MM:SS".
+     *
      * @return time as string
      */
 

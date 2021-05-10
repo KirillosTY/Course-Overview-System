@@ -44,7 +44,6 @@ public class CreateEditCourse {
     private Button save, remove;
 
 
-
     private Course course;
 
 
@@ -88,7 +87,7 @@ public class CreateEditCourse {
     }
 
     @FXML
-    public void textFNumSetupMin(TextField setM){
+    public void textFNumSetupMin(TextField setM) {
 
         setM.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -98,8 +97,8 @@ public class CreateEditCourse {
                     if (!input.matches("\\d*")) {
                         setM.setText(input.replaceAll("[^\\d]", ""));
                     }
-                    if(input.length() > 2){
-                        setM.setText(input.replaceAll("[^\\d]", "").substring(0,2));
+                    if (input.length() > 2) {
+                        setM.setText(input.replaceAll("[^\\d]", "").substring(0, 2));
                     }
                 }
             }
@@ -108,8 +107,7 @@ public class CreateEditCourse {
     }
 
 
-
-        @FXML
+    @FXML
     public void editDefault() {
 
         dateStart.setValue(course.getWorkHoursSpent().getStartDate().toLocalDate());
@@ -127,11 +125,10 @@ public class CreateEditCourse {
         value.setText(course.getValue() + "");
 
         remove.setText("Remove");
-        remove.setOnAction(cancel ->{
+        remove.setOnAction(cancel -> {
             remove();
         });
     }
-
 
 
     @FXML
@@ -175,11 +172,11 @@ public class CreateEditCourse {
         return true;
     }
 
-    private void numberChecker(TextField timeH,TextField timeM){
-        if(Integer.parseInt(timeH.getText()) > 23){
+    private void numberChecker(TextField timeH, TextField timeM) {
+        if (Integer.parseInt(timeH.getText()) > 23) {
             timeH.setText("23");
         }
-        if(Integer.parseInt(timeM.getText()) > 59){
+        if (Integer.parseInt(timeM.getText()) > 59) {
             timeM.setText("59");
         }
     }
@@ -201,9 +198,9 @@ public class CreateEditCourse {
         close();
     }
 
-    public void checkTimes(){
+    public void checkTimes() {
         numberChecker(startH, startM);
-        numberChecker(endH,endM);
+        numberChecker(endH, endM);
     }
 
     public WorkHourCounter setupWHC() {

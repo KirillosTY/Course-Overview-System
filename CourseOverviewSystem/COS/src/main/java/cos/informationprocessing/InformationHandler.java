@@ -8,9 +8,13 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
 
+/**
+ *
+ * this class is responsible for handling information loading and saving.
+ */
 public class InformationHandler implements Serializable {
 
-    private Properties properties;
+    private final Properties properties;
 
     private String courseHandlerURL;
 
@@ -26,6 +30,10 @@ public class InformationHandler implements Serializable {
 
     }
 
+    /**
+     * Creates default properties to the location the application is run from.
+     *
+     */
 
 
     public void createDefaultProperties() {
@@ -44,14 +52,26 @@ public class InformationHandler implements Serializable {
 
     }
 
-    public void saveProperties() throws IOException{
+    /**
+     * saves current state of properties
+     *
+     * @throws IOException Exception is thrown if writing has been unsuccessful
+     */
+
+    public void saveProperties() throws IOException {
 
         try (OutputStream outprop = new FileOutputStream("config.properties")) {
 
-            properties.store(outprop,null);
+            properties.store(outprop, null);
 
         }
     }
+
+    /**
+     * Loads the properties first from the file location, secondly loads the default properties set at the application resources
+     *
+     * @return returns true if loading was successful, else false.
+     */
 
 
     public boolean loadProp() {
@@ -59,15 +79,15 @@ public class InformationHandler implements Serializable {
         try (InputStream propLocation = new FileInputStream("config.properties")) {
 
             properties.load(propLocation);
-            setURLS("CourseHandler","Settings");
+            setURLS("CourseHandler", "Settings");
 
-        } catch (Exception e){
+        } catch (Exception e) {
 
             try (InputStream propL = InformationHandler.class.getClassLoader().getResourceAsStream("config.properties")) {
 
                 properties.load(propL);
-                setURLS("CourseHandler","Settings");
-            }catch (Exception s ){
+                setURLS("CourseHandler", "Settings");
+            } catch (Exception s) {
                 return false;
             }
 
@@ -77,12 +97,27 @@ public class InformationHandler implements Serializable {
 
     }
 
-    public void setURLS(String courseH, String settings){
+    /**
+     * sets the location for the given parameters
+     *
+     * @param courseH Location of courselist.bin
+     * @param settings Location of settings.bin
+     */
+
+    public void setURLS(String courseH, String settings) {
         settingsURL = properties.getProperty(settings);
         courseHandlerURL = properties.getProperty(courseH);
 
 
     }
+
+
+    /**
+     * Writes the given on object to disk with the name of the given parameter.
+     * @param fileUrl Location and name of the object.
+     * @param obj  CourseHandler or Settings object.
+     * @return returns true or false based on successful implementation
+     */
 
 
     public boolean fileReaderOutput(String fileUrl, Object obj) {
@@ -102,10 +137,18 @@ public class InformationHandler implements Serializable {
         return true;
     }
 
+    /**
+     * Loads an object based on the given url.
+     * @param fileUrl Location of file and name of the file.
+     * @return returns an object.
+     * @throws IOException if  loading is successful it will throw this exception.
+     * @throws ClassNotFoundException if the loaded file is not an object it will throw this exception
+     */
+
     public Object fileReaderInput(String fileUrl) throws IOException, ClassNotFoundException {
 
         BufferedInputStream cR = new BufferedInputStream(new FileInputStream(fileUrl));
-        ObjectInputStream closeMe =new ObjectInputStream(cR);
+        ObjectInputStream closeMe = new ObjectInputStream(cR);
         Object sendAway = closeMe.readObject();
         closeMe.close();
 
@@ -115,6 +158,11 @@ public class InformationHandler implements Serializable {
 
     }
 
+    /***
+     * Creates a new CourseHandler objects and writes to disk as file.
+     * @return returns true or false based on success
+     */
+
     public boolean createCourseList() {
 
 
@@ -123,6 +171,13 @@ public class InformationHandler implements Serializable {
         return fileReaderOutput(courseHandlerURL, cH);
 
     }
+    /***
+     * saves given CourseHandler object and writes to disk as file.
+     *
+     * @param courseHandler CourseHandler object
+     * @return returns true or false based on success
+     *
+     */
 
     public boolean saveCourseHandler(CourseHandler courseHandler) {
 
@@ -130,6 +185,14 @@ public class InformationHandler implements Serializable {
 
 
     }
+    /***
+     * Loads a CourseHandler object from the location set through properties
+     *
+     * @see InformationHandler#setURLS(String, String)
+     * @see InformationHandler#courseHandlerURL
+     *
+     * @return returns true or false based on success
+     */
 
     public CourseHandler courseLoader() {
 
@@ -146,6 +209,11 @@ public class InformationHandler implements Serializable {
         return null;
     }
 
+    /***
+     * Creates a new settings objects and writes to disk as file.
+     * @return returns true or false based on success
+     */
+
 
     public boolean createSettings() {
 
@@ -156,6 +224,14 @@ public class InformationHandler implements Serializable {
 
     }
 
+    /***
+     * saves given Settings object and writes to disk as file.
+     *
+     * @param saveSetting Settings object
+     * @return returns true or false based on success
+     *
+     */
+
     public boolean saveSettings(Settings saveSetting) {
 
         return fileReaderOutput(settingsURL, saveSetting);
@@ -163,12 +239,21 @@ public class InformationHandler implements Serializable {
 
     }
 
+    /***
+     * Loads a Settings object from the location set through properties
+     *
+     * @see InformationHandler#setURLS(String, String)
+     * @see InformationHandler#settingsURL
+     *
+     * @return returns true or false based on success
+     */
+
     public Settings loadSettings() {
 
         try {
 
-                Settings settings = (Settings) fileReaderInput(settingsURL);
-                return settings;
+            Settings settings = (Settings) fileReaderInput(settingsURL);
+            return settings;
 
 
         } catch (ClassNotFoundException | IOException e) {
@@ -179,15 +264,11 @@ public class InformationHandler implements Serializable {
         }
 
 
-
     }
 
     public Properties getProperties() {
         return properties;
     }
-
-
-
 
 
 }

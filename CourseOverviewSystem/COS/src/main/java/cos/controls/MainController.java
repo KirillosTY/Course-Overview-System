@@ -5,6 +5,10 @@ import cos.ui.UiMainStart;
 
 import static javafx.application.Application.launch;
 
+/**
+ * This class starts the application by loading necessary file using the InformationHandler class.
+ */
+
 public class MainController {
 
     private static InformationHandler informationHandler;
@@ -18,16 +22,7 @@ public class MainController {
     public static void main(String[] args) {
         informationHandler = new InformationHandler();
         propertiesSetup();
-
-        if(informationHandler.loadSettings() == null){
-            informationHandler.createSettings();
-           settings = informationHandler.loadSettings();
-        }
-
-        if(informationHandler.courseLoader() == null){
-            informationHandler.createCourseList();
-
-        }
+        courSettCreateIfNull();
         settings = informationHandler.loadSettings();
         courseHandler = informationHandler.courseLoader();
         try {
@@ -36,23 +31,32 @@ public class MainController {
             }
 
             launch(UiMainStart.class);
-        } catch (Exception e){
+        } catch (Exception e) {
             launch(UiMainStart.class);
 
         }
-
-
-
     }
 
-    private static void propertiesSetup(){
-        if(!informationHandler.loadProp()){
+    private static void courSettCreateIfNull() {
+        if (informationHandler.loadSettings() == null) {
+            informationHandler.createSettings();
+        }
+
+        if (informationHandler.courseLoader() == null) {
+            informationHandler.createCourseList();
+
+        }
+    }
+
+    private static void propertiesSetup() {
+        if (!informationHandler.loadProp()) {
             informationHandler.createDefaultProperties();
             informationHandler.loadProp();
         }
 
-        informationHandler.setURLS("CourseHandler","Settings");
+        informationHandler.setURLS("CourseHandler", "Settings");
     }
+
     public static InformationHandler getInformationHandler() {
         return informationHandler;
     }
@@ -60,6 +64,10 @@ public class MainController {
 
     public static CourseHandler getCourseHandler() {
         return courseHandler;
+    }
+
+    public static void setCourseHandler(CourseHandler ch) {
+        courseHandler = ch;
     }
 
     public static Settings getSettings() {
@@ -75,9 +83,5 @@ public class MainController {
 
         popupText = pops;
 
-    }
-
-    public static void setCourseHandler(CourseHandler ch){
-        courseHandler = ch;
     }
 }
