@@ -105,6 +105,9 @@ public class CourseTest {
 
     @Test
     public void markTaskDoneOnlyOne(){
+
+        testCourse = new Course(false,testWHC,
+                "test","no need","notes",0,0);
         testTask = new Task(false,testWHC, "should be passed","pass","",0);
         testCourse.addTask(testTask);
         testWHC = new WorkHourCounter(199L);
