@@ -20,6 +20,7 @@ import javafx.util.Duration;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 class ListCells extends ListCell<Task> {
 
@@ -406,7 +407,7 @@ public class UiMain {
         closeAllExceptMain();
 
         try {
-            currentStage = UiMainStart.viewChanger("studysettings.fxml",
+            currentStage = UiMainStart.viewChanger("studySettings.fxml",
                     "Study settings", false);
 
             currentStage.showAndWait();
@@ -477,8 +478,10 @@ public class UiMain {
 
                 courseHandler.setCurrent(null);
                 courseHandler.setCurrentTask(null);
+
+                tasklist.setItems(FXCollections.observableList(new ArrayList<>()));
                 updateLists();
-                updateTasks();
+
                 disableMain(false);
 
             });

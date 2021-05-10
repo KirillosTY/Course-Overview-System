@@ -3,9 +3,6 @@ package cos.controls;
 import java.io.Serializable;
 
 public class Settings implements Serializable {
-
-    private long serialVersionUID = 1L;
-
     //name of the user
 
 
