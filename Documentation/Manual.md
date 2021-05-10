@@ -36,7 +36,12 @@ Most of the options will be unavailable until you add a course throught the "Add
 CourseHandler=courselist.bin
 Settings=settings.bin
 ```
-By modifying each part after "="-symbol you may choose your location, just make sure it is a valid path. this config file will however need to present at the run location.
+By modifying each part after "="-symbol you may choose your location, just make sure it is a valid path. For example :
+``` 
+CourseHandler=/home/user/courselist.bin
+Settings=/home/defnotmine/settings.bin
+```
+this config file will however need to present at the run location.
 
 ![Basic ui](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/basic%20UI.png)
 
