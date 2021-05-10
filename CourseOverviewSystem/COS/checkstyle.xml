@@ -80,7 +80,7 @@
     </module>
 
     <module name="SuppressionFilter">
-        <property name="file" value="C:\Users\KT\Documents\GitHub\Kurssit\ot-harjoitustyo\CourseOverviewSystem\COS\skipped_files.xml"/>
+        <property name="file" value="skipped_files.xml"/>
 
     </module>
 

@@ -122,7 +122,7 @@ public class CourseTest {
         assertEquals(1, testCourse.getDoneTasks().size());
 
     }
-    
+
 
     @Test
     public void removeTask(){
