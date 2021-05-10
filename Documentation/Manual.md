@@ -11,7 +11,6 @@ Sekä menemällä COS kansioon ja ajamalla seuraavaa komento:
 ```
 mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
 ```
-Tällä hetkellä vain "Start studying"-napista käynnistyvä laskuri toimii ja tiedoston luonti. 
  
 # English version 
 To try the application just download the file COS.jar and open it!
@@ -30,7 +29,14 @@ mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
 
 # Starting up the first time!
 
-The program will create necessary files on startup, in to a folder named "CourseInfo", make sure folder exists in start location. Most of the options will be unavailable until you add a course throught the "Add a course"-Button. 
+The program will create necessary files on startup in the apps starting location: "courselist.bin" and "settings.bin". 
+Most of the options will be unavailable until you add a course throught the "Add a course"-Button. 
+### Important note: If you wish to choose another location where the files should be created to you will need create a config.properties to the run location and add the following lines:
+``` 
+CourseHandler=courselist.bin
+Settings=settings.bin
+```
+By modifying each part after "="-symbol you may choose your location, just make sure it is a valid path. this config file will however need to present at the run location.
 
 ![Basic ui](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/basic%20UI.png)
 
@@ -50,7 +56,7 @@ The program will create necessary files on startup, in to a folder named "Course
 
 Below are detailed instructions on windows opening to the user(ex. add a course).
 
-## Create course/Task
+## 1-2 Create course/Task
 
 Here is the basic course/task creation view. Important things to know currently: You should only enter 2 digit numbers to the time section(it currently does not display error, but will it will soon). You must also add a name and a description, else it will show the the field in red as an error. 
 
@@ -58,21 +64,7 @@ Here is the basic course/task creation view. Important things to know currently:
 
 ![Create C/T](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/basicUIcreate.png)
 
-
-## Study settings
-
-
-Study settings allows you to make specific choises to what you wish to see in the studying timer. Pessing save sets the defaults for the timer.
-
-![studyset](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/BasicUIStartsettings.png)
-
-## Study timer
-
-Once open it will automatically start timer on the task, counting all of the seconds of work youve put in the task itself as well as in the course it is under in. On the left will be displayed the task name and information you have chosen to be displayed. Once the work timer runs out, it will automatically switch to the break timer, this action completes one cycle. The textarea will have all the notes youve currently written under the task. Pressing save will save the notes to the task and course it is related to. If closed from cancel or top right it will not save notes or work hours. 
-
-![studyingtimer](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/BasicUIStart.png)
-
-## Edit and Create courses/Tasks
+## 3.Edit and Create courses/Tasks
 
 
 
@@ -84,4 +76,19 @@ Once open it will automatically start timer on the task, counting all of the sec
 
 
 
+## 4. Study settings
+
+
+Study settings allows you to make specific choises to what you wish to see in the studying timer. Pessing save sets the defaults for the timer.
+
+![studyset](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/BasicUIStartsettings.png)
+
+## 4.Study timer
+
+Once open it will automatically start timer on the task, counting all of the seconds of work youve put in the task itself as well as in the course it is under in. On the left will be displayed the task name and information you have chosen to be displayed. Once the work timer runs out, it will automatically switch to the break timer, this action completes one cycle. The textarea will have all the notes youve currently written under the task. Pressing save will save the notes to the task and course it is related to. If closed from cancel or top right it will not save notes or work hours. 
+
+![studyingtimer](https://github.com/KirillosTY/Course-Overview-System/blob/70a100f37b0efd8ca2bef58922deba15c53bd424/Documentation/Kuvat/BasicUIStart.png)
+
+
+## 5. This button will closes all windows and save all list as they are.
 
