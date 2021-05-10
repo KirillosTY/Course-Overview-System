@@ -122,22 +122,7 @@ public class CourseTest {
         assertEquals(1, testCourse.getDoneTasks().size());
 
     }
-
-    @Test
-    public void markTaskDoneOnlyTwo(){
-        testTask = new Task(false,testWHC, "should be passed","pass","",0);
-        testCourse.addTask(testTask);
-        testTask = new Task(false,testWHC, "should be passed","pass","",0);
-        testCourse.addTask(testTask);
-
-        testCourse.markTaskDone(testTask);
-        testTask = new Task(false,testWHC, "should be passed second","pass","",0);
-        testCourse.addTask(testTask);
-
-        testCourse.markTaskDone(testTask);
-        assertEquals(2, testCourse.getDoneTasks().size());
-
-    }
+    
 
     @Test
     public void removeTask(){
