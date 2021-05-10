@@ -111,11 +111,11 @@ public class Course extends BasicTask {
 
         for (Task t : taskList) {
 
-            if (t.getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now()) || t.isDone()) {
+            if (t.getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now())) {
                 doneTasks.add(t);
             }
         }
-        taskList.removeIf(Task::isDone);
+
         taskList.removeIf(t -> t.getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now()));
         taskListSort();
     }
@@ -132,7 +132,6 @@ public class Course extends BasicTask {
 
         if (this.getTaskList().contains(task)) {
             task.getWorkHoursSpent().setEndDate(LocalDateTime.now());
-            task.setName(task.getName());
             doneTasks.add(task);
             return taskList.remove(task);
 
