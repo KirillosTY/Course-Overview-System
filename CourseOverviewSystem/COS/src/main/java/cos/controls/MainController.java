@@ -16,12 +16,20 @@ public class MainController {
     private static String[] popupText;
 
     public static void main(String[] args) {
-
-
         informationHandler = new InformationHandler();
         propertiesSetup();
-        courseHandler = informationHandler.courseLoader();
+
+        if(informationHandler.loadSettings() == null){
+            informationHandler.createSettings();
+           settings = informationHandler.loadSettings();
+        }
+
+        if(informationHandler.courseLoader() == null){
+            informationHandler.createCourseList();
+
+        }
         settings = informationHandler.loadSettings();
+        courseHandler = informationHandler.courseLoader();
         try {
             if (!(courseHandler.getCourseList().isEmpty() && courseHandler.getUpcomingCourse().isEmpty())) {
                 courseHandler.courseDateUpdater();
@@ -40,19 +48,11 @@ public class MainController {
     private static void propertiesSetup(){
         if(!informationHandler.loadProp()){
             informationHandler.createDefaultProperties();
-            informationHandler.createSettings();
-            informationHandler.createCourseList();
+
+            informationHandler.loadProp();
         }
+
         informationHandler.setURLS("CourseHandler","Settings");
-        if(!informationHandler.getProperties().containsKey("CHCreated")){
-            informationHandler.createCourseList();
-        }
-
-        if(!informationHandler.getProperties().containsKey("settingsCreated")){
-            informationHandler.createSettings();
-        }
-
-
     }
     public static InformationHandler getInformationHandler() {
         return informationHandler;

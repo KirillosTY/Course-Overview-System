@@ -31,7 +31,7 @@ public class InformationHandler implements Serializable {
     public void createDefaultProperties() {
 
         try (OutputStream outprop = new FileOutputStream("config.properties")) {
-            properties.setProperty("Propset","true");
+
             properties.setProperty("CourseHandler", "courselist.bin");
             properties.setProperty("Settings", "settings.bin");
             courseHandlerURL = "courselist.bin";
@@ -59,14 +59,16 @@ public class InformationHandler implements Serializable {
         try (InputStream propLocation = new FileInputStream("config.properties")) {
 
             properties.load(propLocation);
+            setURLS("CourseHandler","Settings");
 
         } catch (Exception e){
 
             try (InputStream propL = InformationHandler.class.getClassLoader().getResourceAsStream("config.properties")) {
 
                 properties.load(propL);
+                setURLS("CourseHandler","Settings");
             }catch (Exception s ){
-            return false;
+                return false;
             }
 
         }
@@ -115,7 +117,7 @@ public class InformationHandler implements Serializable {
 
     public boolean createCourseList() {
 
-        properties.setProperty("CHCreated","true");
+
         CourseHandler cH = new CourseHandler(new ArrayList<Course>(), "Write something");
 
         return fileReaderOutput(courseHandlerURL, cH);
@@ -147,7 +149,6 @@ public class InformationHandler implements Serializable {
 
     public boolean createSettings() {
 
-        properties.setProperty("settingsCreated","true");
         Settings settings = new Settings();
 
         return this.saveSettings(settings);

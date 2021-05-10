@@ -97,7 +97,7 @@ public class UiMainStart extends Application {
 
             stage.show();
         } catch (Exception e) {
-
+            e.printStackTrace();
             popupText(" Loading files and main Window ","" +
                     "loaded coursehandler/settings.bin does not match the version of this program. Check files, remove config if necessary(Will also wipe out data).");
         }
