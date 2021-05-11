@@ -84,7 +84,7 @@
 
                  </HBox>
 
-                    <Button  alignment="BOTTOM_LEFT" text="Done for the day!" fx:id="mainDone" prefHeight="40" prefWidth="220" onAction="#mainIsDone" stylesheets="@styles.css"/>
+                    <Button  alignment="CENTER" text="Done for the day!" fx:id="mainDone" prefHeight="40" prefWidth="220" onAction="#mainIsDone" stylesheets="@styles.css"/>
             </VBox>
 
 
