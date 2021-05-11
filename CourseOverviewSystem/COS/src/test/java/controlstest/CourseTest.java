@@ -1,4 +1,4 @@
-package logic;
+package controlstest;
 
 import cos.controls.*;
 import org.junit.Before;

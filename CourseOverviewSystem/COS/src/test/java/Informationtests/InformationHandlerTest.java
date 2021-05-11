@@ -7,7 +7,9 @@ import cos.informationprocessing.InformationHandler;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -28,7 +30,10 @@ public class InformationHandlerTest {
     @BeforeClass
     public static void start(){
         configLoc = tester.loadProp();
-        configBefore = tester.getProperties();
+
+        configBefore = new Properties();
+        tester.getProperties().entrySet().forEach(
+                value -> configBefore.setProperty(value.getKey()+"",value.getValue()+""));
         tester.getProperties().setProperty("setTest","settTest.bin");
 
         tester.getProperties().setProperty("chTest","chTest.bin");
@@ -40,9 +45,6 @@ public class InformationHandlerTest {
     }
 
 
-
-
-
     @Test
     public void saveProp(){
 
@@ -52,6 +54,13 @@ public class InformationHandlerTest {
             fail();
         }
 
+
+    }
+
+    @Test
+    public void LoadFirstConfig(){
+
+        assertEquals(1, tester.loadProp());
 
     }
 
@@ -165,7 +174,7 @@ public class InformationHandlerTest {
 
     @AfterClass
     public static void removeFiles(){
-        System.out.println(configLoc);
+
         try {
             Files.deleteIfExists(Paths.get(tester.getProperties().getProperty("setTest")));
 
@@ -180,10 +189,21 @@ public class InformationHandlerTest {
 
         }
 
-        if(configLoc == 2){
+        if(configLoc == 2) {
             try {
                 Files.deleteIfExists(Paths.get("config.properties"));
             } catch (Exception e){
+
+            }
+        } else if(configLoc == 1) {
+            try {
+                Files.deleteIfExists(Paths.get("config.properties"));
+                OutputStream s= new FileOutputStream("config.properties");
+                configBefore.store(s,null);
+                s.close();
+            }catch (Exception e){
+                e.printStackTrace();
+                fail();
 
             }
         }

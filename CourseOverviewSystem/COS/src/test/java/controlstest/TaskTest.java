@@ -1,4 +1,4 @@
-package logic;
+package controlstest;
 
 public class TaskTest {
 }
