@@ -85,18 +85,18 @@ MainController.getCourseHandler().getCurrent().createTask(Task task)
 
 ![CreateTask/Course](https://github.com/KirillosTY/Course-Overview-System/blob/ae2dc247ba94b4fdc5c6fccf949489bcfee66a59/Documentation/Kuvat/Course%20Create.png)
 
-When the user presses the "Add a course/task"-button the Main UI checks if there are any other open windows and closes them with the closeAllExceptMain() method, then calls a static method viewChanger to set the proper stage. 
+When the user presses the "Add a course/task"-button the UIMain checks if there are any other open windows and closes them with the closeAllExceptMain() method, then calls a static method viewChanger to set the proper stage. 
 
-In then initialization of this window it gets all proper data, sets the proper values on place. "TextField setups"  makes sure no unwanted characters enter the field. courseLoad() method gets the userdata of this scene which defines if the window goes to edit mode or creation mode, if the return is null the it is creation mode. Then the window opens up to the user.
+In then initialization of this window it gets all proper data, sets the proper values on place. "TextField setups"  makes sure no unwanted characters enter the field. courseLoad() method gets the userdata of this scene which defines if the window goes to edit mode or creation mode, if the return is null then it is in creation mode. Then the window opens up to the user.
 
-When the user has put all necessary inputs and presses saveCourse() method starts and runs the method isAcceptable() which checks if all inputs are proper, if not it sets them the ones that arent to default and waits for the user to press save again. Then passes the input data to CourseHandler to create a new course. Inside the CourseHandler class it then decides on which courselist the new course is added to based on end date and start date. 
+When the user has put all necessary inputs and presses the "save"-button the saveCourse() method starts and runs  method isAcceptable(), which checks if all inputs are proper, if not it sets the ones that arent to default and waits for the user to press save again. Then passes the input data to CourseHandler to create a new course. Inside the CourseHandler class it then decides on which courselist the new course is added to based on end date and start date. 
 
 The creation window closes and the UIMain updates necessary lists. With task creation the steps are almost identical to but it also updates tasklists after exit.
 
 
 ![StudyTimer](https://github.com/KirillosTY/Course-Overview-System/blob/694128636e073eb435237641177449b16d723e3a/Documentation/Kuvat/studyStartFinished.png) 
 
-When the user presses the "Start studying"-button the Main UI checks if there are any other open windows and closes them with the closeAllExceptMain() method, then calls a static method viewChanger to set the proper stage. 
+When the user presses the "Start studying"-button the  UIMain checks if there are any other open windows and closes them with the closeAllExceptMain() method, then calls a static method viewChanger to set the proper stage. 
 
 
 In the initialization of this window it loads the settings and a workHourCounter from the task which is currently worked on. The defaultStart() sets the proper values in place and startAnimation(whc) starts the timers.
