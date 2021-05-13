@@ -2,7 +2,7 @@
 
 The packaging is 3 layered as follows:
 
-![packkakaakkge](Documentation/Kuvat/mehss.png)
+![packkakaakkge](https://github.com/KirillosTY/Course-Overview-System/blob/ae2dc247ba94b4fdc5c6fccf949489bcfee66a59/Documentation/Kuvat/mehss.png)
 
 cos.ui contains all UI related JAVAFX and FXML files.
 
@@ -84,7 +84,7 @@ or  through an already loaded CourseHandler... **
 
 ### Creating courses/Tasks
 
-![CreateTask/Course](Documentation/Kuvat/Course Create.png)
+![CreateTask/Course](https://github.com/KirillosTY/Course-Overview-System/blob/ae2dc247ba94b4fdc5c6fccf949489bcfee66a59/Documentation/Kuvat/Course%20Create.png)
 
 When the user presses the "Add a course/task"-button the Main UI checks if there are any other open windows and closes them with the closeAllExceptMain() method, then calls a static method viewChanger to set the proper stage. 
 
@@ -95,7 +95,7 @@ When the user has put all necessary inputs and presses saveCourse() method start
 The creation window closes and the UIMain updates necessary lists. With task creation the steps are almost identical to but it also updates tasklists after exit.
 
 
-![StudyTimer](Documentation/Kuvat/studyStartFinished.png) 
+![StudyTimer](https://github.com/KirillosTY/Course-Overview-System/blob/694128636e073eb435237641177449b16d723e3a/Documentation/Kuvat/studyStartFinished.png) 
 
 When the user presses the "Start studying"-button the Main UI checks if there are any other open windows and closes them with the closeAllExceptMain() method, then calls a static method viewChanger to set the proper stage. 
 
