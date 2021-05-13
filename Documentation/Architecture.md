@@ -73,11 +73,11 @@ The information for both files are saved as binary object types.
 
 ## Main functions
 
-**Important note: No UI has direct access to the cos.controls package. If below there is for example an access to the  course class it happens with the following call:
+**Important note: No UI has direct access to the cos.controls package. If below there is for example an access to the  course class it happens with the following call:***
 ```
 MainController.getCourseHandler().getCurrent().createTask(Task task)
 ```
-or  through an already loaded CourseHandler... **
+***or  through an already loaded CourseHandler... **
 
 **Also the method viewChanger is a static method from UIMainStart class, but is left out to make reading clearer**
 
