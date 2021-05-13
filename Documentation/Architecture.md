@@ -14,14 +14,14 @@ cos.informationprocessing contains all related to reading, writing or configurin
 
 ## User Interface
 
-The UI has 2 main scenes:
+The UI has 2 main classes:
 
 1. Main UI
 
 2. Overview of all tasks and courses
 
 
-4 lesser scenes: 
+4 "lesser" classes: 
 
 1. create or Edit Course
 2. create or Edit Task
