@@ -23,7 +23,7 @@ public class CourseHandlerTest {
     @Before
     public void initialize() {
 
-        handler = new CourseHandler(new ArrayList<>(), "no need for these notes anymore");
+        handler = new CourseHandler(new ArrayList<>());
         testWHC = new WorkHourCounter();
         testWHC.setStartDate(LocalDateTime.now());
         testWHC.setEndDate(LocalDateTime.now().plusDays(55).plusMinutes(10));

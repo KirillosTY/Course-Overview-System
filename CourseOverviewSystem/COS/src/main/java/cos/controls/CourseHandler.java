@@ -19,15 +19,13 @@ public class CourseHandler implements Serializable {
 
     private Course current;
 
-    private String notesOverall;
 
     private Task currentTask;
 
-    public CourseHandler(ArrayList<Course> courseL, String notesO) {
+    public CourseHandler(ArrayList<Course> courseL) {
 
         this.courseList = courseL;
 
-        this.notesOverall = notesO;
 
         pastCourse = new ArrayList<>();
 
@@ -186,13 +184,6 @@ public class CourseHandler implements Serializable {
         this.current = current;
     }
 
-    public String getNotesOverall() {
-        return notesOverall;
-    }
-
-    public void setNotesOverall(String notesOverall) {
-        this.notesOverall = notesOverall;
-    }
 
     public Task getCurrentTask() {
         return currentTask;

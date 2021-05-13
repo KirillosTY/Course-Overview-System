@@ -167,7 +167,7 @@ public class InformationHandler implements Serializable {
     public boolean createCourseList() {
 
 
-        CourseHandler cH = new CourseHandler(new ArrayList<Course>(), "Write something");
+        CourseHandler cH = new CourseHandler(new ArrayList<Course>());
 
         return fileReaderOutput(courseHandlerURL, cH);
 

@@ -161,7 +161,7 @@ public class InformationHandlerTest {
     @Test
     public void saveCourseHandler(){
 
-        assertTrue(tester.saveCourseHandler(new CourseHandler(new ArrayList<>(),"")));
+        assertTrue(tester.saveCourseHandler(new CourseHandler(new ArrayList<>())));
     }
 
     @Test
