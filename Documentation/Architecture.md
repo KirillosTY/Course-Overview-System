@@ -36,7 +36,7 @@ The interface has been separated from most of logics and all data it accesses is
 
 ### Datastructure
 
-![kuva](ahdmee)
+![kuva](https://github.com/KirillosTY/Course-Overview-System/blob/6b6db77303968a59c16b1be127e098d9267351ab/Documentation/Kuvat/classConnections.png)
 
 Classes MainController, CourseHandler, Course, BasicTask, Task, Settings and WorkHourCounter handle all the logic and controlling of data. **Note: Task class in itself is currently nothing more than an extension of BasicTask, but is left as it is to because it allows expanding more easily.**
 
