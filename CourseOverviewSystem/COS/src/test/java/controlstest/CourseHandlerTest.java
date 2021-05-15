@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -23,7 +22,7 @@ public class CourseHandlerTest {
     @Before
     public void initialize() {
 
-        handler = new CourseHandler(new ArrayList<Course>());
+        handler = new CourseHandler();
         testWHC = new WorkHourCounter();
         testWHC.setStartDate(LocalDateTime.now());
         testWHC.setEndDate(LocalDateTime.now().plusDays(55).plusMinutes(10));

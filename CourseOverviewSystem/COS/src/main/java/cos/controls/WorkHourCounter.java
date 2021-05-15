@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 
 public class WorkHourCounter implements Serializable {
-
+    private static final long serialVersionUID = 1L;
 
     private long seconds = 0;
 

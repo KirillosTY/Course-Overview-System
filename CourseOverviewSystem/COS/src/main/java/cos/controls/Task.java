@@ -7,6 +7,7 @@ package cos.controls;
  */
 
 public class Task extends BasicTask {
+    private static final long serialVersionUID = 1L;
 
 
 

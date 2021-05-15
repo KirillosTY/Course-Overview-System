@@ -3,8 +3,8 @@ package cos.controls;
 import java.io.Serializable;
 
 public class Settings implements Serializable {
-    //name of the user
 
+    private static final long serialVersionUID = 1L;
 
     //Study settings default defined here
     private int studyWorkH = 0;

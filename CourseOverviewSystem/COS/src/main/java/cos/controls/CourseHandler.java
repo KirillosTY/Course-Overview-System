@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class CourseHandler implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
 
     private ArrayList<Course> courseList;
 
@@ -22,11 +24,9 @@ public class CourseHandler implements Serializable {
 
     private Task currentTask;
 
-    public CourseHandler(ArrayList<Course> courseL) {
+    public CourseHandler() {
 
-        this.courseList = courseL;
-
-
+        courseList = new ArrayList<>();
 
         pastCourse = new ArrayList<>();
 

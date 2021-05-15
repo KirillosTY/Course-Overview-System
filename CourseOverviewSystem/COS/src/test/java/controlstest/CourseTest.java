@@ -1,5 +1,6 @@
 package controlstest;
 
+
 import cos.controls.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,7 +8,6 @@ import org.junit.Test;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -21,7 +21,7 @@ public class CourseTest {
     @Before
     public void initialize(){
 
-        testch = new CourseHandler(new ArrayList<Course>());
+        testch = new CourseHandler();
         testWHC = new WorkHourCounter();
         testWHC.setStartDate(LocalDateTime.now());
         testWHC.setEndDate(LocalDateTime.now().plusDays(55).plusMinutes(10));

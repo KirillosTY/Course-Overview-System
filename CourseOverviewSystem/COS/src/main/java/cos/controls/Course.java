@@ -14,6 +14,8 @@ import java.util.Comparator;
 
 public class Course extends BasicTask {
 
+    private static final long serialVersionUID = 1L;
+
     private final ArrayList<Task> doneTasks;
     private int value;
     private ArrayList<Task> taskList;

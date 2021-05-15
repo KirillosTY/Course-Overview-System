@@ -30,10 +30,8 @@ public class BasicTaskTest {
 
         tester.saveNotesWithStamp("Adding more");
 
-        String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
-                FormatStyle.LONG,FormatStyle.MEDIUM));
-
-        assertEquals(tester.getNotes(),time+":\n\n"+"Adding more");
+        assertEquals(tester.getNotes(),LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
+                FormatStyle.LONG,FormatStyle.MEDIUM))+":\n\n"+"Adding more");
 
 
     }

@@ -1,11 +1,9 @@
 package cos.informationprocessing;
 
-import cos.controls.Course;
 import cos.controls.CourseHandler;
 import cos.controls.Settings;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Properties;
 
 /**
@@ -167,7 +165,7 @@ public class InformationHandler implements Serializable {
     public boolean createCourseList() {
 
 
-        CourseHandler cH = new CourseHandler(new ArrayList<Course>());
+        CourseHandler cH = new CourseHandler();
 
         return fileReaderOutput(courseHandlerURL, cH);
 
