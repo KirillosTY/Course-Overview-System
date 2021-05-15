@@ -93,7 +93,7 @@ When the user has put all necessary inputs and presses the "save"-button the sav
 
 The creation window closes and the UIMain updates necessary lists. With task creation the steps are almost identical to but it also updates tasklists after exit.
 
-
+### Study timer
 ![StudyTimer](https://github.com/KirillosTY/Course-Overview-System/blob/694128636e073eb435237641177449b16d723e3a/Documentation/Kuvat/studyStartFinished.png) 
 
 When the user presses the "Start studying"-button the  UIMain checks if there are any other open windows and closes them with the closeAllExceptMain() method, then calls a static method viewChanger to set the proper stage. 
