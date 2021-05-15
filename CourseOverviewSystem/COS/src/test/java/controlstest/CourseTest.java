@@ -21,7 +21,7 @@ public class CourseTest {
     @Before
     public void initialize(){
 
-        testch = new CourseHandler(new ArrayList<>());
+        testch = new CourseHandler(new ArrayList<Course>());
         testWHC = new WorkHourCounter();
         testWHC.setStartDate(LocalDateTime.now());
         testWHC.setEndDate(LocalDateTime.now().plusDays(55).plusMinutes(10));
