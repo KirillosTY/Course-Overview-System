@@ -39,7 +39,7 @@
                 </ComboBox>
 
                 <HBox spacing="5"  alignment="BOTTOM_LEFT" prefWidth="220">
-                    <Button text="Add course" fx:id="addC" onMouseClicked="#courseCreate"  prefWidth="90"  style="-fx-text-fill: white; -fx-background-color: #095256;-fx-background-radius: 1em 1em 1em 1em;-fx-effect:
+                    <Button text="Add course" fx:id="addC" onMouseClicked="#courseCreate"  prefWidth="100"  style="-fx-text-fill: white; -fx-background-color: #095256;-fx-background-radius: 1em 1em 1em 1em;-fx-effect:
                      innershadow( gaussian , teal,10 , 0.5 , 3, 3 )"/>
                     <Label text="course is done!" alignment="BOTTOM_RIGHT" />
                     <CheckBox fx:id="doneCourse"  onAction="#courseIsDone" alignment="BOTTOM_RIGHT" stylesheets="@styles.css" />
@@ -54,7 +54,7 @@
                 </ListView>
 
                 <HBox spacing="5"  alignment="BOTTOM_LEFT">
-                    <Button text="Add task" fx:id="addT" onAction="#taskCreate"  prefWidth="90" style="-fx-text-fill: white; -fx-background-color: #ba3f1d;
+                    <Button text="Add task" fx:id="addT" onAction="#taskCreate"  prefWidth="100" style="-fx-text-fill: white; -fx-background-color: #ba3f1d;
                     -fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian , #E0613E, 5 , 0.2 , 3, 3 );"/>
                     <Label text="    Task is done!" alignment="BOTTOM_RIGHT"  style="-fx-background-radius: 1em 1em 1em 1em; -fx-hover-color: white;"/>
                     <CheckBox fx:id="doneTask"  onAction="#taskIsDone" alignment="BOTTOM_RIGHT"  stylesheets="@styles.css" />
