@@ -27,6 +27,7 @@ public class CourseHandler implements Serializable {
         this.courseList = courseL;
 
 
+
         pastCourse = new ArrayList<>();
 
         upcomingCourse = new ArrayList<>();

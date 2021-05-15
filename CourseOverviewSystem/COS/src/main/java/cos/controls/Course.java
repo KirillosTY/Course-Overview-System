@@ -81,7 +81,6 @@ public class Course extends BasicTask {
         taskList.add(task);
         taskDateUpdater();
         saveNotesWithStamp(task.getNotes(), task.getName());
-
     }
 
 
@@ -165,7 +164,7 @@ public class Course extends BasicTask {
      * for current time.
      *
      * @param task task object
-     * @return returns true or false based on successful action.
+     * @return returns true or false based on successfull action.
      */
 
     public boolean markTaskDone(Task task) {
@@ -183,7 +182,7 @@ public class Course extends BasicTask {
     /**
      * removes given parameter from the tasklist.
      * @param task Task object
-     * @return returns true or false based on successful action.
+     * @return true if task is removed, else false.
      */
 
     public boolean removeTask(Task task) {

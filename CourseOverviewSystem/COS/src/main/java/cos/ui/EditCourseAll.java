@@ -31,11 +31,11 @@ public class EditCourseAll {
     @FXML
     private String upcoming, current, past;
 
+    @FXML
+    private Label courseNotesLab, taskNotesLab;
+
     private ArrayList<Course> currentCourseList;
 
-    private Course currentCourse;
-
-    private Task currentTask;
 
 
     @FXML
@@ -154,37 +154,39 @@ public class EditCourseAll {
     public void setupControls() {
 
         courseListSelector.setOnAction(updateList -> {
-
-
             courlistSeleUpdate();
 
         });
-
 
         courseSelector.getSelectionModel().selectedItemProperty().addListener((observableValue, aBoolean, course) -> {
 
             if (courseSelector.getSelectionModel().getSelectedItem() != null) {
                 cHandler.setCurrent(course);
+                courseNotesLab.setText("Course notes: "+course.getName());
                 msgSets();
                 taskListUpdater();
             } else {
                 cHandler.setCurrent(null);
             }
 
-
         });
+
+       setupTaskControls();
+
+    }
+
+    @FXML
+    public void setupTaskControls(){
 
         taskSelector.getSelectionModel().selectedItemProperty().addListener((observableValue, aBoolean, task) -> {
             if (taskSelector.getSelectionModel().getSelectedItem() != null) {
-
+                this.taskNotesLab.setText("Task notes: "+task.getName());
                 cHandler.setCurrentTask(task);
                 msgSetsTask();
             } else {
                 cHandler.setCurrentTask(null);
             }
         });
-
-
     }
 
     @FXML

@@ -68,7 +68,6 @@ public class UiMain {
     @FXML
     public void initialize() {
 
-
         courseHandler = MainController.getCourseHandler();
         courselist.setItems(FXCollections.observableList(courseHandler.getCourseList()));
         checkTime();
@@ -79,6 +78,7 @@ public class UiMain {
         listUISets();
         setStageWindows();
         tooltipSetup();
+
     }
 
 
