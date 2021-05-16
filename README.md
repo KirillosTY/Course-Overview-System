@@ -22,7 +22,7 @@ This application is created to help in managing courses, tasks, notes and projec
 
 ## Releases
 
-[Final release](https://github.com/KirillosTY/Course-Overview-System/releases/tag/%23loppupalautus)
+[loppupalautus](https://github.com/KirillosTY/Course-Overview-System/releases/tag/%23loppupalautus)
 
 ## Command line tools
 
