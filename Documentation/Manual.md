@@ -1,18 +1,4 @@
-# Manual
-
-Linkistä COS.jar voit ladata sovelluksen. Sovelluksen voi käynnistää painamalla tai komennolla:
-
-[COS.jar](CourseOverviewSystem/COS/COS.jar)
-```
-java -jar COS.jar
-``` 
-Sekä menemällä COS kansioon ja ajamalla seuraavaa komento: 
-
-```
-mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
-```
- 
-# English version 
+# How to run! 
 To try the application just download the file COS.jar and open it!
 
 [COS.jar](CourseOverviewSystem/COS/COS.jar)
