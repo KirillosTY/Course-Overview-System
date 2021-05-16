@@ -16,6 +16,9 @@ Sekä menemällä COS kansioon ja ajamalla seuraavaa komento:
 ```
 mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
 ```
+```
+mvn clean javafX:run
+```
 Manuaalissa on nyt tarkemmin neuvoa, suosittelen katsomaan.
 
 # English version 
@@ -27,10 +30,14 @@ You can start the file with the command:
 ```
 java -jar COS.jar
 ``` 
-or by going into the main folder named COS and running the following command:
+or by going into the main folder named COS and running the following commands:
 
 ```
 mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
+```
+
+```
+mvn clean javafX:run
 ```
 
 The manual contains instructions on how to use the application, I recommend reading before using.
@@ -43,7 +50,7 @@ The manual contains instructions on how to use the application, I recommend read
 
 [Functional requirements](Documentation/Vaatimusmäärittely.md)
 
-[Architecture](https://github.com/KirillosTY/Course-Overview-System/blob/05d7623690ac84c01097ee8f81aee742d673a6e2/Documentation/Architecture.md)
+[Architecture](Documentation/Architecture.md)
 
 [Workhours](Documentation/workhours.md)
 
@@ -59,6 +66,7 @@ Start the program by using the following command:
 ```
 java -jar COS.jar
 ```
+** Note below this line everything is generated to "target" directory located in the run in location. It will be generated after first run.
 
 Create a jar file by using the following command:
 ```
