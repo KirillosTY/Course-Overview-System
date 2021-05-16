@@ -3,7 +3,7 @@ To try the application just download the proper COS.jar for your system and open
 
 [COS.jar for Windows](https://github.com/KirillosTY/Course-Overview-System/blob/e8fea3af0717ad4c0a381dc878107152597cc2ed/COSWindows.jar)
 
-[COS.jar for Linux](https://github.com/KirillosTY/Course-Overview-System/blob/e8fea3af0717ad4c0a381dc878107152597cc2ed/COSWindows.jar)
+[COS.jar for Linux](https://github.com/KirillosTY/Course-Overview-System/blob/e8fea3af0717ad4c0a381dc878107152597cc2ed/COSLinux.jar)
 
 
 You can start the file with the command:
