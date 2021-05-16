@@ -22,7 +22,7 @@ This application is created to help in managing courses, tasks, notes and projec
 
 ## Releases
 
-[viikko 5](https://github.com/KirillosTY/Course-Overview-System/releases/tag/viikko5)
+[Final release](https://github.com/KirillosTY/Course-Overview-System/releases/tag/%23FinalRelease)
 
 ## Command line tools
 
