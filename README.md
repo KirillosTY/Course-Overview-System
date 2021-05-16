@@ -14,7 +14,10 @@ java -jar COS.jar
 Sekä menemällä COS kansioon ja ajamalla seuraavaa komento: 
 
 ```
-mvn compile exec:java -Dexec.mainClass=cos.controls.MainController | mvn clean javafX:run
+mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
+```
+```
+mvn clean javafX:run
 ```
 Manuaalissa on nyt tarkemmin neuvoa, suosittelen katsomaan.
 
@@ -27,10 +30,14 @@ You can start the file with the command:
 ```
 java -jar COS.jar
 ``` 
-or by going into the main folder named COS and running the following command:
+or by going into the main folder named COS and running the following commands:
 
 ```
-mvn compile exec:java -Dexec.mainClass=cos.controls.MainController | mvn clean javafX:run
+mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
+```
+
+```
+mvn clean javafX:run
 ```
 
 The manual contains instructions on how to use the application, I recommend reading before using.
