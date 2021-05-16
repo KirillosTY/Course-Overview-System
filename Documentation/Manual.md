@@ -1,4 +1,4 @@
-# How to run! t
+# How to run! 
 To try the application just download the proper COS.jar for your system and open it! 
 
 [COS.jar for Windows](https://github.com/KirillosTY/Course-Overview-System/blob/e8fea3af0717ad4c0a381dc878107152597cc2ed/COSWindows.jar)
@@ -13,7 +13,7 @@ java -jar COSWindows.jar
 ```
 java -jar COSLinux.jar
 ``` 
-or by downloading this project going into the main folder named CourseOverviewSystem/COS and running the following command:
+or by downloading this project and going into the main folder named CourseOverviewSystem/COS and running the following command:
 
 ```
 mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
