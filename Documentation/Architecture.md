@@ -4,7 +4,7 @@ The packaging is 3 layered as follows:
 
 ![packkakaakkge](https://github.com/KirillosTY/Course-Overview-System/blob/ae2dc247ba94b4fdc5c6fccf949489bcfee66a59/Documentation/Kuvat/mehss.png)
 
-cos.ui contains all UI related JAVAFX and FXML files.
+cos.ui contains all UI related JAVAFX, which pull FXML files from resources.
 
 cos.controls contains all of the control and logic.
 
@@ -14,21 +14,21 @@ cos.informationprocessing contains all related to reading, writing or configurin
 
 ## User Interface
 
-The UI has 2 main classes:
+The UI has 2 main interface classes:
 
 1. Main UI
 
 2. Overview of all tasks and courses
 
 
-4 "lesser" classes: 
+and 4 smaller ones: 
 
 1. create or Edit Course
 2. create or Edit Task
 3. Study Timer
 4. Study Settings
 
-Each of these is defined in their own class file and have an UI layout done in a separate FXML file. The Main UI stays open at all times and holds access to all other windows. Opening a window will show it up next to the Main UI. Only one window can be open alongside the Main UI, if another one is opened it will close the one already up. Opening the Overview window will disable the Main UI, until closed. If Main UI is closed all other windows close with it.
+Each of these is defined in their own class file and have an UI layout done in a separate FXML file. The Main UI stays open at all times and holds access to all other windows. Opening a window will show it up next to the Main UI. Only one window can be open alongside the Main UI, if another one is opened it will close the one already up. Opening the "Overview of all tasks and courses" window will disable the Main UI, until closed. If Main UI is closed all other windows close with it.
 
 The interface has been separated from most of logics and all data it accesses is through the MainController class. Any updates to any list, task or course will be updated through the MainController.
 
