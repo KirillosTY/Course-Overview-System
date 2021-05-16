@@ -54,22 +54,13 @@ Course class handles everything related to tasks.
 
 All the information is written or read through the cos.informationprocessing package and the only class in it. Currently it is not in the standard DAO implementation.
 
-InformationHandler class reads and writes any object through with handling some of the errors in itself. It also has defaults for course and settings creation, loading or writing. Variables SettingsURL and CourseHandlerURL define where the files are read from.
+InformationHandler class reads and writes any object through with handling some of the errors in itself. It also has defaults for course and settings creation, loading or writing. Variables SettingsURL and CourseHandlerURL define where the files are read from and written to, including the names of the files.
 
 #### Files
 
-The application creates 2 files on startup: courselist.bin and settings.bin.
+The application creates 2 files on startup: courselist.bin and settings.bin. courselist.bin contains a coursehandler object which has all the courses and lists, settings.bin has study timer settings.
 
-In the resources of the application itself there is a config.properties file defined with current values:
-```
-CourseHandler = courselist.bin
-Settings = settings.bin
-```
-if there is already a config.properties at the start location it will use that instead, it will need to have the values above, but the end parts may be modified.
-
-if for some reason src/main/resources/config.properties has been removed, it will create a config.properties file, and the other necessary files, to the applications starting location. 
-
-The information for both files are saved as binary object types.
+The information for both files are saved as binary object types using the Serializable class.
 
 ## Main functions
 
@@ -106,8 +97,24 @@ then the sets the overall count to the Tasks WorkHourCounter and saves the curre
 
 After exit UIMain updates the lists.
 
+## Other actions
+
+Most of the other windows follow this same pattern: Check what resources to use, implement them, save user input and update lists.
+Almost every action updates the lists, mostly to prevent error, but also to allow for a better user experience.
+
+## Improvement requiring aspects
+
+### UI
+Creating and editing tasks/courses are currently pretty much the same class and could be reduced to one class to avoid duplicate code. The UI also looks different on linux and needs to be modified a bit differently for it. Toolbar tips only apply to the UIMain class currently. There should also be more feedback to the user on what to do and how to operate. The FXML files are currently okay, but the cell factory could not be set from there and should most likely have an separate class to allow easier modification in the future, UIMain class also has the ListCells class in it. 
 
 
+### Controls
+
+Currently CourseHandler class handles the current task under work, but it would  make more sense for the course class to have it under control...This would solve a few problems. Error handling should be done in a better fashion to allow the user to possibly fix the problem that occurs...But most of it is currently hidden.
+
+### DataStructure 
+
+Currently all courses and task are saved into an single courselist.bin type of file, which involves risks if lost. This file will need to be broken into pieces to assure data is not lost due to simple errors... SQL Implementation could be much better for this. Changing the InformationHandler to an interface would also be much smarter and then saving the courses, tasks and settings in different classes. 
 
 
 
