@@ -30,7 +30,7 @@ Start the program by using the following command:
 ```
 java -jar COS.jar
 ```
-**Note below this line everything is generated to "target" directory located in the run in location. It will be generated after first run.
+**Note below this line everything is generated to "target" directory located in the run in location. It will be generated after first run.**
 
 Create a jar file by using the following command:
 ```
