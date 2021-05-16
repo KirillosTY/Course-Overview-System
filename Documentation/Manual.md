@@ -1,11 +1,14 @@
 # How to run! 
 To try the application just download the file COS.jar and open it!
 
-[COS.jar](CourseOverviewSystem/COS/COS.jar)
-
+[COS.jar for Windows](https://github.com/KirillosTY/Course-Overview-System/blob/e8fea3af0717ad4c0a381dc878107152597cc2ed/COSWindows.jar)
+[COS.jar for Linux](https://github.com/KirillosTY/Course-Overview-System/blob/e8fea3af0717ad4c0a381dc878107152597cc2ed/COSWindows.jar)
 You can start the file with the command:
 ```
-java -jar COS.jar
+java -jar COSWindows.jar
+``` 
+```
+java -jar COSLinux.jar
 ``` 
 or by downloading this project going into the main folder named CourseOverviewSystem/COS and running the following command:
 
