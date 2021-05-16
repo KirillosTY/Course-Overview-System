@@ -26,6 +26,10 @@
 | 30.4 | 9-11 | Uita on muokattu ja kaikki perustoiminnot on toiminnassa.|
 | 2.5  | 3h | suurin osa UI.sta on valmiina.|
 | 3.5 | 7-14 | Testejä lisätty, checkstyle korjattu, javaDoc luotu ja UI valmis. |
+| 4.5 | 2h | updated requirements and manual |
+| 8.5 |  5h |implemented the config.properties to informationhandler|
+| 10.5 | 5h | updated documents and fixed errors on linux |
+| 13-16.5 | 8h| updated Documents and pushed final release|
 
-Yhteensä: 103h
+Yhteensä: 123h
 
