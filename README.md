@@ -28,7 +28,11 @@ This application is created to help in managing courses, tasks, notes and projec
 
 Start the program by using the following command:
 ```
-java -jar COS.jar
+java -jar COSWindows.jar
+```
+or 
+```
+java -jar COSLinux.jar
 ```
 **Note: below this line everything is generated to a "target" directory located in the run location. It will be generated after first run.**
 
