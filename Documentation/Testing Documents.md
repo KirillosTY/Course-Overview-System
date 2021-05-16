@@ -16,7 +16,7 @@ removed after tests end. Note that if location contains a config.properties it w
  
  Current coverage is approximately 70%, mostly because simpler getters and setters have not been tested.
  
- ![TETS](https://github.com/KirillosTY/Course-Overview-System/blob/9226a278ab81df6aa51b634a2223d345e74552a6/Documentation/Kuvat/testC.png)
+ ![test](https://github.com/KirillosTY/Course-Overview-System/blob/9226a278ab81df6aa51b634a2223d345e74552a6/Documentation/Kuvat/testC.png)
  
  The MainController class is not tested through automation.
  
