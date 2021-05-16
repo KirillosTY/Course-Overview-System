@@ -14,7 +14,7 @@ This application is created to help in managing courses, tasks, notes and projec
 
 [Architecture](Documentation/Architecture.md)
 
-[Test Document](https://github.com/KirillosTY/Course-Overview-System/blob/0c8529ae727e64a3c8188b67150c533cfe7a711c/Documentation/Testing%20Documents.md)
+[Testing Document](https://github.com/KirillosTY/Course-Overview-System/blob/0c8529ae727e64a3c8188b67150c533cfe7a711c/Documentation/Testing%20Documents.md)
 
 [Workhours](Documentation/workhours.md)
 
