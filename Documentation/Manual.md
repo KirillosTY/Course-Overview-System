@@ -7,7 +7,7 @@ You can start the file with the command:
 ```
 java -jar COS.jar
 ``` 
-or by going into the main folder named COS and running the following command:
+or by downloading this project going into the main folder named CourseOverviewSystem/COS and running the following command:
 
 ```
 mvn compile exec:java -Dexec.mainClass=cos.controls.MainController
