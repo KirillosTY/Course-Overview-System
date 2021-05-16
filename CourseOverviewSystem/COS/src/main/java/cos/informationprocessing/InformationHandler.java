@@ -269,5 +269,11 @@ public class InformationHandler implements Serializable {
         return properties;
     }
 
+    public String getCourseHandlerURL() {
+        return courseHandlerURL;
+    }
 
+    public String getSettingsURL() {
+        return settingsURL;
+    }
 }

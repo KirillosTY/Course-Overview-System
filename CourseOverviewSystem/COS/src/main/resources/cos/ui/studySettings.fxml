@@ -8,7 +8,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="cos.ui.StudySettings"
-            prefHeight="150.0" prefWidth="430" vgap="10" hgap="10" style="-fx-background-color: #E4C5AF" stylesheets="@styles.css">
+            prefHeight="150.0" prefWidth="470" vgap="10" hgap="10" style="-fx-background-color: #E4C5AF" stylesheets="@styles.css">
     <padding>
         <Insets bottom="10" right="20" left="20"
                 top="10"/>
@@ -31,16 +31,16 @@
         <VBox spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="3">
                <HBox>
                    <Label text="Worktime in hours : "/>
-                   <TextField fx:id="workTH" prefWidth="50" prefHeight="15"/>
+                   <TextField fx:id="workTH" prefWidth="40" prefHeight="15"/>
                    <Label text=" minutes : "/>
-                   <TextField fx:id="workTM" prefWidth="50" prefHeight="15"/>
+                   <TextField fx:id="workTM" prefWidth="40" prefHeight="15"/>
                </HBox>
 
             <HBox>
                 <Label text="Breaktime in hours : "/>
-                <TextField fx:id="breakTH" prefWidth="50" prefHeight="15"/>
+                <TextField fx:id="breakTH" prefWidth="40" prefHeight="15"/>
                 <Label text=" minutes : "/>
-                <TextField fx:id="breakTM" prefWidth="50" prefHeight="15"/>
+                <TextField fx:id="breakTM" prefWidth="40" prefHeight="15"/>
             </HBox>
                 <HBox>
                     <Label text="Cycles :" />

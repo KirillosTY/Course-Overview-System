@@ -43,6 +43,12 @@ public class InformationHandlerTest {
 
     }
 
+    @Before
+    public void initialize(){
+
+        tester.setURLS("chTest","setTest");
+    }
+
 
     @Test
     public void saveProp(){
@@ -160,7 +166,9 @@ public class InformationHandlerTest {
     @Test
     public void saveCourseHandler(){
 
+
         assertTrue(tester.saveCourseHandler(new CourseHandler()));
+
     }
 
     @Test
