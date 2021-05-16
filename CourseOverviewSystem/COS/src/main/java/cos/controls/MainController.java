@@ -29,12 +29,11 @@ public class MainController {
             if (!(courseHandler.getCourseList().isEmpty() && courseHandler.getUpcomingCourse().isEmpty())) {
                 courseHandler.courseDateUpdater();
             }
-
-            launch(UiMainStart.class);
         } catch (Exception e) {
-            launch(UiMainStart.class);
+
 
         }
+        launch(UiMainStart.class);
     }
 
     private static void courSettCreateIfNull() {
