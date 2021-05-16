@@ -1,6 +1,8 @@
 # Course Overview System
 
-This application is supposed to help in managing courses, tasks, notes and projects in general.
+This application is created to help in managing courses, tasks, notes and projects in general. Mainly by keeping track of deadlines, workhours put in and saving notes.
+
+**Note: You will need to have java 11 installed and environment set for it to operate properly.** 
 
 
 
@@ -11,6 +13,8 @@ This application is supposed to help in managing courses, tasks, notes and proje
 [Functional requirements](Documentation/Vaatimusmäärittely.md)
 
 [Architecture](Documentation/Architecture.md)
+
+[Test Document](https://github.com/KirillosTY/Course-Overview-System/blob/0c8529ae727e64a3c8188b67150c533cfe7a711c/Documentation/Testing%20Documents.md)
 
 [Workhours](Documentation/workhours.md)
 
