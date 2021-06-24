@@ -43,7 +43,7 @@
 
     <HBox prefHeight="50" minWidth="200" spacing="50" GridPane.columnIndex="4" GridPane.rowIndex="3" prefWidth="70"
         GridPane.valignment="BOTTOM" GridPane.halignment="RIGHT">
-        <Button fx:id="remove" prefHeight="20" text="remove" visible="false" onMouseClicked="#remove" prefWidth="60"  style="-fx-text-fill: white;
+        <Button fx:id="remove" prefHeight="20" text="Cancel"  onMouseClicked="#close" prefWidth="60"  style="-fx-text-fill: white;
     -fx-background-color:#B01307;-fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian ,#E3170A,10 , 0.5 , 3, 3 );" alignment="BOTTOM_LEFT"/>
 
         <Button prefHeight="30" prefWidth="80" alignment="BOTTOM_RIGHT" fx:id="save" text="Save" onAction="#saveTask" stylesheets="@styles.css"/>

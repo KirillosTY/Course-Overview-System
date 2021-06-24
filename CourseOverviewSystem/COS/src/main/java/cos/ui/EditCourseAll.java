@@ -33,6 +33,8 @@ public class EditCourseAll {
 
     @FXML
     private Label courseNotesLab, taskNotesLab;
+    @FXML
+    private Pagination courseNotesList;
 
     private ArrayList<Course> currentCourseList;
 
@@ -73,6 +75,7 @@ public class EditCourseAll {
                 return styled;
             }
         });
+
 
 
     }
@@ -192,15 +195,15 @@ public class EditCourseAll {
     @FXML
     public void msgSets() {
 
-        courseNotes.setText(courseSelector.getSelectionModel().getSelectedItem().getNotes());
+      courseNotes.setText(cHandler.getCurrent().buildNotes());
 
     }
 
     @FXML
     public void msgSetsTask() {
-
-        taskNotes.setText(taskSelector.getSelectionModel().getSelectedItem().getNotes());
+      taskNotes.setText(cHandler.getCurrentTask().buildNotes());
     }
+
 
     @FXML
     public void editTask() {

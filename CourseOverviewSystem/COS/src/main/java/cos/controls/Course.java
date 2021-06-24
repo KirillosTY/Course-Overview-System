@@ -2,8 +2,6 @@ package cos.controls;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -19,6 +17,7 @@ public class Course extends BasicTask {
     private final ArrayList<Task> doneTasks;
     private int value;
     private ArrayList<Task> taskList;
+
 
     /**
      * Creates a course object.
@@ -61,7 +60,7 @@ public class Course extends BasicTask {
         Task newTask = new Task(state, wHS, name, des, notes, prio);
         taskList.add(newTask);
         taskDateUpdater();
-        saveNotesWithStamp(notes, name);
+        saveNotesWithStamp("Created task: " + newTask.getName()+" - "+newTask.getDescription());
         if (MainController.getCourseHandler().getCurrentTask() == null) {
             MainController.getCourseHandler().setCurrentTask(newTask);
         }
@@ -82,7 +81,7 @@ public class Course extends BasicTask {
 
         taskList.add(task);
         taskDateUpdater();
-        saveNotesWithStamp(task.getNotes(), task.getName());
+        saveNotesWithStamp("Created task: " + task.getName()+" - "+task.getDescription());
     }
 
 
@@ -112,18 +111,16 @@ public class Course extends BasicTask {
 
     public void saveNotesWithStamp(String notes, String nameOfNote) {
 
-        String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
-                FormatStyle.LONG, FormatStyle.MEDIUM));
-        if (notes.split("\n\n\n").length > 0) {
+        String[] cutExtra =  new String[99999];
 
-            StringBuilder build = new StringBuilder(time + " " + nameOfNote + ":\n\n"
-                    + notes.split("\n\n\n")[0]);
-            build.append("\n\n\n");
-            build.append(this.getNotes());
-            this.setNotes(build.toString());
+        if(notes.length() > 2){
+            cutExtra = notes.split("---------");
+
         }
+        this.getNoteList().put(LocalDateTime.now(),nameOfNote+"-"+"\n\n"+cutExtra[0]);
 
     }
+
 
     /**
      * Updates tasks based on the end on the WorkHourCounter.
@@ -173,6 +170,7 @@ public class Course extends BasicTask {
 
         if (this.getTaskList().contains(task)) {
             task.getWorkHoursSpent().setEndDate(LocalDateTime.now());
+            task.setDone(true);
             doneTasks.add(task);
             return taskList.remove(task);
 

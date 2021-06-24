@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -107,6 +108,11 @@ public class UiMainStart extends Application {
                 for (Stage s : closingStages) {
                     s.close();
                 }
+
+                for(Stage s :stageControls){
+                    s.close();
+                }
+
             });
 
 
@@ -124,6 +130,16 @@ public class UiMainStart extends Application {
         loadNeeded = new ArrayList<>();
 
         stageControls = new ArrayList<>();
+
+    }
+
+    public static void playSound(String url){
+        try {
+          AudioClip  swapSound = new AudioClip(url);
+          swapSound.play();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

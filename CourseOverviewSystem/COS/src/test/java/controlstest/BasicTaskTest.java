@@ -23,16 +23,17 @@ public class BasicTaskTest {
         testCounter.setEndDate(LocalDateTime.now().plusDays(7).plusMinutes(10));
 
         tester = new BasicTask(false, testCounter,"Why","not","",0);
+
     }
+
 
     @Test
     public void savingNotes(){
 
         tester.saveNotesWithStamp("Adding more");
 
-        assertEquals(tester.getNotes(),LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
-                FormatStyle.LONG,FormatStyle.MEDIUM))+":\n\n"+"Adding more");
-
+        assertEquals(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
+                FormatStyle.LONG,FormatStyle.MEDIUM))+"\nAdding more\n\n", tester.buildNotes());
 
     }
 
@@ -58,7 +59,7 @@ public class BasicTaskTest {
         tester.getWorkHoursSpent().setEndDate(LocalDateTime.now().minusDays(2));
         tester.setName("Ohje");
 
-        assertEquals("Ohje - Completed: " + LocalDateTime.now().minusDays(2).toLocalDate(),tester.toString());
+        assertEquals("Ohje - Deadline ended: " + LocalDateTime.now().minusDays(2).toLocalDate(),tester.toString());
     }
 
 
@@ -68,6 +69,6 @@ public class BasicTaskTest {
         tester.getWorkHoursSpent().setEndDate(LocalDateTime.now().minusDays(2));
         tester.setName("Ohjelmistote");
 
-        assertEquals("Ohjelmisto... - Completed: " + LocalDateTime.now().minusDays(2).toLocalDate(),tester.toString());
+        assertEquals("Ohjelmisto... - Deadline ended: " + LocalDateTime.now().minusDays(2).toLocalDate(),tester.toString());
     }
 }

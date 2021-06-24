@@ -125,7 +125,7 @@ public class CreateEditCourse {
         value.setText(course.getValue() + "");
 
         remove.setText("Remove");
-        remove.setOnAction(cancel -> {
+        remove.setOnAction(remove -> {
             remove();
         });
     }
@@ -235,7 +235,6 @@ public class CreateEditCourse {
             return;
         }
 
-
         WorkHourCounter courseWHC = setupWHC();
 
         int val = Integer.parseInt(value.getText());
@@ -247,6 +246,8 @@ public class CreateEditCourse {
 
         MainController.getCourseHandler().createCourse(false, courseWHC,
                 name.getText(), description.getText(), notes.getText(), prio, val);
+
+
 
         Stage stage = (Stage) save.getScene().getWindow();
 
@@ -264,7 +265,6 @@ public class CreateEditCourse {
 
     @FXML
     public void close() {
-
         Stage stage = (Stage) save.getScene().getWindow();
         stage.close();
     }

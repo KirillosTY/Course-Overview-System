@@ -4,6 +4,7 @@ import cos.controls.Course;
 import cos.controls.CourseHandler;
 import cos.controls.MainController;
 import cos.controls.Task;
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -29,12 +30,51 @@ class ListCells extends ListCell<Task> {
         super.updateItem(item, empty);
         if (empty || item == null) {
             setText(null);
+            setContextMenu(null);
         } else {
             setText(item.toString());
             setTextFill(Paint.valueOf("#8D3016"));
             setTooltip(new Tooltip(item.getName() + " - " + item.getDescription()));
+            setContextMenu(getCM(item));
         }
+    }
 
+    private ContextMenu getCM(Task task){
+        ContextMenu taskMenu = new ContextMenu();
+        MenuItem read = new MenuItem("Notes");
+        read.setUserData(task);
+        this.menuSetupNotes(read);
+        MenuItem edit = new MenuItem("Edit");
+        edit.setUserData(task);
+        this.menuSetupEdit(edit);
+        taskMenu.getItems().addAll(read,edit);
+
+        return taskMenu;
+    }
+
+    private void menuSetupEdit(MenuItem item){
+
+        item.setOnAction(Edit->{
+            Stage editStage = UiMainStart.viewChanger("taskEditCreation.fxml","Edit task", false);
+            editStage.setOnHidden(updates -> {
+
+                    UiMain.updateNeeded = true;
+
+            });
+            editStage.setUserData(item.getUserData());
+            editStage.showAndWait();
+        });
+
+    }
+
+    public void menuSetupNotes(MenuItem item){
+        item.setOnAction(notes->{
+            Stage noteWindow =  UiMainStart.viewChanger("noteCheckup.fxml","Notes",false);
+
+            noteWindow.setUserData(item.getUserData());
+
+            noteWindow.showAndWait();
+        });
     }
 
 
@@ -65,6 +105,10 @@ public class UiMain {
 
     private double mouseLocationY;
 
+    public static boolean updateNeeded;
+
+
+
     @FXML
     public void initialize() {
 
@@ -78,6 +122,7 @@ public class UiMain {
         listUISets();
         setStageWindows();
         tooltipSetup();
+        AnimationTimer();
 
     }
 
@@ -145,7 +190,6 @@ public class UiMain {
             courseHandler.setCurrentTask(null);
             courseHandler.markCourseAsDone(tempCourse, false);
             tasklist.setItems(null);
-            updateLists();
             doneCourse.setSelected(false);
 
         });
@@ -174,7 +218,6 @@ public class UiMain {
                 } else {
                     courseHandler.setCurrentTask(null);
                     startTime.setText("Start studying");
-
                 }
             }
         });
@@ -193,6 +236,13 @@ public class UiMain {
         });
     }
 
+
+    public void updateAll(){
+        updateLists();
+        updateTasks();
+
+    }
+
     @FXML
     public void updateLists() {
 
@@ -202,6 +252,9 @@ public class UiMain {
             courselist.getSelectionModel().select(courseHandler.getCurrent());
             updateTasks();
 
+        } else if(!courseHandler.getCourseList().isEmpty() && courseHandler.getCurrent() == null){
+            courselist.getSelectionModel().select(courseHandler.getCourseList().get(0));
+            updateTasks();
         } else {
             courselist.setPlaceholder(new Label("Add a course to start!"));
             tasklist.setPlaceholder(new Label("Add tasks!"));
@@ -217,8 +270,9 @@ public class UiMain {
             tasklist.setItems(FXCollections.observableList(courseHandler.getCurrent().getTaskList()));
             tasklist.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-            if (courseHandler.getCurrentTask() == null) {
-                tasklist.setPlaceholder(new Label("Add tasks!"));
+            if (courseHandler.getCurrentTask() == null  && !courseHandler.getCurrent().getTaskList().isEmpty()) {
+                tasklist.getSelectionModel().select(courseHandler.getCurrent().getTaskList().get(0));
+
             } else if (courseHandler.getCurrent().getTaskList().contains(courseHandler.getCurrentTask())) {
                 tasklist.getSelectionModel().select(courseHandler.getCurrentTask());
 
@@ -227,7 +281,7 @@ public class UiMain {
 
             }
         } else {
-            tasklist.setPlaceholder(new Label("Add tasks!"));
+            tasklist.setPlaceholder(new Label("Select a course first!"));
         }
 
     }
@@ -241,7 +295,8 @@ public class UiMain {
 
                 ListCells styled = new ListCells();
                 styled.setTextFill(Paint.valueOf("#8D3016"));
-                styled.setStyle("-fx-background-color: transparent (#8D3016); ");
+                styled.setStyle("-fx-background-color: transparent (#8D3016);");
+
 
                 return styled;
             }
@@ -339,8 +394,9 @@ public class UiMain {
             courseHandler.setCurrent(null);
             courseHandler.setCurrentTask(null);
 
+
         }
-        updateLists();
+        updateNeeded = true;
 
     }
 
@@ -353,8 +409,8 @@ public class UiMain {
 
         courseHandler.getCurrent().markTaskDone(courseHandler.getCurrentTask());
         courseHandler.setCurrentTask(null);
-        updateLists();
-        updateTasks();
+        updateNeeded = true;
+
 
     }
 
@@ -365,7 +421,7 @@ public class UiMain {
             @Override
             public void run() {
                 UiMainStart.stageControls.forEach(s -> {
-                    if (s != mainStage && s != currentStage) {
+                    if (s != mainStage && s != currentStage && !s.getTitle().equals("Notes")) {
                         s.close();
                     }
                 });
@@ -427,9 +483,7 @@ public class UiMain {
                         "Task Creation", false);
 
                 currentStage.setOnHidden((e) -> {
-                    updateLists();
-                    updateTasks();
-
+                    updateNeeded = true;
                 });
                 currentStage.showAndWait();
             } catch (Exception e) {
@@ -450,10 +504,8 @@ public class UiMain {
                     "Course creation!", false);
             currentStage.setOnHidden((e) -> {
 
-                updateLists();
 
-                MainController.getInformationHandler().saveCourseHandler(MainController.getCourseHandler());
-
+                updateNeeded = true;
             });
 
             currentStage.showAndWait();
@@ -480,8 +532,8 @@ public class UiMain {
                 courseHandler.setCurrentTask(null);
 
                 tasklist.setItems(FXCollections.observableList(new ArrayList<>()));
-                updateLists();
 
+                updateNeeded = true;
                 disableMain(false);
 
             });
@@ -491,6 +543,8 @@ public class UiMain {
             UiMainStart.popupText("Manage all courses", "Something went wrong opening this  window, please restart the application");
         }
     }
+
+
 
 
     @FXML
@@ -515,5 +569,34 @@ public class UiMain {
             tipError.show(tasklist, mouseLocationX, mouseLocationY);
 
         }
+    }
+
+
+    private void AnimationTimer(){
+
+        new AnimationTimer() {
+
+            Long comparing = 0L;
+            @Override
+            public void handle(long count) {
+                if(count-comparing >= 100_000_000L){
+
+                    if(updateNeeded){
+                        updateNeeded = false;
+                        updateAll();
+                    }
+                    comparing = count;
+                }
+
+                if(count-comparing >= 1_000_000_000L*60){
+                    updateAll();
+                }
+
+
+            }
+        }.start();
+
+
+
     }
 }

@@ -59,14 +59,14 @@ public class CourseTest {
         testWHC = new WorkHourCounter();
         testWHC.setEndDate(LocalDateTime.now().minusDays(1));
         testWHC.setStartDate(LocalDateTime.now().minusDays(2));
+        testCourse.getNoteList().clear();
         testTask = new Task(true, testWHC,"Sauli","Niinistö","eh",1);
-        testCourse.setNotes("");
         testCourse.addTask(testTask);
         String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
                 FormatStyle.LONG, FormatStyle.MEDIUM));
 
-        assertEquals(time + " " + testTask.getName() + ":\n\n"+testTask.getNotes()+"\n\n\n"
-                , testCourse.getNotes());
+        assertEquals(time + "\nCreated task: " + testTask.getName()+" - "+testTask.getDescription()+"\n\n",
+                testCourse.buildNotes());
 
     }
 

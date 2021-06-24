@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Objects;
+import java.util.TreeMap;
 
 /**
  * The basis of courses and tasks. This class offers all the basic implementation of courses and tasks.
@@ -28,6 +29,8 @@ public class BasicTask implements Serializable {
     private String description;
 
     private Integer priority;
+
+    private TreeMap<LocalDateTime,String> noteList;
 
     /**
      * Creates a task object.
@@ -55,6 +58,7 @@ public class BasicTask implements Serializable {
 
         this.description = des;
 
+        noteList = new TreeMap<>();
 
     }
 
@@ -83,6 +87,22 @@ public class BasicTask implements Serializable {
         this.notes = notes;
     }
 
+    public String buildNotes(){
+
+        StringBuilder buildingNotes = new StringBuilder();
+
+        this.getNoteList().descendingKeySet().forEach(note ->{
+
+            buildingNotes.append(note.format(DateTimeFormatter.ofLocalizedDateTime(
+                    FormatStyle.LONG, FormatStyle.MEDIUM))+"\n"+ this.getNoteList().get(note));
+
+            buildingNotes.append("\n\n");
+        });
+
+        return  buildingNotes.toString();
+
+    }
+
 
     public Integer getPriority() {
         return priority;
@@ -109,6 +129,10 @@ public class BasicTask implements Serializable {
         this.workHoursSpent = workHoursSpent;
     }
 
+    public TreeMap<LocalDateTime, String> getNoteList() {
+        return noteList;
+    }
+
     /**
      * adds the string as note to this objects current notes.
      *
@@ -116,15 +140,14 @@ public class BasicTask implements Serializable {
      */
 
     public void saveNotesWithStamp(String notes) {
+        String[] cutExtra =  new String[99999];
 
-        String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(
-                FormatStyle.LONG, FormatStyle.MEDIUM));
-        StringBuilder build = new StringBuilder();
-        build.append(time + ":\n\n");
+        if(notes.length() > 2){
+            cutExtra = notes.split("---------");
 
-        build.append(notes);
+        }
 
-        this.setNotes(build.toString());
+        noteList.put(LocalDateTime.now(),cutExtra[0]);
 
     }
 
@@ -144,12 +167,14 @@ public class BasicTask implements Serializable {
             tempN = this.name.substring(0, 10) + "...";
         }
         if (getWorkHoursSpent().getEndDate().isBefore(LocalDateTime.now())) {
-
-            return tempN + " - Completed: " + getWorkHoursSpent().getEndDate().toLocalDate();
+            if(done) {
+                return tempN + " - Completed: " + getWorkHoursSpent().getEndDate().toLocalDate();
+            } else {
+                return tempN + " - Deadline ended: " + getWorkHoursSpent().getEndDate().toLocalDate();
+            }
 
         }
         return tempN + " - " + Duration.between(LocalDateTime.now(), this.getWorkHoursSpent().getEndDate()).toHours() + " Hours left";
-
 
     }
 

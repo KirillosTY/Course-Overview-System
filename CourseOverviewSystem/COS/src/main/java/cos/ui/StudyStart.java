@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 import java.time.Duration;
@@ -18,9 +19,11 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class StudyStart {
+public class StudyStart  {
 
-    boolean working = true;
+    private boolean working = true;
+    private boolean breakInduced = false;
+    private boolean paused = false;
 
     private Settings settings;
     @FXML
@@ -49,10 +52,13 @@ public class StudyStart {
     private WorkHourCounter countOverall;
 
     private WorkHourCounter count;
+
     @FXML
     private AnimationTimer counter;
 
     private long startHours;
+
+    private AudioClip swapSound;
 
     @FXML
     private Stage stage;
@@ -72,7 +78,6 @@ public class StudyStart {
             overallVBox.getChildren().remove(cycles);
         }
 
-
         countOverall = MainController.getCourseHandler().getCurrentTask().getWorkHoursSpent();
         startHours = countOverall.getCurrentCount();
         this.count = new WorkHourCounter();
@@ -90,7 +95,8 @@ public class StudyStart {
         currentTask.setText("Current task: " + task.getName() + " - " + task.getDescription() + " - "
                 + Duration.between(LocalDateTime.now(), task.getWorkHoursSpent().getEndDate()).toHours()
                 + " Hours left");
-        msg.setText("\n\n\n" + MainController.getCourseHandler().getCurrentTask().getNotes());
+        msg.setText("\n\n\n\n\n ---------------DO-NOT-TOUCH--------------------- \n" +
+                MainController.getCourseHandler().getCurrentTask().buildNotes());
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -106,6 +112,24 @@ public class StudyStart {
             counter.stop();
         });
 
+    }
+
+    @FXML
+    public void pause(){
+
+        if(paused){
+            paused = false;
+        } else {
+            paused = true;
+        }
+    }
+
+
+    @FXML
+    public void startBreak(){
+
+        paused = false;
+        breakInduced = true;
     }
 
     @FXML
@@ -146,14 +170,15 @@ public class StudyStart {
 
     public void startAnimation(WorkHourCounter tempCount) {
         final LocalDateTime startTime = LocalDateTime.now().plusSeconds(tempCount.getCurrentCount());
-
         counter = new AnimationTimer() {
 
             Long startCounter = 0L;
 
             @Override
             public void handle(long currentTime) {
-
+                if(paused){
+                    return;
+                }
                 if (currentTime - startCounter >= 1_000_000_000) {
                     startCounter = currentTime;
                     updatetingStatus(tempCount);
@@ -161,25 +186,30 @@ public class StudyStart {
                     tempCount.setCurrentCount(tempCount.getCurrentCount() - 1);
 
                 }
+                checkSwitch(startTime,tempCount);
 
-
-                if (LocalDateTime.now().isAfter(startTime)) {
-
-                    swapModes(tempCount);
-
-                    if (tempCount.getCycle() >= 0) {
-                        startAnimation(tempCount);
-                        counter.start();
-
-                        stop();
-                    } else {
-                        dayDone(tempCount);
-
-                    }
-                }
             }
 
         };
+
+    }
+
+    public void checkSwitch(LocalDateTime startTime, WorkHourCounter tempCount){
+
+        if (LocalDateTime.now().isAfter(startTime) || breakInduced){
+
+            swapModes(tempCount);
+
+            if (tempCount.getCycle() >= 0) {
+                counter.stop();
+                startAnimation(tempCount);
+                counter.start();
+
+            } else {
+                dayDone(tempCount);
+
+            }
+        }
 
     }
 
@@ -199,16 +229,17 @@ public class StudyStart {
 
     public void swapModes(WorkHourCounter tempCount) {
 
-
+        WorkBreakSound();
         if (working) {
-
-            tempCount.setCycle(tempCount.getCycle() - 1);
+            if(!breakInduced) {
+                tempCount.setCycle(tempCount.getCycle() - 1);
+            }
 
             count.setCurrentCount(settings.getStudyBreakH() * 3600L
                     + settings.getStudyBreakM() * 60 + 5);
 
             working = false;
-
+            breakInduced = false;
         } else {
 
             saveNotes();
@@ -235,12 +266,18 @@ public class StudyStart {
 
     }
 
+    public void WorkBreakSound(){
+        try {
+            if(working) {
+                swapSound = new AudioClip(this.getClass().getResource("sounds/Mixkit.wav").toExternalForm());
+            } else {
+                swapSound = new AudioClip(this.getClass().getResource("sounds/MixkitWork.wav").toExternalForm());
+
+            }
+            swapSound.play();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }
-
-
-
-
-
-
-

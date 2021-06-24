@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<FlowPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cos.ui.NoteCheckup"
+            prefHeight="300.0" prefWidth="400.0" stylesheets="@styles.css" style="-fx-background-color: #E4C5AF" alignment="CENTER" vgap="20" hgap="20">
+
+    <padding>
+        <Insets top="20" bottom="20" left="20" right="20"/>
+    </padding>
+
+        <Label fx:id="name" text="Notes"/>
+
+        <TextArea fx:id="notes" editable="false" wrapText="true" />
+
+
+        <Button fx:id="Done" minWidth="70" text="Done" onMouseClicked="#close" alignment="CENTER"/>
+
+
+
+</FlowPane>

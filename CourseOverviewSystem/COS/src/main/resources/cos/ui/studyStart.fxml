@@ -33,10 +33,13 @@
 
         <TextArea fx:id="msg" GridPane.columnSpan="3" wrapText="true" stylesheets="@styles.css"/>
 
-    <HBox alignment="CENTER" spacing="200">
+    <HBox alignment="CENTER" spacing="70">
 
            <Button text="Cancel" fx:id="cancel"  onAction="#cancel"/>
-
+            <HBox spacing="20" alignment="CENTER">
+                <Button text="Pause" alignment="CENTER" onMouseClicked="#pause"/>
+                <Button text="Break" onMouseClicked="#startBreak"/>
+            </HBox>
            <Button text="Save" fx:id="done" prefWidth="70" onAction="#breakAnimation" style="-fx-text-fill: white; -fx-background-color:#2B644D;
                     -fx-background-radius: 1em 1em 1em 1em;-fx-effect: innershadow( gaussian ,#439D79 ,10 , 0.5 , 3, 3 )"/>
        </HBox>

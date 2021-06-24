@@ -26,25 +26,23 @@
         </VBox>
 
 
-
-
         <VBox spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="3">
                <HBox>
                    <Label text="Worktime in hours : "/>
-                   <TextField fx:id="workTH" prefWidth="40" prefHeight="15"/>
+                   <TextField fx:id="workTH" prefWidth="30" prefHeight="15"/>
                    <Label text=" minutes : "/>
-                   <TextField fx:id="workTM" prefWidth="40" prefHeight="15"/>
+                   <TextField fx:id="workTM" prefWidth="30" prefHeight="15"/>
                </HBox>
 
             <HBox>
                 <Label text="Breaktime in hours : "/>
-                <TextField fx:id="breakTH" prefWidth="40" prefHeight="15"/>
+                <TextField fx:id="breakTH" prefWidth="30" prefHeight="15"/>
                 <Label text=" minutes : "/>
-                <TextField fx:id="breakTM" prefWidth="40" prefHeight="15"/>
+                <TextField fx:id="breakTM" prefWidth="30" prefHeight="15"/>
             </HBox>
                 <HBox>
                     <Label text="Cycles :" />
-                    <TextField fx:id="cycle" prefWidth="40" prefHeight="15"/>
+                    <TextField fx:id="cycle" prefWidth="30" prefHeight="15"/>
                 </HBox>
 
             </VBox>

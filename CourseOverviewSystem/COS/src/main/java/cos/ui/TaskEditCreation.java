@@ -125,8 +125,10 @@ public class TaskEditCreation {
         name.setText(task.getName());
         description.setText(task.getDescription());
         priority.setText(task.getPriority() + "");
-
-        remove.setVisible(true);
+        remove.setText("Remove");
+        remove.setOnAction(remove ->{
+            remove();
+        });
 
     }
 
@@ -247,8 +249,10 @@ public class TaskEditCreation {
                 FormatStyle.LONG, FormatStyle.MEDIUM));
 
         ch.getCurrent().addTask(false, taskWHC,
-                name.getText(), description.getText(), time + ":\n\n" + notes.getText(), prio);
-        ch.getCurrent().saveNotesWithStamp(notes.getText(), name.getText());
+                name.getText(), description.getText(), notes.getText(), prio);
+
+        save.getScene().getWindow().setUserData(new Task(false, taskWHC,
+                        name.getText(), description.getText(), notes.getText(), prio));
 
         close();
 
