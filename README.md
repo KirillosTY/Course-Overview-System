@@ -1,3 +1,5 @@
+### This is a practice project for a course.
+
 # Course Overview System
 
 This application is created to help in managing courses, tasks, notes and projects in general. Mainly by keeping track of deadlines, workhours put in and saving notes.
